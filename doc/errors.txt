@@ -26,6 +26,7 @@ following name/value pairs:
       local-name         The |localName| of the |node| of the error.
       element-local-name The |localName| of the |ownerElement| of the
                          |node| of the error.
+      @                  The |nodeValue| of the |node| of the error.
 
   desc
 
