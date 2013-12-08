@@ -1294,7 +1294,7 @@ p {
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">Start tag of <code>tr</code>
   element is missing.</d:message>
-  <d:desc>
+  <d:desc xml:lang="en">
     <p>Start tag of a <code>tr</code> element, which is <em>not</em>
     optional, is missing.  The document is non-conforming.</p>
 
@@ -1311,7 +1311,7 @@ p {
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">This document does not start with a
   <code>DOCTYPE</code>.</d:message>
-  <d:desc>
+  <d:desc xml:lang="en">
     <p>The document does not start with a <code>DOCTYPE</code>.
     The document is non-conforming.</p>
 
@@ -1413,7 +1413,7 @@ p {
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">This <code>&lt;html></code> tag is not
   the first start tag.</d:message>
-  <d:desc>
+  <d:desc xml:lang="en">
     <p>There is a start tag of the <code>html</code> element
     that it not the first start tag in the input stream.
     The document is non-conforming.</p>
@@ -2015,7 +2015,7 @@ p {
   is not specified.</d:message>
   <d:message xml:lang="ja">必須の属性 <code><var>{text}</var></code>
   が指定されていません。</d:message>
-  <d:desc>
+  <d:desc xml:lang="en">
     <p>A required attribute is not specified.</p>
 
     <p>Some attribute is defined as <i>required</i>.
@@ -2032,7 +2032,7 @@ p {
         Note that the <code>rev</code> attribute is obsolete.</dd>
     </dl>
   </d:desc>
-  <d:desc>
+  <d:desc xml:lang="ja">
     <p>必須の属性が指定されていません。</p>
 
     <p>属性によっては「必須」とされており、
@@ -2182,7 +2182,7 @@ p {
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The <code>charset</code> attribute is not 
   allowed in XML document.</d:message>
-  <d:desc>
+  <d:desc xml:lang="en">
     <p>The <code>charset</code> attribute of a
     <code>meta</code> element is not allowed in XML document.
     The document is non-conforming.</p>
@@ -2213,7 +2213,7 @@ p {
   <d:message xml:lang="en">The <code>xmlns</code> attribute 
   in the <code>null</code> namespace is not allowed in
   XHTML document.  The document is non-conforming.</d:message>
-  <d:desc>
+  <d:desc xml:lang="en">
     <p>The <code>xmlns</code> attribute in the <code>null</code>
     namespace is not allowed in XHTML document.</p>
 
@@ -2825,7 +2825,7 @@ p {
   <d:message xml:lang="en">Link type <code><var>{value}</var></code>
   is proposed but not accepted yet; it <em>should not</em> be
   used until it has been accepted.</d:message>
-  <d:desc>
+  <d:desc xml:lang="en">
     <p>The link type is in the <i>proposed</i> status; it
     <em>should not</em> be used until it has been
     accepted.</p>
@@ -3211,7 +3211,7 @@ p {
     modules="Whatpm::URIChecker">
   <d:message xml:lang="en">A dot-segment (<code>.</code> or
   <code>..</code>) occurs in an absolute reference.</d:message>
-  <d:desc>
+  <d:desc xml:lang="en">
     <p>Dot-segment (<code>.</code> or <code>..</code>) should
     not occur in an absolute reference.</p>
 
@@ -3232,14 +3232,14 @@ p {
     modules="Whatpm::URIChecker">
   <d:message xml:lang="en">The URL does not end with
   a <code>/</code> character.</d:message>
-  <d:item xml:lang="en">
+  <d:message xml:lang="en">
     <p>The IRI does not end with a <code>/</code>.  If there is an
     authority component in an IRI, a <code>/</code> should be present
     instead of empty path component.</p>
 
     <p>For example, <code>http://www.example.com<strong>/</strong></code>
     is preferred to <code>http://www.example.com</code>.</p>
-  </d:item>
+  </d:message>
 </d:item>
 
 <d:item name="URL:empty port"
