@@ -1,6 +1,6 @@
 # -*- Makefile -*-
 
-all:
+all: all-data
 
 ## ------ Setup ------
 
@@ -21,6 +21,13 @@ pmbp-update: git-submodules pmbp-upgrade
 	perl local/bin/pmbp.pl --update
 pmbp-install: pmbp-upgrade
 	perl local/bin/pmbp.pl --install
+
+## ------ Build ------
+
+PERL = ./perl
+
+all-data: source/errors.xml
+	$(PERL) bin/generate.pl
 
 ## ------ Tests ------
 
