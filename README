@@ -1,0 +1,28 @@
+data-errors
+~~~~~~~~~~~
+
+This repository contains list of errors and texts describing them,
+used by various modules of the manakai project.
+
+* Files
+
+data/errors.json   JSON file containing errors and their descriptions.
+source/errors.xml  Original XML file from which |errors.json| is generated.
+
+* Development
+
+Latest version of the files is available at:
+<https://github.com/manakai/data-errors>.
+
+Travis CI: <https://travis-ci.org/manakai/data-errors>.
+
+* Author
+
+Wakaba <wakaba@suikawiki.org>.
+
+* License
+
+Copyright 2007-2013 Wakaba <wakaba@suikawiki.org>.
+
+This document is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
