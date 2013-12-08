@@ -17,11 +17,11 @@ following name/value pairs:
     The value is an HTML fragment that can be used where flow content
     is expected.
 
-    HTML fragment |<code><var>{text}</var></code>| should be replaced
-    by |text| of the error.
+    HTML fragment |<var>{text}</var>| should be replaced by |text| of
+    the error.
 
-    HTML fragment |<code><var>{text}</var></code>| should be replaced
-    by |value| of the error.
+    HTML fragment |<var>{text}</var>| should be replaced by |value| of
+    the error.
 
   desc
 
