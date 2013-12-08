@@ -1,0 +1,76 @@
+onerror
+~~~~~~~
+
+Various Perl modules (which reference this document) support the
+"onerror" handler.  The application can register a Perl code reference
+as the onerror handler.  The code is then invoked whenever an error is
+detected by the module.  The code is not expected to throw any
+exception.
+
+For the purpose of the "onerror" handler, errors, warnings, and any
+other information that can be useful for the user or the application
+is referred to as "errors".  As described later, level or severity of
+errors can be distinguished by the |level| flag.
+
+The code is invoked with name/value pairs as arguments.  The pairs
+describe the error.  One or more of following name/value pairs are
+given:
+
+* |type|
+
+The short string identifying the kind of the error.  It is a string
+consists of one or more bytes in the range 0x20-0x7E.
+
+The list of error types are available in the |data/errors.json| file.
+
+Please note that new error types can be added at any time.
+Applications should be able to handle unknown error types.  The error
+type can be used as English error message in such cases, although it
+could be unhelpful or unkind by itself.
+
+This name/value pair is always provided.
+
+* |text|
+
+A short string that can be interpreted as an "argument" to the error
+type.  It is a string consists of one or more bytes in the range
+0x20-0x7E.  Its semantics depends on the |type| of the error.  Usually
+there is a limited set of possible values for an error |type|.
+
+For example, the error |type| "attribute missing" with the |text|
+"lang" represents that the |lang| attribute is not specified on the
+element.
+
+* |level|
+
+The short string describing the level or severity of the error.  It is
+a byte string from one of followings:
+
+  m      Violation to a MUST-level requirement.
+  s      Violation to a SHOULD-level requirement.
+  w      Warning.  E.g. a violation to non-normative advice.
+  i      Information.
+  u      Unknown.  E.g. a feature whose validation is not supported
+         yet is found.
+
+A new error level can be introduced in future.  An unknown error level
+should be handled as if it were |u|.
+
+This name/value pair is always provided.
+
+* |line|
+
+The line number at which the error is detected.  The value is a Perl
+number.
+
+* |column|
+
+The column number in the |line| at which the error is detected.  The
+value is a Perl number.
+
+If |column| is provided, |line| is also provided.
+
+* |value|
+
+A part or substring of the input data in which the error is detected.
+It is a character string.
