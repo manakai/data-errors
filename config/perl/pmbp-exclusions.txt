@@ -1,0 +1,4 @@
+- "../../bin/modules/charclass" build tests
+- "../../bin/modules/web-dom" tests
+- "../../bin/modules/web-encodings" tests
+- "../../bin/modules/web-markup" tests tests-json
