@@ -17,11 +17,15 @@ following name/value pairs:
     The value is an HTML fragment that can be used where flow content
     is expected.
 
-    HTML fragment |<var>{text}</var>| should be replaced by |text| of
-    the error.
+    The value can contain HTML |var| elements whose content is a text
+    node with data |{...}| where "..." is one of following variable
+    names, can be used to dynamically construct error message:
 
-    HTML fragment |<var>{text}</var>| should be replaced by |value| of
-    the error.
+      text               The |text| value of the error.
+      value              The |value| value of the error.
+      local-name         The |localName| of the |node| of the error.
+      element-local-name The |localName| of the |ownerElement| of the
+                         |node| of the error.
 
   desc
 
