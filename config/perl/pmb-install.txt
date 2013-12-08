@@ -1,6 +1,7 @@
 Scalar::Util~1.35
 Exporter::Lite~0.02
 Path::Class~0.32
+JSON~2.90
 Exporter~5.68
-Encode~2.55
 Carp~1.32
+Encode~2.55
