@@ -4,8 +4,13 @@ onerror
 Various Perl modules (which reference this document) support the
 "onerror" handler.  The application can register a Perl code reference
 as the onerror handler.  The code is then invoked whenever an error is
-detected by the module.  The code is not expected to throw any
-exception.
+detected by the module.
+
+The code is not expected to throw any exception in general.  Sometimes
+there is a specialized method to terminate the processing or throwing
+an exception safely, depending on modules.  For example, the
+|Web::HTML::Parser| module has the |throw| method for this purpose.
+See documentations of those modules for details.
 
 For the purpose of the "onerror" handler, errors, warnings, and any
 other information that can be useful for the user or the application
