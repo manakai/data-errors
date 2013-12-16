@@ -187,8 +187,13 @@
       }
    },
    "Reserved Prefixes and Namespace Names:Prefix" : {
+      "desc" : {
+         "en" : "\n    <p>Namespace prefixes <code>xml</code> and <code>xmlns</code> are\n    reserved.  They must be bound to the XML and XMLNS namespaces,\n    respectively.</p>\n  ",
+         "ja" : "\n    <p>名前空間接頭辞 <code>xml</code>, <code>xmlns</code> は予約されています。\n    それぞれ XML 名前空間と XMLNS 名前空間とだけ束縛できます。</p>\n  "
+      },
       "message" : {
-         "en" : "Namespace prefix <code><var>{text}</var></code>\n  is reserved and cannot be used for an arbitrary namespace name."
+         "en" : "Namespace prefix <code><var>{text}</var></code>\n  is reserved",
+         "ja" : "名前空間接頭辞 <code><var>{text}</var></code>\n  は予約されています"
       }
    },
    "Sequence (? incomplete" : {
@@ -229,6 +234,26 @@
    "Trailing \\" : {
       "message" : {
          "en" : "A <code>\\</code> character is not followed by\n  another character,"
+      }
+   },
+   "U+000C not serializable" : {
+      "desc" : {
+         "en" : "\n    <p>As the <code>U+000C</code> <code class=\"charname\">FORM\n    FEED</code> character is not representable in XML 1.0, the DOM is\n    not serializable as XML.</p>\n  ",
+         "ja" : "\n    <p>文字 <code>U+000C</code> <code class=\"charname\">FORM FEED</code>\n    は XML 1.0 では表現できず、この DOM は XML として文字列化できません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The character <code>U+000C</code>\n  is not serializable as XML",
+         "ja" : "文字 <code>U+000C</code> \n  は XML として表現できません"
+      }
+   },
+   "U+000D not serializable" : {
+      "desc" : {
+         "en" : "\n    <p>As the <code>U+000D</code> <code class=\"charname\">CARRIAGE\n    RETURN</code> character is converted to <code>U+000A</code> by the\n    parser, it cannot be serialized in the form that, when reparsed,\n    generates the same DOM.</p>\n\n    <p>If you don't think distinction between <code>U+000D</code> and\n    <code>U+000A</code> is important, you can ignore this warning.</p>\n  ",
+         "ja" : "\n    <p>文字 <code>U+000D</code> <code class=\"charname\">CARRIAGE RETURN</code>\n    は構文解析器により <code>U+000A</code> に変換されるので、\n    再度構文解析したときに同じ DOM を生成するような形で文字列化できません。</p>\n\n    <p><code>U+000D</code> と <code>U+000A</code> の違いが重要でないなら、\n    この警告は無視して構いません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The character <code>U+000D</code>\n  is not roundtrippable",
+         "ja" : "文字 <code>U+000D</code> \n  は往復変換できません"
       }
    },
    "URL fragment not allowed" : {
@@ -536,12 +561,12 @@
    },
    "attribute missing" : {
       "desc" : {
-         "en" : "\n    <p>A required attribute is not specified.</p>\n\n    <p>Some attribute is defined as <i>required</i>.\n    Without required attributes specified, user agents \n    cannot provide full functionality of the element to the user.</p>\n\n    <dl class=\"switch\">\n    <dt>HTML <code>img</code> element</dt>\n        <dd>The <code>src</code> attribute must be specified.\n        Additionally, the <code>alt</code> attribute must be specified\n        in many cases.</dd>\n    <dt>HTML <code>link</code> element</dt>\n        <dd>The <code>rel</code> attribute must be specified.\n        Note that the <code>rev</code> attribute is obsolete.</dd>\n    </dl>\n  ",
-         "ja" : "\n    <p>必須の属性が指定されていません。</p>\n\n    <p>属性によっては「必須」とされており、\n    必須の属性がないと利用者エージェントは当該要素の機能を完全には利用者に提供できないことがあります。</p>\n\n    <dl class=\"switch\">\n    <dt>HTML <code>img</code> 要素</dt>\n        <dd><code>src</code> 属性を指定しなければなりません。更に、多くの場合\n        <code>alt</code> 属性も指定しなければなりません。</dd>\n    <dt>HTML <code>link</code> 要素</dt>\n        <dd><code>rel</code> 属性を指定しなければなりません。\n        なお <code>rev</code> 属性は廃止されました。</dd>\n    </dl>\n  "
+         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "Required attribute <code><var>{text}</var></code>\n  is not specified.",
-         "ja" : "必須の属性 <code><var>{text}</var></code>\n  が指定されていません。"
+         "en" : "Attribute <code><var>{text}</var></code>\n  is not specified",
+         "ja" : "属性 <code><var>{text}</var></code>\n  が指定されていません"
       }
    },
    "attribute missing:data|type" : {
@@ -550,8 +575,13 @@
       }
    },
    "attribute missing:href|target" : {
+      "desc" : {
+         "en" : "\n    <p>The HTML <code>base</code> element must have either or both of\n    <code>href</code> and <code>target</code> attributes.  Otherwise\n    the element is useless.</p>\n  ",
+         "ja" : "\n    <p>HTML <code>base</code> 要素は <code>href</code> 属性と\n    <code>target</code> 属性の一方または両方が必要です。どちらもない\n    <code>base</code> 要素には意味がありません。</p>\n  "
+      },
       "message" : {
-         "en" : "For a <code>base</code> element, at least one of\n  <code>href</code> and <code>target</code> attributes must be\n  specified."
+         "en" : "Attribute <code>href</code> or\n  <code>target</code> must be specified",
+         "ja" : "<code>href</code> 属性か <code>target</code>\n  属性のどちらかは必要です"
       }
    },
    "attribute missing:name|http-equiv" : {
@@ -579,11 +609,11 @@
    },
    "attribute not defined" : {
       "desc" : {
-         "en" : "\n    <p>The attribute is not one of attributes allowed for the element\n    in the latest version of relevant specifications.</p>\n\n    <p>The attribute cannot be used.</p>\n\n    <dl class=\"switch\">\n    <dt><code>align</code> attribute (various HTML elements)</dt>\n    <dt><code>border</code> attribute (various HTML elements)</dt>\n      <dd>These attributes are no longer part of HTML.  You can use CSS\n      properties to control the presentation of the element.</dd>\n    <dt><code>autosubmit</code> attribute (<code>menu</code> element)</dt>\n      <dd>The attribute was part of HTML5 draft but then dropped.\n      Similar functionality can be implemented by scripts.</dd>\n    <dt><code>language</code> attribute (<code>script</code> element)</dt>\n      <dd>The attribute is no longer the standard way to specify the\n      scripting language.  If you are using JavaScript, then no explicit\n      specification of the scripting language is necessary, so you can\n      write the element like:\n        <p><code class=\"html example code\">&lt;script&gt;<br><!--\n        --> /* JavaScript code */<br><!--\n        -->&lt;/script&gt;</code></p>\n      If you are using different scripting language from JavaScript, or \n      you want to declare the scripting language explicitly, you should\n      use the <code>type</code> attribute, as follows:\n        <dl class=\"switch\">\n        <dt>JavaScript</dt>\n          <dd>Use\n          <code class=\"html example\">&lt;script type=\"text/javascript\"&gt;</code>.</dd>\n        <dt>VBScript</dt>\n          <dd>Use\n          <code class=\"html example\">&lt;script type=\"text/vbscript\"&gt;</code>.</dd>\n        </dl>\n      </dd>\n    </dl>\n  "
+         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "This attribute is not defined.",
-         "ja" : "この属性は定義されていません。"
+         "en" : "The attribute is not allowed",
+         "ja" : "この属性は認められていません"
       }
    },
    "bad attribute name" : {
@@ -1350,9 +1380,13 @@
       }
    },
    "empty attribute value" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value cannot be empty.  Otherwise the user\n    cannot figure what to do as the item is not described or\n    not rendered at all.</p>\n  ",
+         "ja" : "\n    <p>属性値は空にできません。空だと利用者が何かわからなかったり、\n    表示もされなかったりするかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "The attribute value is empty.",
-         "ja" : "属性値が空です。"
+         "en" : "The attribute value is empty",
+         "ja" : "属性値が空です"
       }
    },
    "empty class" : {
@@ -1687,8 +1721,12 @@
       }
    },
    "input attr not applicable" : {
+      "desc" : {
+         "en" : "\n    <p>Attributes of the <code>input</code> element does or does not\n    apply to the <code>input</code> element depending on the\n    <code>type</code> attribute value.  If the attribute does not\n    apply, it cannot be specified to the element.</p>\n  ",
+         "ja" : "\n    <p><code>input</code> 要素の属性は <code>type</code> \n    属性値によって適用されたりされなかったりします。\n    適用されない属性は指定してはいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "This attribute is not applied to an \n  <code>input</code> element whose <code>type</code> is \n  <code><var>{text}</var></code>."
+         "en" : "この属性は <code>type</code> が\n  <code><var>{text}</var></code> の <code>input</code>\n  要素には適用されません"
       }
    },
    "integer:syntax error" : {
@@ -2529,6 +2567,16 @@
          "en" : "Argument list of the <code>:not</code> selector\n  is not closed by a <code>)</code> character."
       }
    },
+   "nsattr has no prefix" : {
+      "desc" : {
+         "en" : "\n    <p>The namespace declaration attribute (i.e. an attribute in the\n    XMLNS namespace) declaring a namespace prefix must have the attribute\n    namespace prefix <code>xmlns</code>.  Otherwise the attribute\n    is not serializable.</p>\n  ",
+         "ja" : "\n    <p>名前空間宣言属性 (XMLNS 名前空間の属性) で名前空間接頭辞を宣言するものは、\n    属性の名前空間接頭辞が <code>xmlns</code> でなければなりません。</p>\n  "
+      },
+      "message" : {
+         "en" : "Prefix of the namespace attribute is\n  not <code>xmlns</code>",
+         "ja" : "名前空間属性の接頭辞が <code>xmlns</code>\n  ではありません"
+      }
+   },
    "parse type other" : {
       "message" : {
          "en" : "An invalid value is specified to \n  the <code>parseType</code> attribute."
@@ -2821,10 +2869,12 @@
    },
    "status:wd:attr" : {
       "desc" : {
-         "en" : "\n    <p>The attribute is documented in a working or editor's draft\n    and not yet completed.</p>\n    \n    <p>The attribute should not be used for any practical purpose.\n    The feature might be drastically changed later or might be\n    entirely removed.</p>\n  "
+         "en" : "\n    <p>The attribute is specified as part of an earlier draft\n    specification.  The specification is not stable yet and might be\n    changed later by implementation experiences or other input.</p>\n\n    <p>You should not use this feature unless you know what you are\n    doing.</p>\n  ",
+         "ja" : "\n    <p>この属性は初期段階の仕様案で規定されているものです。\n    仕様はまだ不安定で、実装経験その他によって今後変更される可能性もあります。</p>\n    <p>それでも使うのがどういうことか理解している場合を除き、\n    この機能はまだ使うべきではありません。</p>\n  "
       },
       "message" : {
-         "en" : "This attribute is documented in a <strong>working\n  draft</strong>."
+         "en" : "The attribute is in earlier draft stage and\n  it not stable yet",
+         "ja" : "この属性は仕様案の初期段階にあり、\n  まだ安定していません"
       }
    },
    "status:wd:element" : {
@@ -3175,6 +3225,16 @@
          "en" : "The node referenced by the <code>template</code>\n  attribute is not a template."
       }
    },
+   "text:bad char" : {
+      "desc" : {
+         "en" : "\n    <p>Since the character used is a control character, noncharacter\n    code point, surrogate code point, or non-Unicode character, it is\n    not allowed in the document.</p>\n  ",
+         "ja" : "\n    <p>使われている文字は制御文字か非文字符号位置、サロゲート符号位置、\n    非 Unicode 文字ですが、これは文書中で使えません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The character <code><var>{value}</var></code>\n  is not allowed",
+         "ja" : "文字 <code><var>{value}</var></code>\n  は使えません"
+      }
+   },
    "type not defined" : {
       "message" : {
          "en" : "Type <code><var>{text}</var></code> is not \n  defined."
@@ -3252,10 +3312,12 @@
    },
    "unknown attribute" : {
       "desc" : {
-         "en" : "\n    <p>The conformant checker does not support the attribute.\n    It cannot determine whether the document is conforming or not.</p>\n  "
+         "en" : "\n    <p>The conformance checker does not support the validation of the\n    attribute (yet).</p>\n\n    <p>The conformance checker skips the validation of the attribute.\n    Whether it is conforming or not is unknown.</p>\n  ",
+         "ja" : "\n    <p>適合性検査器はこの属性の妥当性検証に (まだ) 対応していません。</p>\n    <p>適合性検査器はこの属性の妥当性検証を行いません。\n    この属性が適合しているかどうかはわかりません。</p>\n  "
       },
       "message" : {
-         "en" : "Conformance checking for attribute\n  <code><var>{local-name}</var></code> of element \n  <code><var>{element-local-name}</var></code> is not supported;\n  <em>it might or might not be conforming</em>."
+         "en" : "Validation of the\n  <code><var>{local-name}</var></code> attribute of the\n  <code><var>{element-local-name}</var></code> element is not\n  supported",
+         "ja" : "<code><var>{element-local-name}</var></code>\n  要素の <code><var>{local-name}</var></code> 属性の検証には対応していません。"
       }
    },
    "unknown element" : {
