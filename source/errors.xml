@@ -2403,12 +2403,14 @@ p {
 </d:item>
 
 <d:item name="attribute not allowed:ismap"
+    targets="attr"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The <code>ismap</code> attribute may only be
   used for the image contained in an <code>a</code> element.</d:message>
 </d:item>
 
 <d:item name="attribute not defined"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The attribute is not allowed</d:message>
   <d:message xml:lang="ja">この属性は認められていません</d:message>

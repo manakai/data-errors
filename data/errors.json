@@ -635,6 +635,9 @@
    "attribute not allowed:ismap" : {
       "message" : {
          "en" : "The <code>ismap</code> attribute may only be\n  used for the image contained in an <code>a</code> element."
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "attribute not defined" : {
@@ -644,6 +647,9 @@
       "message" : {
          "en" : "The attribute is not allowed",
          "ja" : "この属性は認められていません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "bad attribute name" : {
