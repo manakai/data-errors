@@ -523,6 +523,26 @@
          "en" : "Argument <code><var>a</var>n+<var>b</var></code> is \n  syntactically incorrect."
       }
    },
+   "anchor name" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>name</code> attribute of the <code>a</code> element\n    is obsolete.  Use the <code>id</code> attribute instead.</p>\n  ",
+         "ja" : "\n    <p><code>a</code> 要素の <code>name</code> 属性は廃止されました。\n    <code>id</code> 属性を使ってください。</p>\n  "
+      },
+      "message" : {
+         "en" : "The attribute obsolete",
+         "ja" : "この属性は廃止されました"
+      }
+   },
+   "anchor name:empty" : {
+      "desc" : {
+         "en" : "\n    <p>The anchor name cannot be the empty string.</p>\n  ",
+         "ja" : "\n    <p>アンカー名は空文字列にはできません。</p>\n  "
+      },
+      "message" : {
+         "en" : "Anchor name cannot be empty",
+         "ja" : "アンカー名を空文字列にはできません"
+      }
+   },
    "argument after variadic" : {
       "message" : {
          "en" : "An argument is specified after an argument\n  with <code>Variadic</code> extended attribute is seen."
@@ -601,10 +621,12 @@
    },
    "attribute not allowed" : {
       "desc" : {
-         "en" : "\n    <p>An attribute is specified where it is not allowed.\n    The document is non-conforming.</p>\n\n    <dl>\n    <dt>HTML <code>meta</code> element</dt>\n        <dd>For HTML <code>meta</code> element, <em>only one</em> of\n        <code>name</code>, <code>http-equiv</code>, or <code>charset</code>\n        attribute is allowed.</dd>\n    </dl>\n  "
+         "en" : "\n    <p>The attribute is not allowed to be specified in this context.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute cannot be used if the\n    <code>shape</code> attribute is <code>default</code>.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性はこの文脈で使うことが認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性は <code>shape</code> 属性が\n    <code>default</code> の時使えません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "Attribute\n  <code><var>{local-name}</var></code> is not allowed for\n  <code><var>{element-local-name}</var></code> element."
+         "en" : "The attribute is not allowed here",
+         "ja" : "この属性はここでは使えません"
       }
    },
    "attribute not allowed:ismap" : {
@@ -833,8 +855,13 @@
       }
    },
    "character not allowed:empty" : {
+      "desc" : {
+         "en" : "\n    <p>The content model of the parent element is empty such that text\n    other than inter-element white space is not allowed.</p>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルは空なので、要素間空白以外のテキストは認められていません。</p>\n  "
+      },
       "message" : {
-         "en" : "Non‐white‐space characters are not allowed in\n  an empty element."
+         "en" : "The parent is an empty element such that\n  text other than spaces is not allowed",
+         "ja" : "親が空要素なので空白以外のテキストは使えません"
       }
    },
    "chardecode:fallback" : {
@@ -988,33 +1015,63 @@
       }
    },
    "coords:number lt 6" : {
+      "desc" : {
+         "en" : "\n    <p>If the <code>shape</code> attribute is <code>polygon</code>,\n    there must be more than 5 integers in the <code>coords</code> attribute,\n    separated by the <code>,</code> character.</p>\n  ",
+         "ja" : "\n    <p><code>shape</code> 属性が <code>polygon</code> の時は、\n    <code>coords</code> 属性は整数を6個以上、 <code>,</code> \n    で区切って指定しないといけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The <code>coords</code> attribute have to\n  contain more than or equal to six (6) numbers (specified:\n  <code><var>{text}</var></code>)."
+         "en" : "There must be more than 5 integers\n  (There are <code><var>{text}</var></code> values)",
+         "ja" : "整数が6個以上必要です \n  (<code><var>{text}</var></code> 個指定されています)"
       }
    },
    "coords:number not 3" : {
+      "desc" : {
+         "en" : "\n    <p>If the <code>shape</code> attribute is <code>circle</code>,\n    there must be three integers in the <code>coords</code> attribute,\n    separated by the <code>,</code> character.</p>\n  ",
+         "ja" : "\n    <p><code>shape</code> 属性が <code>circle</code> の時は、\n    <code>coords</code> 属性は整数を3つ、 <code>,</code> \n    で区切って指定しないといけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The <code>coords</code> attribute have to\n  contain three (3) numbers (specified:\n  <code><var>{text}</var></code>)."
+         "en" : "There must be three integers\n  (There are <code><var>{text}</var></code> values)",
+         "ja" : "整数が3つ必要です (<code><var>{text}</var></code>\n  個指定されています)"
       }
    },
    "coords:number not 4" : {
+      "desc" : {
+         "en" : "\n    <p>If the <code>shape</code> attribute is <code>rectangle</code>,\n    there must be exactly 4 integers in the <code>coords</code> attribute,\n    separated by the <code>,</code> character.</p>\n  ",
+         "ja" : "\n    <p><code>shape</code> 属性が <code>rectangle</code> の時は、\n    <code>coords</code> 属性は整数をちょうど4個、 <code>,</code> \n    で区切って指定しないといけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The <code>coords</code> attribute have to\n  contain four (4) numbers (specified:\n  <code><var>{text}</var></code>)."
+         "en" : "There must be 4 integers\n  (There are <code><var>{text}</var></code> values)",
+         "ja" : "整数が4個だけ必要です \n  (<code><var>{text}</var></code> 個指定されています)"
       }
    },
    "coords:number not even" : {
+      "desc" : {
+         "en" : "\n    <p>If the <code>shape</code> attribute is <code>polygon</code>,\n    there must be even number of integers in the <code>coords</code> attribute,\n    separated by the <code>,</code> character.</p>\n  ",
+         "ja" : "\n    <p><code>shape</code> 属性が <code>polygon</code> の時は、\n    <code>coords</code> 属性は整数を偶数個、 <code>,</code> \n    で区切って指定しないといけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The <code>coords</code> attribute have to\n  contain even number of numbers (specified:\n  <code><var>{text}</var></code>)."
+         "en" : "There must be even number of integers\n  (There are <code><var>{text}</var></code> values)",
+         "ja" : "整数が偶数個必要です (<code><var>{text}</var></code>\n  個指定されています)"
       }
    },
    "coords:out of range" : {
+      "desc" : {
+         "en" : "\n    <p>A value in the list of coordinates is out of range.</p>\n\n    <dl class=\"switch\">\n\n    <dt>If the <code>shape</code> attribute is <code>circle</code></dt>\n\n    <dd>The third value in the <code>coords</code> attribute must be a\n    non-negative integer.</dd>\n\n    <dt>If the <code>shape</code> attribute is\n    <code>rectangle</code></dt>\n\n    <dd>The first integer must be less than the third integer, and the\n    second integer must be less than the fourth integer in the\n    <code>coords</code> attribute.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>座標の値が範囲外です。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>shape</code> 属性が <code>circle</code> のとき</dt>\n\n    <dd><code>coords</code> 属性の3つ目の値は非負整数でなければいけません。</dd>\n\n    </dl>\n  "
+      },
       "message" : {
-         "en" : "The specified value <code><var>{value}</var></code>\n  is out of range."
+         "en" : "The value of coordinates is out of range",
+         "ja" : "座標の値が値域外です"
       }
    },
    "coords:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>Value of the <code>coords</code> attribute of HTML\n    <code>area</code> element must be a <code>,</code>-separated list\n    of one or more integers.</p>\n  ",
+         "ja" : "\n    <p>HTML <code>area</code> 要素の <code>coords</code> 属性の値は、\n    整数1つ以上を <code>,</code> 区切りにしたリストでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The specified value is not valid."
+         "en" : "The values of coordinates are invalid",
+         "ja" : "座標の値が正しい構文ではありません"
       }
    },
    "css:escape:not unicode" : {
@@ -1168,6 +1225,16 @@
          "en" : "Extended attribute <code><var>{text}</var></code>\n  is already specified for another operation in the same interface."
       }
    },
+   "duplicate anchor name" : {
+      "desc" : {
+         "en" : "\n    <p>Anchor names must be unique.  The anchor name is already assigned\n    to another element.</p>\n  ",
+         "ja" : "\n    <p>アンカー名は固有の値でなければいけません。このアンカー名は既に他の要素に割り当てられています。</p>\n  "
+      },
+      "message" : {
+         "en" : "The anchor name is assigned to another element",
+         "ja" : "このアンカー名は他の要素に割り当てられています"
+      }
+   },
    "duplicate attribute" : {
       "desc" : {
          "en" : "\n    <p>There are more than one attributes with the same name in a tag.</p>\n\n    <p>The <code>motion</code> attribute of the <code>img</code>\n    element is obsolete.  Use <code>img</code> element with animation\n    GIF instead.</p>\n  ",
@@ -1308,8 +1375,13 @@
       }
    },
    "element not allowed:empty" : {
+      "desc" : {
+         "en" : "\n    <p>The content model of the parent element is empty such that\n    the element is not allowed.</p>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルが空なので、この要素は認められていません。</p>\n  "
+      },
       "message" : {
-         "en" : "Elements are not allowed in an empty\n  element."
+         "en" : "The parent is an empty element such that element is not allowed",
+         "ja" : "親が空要素なので要素は使えません"
       }
    },
    "element not allowed:figure legend" : {
@@ -1318,13 +1390,22 @@
       }
    },
    "element not allowed:flow" : {
+      "desc" : {
+         "en" : "\n    <p>親要素の内容モデルはフロー内容ですが、この要素はフロー内容ではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "This element is not allowed where flow\n  content is expected."
+         "en" : "The element is not flow content",
+         "ja" : "この要素はフロー内容ではありません"
       }
    },
    "element not allowed:flow style" : {
+      "desc" : {
+         "en" : "\n    <p>The HTML <code>style</code> element is flow content, but can\n    only be used before any other flow content.</p>\n  ",
+         "ja" : "\n    <p>HTML <code>style</code> 要素はフロー内容ですが、\n    他のフロー内容より前でだけ使えます。</p>\n  "
+      },
       "message" : {
-         "en" : "A <code>style</code> element without\n  <code>scoped</code> attribute is not allowed in this context."
+         "en" : "The <code>style</code> element cannot be used\n  after other flow content",
+         "ja" : "<code>style</code> 要素は他のフロー内容の後に来てはいけません"
       }
    },
    "element not allowed:head noscript" : {
@@ -1367,8 +1448,12 @@
       }
    },
    "element not allowed:phrasing" : {
+      "desc" : {
+         "en" : "\n    <p>親要素の内容モデルは語句内容ですが、この要素は語句内容ではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "This element is not allowed where phrasing\n  content is expected."
+         "en" : "The element is not phrasing content",
+         "ja" : "この要素は語句内容ではありません"
       }
    },
    "element not allowed:rawtext" : {
@@ -1410,8 +1495,13 @@
       }
    },
    "element not allowed:text" : {
+      "desc" : {
+         "en" : "\n    <p>The content model of the parent element is text.  No child\n    element is allowed.</p>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルはテキストです。子要素は認められていません。</p>\n  "
+      },
       "message" : {
-         "en" : "This element is not allowed in this\n  context."
+         "en" : "The parent element does not allow any child element",
+         "ja" : "親要素は子要素を認めていません"
       }
    },
    "element not defined" : {
@@ -1661,6 +1751,16 @@
          "ja" : "この識別子は他の要素に割り当てられています"
       }
    },
+   "id name mismatch" : {
+      "desc" : {
+         "en" : "\n    <p>The unique identifier (ID) and the anchor name of an HTML\n    <code>a</code> element must be identical.  In other words,\n    values of the <code>name</code> and <code>id</code>\n    attributes of the <code>a</code> element must have the same value.</p>\n  ",
+         "ja" : "\n    <p>HTML <code>a</code> 要素の固有識別子 (ID) とアンカー名は同じでなければいけません。\n    言い換えると <code>a</code> 要素の <code>name</code> 属性と\n    <code>id</code> 属性の値は同じでなけrべあいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>id</code> and <code>name</code>\n  attribute values are different",
+         "ja" : "<code>id</code> と <code>name</code>\n  の属性値が異なります"
+      }
+   },
    "id ne name" : {
       "message" : {
          "en" : "The <code>id</code> attribute value is \n  different from the <code>name</code> attribute value."
@@ -1864,6 +1964,16 @@
       },
       "message" : {
          "en" : "この属性は <code>type</code> が\n  <code><var>{text}</var></code> の <code>input</code>\n  要素には適用されません"
+      }
+   },
+   "integer:out of range" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value must be an integer within\n    the specific range.</p>\n\n    <dl class=\"switch\">\n\n    <dt>The <code>loop</code> attribute</dt>\n\n    <dd>The value must be -1 or positive.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>属性値は整数でかつ指定された範囲内の値でなければなりません。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>loop</code> 属性</dt>\n\n    <dd>値は -1 か正でなければいけません。</dd>\n\n    </dl>\n  "
+      },
+      "message" : {
+         "en" : "The specified value is out of range",
+         "ja" : "指定された値は値域外です"
       }
    },
    "integer:syntax error" : {

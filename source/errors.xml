@@ -1067,7 +1067,7 @@ p {
 </section>
 
 <section id="xml-names-errors">
-<h2>XML namespaces</h2>
+<h2>XML namespace errors</h2>
 
 <d:item name="nsattr has no prefix"
     modules="Web::HTML::Validator">
@@ -1763,9 +1763,17 @@ p {
 </d:item>
 
 <d:item name="character not allowed:empty"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Non‐white‐space characters are not allowed in
-  an empty element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The parent is an empty element such that
+  text other than spaces is not allowed</d:message>
+  <d:message xml:lang="ja">親が空要素なので空白以外のテキストは使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content model of the parent element is empty such that text
+    other than inter-element white space is not allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>親要素の内容モデルは空なので、要素間空白以外のテキストは認められていません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="character not allowed:atom|PersonConstruct"
@@ -1914,9 +1922,16 @@ p {
 </d:item>
 
 <d:item name="element not allowed:empty"
-    modules="Whatpm::ContentChecker::HTML Whatpm::ContentChecker::Atom">
-  <d:message xml:lang="en">Elements are not allowed in an empty
-  element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The parent is an empty element such that element is not allowed</d:message>
+  <d:message xml:lang="ja">親が空要素なので要素は使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content model of the parent element is empty such that
+    the element is not allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>親要素の内容モデルが空なので、この要素は認められていません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:figure legend"
@@ -1927,15 +1942,31 @@ p {
 </d:item>
 
 <d:item name="element not allowed:flow"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">This element is not allowed where flow
-  content is expected.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is not flow content</d:message>
+  <d:message xml:lang="ja">この要素はフロー内容ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content model of the parent element is flow content, but
+    the element is not flow content.</p>
+  </d:desc>
+  <d:desc xml:lang="en">
+    <p>親要素の内容モデルはフロー内容ですが、この要素はフロー内容ではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:flow style"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">A <code>style</code> element without
-  <code>scoped</code> attribute is not allowed in this context.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>style</code> element cannot be used
+  after other flow content</d:message>
+  <d:message xml:lang="ja"><code>style</code> 要素は他のフロー内容の後に来てはいけません</d:message>
+  <d:desc xml:lang="en">
+    <p>The HTML <code>style</code> element is flow content, but can
+    only be used before any other flow content.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>HTML <code>style</code> 要素はフロー内容ですが、
+    他のフロー内容より前でだけ使えます。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:head noscript"
@@ -2001,9 +2032,16 @@ p {
 </d:item>
 
 <d:item name="element not allowed:phrasing"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">This element is not allowed where phrasing
-  content is expected.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is not phrasing content</d:message>
+  <d:message xml:lang="ja">この要素は語句内容ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content model of the parent element is phrasing content, but
+    the element is not phrasing content.</p>
+  </d:desc>
+  <d:desc xml:lang="en">
+    <p>親要素の内容モデルは語句内容ですが、この要素は語句内容ではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:rawtext" modules="Temma::Processor">
@@ -2063,9 +2101,16 @@ p {
 </d:item>
 
 <d:item name="element not allowed:text"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">This element is not allowed in this
-  context.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The parent element does not allow any child element</d:message>
+  <d:message xml:lang="ja">親要素は子要素を認めていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content model of the parent element is text.  No child
+    element is allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>親要素の内容モデルはテキストです。子要素は認められていません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:atom|content"
@@ -2189,7 +2234,33 @@ p {
 </section>
 
 <section id="attribute-errors">
-<h2>Attribute Errors</h2>
+<h2>Attribute errors</h2>
+
+<d:item name="anchor name"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute obsolete</d:message>
+  <d:message xml:lang="ja">この属性は廃止されました</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>name</code> attribute of the <code>a</code> element
+    is obsolete.  Use the <code>id</code> attribute instead.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>a</code> 要素の <code>name</code> 属性は廃止されました。
+    <code>id</code> 属性を使ってください。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="anchor name:empty"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Anchor name cannot be empty</d:message>
+  <d:message xml:lang="ja">アンカー名を空文字列にはできません</d:message>
+  <d:desc xml:lang="en">
+    <p>The anchor name cannot be the empty string.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>アンカー名は空文字列にはできません。</p>
+  </d:desc>
+</d:item>
 
 <d:item name="attribute missing"
     modules="Web::HTML::Validator Temma::Processor">
@@ -2293,19 +2364,31 @@ p {
 </d:item>
 
 <d:item name="attribute not allowed"
-    modules="Whatpm::ContentChecker::HTML Whatpm::RDFXML">
-  <d:message xml:lang="en">Attribute
-  <code><var>{local-name}</var></code> is not allowed for
-  <code><var>{element-local-name}</var></code> element.</d:message>
+    modules="Web::HTML::Validator Whatpm::RDFXML">
+  <d:message xml:lang="en">The attribute is not allowed here</d:message>
+  <d:message xml:lang="ja">この属性はここでは使えません</d:message>
   <d:desc xml:lang="en">
-    <p>An attribute is specified where it is not allowed.
-    The document is non-conforming.</p>
+    <p>The attribute is not allowed to be specified in this context.</p>
 
-    <dl>
-    <dt>HTML <code>meta</code> element</dt>
-        <dd>For HTML <code>meta</code> element, <em>only one</em> of
-        <code>name</code>, <code>http-equiv</code>, or <code>charset</code>
-        attribute is allowed.</dd>
+    <dl class="switch">
+
+    <dt>HTML <code>area</code> element</dt>
+
+    <dd>The <code>coords</code> attribute cannot be used if the
+    <code>shape</code> attribute is <code>default</code>.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この属性はこの文脈で使うことが認められていません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>area</code> 要素</dt>
+
+    <dd><code>coords</code> 属性は <code>shape</code> 属性が
+    <code>default</code> の時使えません。</dd>
+
     </dl>
   </d:desc>
 </d:item>
@@ -2402,6 +2485,19 @@ p {
   specified to an <code>input</code> element whose <code>type</code>
   is <code>hidden</code> and <code>name</code> is
   <code>_charset_</code>.</d:message> 
+</d:item>
+
+<d:item name="duplicate anchor name"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The anchor name is assigned to another element</d:message>
+  <d:message xml:lang="ja">このアンカー名は他の要素に割り当てられています</d:message>
+  <d:desc xml:lang="en">
+    <p>Anchor names must be unique.  The anchor name is already assigned
+    to another element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>アンカー名は固有の値でなければいけません。このアンカー名は既に他の要素に割り当てられています。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="in HTML:xml:lang"
@@ -2695,42 +2791,130 @@ p {
 </d:item>
 
 <d:item name="coords:number not 3"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>coords</code> attribute have to
-  contain three (3) numbers (specified:
-  <code><var>{text}</var></code>).</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There must be three integers
+  (There are <code><var>{text}</var></code> values)</d:message>
+  <d:message xml:lang="ja">整数が3つ必要です (<code><var>{text}</var></code>
+  個指定されています)</d:message>
+  <!-- XXX plural -->
+  <d:desc xml:lang="en">
+    <p>If the <code>shape</code> attribute is <code>circle</code>,
+    there must be three integers in the <code>coords</code> attribute,
+    separated by the <code>,</code> character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>shape</code> 属性が <code>circle</code> の時は、
+    <code>coords</code> 属性は整数を3つ、 <code>,</code> 
+    で区切って指定しないといけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="coords:number not 4"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>coords</code> attribute have to
-  contain four (4) numbers (specified:
-  <code><var>{text}</var></code>).</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There must be 4 integers
+  (There are <code><var>{text}</var></code> values)</d:message>
+  <d:message xml:lang="ja">整数が4個だけ必要です 
+  (<code><var>{text}</var></code> 個指定されています)</d:message>
+  <!-- XXX plural -->
+  <d:desc xml:lang="en">
+    <p>If the <code>shape</code> attribute is <code>rectangle</code>,
+    there must be exactly 4 integers in the <code>coords</code> attribute,
+    separated by the <code>,</code> character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>shape</code> 属性が <code>rectangle</code> の時は、
+    <code>coords</code> 属性は整数をちょうど4個、 <code>,</code> 
+    で区切って指定しないといけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="coords:number lt 6"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>coords</code> attribute have to
-  contain more than or equal to six (6) numbers (specified:
-  <code><var>{text}</var></code>).</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There must be more than 5 integers
+  (There are <code><var>{text}</var></code> values)</d:message>
+  <d:message xml:lang="ja">整数が6個以上必要です 
+  (<code><var>{text}</var></code> 個指定されています)</d:message>
+  <!-- XXX plural -->
+  <d:desc xml:lang="en">
+    <p>If the <code>shape</code> attribute is <code>polygon</code>,
+    there must be more than 5 integers in the <code>coords</code> attribute,
+    separated by the <code>,</code> character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>shape</code> 属性が <code>polygon</code> の時は、
+    <code>coords</code> 属性は整数を6個以上、 <code>,</code> 
+    で区切って指定しないといけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="coords:number not even"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>coords</code> attribute have to
-  contain even number of numbers (specified:
-  <code><var>{text}</var></code>).</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There must be even number of integers
+  (There are <code><var>{text}</var></code> values)</d:message>
+  <d:message xml:lang="ja">整数が偶数個必要です (<code><var>{text}</var></code>
+  個指定されています)</d:message>
+  <!-- XXX plural -->
+  <d:desc xml:lang="en">
+    <p>If the <code>shape</code> attribute is <code>polygon</code>,
+    there must be even number of integers in the <code>coords</code> attribute,
+    separated by the <code>,</code> character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>shape</code> 属性が <code>polygon</code> の時は、
+    <code>coords</code> 属性は整数を偶数個、 <code>,</code> 
+    で区切って指定しないといけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="coords:out of range"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The specified value <code><var>{value}</var></code>
-  is out of range.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value of coordinates is out of range</d:message>
+  <d:message xml:lang="ja">座標の値が値域外です</d:message>
+  <d:desc xml:lang="en">
+    <p>A value in the list of coordinates is out of range.</p>
+
+    <dl class="switch">
+
+    <dt>If the <code>shape</code> attribute is <code>circle</code></dt>
+
+    <dd>The third value in the <code>coords</code> attribute must be a
+    non-negative integer.</dd>
+
+    <dt>If the <code>shape</code> attribute is
+    <code>rectangle</code></dt>
+
+    <dd>The first integer must be less than the third integer, and the
+    second integer must be less than the fourth integer in the
+    <code>coords</code> attribute.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>座標の値が範囲外です。</p>
+
+    <dl class="switch">
+
+    <dt><code>shape</code> 属性が <code>circle</code> のとき</dt>
+
+    <dd><code>coords</code> 属性の3つ目の値は非負整数でなければいけません。</dd>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="coords:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The specified value is not valid.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The values of coordinates are invalid</d:message>
+  <d:message xml:lang="ja">座標の値が正しい構文ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>Value of the <code>coords</code> attribute of HTML
+    <code>area</code> element must be a <code>,</code>-separated list
+    of one or more integers.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>HTML <code>area</code> 要素の <code>coords</code> 属性の値は、
+    整数1つ以上を <code>,</code> 区切りにしたリストでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="datetime:bad year"
@@ -3209,10 +3393,58 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="id name mismatch"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>id</code> and <code>name</code>
+  attribute values are different</d:message>
+  <d:message xml:lang="ja"><code>id</code> と <code>name</code>
+  の属性値が異なります</d:message>
+  <d:desc xml:lang="en">
+    <p>The unique identifier (ID) and the anchor name of an HTML
+    <code>a</code> element must be identical.  In other words,
+    values of the <code>name</code> and <code>id</code>
+    attributes of the <code>a</code> element must have the same value.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>HTML <code>a</code> 要素の固有識別子 (ID) とアンカー名は同じでなければいけません。
+    言い換えると <code>a</code> 要素の <code>name</code> 属性と
+    <code>id</code> 属性の値は同じでなけrべあいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="id ne name"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The <code>id</code> attribute value is 
   different from the <code>name</code> attribute value.</d:message>
+</d:item>
+
+<d:item name="integer:out of range"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The specified value is out of range</d:message>
+  <d:message xml:lang="ja">指定された値は値域外です</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value must be an integer within
+    the specific range.</p>
+
+    <dl class="switch">
+
+    <dt>The <code>loop</code> attribute</dt>
+
+    <dd>The value must be -1 or positive.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値は整数でかつ指定された範囲内の値でなければなりません。</p>
+
+    <dl class="switch">
+
+    <dt><code>loop</code> 属性</dt>
+
+    <dd>値は -1 か正でなければいけません。</dd>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="integer:syntax error"
