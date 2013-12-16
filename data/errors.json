@@ -627,6 +627,9 @@
       "message" : {
          "en" : "The attribute is not allowed here",
          "ja" : "この属性はここでは使えません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "attribute not allowed:ismap" : {
@@ -1400,8 +1403,8 @@
    },
    "element not allowed:flow style" : {
       "desc" : {
-         "en" : "\n    <p>The HTML <code>style</code> element is flow content, but can\n    only be used before any other flow content.</p>\n  ",
-         "ja" : "\n    <p>HTML <code>style</code> 要素はフロー内容ですが、\n    他のフロー内容より前でだけ使えます。</p>\n  "
+         "en" : "\n    <p>The HTML <code>style</code> element is flow content, but can\n    only be used before any other flow content.</p>\n\n    <p>If the <code>style</code> element is intended for the entire\n    document, rather than for a particular element, it must be\n    contained in the <code>head</code> element.</p>\n  ",
+         "ja" : "\n    <p>HTML <code>style</code> 要素はフロー内容ですが、\n    他のフロー内容より前でだけ使えます。</p>\n\n    <p>この <code>style</code> が特定の要素だけではなく、\n    文書全体に対して適用されるべきものなら、\n    <code>head</code> 要素内に入れなければいけません。</p>\n  "
       },
       "message" : {
          "en" : "The <code>style</code> element cannot be used\n  after other flow content",
@@ -3675,6 +3678,9 @@
       "message" : {
          "en" : "Validation of this attribute is not\n  supported",
          "ja" : "この属性の検証には対応していません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "unknown element" : {

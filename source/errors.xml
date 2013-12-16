@@ -1962,10 +1962,18 @@ p {
   <d:desc xml:lang="en">
     <p>The HTML <code>style</code> element is flow content, but can
     only be used before any other flow content.</p>
+
+    <p>If the <code>style</code> element is intended for the entire
+    document, rather than for a particular element, it must be
+    contained in the <code>head</code> element.</p>
   </d:desc>
   <d:desc xml:lang="ja">
     <p>HTML <code>style</code> 要素はフロー内容ですが、
     他のフロー内容より前でだけ使えます。</p>
+
+    <p>この <code>style</code> が特定の要素だけではなく、
+    文書全体に対して適用されるべきものなら、
+    <code>head</code> 要素内に入れなければいけません。</p>
   </d:desc>
 </d:item>
 
@@ -2364,6 +2372,7 @@ p {
 </d:item>
 
 <d:item name="attribute not allowed"
+    targets="attr"
     modules="Web::HTML::Validator Whatpm::RDFXML">
   <d:message xml:lang="en">The attribute is not allowed here</d:message>
   <d:message xml:lang="ja">この属性はここでは使えません</d:message>
@@ -7472,6 +7481,7 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="unknown attribute"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Validation of this attribute is not
   supported</d:message>

@@ -36,4 +36,12 @@ following name/value pairs:
     The value is an HTML fragment that can be used where flow content
     is expected.
 
+  targets
+
+    If specified, JSON object whose name/value pairs are target names
+    and boolean true values.  They represent kinds of targets of the
+    error.  The available target name is:
+
+      attr   The error is about the attribute (not only attribute value).
+
 Language tags are BCP 47 language tags, normalized in lowercase.

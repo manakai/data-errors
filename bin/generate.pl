@@ -27,6 +27,8 @@ for my $item (@$items) {
     next;
   }
   $data->{$name} ||= {};
+  my $targets = [grep { length } split /[\x09\x0A\x0C\x0D\x20]+/, $item->get_attribute ('targets') // ''];
+  $data->{$name}->{targets}->{$_} = 1 for @$targets;
   for my $node (@{$item->children}) {
     my $lang = $node->get_attribute_ns ('http://www.w3.org/XML/1998/namespace', 'lang');
     unless (defined $lang) {
