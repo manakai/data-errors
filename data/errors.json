@@ -797,8 +797,13 @@
       }
    },
    "char:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value must be a character, i.e. a string whose\n    length is one.</p>\n  ",
+         "ja" : "\n    <p>属性値は1文字 (長さ1の文字列) でなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The attribute value must be exactly one\n  character."
+         "en" : "The value must be exactly one character",
+         "ja" : "値はちょうど1文字でなければいけません"
       }
    },
    "character encoding unchecked" : {
@@ -1128,6 +1133,16 @@
          "en" : "Character encoding <code><var>{text}</var></code>\n  is not allowed for <abbr>HTML</abbr> document."
       }
    },
+   "dropzone:duplicate feedback" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>dropzone</code> attribute can contain only a feedback\n    value (<code>move</code>, <code>copy</code>, or <code>link</code>).</p>\n  ",
+         "ja" : "\n    <p><code>dropzone</code> 属性はフィードバック値 (<code>move</code>,\n    <code>copy</code>, <code>link</code>) を1つだけ指定できます。</p>\n  "
+      },
+      "message" : {
+         "en" : "There are multiple feedback values",
+         "ja" : "フィードバック値は既に指定されています"
+      }
+   },
    "duplicate @namespace" : {
       "desc" : {
          "en" : "\n    <p>A duplicate <code>@namespace</code> declaration is found.\n    There must be at most one <code>@namespace</code> declaration\n    with same namespace prefix (or missing prefix) in a CSS\n    style sheet.  Previous declaration for the prefix (or of missing\n    prefix) is ignored.</p>\n  ",
@@ -1139,8 +1154,13 @@
       }
    },
    "duplicate ID" : {
+      "desc" : {
+         "en" : "\n    <p>The unique identifier (ID) of the element must be unique.\n    An ID cannot be assigned with multiple elements.</p>\n  ",
+         "ja" : "\n    <p>要素の固有識別子 (ID) は固有でなければいけません。\n    同じ ID を複数の要素に割り当てることはできません。</p>\n  "
+      },
       "message" : {
-         "en" : "This identifier has already been\n  assigned to another element."
+         "en" : "The unique identifier is assigned with\n  another element",
+         "ja" : "この固有識別子は他の要素に割り当てられています"
       }
    },
    "duplicate accessor" : {
@@ -1156,6 +1176,16 @@
       "message" : {
          "en" : "No two attributes can share the same name\n  <code><var>{text}</var></code>.",
          "ja" : "2つの属性が同じ名前 \n  <code><var>{text}</var></code> を使うことはできません。"
+      }
+   },
+   "duplicate autofocus" : {
+      "desc" : {
+         "en" : "\n    <p>There must not be multiple elements with the <code>autofocus</code>\n    attribute in the document or the <code>dialog</code> element.</p>\n  ",
+         "ja" : "\n    <p><code>autofocus</code> 属性つきの要素が文書や <code>dialog</code>\n    要素の中に複数あってはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is another element with the\n  <code>autofocus</code> attribute",
+         "ja" : "<code>autofocus</code> 属性のある要素が他にもあります"
       }
    },
    "duplicate constructor name" : {
@@ -1419,8 +1449,8 @@
    },
    "empty attribute value" : {
       "desc" : {
-         "en" : "\n    <p>The attribute value cannot be empty.  Otherwise the user\n    cannot figure what to do as the item is not described or\n    not rendered at all.</p>\n  ",
-         "ja" : "\n    <p>属性値は空にできません。空だと利用者が何かわからなかったり、\n    表示もされなかったりするかもしれません。</p>\n  "
+         "en" : "\n    <p>The attribute value cannot be empty.  Otherwise the user\n    cannot figure what to do as the item is not described or\n    not rendered at all.</p>\n\n    <dl class=\"switch\">\n\n    <dt>The <code>id</code> attribute</dt>\n\n    <dd>The unique identifier (ID) of the element cannot be empty.  If\n    the element has no identifier, the <code>id</code> attribute\n    should be omitted.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>属性値は空にできません。空だと利用者が何かわからなかったり、\n    表示もされなかったりするかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>id</code> 属性</dt>\n\n    <dd>要素の固有識別子 (ID) は空文字列にはできません。\n    要素に識別子がないときは属性自体を省略してください。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute value is empty",
@@ -1435,6 +1465,16 @@
       "message" : {
          "en" : "Class name cannot be empty.",
          "ja" : "クラス名を空にすることはできません。"
+      }
+   },
+   "empty control name" : {
+      "desc" : {
+         "en" : "\n    <p>The form control name, i.e. the value of the <code>name</code>\n    attribute of form control elements, must not be the empty string.</p>\n    <p>If the control has no name, the <code>name</code> attribute\n    must be omitted.</p>\n  ",
+         "ja" : "\n    <p>フォーム制御子名 (フォーム制御子要素の <code>name</code> 属性値) \n    は空文字列にしてはいけません。</p>\n    <p>フォーム制御子が名前を持たない時は、 <code>name</code> \n    属性全体を省略しなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The form control name cannot be empty",
+         "ja" : "フォーム制御子名は空にはできません"
       }
    },
    "empty end tag" : {
@@ -1566,6 +1606,16 @@
          "ja" : "<code class=\"charname\">FORM FEED</code>\n  を使うことはできません。"
       }
    },
+   "format:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The format string is syntactically invalid.</p>\n  ",
+         "ja" : "\n    <p>この書式文字列は構文的に正しくありません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The format string is invalid",
+         "ja" : "書式文字列が正しくありません"
+      }
+   },
    "fragment points itself" : {
       "message" : {
          "en" : "A fragment identifier references the element\n  itself."
@@ -1582,8 +1632,13 @@
       }
    },
    "hashref:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>usemap</code> attribute must be a valid\n    hash-name reference, i.e. the <code>#</code> character followed\n    by the name of the <code>name</code> attribute value of the\n    <code>map</code> element.</p>\n  ",
+         "ja" : "\n    <p><code>usemap</code> 属性値は妥当なハッシュ名参照でなければいけません。\n    すなわち、 <code>#</code> の後に <code>map</code> 要素の\n    <code>name</code> 属性の値をつなげたものでないといけません。</p>\n  "
+      },
       "message" : {
-         "en" : "A hash−name reference must start with a\n  <code>#</code> character."
+         "en" : "The value must be an image map name preceded\n  by a <code>#</code> character",
+         "ja" : "値は <code>#</code> で始まる画像マップ名でないといけません"
       }
    },
    "help not available" : {
@@ -1594,6 +1649,16 @@
       "message" : {
          "en" : "No more information is available.",
          "ja" : "これ以上の詳しい情報はありません。"
+      }
+   },
+   "id name confliction" : {
+      "desc" : {
+         "en" : "\n    <p>An identifier cannot be assigned with multiple elements by the\n    <code>id</code> attribute and the <code>name</code> attribute of\n    the <code>a</code> element.</p>\n  ",
+         "ja" : "\n    <p>同じ識別子を <code>id</code> 属性と\n    <code>a</code> 要素の <code>name</code>\n    属性で別の要素に割り当てることはできません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The identifier is assigned with another element",
+         "ja" : "この識別子は他の要素に割り当てられています"
       }
    },
    "id ne name" : {
@@ -1655,17 +1720,23 @@
       }
    },
    "in XML:xml:lang" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>xml:lang</code> attribute in no namespace cannot \n    be used in XML document.  It is only allowed for HTML elements\n    in HTML document.</p>\n  ",
+         "ja" : "\n    <p>名前空間に属さない <code>xml:lang</code> 属性は XML\n    文書では使えません。この属性は HTML 文書の HTML 要素でだけ使えます。</p>\n  "
+      },
       "message" : {
-         "en" : "The <code>xml:lang</code> attribute in no namespace\n  is only allowed in HTML document.",
-         "ja" : "名前空間に属さない <code>xml:lang</code> \n  属性が認められているのは HTML 文書中だけです。"
+         "en" : "The <code>xml:lang</code> attribute in no namespace\n  is not allowed in XML document",
+         "ja" : "名前空間に属さない <code>xml:lang</code> \n  属性は XML 文書では使えません"
       }
    },
    "in XML:xmlns" : {
       "desc" : {
-         "en" : "\n    <p>The <code>xmlns</code> attribute in the <code>null</code>\n    namespace is not allowed in XHTML document.</p>\n\n    <p>This error should not occur in conformance-checking of\n    static documents.</p>\n  "
+         "en" : "\n    <p>The <code>xmlns</code> attribute in no namespace is not allowed\n    in XML document.</p>\n    <p>The <code>xmlns</code> attribute with no prefix is mapped to\n    the XMLNS namespace.  An element from a namespace well-formed\n    XML document cannot have the <code>xmlns</code> attribute\n    in no namespace by definition.</p>\n  ",
+         "ja" : "\n    <p>名前空間に属さない <code>xmlns</code> 属性は XML 文書では使えません。</p>\n    <p>接頭辞のない <code>xmlns</code> 属性は XMLNS \n    名前空間に属するものとして扱われます。名前空間整形式 XML\n    文書に含まれていた要素は定義上、名前空間に属さない <code>xmlns</code>\n    属性を持てません。</p>\n  "
       },
       "message" : {
-         "en" : "The <code>xmlns</code> attribute \n  in the <code>null</code> namespace is not allowed in\n  XHTML document.  The document is non-conforming."
+         "en" : "The <code>xmlns</code> attribute \n  in no namespace is not allowed in XML document",
+         "ja" : "名前空間に属さない <code>xmlns</code>\n  属性は XML 文書では使えません"
       }
    },
    "in a:a" : {
@@ -1812,8 +1883,8 @@
    },
    "invalid attribute value" : {
       "desc" : {
-         "en" : "\n    <p>The attribute value is invalid.</p>\n \n    <dl class=\"switch\">\n\n    <dt>The <code>xml:space</code> attribute</dt>\n\n    <dd>The value must be either <code>default</code> or\n    <code>preserve</code>.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この属性値は非妥当です。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>xml:space</code> 属性</dt>\n\n    <dd>属性値は <code>default</code> か <code>preserve</code>\n    でなければいけません。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The attribute value is invalid.</p>\n \n    <dl class=\"switch\">\n\n    <dt>The <code>xml:space</code> attribute</dt>\n\n    <dd>The value must be either <code>default</code> or\n    <code>preserve</code>.</dd>\n\n    <dt>HTML elements, the <code>xmlns</code> attribute in no\n    namespace</dt>\n\n    <dd>The value must be\n    <code>http://www.w3.org/1999/xhtml</code>.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性値は非妥当です。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>xml:space</code> 属性</dt>\n\n    <dd>属性値は <code>default</code> か <code>preserve</code>\n    でなければいけません。</dd>\n\n    <dt>HTML 要素の名前空間に属さない <code>xmlns</code> 属性</dt>\n\n    <dd>属性値は <code>http://www.w3.org/1999/xhtml</code>\n    でなければいけません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute value is invalid",
@@ -2741,6 +2812,16 @@
          "en" : "Processing instruction \n  (<code>&lt;?<var>...</var>&gt;</code>) is not allowed in HTML\n  document."
       }
    },
+   "precision:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The precision string is syntactically invalid.</p>\n  ",
+         "ja" : "\n    <p>この精度文字列は構文的に正しくありません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The precision string is invalid",
+         "ja" : "精度文字列が正しくありません"
+      }
+   },
    "premature end of webidl" : {
       "message" : {
          "en" : "The WebIDL fragment ends before all the blocks\n  are closed by <code>};</code> sequences."
@@ -2810,6 +2891,16 @@
    "scoped name:dcolon" : {
       "message" : {
          "en" : "A <code>::</code> token is not followed by\n  an identifier or a <code>DOMString</code> keyword."
+      }
+   },
+   "script language" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>language</code> attribute value must be \n    <code>javascript</code>.</p>\n  ",
+         "ja" : "\n    <p><code>language</code> 属性値は <code>javascript</code>\n    でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value must be <code>javascript</code>",
+         "ja" : "値は <code>javascript</code> でなければいけません"
       }
    },
    "second node element" : {
@@ -2951,8 +3042,13 @@
       }
    },
    "space in ID" : {
+      "desc" : {
+         "en" : "\n    <p>The unique identifier (ID) of the element cannot contain space\n    characters.</p>\n  ",
+         "ja" : "\n    <p>要素の固有識別子 (ID) に空白文字を含めてはいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "White space characters are not allowed\n  in the <code>id</code> attribute."
+         "en" : "Spaces are not allowed in the identifier",
+         "ja" : "空白文字は識別子に使えません"
       }
    },
    "ss after pseudo-element" : {
@@ -3467,8 +3563,8 @@
          "ja" : "\n    <p>適合性検査器はこの属性の妥当性検証に (まだ) 対応していません。</p>\n    <p>適合性検査器はこの属性の妥当性検証を行いません。\n    この属性が適合しているかどうかはわかりません。</p>\n  "
       },
       "message" : {
-         "en" : "Validation of the\n  <code><var>{local-name}</var></code> attribute of the\n  <code><var>{element-local-name}</var></code> element is not\n  supported",
-         "ja" : "<code><var>{element-local-name}</var></code>\n  要素の <code><var>{local-name}</var></code> 属性の検証には対応していません"
+         "en" : "Validation of this attribute is not\n  supported",
+         "ja" : "この属性の検証には対応していません"
       }
    },
    "unknown element" : {
@@ -3838,8 +3934,12 @@
       }
    },
    "word not allowed" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute contains a word which is not allowed for the\n    attribute.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dropzone</code> attribute</dt>\n\n    <dd>The word can be one of feedback values (<code>move</code>,\n    <code>copy</code>, or <code>link</code>), a keyword beginning with\n    <code>string:</code>, or a keyword beginning with\n    <code>file:</code>.</dd>\n\n    </dl>\n  "
+      },
       "message" : {
-         "en" : "The word <code><var>{value}</var></code> is not\n  allowed in this attribute."
+         "en" : "The word is not allowed for the attribute",
+         "ja" : "この属性ではこの語を指定できません"
       }
    },
    "wrong signature accessor" : {

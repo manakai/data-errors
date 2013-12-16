@@ -2459,24 +2459,42 @@ p {
 </d:item>
 
 <d:item name="in XML:xml:lang"
-    modules="Whatpm::ContentChecker::HTML">
+    modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>xml:lang</code> attribute in no namespace
-  is only allowed in HTML document.</d:message>
+  is not allowed in XML document</d:message>
   <d:message xml:lang="ja">名前空間に属さない <code>xml:lang</code> 
-  属性が認められているのは HTML 文書中だけです。</d:message>
+  属性は XML 文書では使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>xml:lang</code> attribute in no namespace cannot 
+    be used in XML document.  It is only allowed for HTML elements
+    in HTML document.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>名前空間に属さない <code>xml:lang</code> 属性は XML
+    文書では使えません。この属性は HTML 文書の HTML 要素でだけ使えます。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="in XML:xmlns"
-    modules="Whatpm::ContentChecker::HTML">
+    modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>xmlns</code> attribute 
-  in the <code>null</code> namespace is not allowed in
-  XHTML document.  The document is non-conforming.</d:message>
+  in no namespace is not allowed in XML document</d:message>
+  <d:message xml:lang="ja">名前空間に属さない <code>xmlns</code>
+  属性は XML 文書では使えません</d:message>
   <d:desc xml:lang="en">
-    <p>The <code>xmlns</code> attribute in the <code>null</code>
-    namespace is not allowed in XHTML document.</p>
-
-    <p>This error should not occur in conformance-checking of
-    static documents.</p>
+    <p>The <code>xmlns</code> attribute in no namespace is not allowed
+    in XML document.</p>
+    <p>The <code>xmlns</code> attribute with no prefix is mapped to
+    the XMLNS namespace.  An element from a namespace well-formed
+    XML document cannot have the <code>xmlns</code> attribute
+    in no namespace by definition.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>名前空間に属さない <code>xmlns</code> 属性は XML 文書では使えません。</p>
+    <p>接頭辞のない <code>xmlns</code> 属性は XMLNS 
+    名前空間に属するものとして扱われます。名前空間整形式 XML
+    文書に含まれていた要素は定義上、名前空間に属さない <code>xmlns</code>
+    属性を持てません。</p>
   </d:desc>
 </d:item>
 
@@ -2542,9 +2560,16 @@ p {
 </d:item>
 
 <d:item name="char:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The attribute value must be exactly one
-  character.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value must be exactly one character</d:message>
+  <d:message xml:lang="ja">値はちょうど1文字でなければいけません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value must be a character, i.e. a string whose
+    length is one.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値は1文字 (長さ1の文字列) でなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="charref in charset"
@@ -2883,6 +2908,35 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="dropzone:duplicate feedback"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There are multiple feedback values</d:message>
+  <d:message xml:lang="ja">フィードバック値は既に指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>dropzone</code> attribute can contain only a feedback
+    value (<code>move</code>, <code>copy</code>, or <code>link</code>).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>dropzone</code> 属性はフィードバック値 (<code>move</code>,
+    <code>copy</code>, <code>link</code>) を1つだけ指定できます。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="duplicate autofocus"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is another element with the
+  <code>autofocus</code> attribute</d:message>
+  <d:message xml:lang="ja"><code>autofocus</code> 属性のある要素が他にもあります</d:message>
+  <d:desc xml:lang="en">
+    <p>There must not be multiple elements with the <code>autofocus</code>
+    attribute in the document or the <code>dialog</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>autofocus</code> 属性つきの要素が文書や <code>dialog</code>
+    要素の中に複数あってはいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="duplicate form name"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">Form name <code><var>{value}</var></code> is already
@@ -2896,11 +2950,18 @@ p {
 </d:item>
 
 <d:item name="duplicate ID"
-    class="attribute-value-error"
-    modules="Whatpm::ContentChecker::XML Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">This identifier has already been
-  assigned to another element.</d:message>
-  <!-- @@ <id=a xml:id=a>? -->
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The unique identifier is assigned with
+  another element</d:message>
+  <d:message xml:lang="ja">この固有識別子は他の要素に割り当てられています</d:message>
+  <d:desc xml:lang="en">
+    <p>The unique identifier (ID) of the element must be unique.
+    An ID cannot be assigned with multiple elements.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>要素の固有識別子 (ID) は固有でなければいけません。
+    同じ ID を複数の要素に割り当てることはできません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="duplicate token"
@@ -2977,10 +3038,47 @@ p {
     <p>The attribute value cannot be empty.  Otherwise the user
     cannot figure what to do as the item is not described or
     not rendered at all.</p>
+
+    <dl class="switch">
+
+    <dt>The <code>id</code> attribute</dt>
+
+    <dd>The unique identifier (ID) of the element cannot be empty.  If
+    the element has no identifier, the <code>id</code> attribute
+    should be omitted.</dd>
+
+    </dl>
   </d:desc>
   <d:desc xml:lang="ja">
     <p>属性値は空にできません。空だと利用者が何かわからなかったり、
     表示もされなかったりするかもしれません。</p>
+
+    <dl class="switch">
+
+    <dt><code>id</code> 属性</dt>
+
+    <dd>要素の固有識別子 (ID) は空文字列にはできません。
+    要素に識別子がないときは属性自体を省略してください。</dd>
+
+    </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="empty control name"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The form control name cannot be empty</d:message>
+  <d:message xml:lang="ja">フォーム制御子名は空にはできません</d:message>
+  <d:desc xml:lang="en">
+    <p>The form control name, i.e. the value of the <code>name</code>
+    attribute of form control elements, must not be the empty string.</p>
+    <p>If the control has no name, the <code>name</code> attribute
+    must be omitted.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>フォーム制御子名 (フォーム制御子要素の <code>name</code> 属性値) 
+    は空文字列にしてはいけません。</p>
+    <p>フォーム制御子が名前を持たない時は、 <code>name</code> 
+    属性全体を省略しなければいけません。</p>
   </d:desc>
 </d:item>
 
@@ -3053,6 +3151,18 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="format:syntax error"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The format string is invalid</d:message>
+  <d:message xml:lang="ja">書式文字列が正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The format string is syntactically invalid.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この書式文字列は構文的に正しくありません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="fragment points itself"
     modules="Whatpm::ContentChecker">
   <d:message xml:lang="en">A fragment identifier references the element
@@ -3066,9 +3176,37 @@ p {
 </d:item>
 
 <d:item name="hashref:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">A hash−name reference must start with a
-  <code>#</code> character.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value must be an image map name preceded
+  by a <code>#</code> character</d:message>
+  <d:message xml:lang="ja">値は <code>#</code> で始まる画像マップ名でないといけません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of the <code>usemap</code> attribute must be a valid
+    hash-name reference, i.e. the <code>#</code> character followed
+    by the name of the <code>name</code> attribute value of the
+    <code>map</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>usemap</code> 属性値は妥当なハッシュ名参照でなければいけません。
+    すなわち、 <code>#</code> の後に <code>map</code> 要素の
+    <code>name</code> 属性の値をつなげたものでないといけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="id name confliction"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The identifier is assigned with another element</d:message>
+  <d:message xml:lang="ja">この識別子は他の要素に割り当てられています</d:message>
+  <d:desc xml:lang="en">
+    <p>An identifier cannot be assigned with multiple elements by the
+    <code>id</code> attribute and the <code>name</code> attribute of
+    the <code>a</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>同じ識別子を <code>id</code> 属性と
+    <code>a</code> 要素の <code>name</code>
+    属性で別の要素に割り当てることはできません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="id ne name"
@@ -3110,6 +3248,12 @@ p {
     <dd>The value must be either <code>default</code> or
     <code>preserve</code>.</dd>
 
+    <dt>HTML elements, the <code>xmlns</code> attribute in no
+    namespace</dt>
+
+    <dd>The value must be
+    <code>http://www.w3.org/1999/xhtml</code>.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -3120,6 +3264,11 @@ p {
     <dt><code>xml:space</code> 属性</dt>
 
     <dd>属性値は <code>default</code> か <code>preserve</code>
+    でなければいけません。</dd>
+
+    <dt>HTML 要素の名前空間に属さない <code>xmlns</code> 属性</dt>
+
+    <dd>属性値は <code>http://www.w3.org/1999/xhtml</code>
     でなければいけません。</dd>
 
     </dl>
@@ -3374,6 +3523,18 @@ p {
   is <code><var>{value}</var></code> in the same table.</d:message>
 </d:item>
 
+<d:item name="precision:syntax error"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The precision string is invalid</d:message>
+  <d:message xml:lang="ja">精度文字列が正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The precision string is syntactically invalid.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この精度文字列は構文的に正しくありません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="refresh:syntax error"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">the specified value is not a valid as part
@@ -3406,6 +3567,20 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="script language"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value must be <code>javascript</code></d:message>
+  <d:message xml:lang="ja">値は <code>javascript</code> でなければいけません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>language</code> attribute value must be 
+    <code>javascript</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>language</code> 属性値は <code>javascript</code>
+    でなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="sizes:syntax error"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The specified value <code><var>{value}</var></code>
@@ -3413,9 +3588,16 @@ p {
 </d:item>
 
 <d:item name="space in ID"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">White space characters are not allowed
-  in the <code>id</code> attribute.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Spaces are not allowed in the identifier</d:message>
+  <d:message xml:lang="ja">空白文字は識別子に使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The unique identifier (ID) of the element cannot contain space
+    characters.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>要素の固有識別子 (ID) に空白文字を含めてはいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="template:not template"
@@ -3473,9 +3655,24 @@ p {
 </d:item>
 
 <d:item name="word not allowed"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The word <code><var>{value}</var></code> is not
-  allowed in this attribute.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The word is not allowed for the attribute</d:message>
+  <d:message xml:lang="ja">この属性ではこの語を指定できません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute contains a word which is not allowed for the
+    attribute.</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>dropzone</code> attribute</dt>
+
+    <dd>The word can be one of feedback values (<code>move</code>,
+    <code>copy</code>, or <code>link</code>), a keyword beginning with
+    <code>string:</code>, or a keyword beginning with
+    <code>file:</code>.</dd>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="XML 1.0 NCName:syntax error"
@@ -7044,12 +7241,9 @@ Regexp::Parser::JavaScript's extension. -->
 
 <d:item name="unknown attribute"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">Validation of the
-  <code><var>{local-name}</var></code> attribute of the
-  <code><var>{element-local-name}</var></code> element is not
+  <d:message xml:lang="en">Validation of this attribute is not
   supported</d:message>
-  <d:message xml:lang="ja"><code><var>{element-local-name}</var></code>
-  要素の <code><var>{local-name}</var></code> 属性の検証には対応していません</d:message>
+  <d:message xml:lang="ja">この属性の検証には対応していません</d:message>
   <d:desc xml:lang="en">
     <p>The conformance checker does not support the validation of the
     attribute (yet).</p>
