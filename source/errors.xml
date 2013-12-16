@@ -61,7 +61,7 @@
 </section>
 
 <section id="html5-character-encoding">
-<h2>HTML5 Character Encoding Errors</h2>
+<h2>Character encoding usage errors</h2>
 
 <d:item name="charset:not supported"
     modules="Whatpm::HTML::Parser::Sniffer">
@@ -93,12 +93,16 @@
 </d:item>
 
 <d:item name="non-utf-8 character encoding"
-    modules="Whatpm::ContentChecker">
-  <d:message xml:lang="en">Use of UTF-8 is encouraged (this document
-  is encoded in <code><var>{text}</var></code>).</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Historical character encoding is used</d:message>
+  <d:message xml:lang="ja">昔の文字符号化が使われています</d:message>
   <d:desc xml:lang="en">
-    <p>Use of UTF-8 as the character encoding of the document is encouraged,
-    though the use of another character encoding is still conforming.</p>
+    <p>The UTF-8 character encoding should be used unless there is a
+    strong reason to use other legacy encoding.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>UTF-8 以外の昔ながらの文字符号化方式は、
+    特に強い理由がない限り使うべきではありません。</p>
   </d:desc>
 </d:item>
 
@@ -163,6 +167,22 @@
     <p>Character encodings <code>Shift_JIS</code>, <code>Windows-31J</code>,
     and <code>ISO-2022-JP</code> are <em>not</em> a superset of
     <abbr>ASCII</abbr> for the purpose of <abbr>HTML</abbr> conformance.</p>
+  </d:desc>
+</d:item>
+
+<d:item name="not encoding label"
+    modules="Web::HTML::Validation">
+  <d:message xml:lang="en">The value is not a label of the character encoding</d:message>
+  <d:message xml:lang="ja">この値は文字符号化の名札ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value is not a label of the character encoding.</p>
+    <p>It might be a name of the encoding that is not used on the Web,
+    or might be simply an authoring error.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この値は文字符号化の名札ではありません。</p>
+    <p>Web で使われていない文字符号化の名前かもしれませんし、
+    ただの書き間違いかもしれません。</p>
   </d:desc>
 </d:item>
 
@@ -1070,7 +1090,23 @@ p {
 <d:item name="Reserved Prefixes and Namespace Names:Name"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Namespace name <code><var>{text}</var></code>
-  is reserved and cannot be used for an arbitrary prefix.</d:message>
+  is reserved</d:message>
+  <d:message xml:lang="ja">名前空間名 <code><var>{text}</var></code>
+  は予約されています</d:message>
+  <d:desc xml:lang="en">
+    <p>Namespace URLs
+    <code>http://www.w3.org/XML/1998/namespace</code> and
+    <code>http://www.w3.org/2000/xmlns/</code> are reserved.  They
+    must be bound to the <code>xml</code> and <code>xmlns</code>
+    prefixes, respectively.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>名前空間 URL 
+    <code>http://www.w3.org/XML/1998/namespace</code>,
+    <code>http://www.w3.org/2000/xmlns/</code> は予約されています。
+    それぞれ <code>xml</code> と <code>xmlns</code>
+    とのみ束縛できます。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="Reserved Prefixes and Namespace Names:Prefix"
@@ -1087,6 +1123,22 @@ p {
   <d:desc xml:lang="ja">
     <p>名前空間接頭辞 <code>xml</code>, <code>xmlns</code> は予約されています。
     それぞれ XML 名前空間と XMLNS 名前空間とだけ束縛できます。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="xmlns:* empty"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The prefixed namespace cannot be undeclared</d:message>
+  <d:message xml:lang="ja">名前空間接頭辞の宣言は取り消せません</d:message>
+  <d:desc xml:lang="en">
+    <p>The namespace prefix cannot be undeclared.  In other word, the
+    attribute value in the XMLNS namespace cannot be the empty string
+    unless the local name is <code>xmlns</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>名前空間接頭辞の宣言を取り消すことはできません。言い換えると、
+    XMLNS 名前空間の属性値は局所名が <code>xmlns</code> の場合を除き、
+    空文字列にはできません。</p>
   </d:desc>
 </d:item>
 
@@ -1906,9 +1958,19 @@ p {
 </d:item>
 
 <d:item name="element not allowed:minus"
-    modules="Whatpm::ContentChecker Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">This element is not allowed in this
-  context.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is disallowed by an ancestor
+  element</d:message>
+  <d:message xml:lang="ja">この要素は先祖要素により禁じられています</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the element is disallowed by an ancestor.</p>
+    <p>In general, an interactive element such as form controls and
+    links cannot be nested.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>先祖要素の制限によりこの要素は使えません。</p>
+    <p>一般にフォーム制御子やリンクなど対話的要素は入れ子にできません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:meta charset"
@@ -2065,11 +2127,26 @@ p {
 </d:item>
 
 <d:item name="multiple labelable fae"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">More than one labelable form-associated element
-  is associated to a <code>label</code> element.</d:message>
-  <!-- for="" with descendant form control, or more than one descendant
-  form controls -->
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Another element is associated with the
+  <code>label</code> element</d:message>
+  <d:message xml:lang="ja">他の要素が既に <code>label</code>
+  要素と関連付けられています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>label</code> element can only be associated with a
+    form-associatable element.  If the <code>label</code> element has
+    the <code>for</code> attribute, the element cannot contain any
+    other descendant form-associatable element.  Otherwise, the
+    <code>label</code> element can contain only one form-associatable
+    element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>label</code> 要素はフォーム関連付け可能要素1つだけと関連付けできます。
+    <code>label</code> 要素に <code>for</code> 属性があるときは、
+    他のフォーム関連付け可能要素を子孫に含められません。
+    そうでない場合は、 <code>label</code>
+    要素の子孫に含められるフォーム関連付け可能要素は1つだけです。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="no significant content"
@@ -2328,28 +2405,34 @@ p {
 </d:item>
 
 <d:item name="in HTML:xml:lang"
-    modules="Whatpm::ContentChecker::XML">
-  <d:message xml:lang="en">The <code>xml:lang</code> attribute in HTML
-  document is ignored.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>xml:lang</code> attribute cannot be
+  used in HTML document</d:message>
+  <d:message xml:lang="ja"><code>xml:lang</code> 属性は HTML 
+  文書では使えません</d:message>
   <d:desc xml:lang="en">
-    <p>The <code>xml:lang</code> attribute does not have an effect in
-    HTML document.</p>
+    <p>The <code>xml:lang</code> attribute cannot be used for HTML
+    elements in HTML documents.  The language of the element can be
+    specified by the <code>lang</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>xml:lang</code> 属性は HTML 文書の HTML 要素では使えません。
+    要素の言語は <code>lang</code> 属性で指定してください。</p>
+  </d:desc>
+</d:item>
 
-    <p>The <code>xml:lang</code> attribute is only applicable to XML
-    documents.  In HTML document, it is only allowed to ease migration
-    from XML.</p>
-
-    <p>To specify natural language information in HTML document,
-    use <code>lang</code> attribute instead.</p>
-
-    <p>XHTML 1.0 Appendix C was encouraged to specify both
-    <code>lang</code> and <code>xml:lang</code> attributes with
-    the same value.  Such a duplication has <em>no effect</em> in practice.
-    Use only one of <code>lang</code> (in HTML) or <code>xml:lang</code> (in
-    XML).</p>
-
-    <!-- @@ ISSUE: xml:lang in non-HTML element in DOM5 HTML created
-         from an HTML document? -->
+<d:item name="in HTML:xml:space"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>xml:space</code> attribute is not
+  allowed in HTML document</d:message>
+  <d:message xml:lang="ja"><code>xml:space</code> 属性は HTML
+  文書では使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>xml:space</code> attribute is not allowed for HTML
+    elements in HTML documents.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>xml:space</code> 属性は HTML 文書の HTML 要素では使えません。</p>
   </d:desc>
 </d:item>
 
@@ -2471,11 +2554,18 @@ p {
 </d:item>
 
 <d:item name="charset:not ascii compat"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Characeter encoding <code><var>{value}</var></code>
-  is not ASCII compatible.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The encoding
+  <code><var>{value}</var></code> is not ASCII-compatible</d:message>
   <d:message xml:lang="ja">文字符号化 <code><var>{value}</var></code>
-  は ASCII 互換ではありません。</d:message>
+  は ASCII 互換ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The character encoding is not ASCII-compatible.  Encodings that
+    are incompatible with ASCII cannot be used here.</p>
+
+    <p>Character encodings such as UTF-16, UTF-32, and EBCDIC are not
+    ASCII-compatible.</p>
+  </d:desc>
 </d:item>
 
 <d:item name="charset:not preferred"
@@ -2567,9 +2657,16 @@ p {
 </d:item>
 
 <d:item name="color:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The specified value is not a color
-  name or hexadecimal color number.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not a color name or number</d:message>
+  <d:message xml:lang="ja">この値は色名や色番号ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value must be one of CSS color names or a hexadecimal
+    color notation with six digits.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>値は CSS の色名か、6桁の16進数記法の色でなければなりません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="coords:number not 3"
@@ -2807,9 +2904,37 @@ p {
 </d:item>
 
 <d:item name="duplicate token"
-    modules="Whatpm::ContentChecker::HTML Whatpm::HTML::Table">
+    modules="Web::HTML::Validator Whatpm::HTML::Table">
   <d:message xml:lang="en">The token <code><var>{value}</var></code>
-  appears in the attribute value twice.</d:message>
+  appears twice</d:message>
+  <d:message xml:lang="ja">字句 <code><var>{value}</var></code>
+  が複数回現れました</d:message>
+  <d:desc xml:lang="en">
+    <p>The value can contain multiple space-separated tokens, but a
+    token cannot be used more than once.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この値には空白区切りで複数の字句を指定することができますが、
+    同じ字句を何個も含めることはできません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="email:syntax error"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not an e-mail address</d:message>
+  <d:message xml:lang="ja">この値は電子メールアドレスではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value is not a valid e-mail address.</p>
+    <p><code>quoted-string</code> in the <code>local-part</code>,
+    <code>domain-literal</code>, <code>comments</code>, and
+    <code>LWS</code> are not allowed in the address.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この値は妥当な電子メールアドレスではありません。</p>
+    <p><code>local-part</code> の <code>quoted-string</code>、
+    <code>domain-literal</code>、<code>comments</code>、
+    <code>LWS</code> は使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="empty anchor image alt"
@@ -2971,28 +3096,34 @@ p {
   </d:desc>
 </d:item>
 
-<d:item name="link type:bad context"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The link type <code><var>{value}</var></code>
-  cannot be specified for this element.</d:message>
-  <d:desc xml:lang="en">
-    <p>The specified link type cannot be used for the element.
-    The document is non-conforming.</p>
-
-    <p>Link types are associated with limited set of elements.
-    They cannot be used with other elements.</p>
-
-    <p>For example, link type <code>bookmark</code>
-    can be used with <code>a</code> or <code>area</code> element,
-    while it cannot be used with <code>link</code> element.</p>
-  </d:desc>
-</d:item>
-
 <d:item name="invalid attribute value"
-    class="attribute-value-error"
-    modules="Whatpm::ContentChecker::XML Whatpm::ContentChecker::HTML Whatpm::ContentChecker::Atom">
-  <d:message xml:lang="en">Attribute value <code><var>{@}</var></code>
-  is not an allowed value.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute value is invalid</d:message>
+  <d:message xml:lang="ja">この属性値は認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value is invalid.</p>
+ 
+    <dl class="switch">
+
+    <dt>The <code>xml:space</code> attribute</dt>
+
+    <dd>The value must be either <code>default</code> or
+    <code>preserve</code>.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この属性値は非妥当です。</p>
+
+    <dl class="switch">
+
+    <dt><code>xml:space</code> 属性</dt>
+
+    <dd>属性値は <code>default</code> か <code>preserve</code>
+    でなければいけません。</dd>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="length:syntax error"
@@ -3011,13 +3142,64 @@ p {
   </d:desc>
 </d:item>
 
-<d:item name="link type:non-conforming"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The link type <code><var>{value}</var></code>
-  is non-conforming.</d:message>
+<d:item name="link type:bad context"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The link type cannot be used in this context</d:message>
+  <d:message xml:lang="ja">このリンク型はここでは使えません</d:message>
   <d:desc xml:lang="en">
-    <p>The specified link type is non-conforming, and therefore
-    the document is non-conforming.</p>
+    <p>The specified link type cannot be used for the element.</p>
+
+    <dl class="switch">
+
+    <dt>The link type <code>stylesheet</code></dt>
+
+    <dd>This link type can only be used with the <code>link</code>
+    element.</dd>
+
+    <dt>The link type <code>bookmark</code></dt>
+
+    <dd>This link type can only be used with <code>a</code> or
+    <code>area</code> element.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>このリンク型はこの要素では使えません。</p>
+
+    <dl class="switch">
+
+    <dt>リンク型 <code>stylesheet</code></dt>
+
+    <dd>このリンク型は <code>link</code> 要素でしか使えません。</dd>
+
+    <dt>リンク型 <code>bookmark</code></dt>
+
+    <dd>このリンク型は <code>a</code> 要素か
+    <code>area</code> 要素でしか使えません。</dd>
+
+    </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="link type:duplicate"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The link type is specified twice</d:message>
+  <d:message xml:lang="ja">このリンク型は既に指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>A link type cannot be specified within the attribute value
+    more than once.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>1つの属性値内に同じリンク型を何度も指定してはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="link type:non-conforming"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The link type is not allowed</d:message>
+  <d:message xml:lang="ja">このリンク型は認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The specified link type is non-conforming and cannot be used.</p>
 
     <dl class="switch">
     <dt>Link type <code>contents</code></dt>
@@ -3033,6 +3215,41 @@ p {
     <dt>Link type <code>toc</code> or <code>top</code></dt>
       <dd>Use link type <code>index</code>.</dd>
     </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>このリンク型は不適合であり、使ってはいけません。</p>
+
+    <dl class="switch">
+    <dt>リンク型 <code>contents</code></dt>
+      <dd>リンク型 <code>index</code> を使ってください。</dd>
+    <dt>リンク型 <code>copyright</code></dt>
+      <dd>リンク型 <code>license</code> を使ってください。</dd>
+    <dt>リンク型 <code>home</code></dt>
+      <dd>リンク型 <code>index</code> を使ってください。</dd>
+    <dt>リンク型 <code>previous</code></dt>
+      <dd>リンク型 <code>prev</code> を使ってください。</dd>
+    <dt>リンク型 <code>start</code></dt>
+      <dd>リンク型 <code>first</code> を使ってください。</dd>
+    <dt>リンク型 <code>toc</code>、リンク型 <code>top</code></dt>
+      <dd>リンク型 <code>index</code> を使ってください。</dd>
+    </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="link type:proposed"
+    modules="Web::HTML::Validator">
+  <!-- XXX need to be updated -->
+  <d:message xml:lang="en">The link type is not accepted yet</d:message>
+  <d:desc xml:lang="en">
+    <p>The link type is in the <i>proposed</i> status; it
+    <em>should not</em> be used until it has been
+    accepted.</p>
+
+    <p><strong>Warning</strong>: The data served to the
+    conforming checker might be out of date; it might have already
+    been accepted or rejected.  The document might or might not be
+    conforming depending on the status.  See WHATWG Wiki
+    for the latest information.</p>
   </d:desc>
 </d:item>
 
@@ -3189,24 +3406,6 @@ p {
   </d:desc>
 </d:item>
 
-<d:item name="link type:proposed"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Link type <code><var>{value}</var></code>
-  is proposed but not accepted yet; it <em>should not</em> be
-  used until it has been accepted.</d:message>
-  <d:desc xml:lang="en">
-    <p>The link type is in the <i>proposed</i> status; it
-    <em>should not</em> be used until it has been
-    accepted.</p>
-
-    <p><strong>Warning</strong>: The data served to the
-    conforming checker might be out of date; it might have already
-    been accepted or rejected.  The document might or might not be
-    conforming depending on the status.  See WHATWG Wiki
-    for the latest information.</p>
-  </d:desc>
-</d:item>
-
 <d:item name="sizes:syntax error"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The specified value <code><var>{value}</var></code>
@@ -3232,14 +3431,45 @@ p {
 </d:item>
 
 <d:item name="window name:empty"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Browsing context name must not be empty.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The browsing context name cannot be empty</d:message>
+  <d:message xml:lang="ja">閲覧文脈名は空にできません</d:message>
+  <d:desc xml:lang="en">
+    <p>Browsing context names cannnot be the empty string.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>閲覧文脈名を空文字列にすることはできません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="window name:reserved"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Browsing context name
-  <code><var>{value}</var></code> is reserved.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The browsing context name is reserved</d:message>
+  <d:message xml:lang="ja">この閲覧文脈名は予約されています</d:message>
+  <d:desc xml:lang="en">
+    <p>Browsing context names whose first character is <code>_</code>,
+    such as <code>_blank</code> and <code>_self</code>, are reserved.</p>
+
+    <p>When a frame name is assigned, it must begin with
+    non-<code>_</code> character.</p>
+
+    <p>If the target frame is specified, it must be a frame name whose
+    name does not begin with the <code>_</code> character, or must be
+    one of <code>_blank</code>, <code>_self</code>,
+    <code>_parent</code>, or <code>_top</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>閲覧文脈名の最初の文字が <code>_</code> のもの
+    (<code>_blank</code>, <code>_self</code> など) は予約されています。</p>
+
+    <p>フレームに名前をつけるときは <code>_</code>
+    以外の文字から始まらなければいけません。</p>
+
+    <p>対象フレームを指定するときは <code>_</code>
+    以外の文字から始まるフレーム名か、 <code>_blank</code>,
+    <code>_self</code>, <code>_parent</code>, <code>_top</code>
+    のいずれかでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="word not allowed"
@@ -3255,53 +3485,25 @@ p {
 </d:item>
 
 <d:item name="xml:lang ne lang"
-    modules="Whatpm::ContentChecker::XML Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The value of the <code>xml:lang</code> attribute
-  is different from the value of the <code>lang</code> attribute.</d:message>
-  <d:message xml:lang="ja"><code>xml:lang</code> 属性の値が <code>lang</code>
-  属性の値と異なります。</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Values of <code>lang</code> and
+  <code>xml:lang</code> attributes are different</d:message>
+  <d:message xml:lang="ja"><code>lang</code> 属性と <code>xml:lang</code>
+  属性の値が違います</d:message>
   <d:desc xml:lang="en">
-    <p>The value of the <code>xml:lang</code> attribute (either the
-    <code>lang</code> attribute in the <code>xml</code> (i.e.
-    <code>http://www.w3.org/XML/1998/namespace</code>) namespace, or
-    the <code>xml:lang</code> attribute in no namespace) for the element has
-    different value than that of the <code>lang</code> attribute in no
-    namespace.</p>
+    <p>The value of the <code>lang</code> attribute in no namespace
+    and the value of the <code>lang</code> attribute in the XML
+    namespace or the value of the <code>xml:lang</code> attribute in
+    no namespace must be equivalent.</p>
 
-    <p>For historical reason, there are two attributes applicable to HTML
-    elements to specify language information of an element: <code>lang</code>
-    and <code>xml:lang</code>.  In HTML documents, only <code>lang</code>
-    attribute in no namespace is allowed and take effect; the
-    <code>xml:lang</code> attribute in no namespace is ignored in HTML
-    documents.  In XHTML documents, both <code>lang</code> and
-    <code>xml:lang</code> attributes are allowed.</p>
-
-    <p>In general, <em>only the <code>lang</code> attribute</em> need to be
-    specified for an element.</p>
-
-    <p>If both <code>lang</code> and <code>xml:lang</code> attributes are
-    specified on the same element, their values must be the same value.</p>
+    <p>Note that you can omit the <code>xml:lang</code> attribute.</p>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p><code>xml:lang</code> 属性 (<code>xml</code> (=
-    <code>http://www.w3.org/XML/1998/namespace</code>) 名前空間の
-    <code>lang</code> 属性や名前空間に属さない 
-    <code>xml:lang</code> 属性) の値が同じ要素の名前空間に属さない
-    <code>lang</code> 属性の値と異なっています。</p>
+    <p>名前空間なしの <code>lang</code> 属性と、
+    XML 名前空間の <code>lang</code> 属性または名前空間なしの
+    <code>xml:lang</code> 属性は、同じ値でなければなりません。</p>
 
-    <p>歴史的な理由により、 HTML 要素の言語指定のための属性は 
-    <code>lang</code> と <code>xml:lang</code> の2つがあります。 HTML
-    文書では名前空間に属さない <code>lang</code> 属性だけが認められており、
-    かつ効力があります。名前空間に属さない
-    <code>xml:lang</code> 属性は HTML 文書では無視されます。 XHTML 文書では
-    <code>lang</code> 属性も <code>xml:lang</code> 属性も認められています。</p>
-
-    <p>通常、要素の言語情報は <em><code>lang</code> 
-    属性だけ</em>を使って指定すれば十分です。</p>
-
-    <p><code>lang</code> 属性と <code>xml:lang</code> 
-    属性の両方を同じ要素に指定する場合、
-    両者の値は同じでなければなりません。</p>
+    <p>なお <code>xml:lang</code> 属性は省略できます。</p>
   </d:desc>
 </d:item>
 
@@ -3368,6 +3570,60 @@ p {
   any cell anchored to it.</d:message>
 </d:item>
 
+
+</section>
+
+<section id="element-errors">
+<h2>Element usage errors</h2>
+
+<d:item name="last resort"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Use of this might be inappropriate unless
+  it cannot be representable by some other means</d:message>
+  <d:message xml:lang="ja">何か他の方法で表現できない場合以外これを使うべきではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>This feature is the <i>last resort</i>.  It should not be used
+    unless it is really not representable by some other means and
+    is really necessary.</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>b</code> element</dt>
+
+    <dd>
+
+      <p>Headings should be marked up with
+      <code>h1</code>-<code>h6</code> elements.</p>
+
+      <p>Important parts should be marked up with the
+      <code>strong</code> element.  Defined terms should be marked up
+      with the <code>dfn</code> element.</p>
+
+    </dd>
+
+    <dt>HTML <code>i</code> element</dt>
+
+    <dd>
+
+      <p>Emphases should be marked up with the <code>em</code>
+      element.</p>
+
+      <p>Names of works should be marked up with the <code>cite</code>
+      element.  Quotations should be marked up with the <code>q</code>
+      or <code>blockquote</code> element.  Variables should be marked
+      up with the <code>var</code> element.</p>
+
+    </dd>
+
+    <dt>HTML <code>dir</code> attribute with value <code>auto</code></dt>
+
+    <dd>The result of <code>dir=auto</code> is somewhat unreliable.
+    Use <code>dir=ltr</code> or <code>dir=rtl</code> wherever
+    possible.</dd>
+
+    </dl>
+  </d:desc>
+</d:item>
 
 </section>
 
@@ -3520,7 +3776,7 @@ p {
 </section>
 
 <section id="uri-errors">
-<h2>URL Errors</h2>
+<h2>URL errors</h2>
 
 <d:item name="syntax error:iri3987"
     modules="Whatpm::URIChecker Whatpm::CacheManifest">
@@ -3589,6 +3845,21 @@ p {
     hierarchy of the path.  Though they are also allowed
     in absolute references, it should be resolved to the
     canonical form before it has been published.</p>
+  </d:desc>
+</d:item>
+
+<d:item name="url:empty"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The URL cannot be empty</d:message>
+  <d:message xml:lang="ja">URL を空にしてはいけません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value must be a URL but the empty string is not allowed.</p>
+    <p>Although the empty string is itself a valid relative URL,
+    it is not allowed here.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この値は URL でなければなりまえせんが、空文字列は認められていません。</p>
+    <p>空文字列自体は妥当な相対 URL ですが、ここでは認められていません。</p>
   </d:desc>
 </d:item>
 
@@ -6794,7 +7065,8 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="unknown link type"
-    modules="Whatpm::ContentChecker::HTML">
+    modules="Web::HTML::Validator">
+  <!-- XXX need to be updated -->
   <d:message xml:lang="en">Link type <code><var>{value}</var></code> is not
   standardized or registered at the time of the release of the conformance
   checker; <em>it is non-conforming unless it now has been
