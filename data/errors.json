@@ -609,7 +609,7 @@
    },
    "attribute not defined" : {
       "desc" : {
-         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>property</code>, <code>prefix</code> 属性</dt>\n\n    <dd>OGP を使っているなら、このエラーは無視してください。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute is not allowed",
@@ -767,8 +767,13 @@
       }
    },
    "boolean:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>It is a boolean attribute.  If the value is true, the attribute\n    value must be either the empty value or same as the attribute\n    name.  If the value is false, the attribute must be omitted.</p>\n    <p>Values such as <code>true</code>, <code>false</code>,\n    <code>yes</code>, and <code>on</code> are not allowed.</p>\n  ",
+         "ja" : "\n    <p>この属性は boolean 属性です。値が真の時は、属性値は空文字列か、\n    属性名と同じでなければいけません。値が偽の時は、\n    属性を省略しないといけません。</p>\n    <p><code>true</code>, <code>false</code>,\n    <code>yes</code>, <code>on</code> のような値は使えません。</p>\n  "
+      },
       "message" : {
-         "en" : "Attribute value <code><var>{@}</var></code>\n  is not allowed.  It must be an empty string or a string\n  <code><var>{local-name}</var></code>."
+         "en" : "The attribute value is not boolean",
+         "ja" : "属性値が boolean ではありません"
       }
    },
    "both in entries and whitelist" : {
@@ -1453,10 +1458,12 @@
    },
    "enumerated:invalid" : {
       "desc" : {
-         "en" : "\n    <p>For this attribute only several values are allowed and the\n    value of the attribute is not one of them.  The document\n    is non-conforming.</p>\n\n    <dl>\n    <dt>HTML <code>meta</code> element, <code>http-equiv</code> attribute</dt>\n        <dd><p>Only values <code>Default-Style</code> and <code>Refresh</code>\n        are allowed.</p>\n        <p>Value <code>Content-Type</code> is obsolete; for charset\n        declaration, the <code>charset</code> attribute can be used as:\n        <pre class=\"html example\">\n<code>&lt;meta charset=\"<var>charset-name</var>\"&gt;</code></pre>\n        ... where <var>charset-name</var> is a name of the character encoding\n        of the document, such as <code>utf-8</code>.</p>\n        <p>Values <code>Content-Style-Type</code> and\n        <code>Content-Script-Type</code> are currently not allowed.</p>\n        <p>Value <code>Keywords</code> is not allowed.  Use\n        <code>name</code> attribute instead of <code>http-equiv</code>\n        attribute.</p>\n        <p>Values <code>Expires</code>, <code>Pragma</code>,\n        and <code>Cache-Control</code> are not allowed;\n        use <em>real</em> HTTP header fields for cache control.</p></dd>\n    </dl>\n  "
+         "en" : "\n    <p>The attribute only accepts limited set of values.  The\n    specified value is not one of them.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>meta</code> element, the <code>http-equiv</code>\n    attribute</dt>\n\n    <dd>\n\n      <p><code>Content-Style-Type</code> and\n      <code>Content-Script-Type</code> are not useful.  You can remove\n      the element entirely without breaking anything at all.</p>\n\n      <p><code>Keywords</code> is not allowed.  Maybe you intended the\n      <code>name</code> attribute rather than the\n      <code>http-equiv</code> attribute.</p>\n\n      <p>Instead of <code>meta</code> element with\n      <code>Expires</code>, <code>Pragma</code>, or\n      <code>Cache-Control</code>, use real HTTP headers.</p>\n\n    </dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性に使える値は限られています。指定された値は認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>meta</code> 要素 <code>http-equiv</code> 属性</dt>\n\n    <dd>\n\n      <p><code>Content-Style-Type</code> と\n      <code>Content-Script-Type</code> は意味がありません。\n      要素を削除してしまっても影響はありません。</p>\n\n      <p><code>Keywords</code> は認められていません。\n      <code>http-equiv</code> 属性ではなく\n      <code>name</code> 属性のつもりではないでしょうか。</p>\n\n      <p><code>Expires</code>, <code>Pragma</code>,\n      <code>Cache-Control</code> は HTTP ヘッダーで指定するべきです。</p>\n\n    </dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "This attribute only allow a limited set of \n  values and the specified value <code><var>{@}</var></code> is not one \n  of them."
+         "en" : "The attribute value is not allowed",
+         "ja" : "この属性値は認められていません"
       }
    },
    "enumerated:invalid:http-equiv:content-type" : {
@@ -1468,8 +1475,13 @@
       }
    },
    "enumerated:non-conforming" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute only accepts limited set of values.  The\n    specified value is not one of them.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>area</code> element, the <code>shape</code>\n    attribute</dt>\n\n    <dd>Use <code>circule</code> instead of <code>circ</code>,\n    <code>poly</code> instead of <code>polygon</code>, and\n    <code>rect</code> instead of <code>rectangle</code>.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性に使える値は限られています。指定された値は認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>area</code> 要素 <code>shape</code> 属性</dt>\n\n    <dd><code>circ</code> でなく <code>circule</code> を、\n    <code>polygon</code> でなく <code>poly</code> を、\n    <code>rectangle</code> でなく <code>rect</code> を使ってください。</dd>\n\n    </dl>\n  "
+      },
       "message" : {
-         "en" : "Attribute value <code><var>{@}</var></code>\n  is not allowed."
+         "en" : "The attribute value is not allowed",
+         "ja" : "この属性値は認められていません"
       }
    },
    "event handler" : {
@@ -1493,13 +1505,22 @@
       }
    },
    "float:out of range" : {
+      "desc" : {
+         "en" : "\n    <p>The specified floating-point number is out of range.</p>\n\n    <dl class=\"switch\">\n\n    <dt>The <code>input</code> element, the <code>step</code> attribute</dt>\n\n    <dd>The value must be positive.</dd>\n\n    <dt>The <code>progress</code> element, the <code>value</code>\n    attribute</dt>\n\n    <dd>The value must be non-negative.</dd>\n\n    <dt>The <code>progress</code> element, the <code>max</code>\n    attribute</dt>\n\n    <dd>The value must be positive.</dd>\n\n    </dl>\n  "
+      },
       "message" : {
-         "en" : "The specified value is out of range."
+         "en" : "The value is out of range",
+         "ja" : "値域外の値です"
       }
    },
    "float:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value is not a floating-point number.</p>\n\n    <p>The value must be a real number represented in decimal or\n    scientific notation.  The sign of the significand must be omitted\n    if the number is not negative.  No unit is allowed.</p>\n\n    <p>For the <code>step</code> attribute of the <code>input</code>\n    element, special value <code>any</code> is also allowed.</p>\n  ",
+         "ja" : "\n    <p>属性値が浮動小数点数ではありません。</p>\n\n    <p>値は通常の表記か指数表記の実数でなければいけません。\n    仮数が非負の時は符号は省略しなければいけません。単位は指定できません。</p>\n\n    <p><code>input</code> 要素の <code>step</code> 属性では特別な値\n    <code>any</code> も使えます。</p>\n  "
+      },
       "message" : {
-         "en" : "The attribute value is not a real\n  number."
+         "en" : "The attribute value is not a real\n  number",
+         "ja" : "属性値は実数ではありません"
       }
    },
    "form feed" : {
@@ -1730,8 +1751,13 @@
       }
    },
    "integer:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value must be an integer.</p>\n\n    <p>Decimal marks, the <code>+</code> signs, and thousands\n    separators are not allowed.  Leading and trailing white spaces, as\n    well as units, are not allowed.</p>\n  ",
+         "ja" : "\n    <p>属性値は整数でなければいけません。</p>\n\n    <p>小数点、符号 <code>+</code>、桁区切りのコンマは使えません。\n    前後に空白や単位をつけてもいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The attribute value is not an integer."
+         "en" : "The attribute value is not an integer",
+         "ja" : "属性値は整数ではありません"
       }
    },
    "interface not defined" : {
@@ -2141,8 +2167,13 @@
       }
    },
    "length:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value must specify the dimension, as a non-negative\n    integer or a non-negative percentage integer.</p>\n    <p>Signs, separators, and units are not allowed.</p>\n  ",
+         "ja" : "\n    <p>属性値は大きさを非負整数か非負整数のパーセント値で表したものでなければいけません。</p>\n    <p>符号や小数点や単位記号は認められていません。</p>\n  "
+      },
       "message" : {
-         "en" : "The attribute value is not a length\n  value."
+         "en" : "The attribute value is not a dimension\n  value",
+         "ja" : "属性値が大きさの値ではありません"
       }
    },
    "link type:bad context" : {
@@ -2210,6 +2241,16 @@
          "en" : "The specified value has a syntax error as a\n  media query."
       }
    },
+   "multilength:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The value must be a dimension value using one of these forms: a\n    non-negative integer, a non-negative percentage integer, a\n    non-negative integer followed by the <code>*</code> character, or\n    a <code>*</code> character.</p>\n  ",
+         "ja" : "\n    <p>次のいずれかの方法で表した大きさの値でなければいけません。\n    (1) 非負整数 (2) 非負整数のパーセント値 (3) 非負整数の後に文字\n    <code>*</code> (4) 文字 <code>*</code></p>\n  "
+      },
+      "message" : {
+         "en" : "The value is not a valid multilength value",
+         "ja" : "妥当な multilength 値ではありません"
+      }
+   },
    "multiple labelable fae" : {
       "message" : {
          "en" : "More than one labelable form-associated element\n  is associated to a <code>label</code> element."
@@ -2239,13 +2280,33 @@
       }
    },
    "nninteger:out of range" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value must be a non-negative integer within\n    the specific range.</p>\n  ",
+         "ja" : "\n    <p>属性値は非負整数でかつ指定された範囲内の値でなければなりません。</p>\n  "
+      },
       "message" : {
-         "en" : "The specified value is out of range."
+         "en" : "The specified value is out of range",
+         "ja" : "指定された値は値域外です"
       }
    },
    "nninteger:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value must be a non-negative integer.</p>\n\n    <p>Decimal marks, signs, and thousands separators are not allowed.\n    Leading and trailing white spaces, as well as units, are not\n    allowed.</p>\n  ",
+         "ja" : "\n    <p>属性値は非負整数でなければいけません。</p>\n\n    <p>小数点、符号、桁区切りのコンマは使えません。\n    前後に空白や単位をつけてもいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The attribute value is not a non‐negative\n  integer."
+         "en" : "The attribute value is not a non-negative\n  integer",
+         "ja" : "属性値は非負整数ではありません"
+      }
+   },
+   "nninteger:zero" : {
+      "desc" : {
+         "en" : "\n    <p>The attribute value must be a positive integer.  Value <code>0</code>\n    is not allowed.</p>\n  ",
+         "ja" : "\n    <p>属性値は正整数でなければなりません。零の値は認められていません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The specified value is zero",
+         "ja" : "指定された値は 0 です"
       }
    },
    "no DOCTYPE" : {
@@ -3317,7 +3378,7 @@
       },
       "message" : {
          "en" : "Validation of the\n  <code><var>{local-name}</var></code> attribute of the\n  <code><var>{element-local-name}</var></code> element is not\n  supported",
-         "ja" : "<code><var>{element-local-name}</var></code>\n  要素の <code><var>{local-name}</var></code> 属性の検証には対応していません。"
+         "ja" : "<code><var>{element-local-name}</var></code>\n  要素の <code><var>{local-name}</var></code> 属性の検証には対応していません"
       }
    },
    "unknown element" : {

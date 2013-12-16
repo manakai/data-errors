@@ -2262,6 +2262,10 @@ p {
     <dd>These attributes are obsolete and can no logner be used in the
     document.  Use CSS instead.</dd>
 
+    <dt>HTML <code>property</code> attribute</dt>
+
+    <dd>If you are using OGP, ignore this error.</dd>
+
     <dt>HTML <code>head</code> element, the <code>profile</code>
     attribute</dt>
 
@@ -2294,6 +2298,10 @@ p {
     <code>vspace</code> 属性</dt>
 
     <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>
+
+    <dt>HTML <code>property</code>, <code>prefix</code> 属性</dt>
+
+    <dd>OGP を使っているなら、このエラーは無視してください。</dd>
 
     <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>
 
@@ -2431,10 +2439,23 @@ p {
 <h2>Attribute Value Errors</h2>
 
 <d:item name="boolean:invalid"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Attribute value <code><var>{@}</var></code>
-  is not allowed.  It must be an empty string or a string
-  <code><var>{local-name}</var></code>.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute value is not boolean</d:message>
+  <d:message xml:lang="ja">属性値が boolean ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>It is a boolean attribute.  If the value is true, the attribute
+    value must be either the empty value or same as the attribute
+    name.  If the value is false, the attribute must be omitted.</p>
+    <p>Values such as <code>true</code>, <code>false</code>,
+    <code>yes</code>, and <code>on</code> are not allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この属性は boolean 属性です。値が真の時は、属性値は空文字列か、
+    属性名と同じでなければいけません。値が偽の時は、
+    属性を省略しないといけません。</p>
+    <p><code>true</code>, <code>false</code>,
+    <code>yes</code>, <code>on</code> のような値は使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="char:syntax error"
@@ -2659,32 +2680,58 @@ p {
 </d:item>
 
 <d:item name="enumerated:invalid"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">This attribute only allow a limited set of 
-  values and the specified value <code><var>{@}</var></code> is not one 
-  of them.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute value is not allowed</d:message>
+  <d:message xml:lang="ja">この属性値は認められていません</d:message>
   <d:desc xml:lang="en">
-    <p>For this attribute only several values are allowed and the
-    value of the attribute is not one of them.  The document
-    is non-conforming.</p>
+    <p>The attribute only accepts limited set of values.  The
+    specified value is not one of them.</p>
 
-    <dl>
-    <dt>HTML <code>meta</code> element, <code>http-equiv</code> attribute</dt>
-        <dd><p>Only values <code>Default-Style</code> and <code>Refresh</code>
-        are allowed.</p>
-        <p>Value <code>Content-Type</code> is obsolete; for charset
-        declaration, the <code>charset</code> attribute can be used as:
-        <pre class="html example"><code>&lt;meta charset="<var>charset-name</var>"></code></pre>
-        ... where <var>charset-name</var> is a name of the character encoding
-        of the document, such as <code>utf-8</code>.</p>
-        <p>Values <code>Content-Style-Type</code> and
-        <code>Content-Script-Type</code> are currently not allowed.</p>
-        <p>Value <code>Keywords</code> is not allowed.  Use
-        <code>name</code> attribute instead of <code>http-equiv</code>
-        attribute.</p>
-        <p>Values <code>Expires</code>, <code>Pragma</code>,
-        and <code>Cache-Control</code> are not allowed;
-        use <em>real</em> HTTP header fields for cache control.</p></dd>
+    <dl class="switch">
+
+    <dt>HTML <code>meta</code> element, the <code>http-equiv</code>
+    attribute</dt>
+
+    <dd>
+
+      <p><code>Content-Style-Type</code> and
+      <code>Content-Script-Type</code> are not useful.  You can remove
+      the element entirely without breaking anything at all.</p>
+
+      <p><code>Keywords</code> is not allowed.  Maybe you intended the
+      <code>name</code> attribute rather than the
+      <code>http-equiv</code> attribute.</p>
+
+      <p>Instead of <code>meta</code> element with
+      <code>Expires</code>, <code>Pragma</code>, or
+      <code>Cache-Control</code>, use real HTTP headers.</p>
+
+    </dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この属性に使える値は限られています。指定された値は認められていません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>meta</code> 要素 <code>http-equiv</code> 属性</dt>
+
+    <dd>
+
+      <p><code>Content-Style-Type</code> と
+      <code>Content-Script-Type</code> は意味がありません。
+      要素を削除してしまっても影響はありません。</p>
+
+      <p><code>Keywords</code> は認められていません。
+      <code>http-equiv</code> 属性ではなく
+      <code>name</code> 属性のつもりではないでしょうか。</p>
+
+      <p><code>Expires</code>, <code>Pragma</code>,
+      <code>Cache-Control</code> は HTTP ヘッダーで指定するべきです。</p>
+
+    </dd>
+
     </dl>
   </d:desc>
 </d:item>
@@ -2706,9 +2753,37 @@ p {
 </d:item>
 
 <d:item name="enumerated:non-conforming"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Attribute value <code><var>{@}</var></code>
-  is not allowed.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute value is not allowed</d:message>
+  <d:message xml:lang="ja">この属性値は認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute only accepts limited set of values.  The
+    specified value is not one of them.</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>area</code> element, the <code>shape</code>
+    attribute</dt>
+
+    <dd>Use <code>circule</code> instead of <code>circ</code>,
+    <code>poly</code> instead of <code>polygon</code>, and
+    <code>rect</code> instead of <code>rectangle</code>.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この属性に使える値は限られています。指定された値は認められていません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>area</code> 要素 <code>shape</code> 属性</dt>
+
+    <dd><code>circ</code> でなく <code>circule</code> を、
+    <code>polygon</code> でなく <code>poly</code> を、
+    <code>rectangle</code> でなく <code>rect</code> を使ってください。</dd>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="duplicate form name"
@@ -2801,16 +2876,56 @@ p {
 </d:item>
 
 <d:item name="float:out of range"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The specified value is out of range.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is out of range</d:message>
+  <d:message xml:lang="ja">値域外の値です</d:message>
+  <d:desc xml:lang="en">
+    <p>The specified floating-point number is out of range.</p>
+
+    <dl class="switch">
+
+    <dt>The <code>input</code> element, the <code>step</code> attribute</dt>
+
+    <dd>The value must be positive.</dd>
+
+    <dt>The <code>progress</code> element, the <code>value</code>
+    attribute</dt>
+
+    <dd>The value must be non-negative.</dd>
+
+    <dt>The <code>progress</code> element, the <code>max</code>
+    attribute</dt>
+
+    <dd>The value must be positive.</dd>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="float:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
+    modules="Web::HTML::Validator">
   <d:message xml:lang="en">The attribute value is not a real
-  number.</d:message>
-  <!-- a valid floating point number, or a valid floating point number
-  or "any" (step attribute) -->
+  number</d:message>
+  <d:message xml:lang="ja">属性値は実数ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value is not a floating-point number.</p>
+
+    <p>The value must be a real number represented in decimal or
+    scientific notation.  The sign of the significand must be omitted
+    if the number is not negative.  No unit is allowed.</p>
+
+    <p>For the <code>step</code> attribute of the <code>input</code>
+    element, special value <code>any</code> is also allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値が浮動小数点数ではありません。</p>
+
+    <p>値は通常の表記か指数表記の実数でなければいけません。
+    仮数が非負の時は符号は省略しなければいけません。単位は指定できません。</p>
+
+    <p><code>input</code> 要素の <code>step</code> 属性では特別な値
+    <code>any</code> も使えます。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="fragment points itself"
@@ -2838,8 +2953,22 @@ p {
 </d:item>
 
 <d:item name="integer:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The attribute value is not an integer.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute value is not an integer</d:message>
+  <d:message xml:lang="ja">属性値は整数ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value must be an integer.</p>
+
+    <p>Decimal marks, the <code>+</code> signs, and thousands
+    separators are not allowed.  Leading and trailing white spaces, as
+    well as units, are not allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値は整数でなければいけません。</p>
+
+    <p>小数点、符号 <code>+</code>、桁区切りのコンマは使えません。
+    前後に空白や単位をつけてもいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="link type:bad context"
@@ -2867,9 +2996,19 @@ p {
 </d:item>
 
 <d:item name="length:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The attribute value is not a length
-  value.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute value is not a dimension
+  value</d:message>
+  <d:message xml:lang="ja">属性値が大きさの値ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value must specify the dimension, as a non-negative
+    integer or a non-negative percentage integer.</p>
+    <p>Signs, separators, and units are not allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値は大きさを非負整数か非負整数のパーセント値で表したものでなければいけません。</p>
+    <p>符号や小数点や単位記号は認められていません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="link type:non-conforming"
@@ -2928,15 +3067,67 @@ p {
   name.</d:message>
 </d:item>
 
+<d:item name="multilength:syntax error"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not a valid multilength value</d:message>
+  <d:message xml:lang="ja">妥当な multilength 値ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value must be a dimension value using one of these forms: a
+    non-negative integer, a non-negative percentage integer, a
+    non-negative integer followed by the <code>*</code> character, or
+    a <code>*</code> character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>次のいずれかの方法で表した大きさの値でなければいけません。
+    (1) 非負整数 (2) 非負整数のパーセント値 (3) 非負整数の後に文字
+    <code>*</code> (4) 文字 <code>*</code></p>
+  </d:desc>
+</d:item>
+
 <d:item name="nninteger:out of range"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The specified value is out of range.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The specified value is out of range</d:message>
+  <d:message xml:lang="ja">指定された値は値域外です</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value must be a non-negative integer within
+    the specific range.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値は非負整数でかつ指定された範囲内の値でなければなりません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="nninteger:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The attribute value is not a non‐negative
-  integer.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute value is not a non-negative
+  integer</d:message>
+  <d:message xml:lang="ja">属性値は非負整数ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value must be a non-negative integer.</p>
+
+    <p>Decimal marks, signs, and thousands separators are not allowed.
+    Leading and trailing white spaces, as well as units, are not
+    allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値は非負整数でなければいけません。</p>
+
+    <p>小数点、符号、桁区切りのコンマは使えません。
+    前後に空白や単位をつけてもいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="nninteger:zero"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The specified value is zero</d:message>
+  <d:message xml:lang="ja">指定された値は 0 です</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute value must be a positive integer.  Value <code>0</code>
+    is not allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値は正整数でなければなりません。零の値は認められていません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="no referenced form"
@@ -6587,7 +6778,7 @@ Regexp::Parser::JavaScript's extension. -->
   <code><var>{element-local-name}</var></code> element is not
   supported</d:message>
   <d:message xml:lang="ja"><code><var>{element-local-name}</var></code>
-  要素の <code><var>{local-name}</var></code> 属性の検証には対応していません。</d:message>
+  要素の <code><var>{local-name}</var></code> 属性の検証には対応していません</d:message>
   <d:desc xml:lang="en">
     <p>The conformance checker does not support the validation of the
     attribute (yet).</p>
