@@ -1929,6 +1929,12 @@ p {
     <dd>There must be <code>head</code> and <code>body</code> element
     children.</dd>
 
+    <dt>HTML <code>video</code> or <code>audio</code> element</dt>
+
+    <dd>Unless there is the <code>src</code> attribute or one or more
+    <code>source</code> element children, the element has no
+    effect.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -1948,6 +1954,11 @@ p {
     <dt>HTML <code>html</code> 要素</dt>
 
     <dd><code>head</code> 要素や <code>body</code> 要素が子供として必要です。</dd>
+
+    <dt>HTML <code>video</code> 要素、<code>audio</code> 要素</dt>
+
+    <dd><code>src</code> 属性か、1つ以上の
+    <code>source</code> 子要素かどちらかがないとこの要素の意味がありません。</dd>
 
     </dl>
   </d:desc>
@@ -2110,9 +2121,18 @@ p {
 </d:item>
 
 <d:item name="element not allowed:area"
-    modules="Whatpm::ContentChecker Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">An <code>area</code> element cannot be used
-  outside of a <code>map</code> element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>area</code> element cannot be used
+  outside of the <code>map</code> element</d:message>
+  <d:message xml:lang="ja"><code>area</code> 要素は <code>map</code>
+  要素外では使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>area</code> element can only used as a descendant
+    of the <code>map</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>area</code> 要素は <code>map</code> 要素の子孫としてのみ使えます。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:base"
@@ -2580,6 +2600,7 @@ p {
 <h2>Attribute errors</h2>
 
 <d:item name="anchor name"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The attribute obsolete</d:message>
   <d:message xml:lang="ja">この属性は廃止されました</d:message>
@@ -2619,6 +2640,25 @@ p {
 
     <dl class="switch">
 
+    <dt>HTML <code>img</code> element</dt>
+
+    <dd>The <code>src</code> attribute is required.</dd>
+
+    <dd>In many cases, the <code>alt</code> attribute is
+    required.</dd>
+
+    <dt>HTML <code>source</code> or <code>bgsound</code> element</dt>
+
+    <dd>The <code>src</code> attribute is required.</dd>
+
+    <dt>HTML <code>track</code> element</dt>
+
+    <dd>The <code>src</code> attribute is required.</dd>
+
+    <dd>If the <code>kind</code> attribute is <code>subtitles</code>
+    (which is the default), the <code>srclang</code> attribute is
+    required.</dd>
+
     <dt>HTML <code>link</code> element</dt>
 
     <dd>The <code>href</code> attribute must be specified.</dd>
@@ -2633,16 +2673,38 @@ p {
     <code>head</code> element, the <code>scoped</code> attribute must
     be specified.</dd>
 
+    <dt>HTML <code>embed</code> element</dt>
+
+    <dd>An <code>embed</code> element with no <code>src</code>
+    attribute has no effect.</dd>
+
+    <dt>HTML <code>object</code> element</dt>
+
+    <dd>If both <code>data</code> and <code>type</code> attributes are
+    specified, it might be a good practice to also specify the
+    <code>typemustmatch</code> attribute to ensure that the expected
+    content is rendered.</dd>
+
+    <dd>If the <code>classid</code> attribute is specified, the
+    <code>codetype</code> attribute should also be specified.</dd>
+
     <dt>HTML <code>html</code> element</dt>
 
     <dd>Although it is not required, it is encouraged to specify the
     language of the document to the root <code>html</code> element
     using the <code>lang</code> attribute.</dd>
 
+    <dt>HTML <code>map</code> element</dt>
+
+    <dd>The <code>name</code> attribute is required.</dd>
+
     <dt>HTML <code>area</code> element</dt>
 
     <dd>The <code>coords</code> attribute must be specified unless the
     <code>shape</code> attribute value is <code>default</code>.</dd>
+
+    <dd>If the <code>href</code> attribute is specified, the
+    <code>alt</code> attribute is required.</dd>
 
     <dt>HTML <code>bdo</code> element</dt>
 
@@ -2661,6 +2723,16 @@ p {
     specified.  (You don't have to specify the <code>xml:lang</code>
     attribute.)</dd>
 
+    <dt>HTML <code>param</code> element</dt>
+
+    <dd>Attributes <code>name</code> and <code>value</code> must be
+    specified.</dd>
+
+    <dt>HTML <code>applet</code> element</dt>
+
+    <dd>Attributes <code>width</code> and <code>height</code> must be
+    specified.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -2668,6 +2740,23 @@ p {
     利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>
 
     <dl class="switch">
+
+    <dt>HTML <code>img</code> 要素</dt>
+
+    <dd><code>src</code> 属性は必須です。</dd>
+
+    <dd>多くの場合 <code>alt</code> 属性は必須です。</dd>
+
+    <dt>HTML <code>source</code> 要素、 <code>bgsound</code> 要素</dt>
+
+    <dd><code>src</code> 属性は必須です。</dd>
+
+    <dt>HTML <code>track</code> 要素</dt>
+
+    <dd><code>src</code> 属性は必須です。</dd>
+
+    <dd><code>kind</code> 属性が <code>subtitles</code> (既定値) なら、
+    <code>srclang</code> 属性は必須です。</dd>
 
     <dt>HTML <code>link</code> 要素</dt>
 
@@ -2682,16 +2771,32 @@ p {
     <dd><code>head</code> 要素外の <code>style</code> 要素には
     <code>scoped</code> 属性を指定しなければいけません。</dd>
 
+    <dt>HTML <code>object</code> 要素</dt>
+
+    <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、
+    意図した内容しかレンダリングされないように
+    <code>typemustmatch</code> 属性も指定したほうがいいかもしれません。</dd>
+
+    <dd><code>classid</code> 属性が指定されている時は、
+    <code>codetype</code> 属性も指定するべきです。</dd>
+
     <dt>HTML <code>html</code> 要素</dt>
 
     <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を
     <code>lang</code> 属性で指定するのが良いとされています。</dd>
+
+    <dt>HTML <code>map</code> 要素</dt>
+
+    <dd><code>name</code> 属性は必須です。</dd>
 
     <dt>HTML <code>area</code> 要素</dt>
 
     <dd><code>coords</code> 属性を指定しなければなりません。
     (ただし <code>shape</code> 属性値が <code>default</code>
     の場合を除きます。)</dd>
+
+    <dd><code>href</code> 属性が指定されている場合
+    <code>alt</code> 属性は必須です。</dd>
 
     <dt>HTML <code>bdo</code> 要素</dt>
 
@@ -2708,15 +2813,51 @@ p {
     <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>
     属性は指定子なくて構いません。)</dd>
 
+    <dt>HTML <code>param</code> 要素</dt>
+    
+    <dd><code>name</code> 属性と <code>height</code>
+    属性を指定しなければいけません。</dd>
+
+    <dt>HTML <code>applet</code> 要素</dt>
+
+    <dd><code>width</code> 属性と <code>height</code> 属性を指定しなければいけません。</dd>
+
     </dl>
   </d:desc>
 </d:item>
 
+<d:item name="attribute missing:code|object"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Neither <code>code</code> or <code>object</code>
+  attribute is specified</d:message>
+  <d:message xml:lang="ja"><code>code</code> 属性も <code>object</code>
+  属性も指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>applet</code> element must have either or both of
+    <code>code</code> and <code>object</code> attributes.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>applet</code> 要素には
+    <code>code</code> 属性と <code>object</code>
+    属性の一方または両方を指定しなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="attribute missing:data|type"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">For an <code>object</code> at least one of
-  <code>data</code> and <code>type</code> attributes must be 
-  specified.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Neither <code>data</code> or <code>type</code>
+  attribute is specified</d:message>
+  <d:message xml:lang="ja"><code>data</code> 属性も <code>type</code>
+  属性も指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>object</code> element must have either or both of
+    <code>data</code> and <code>type</code> attributes.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>object</code> 要素には
+    <code>data</code> 属性と <code>type</code>
+    属性の一方または両方を指定しなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="attribute missing:href|target"
@@ -2786,6 +2927,7 @@ p {
 </d:item>
 
 <d:item name="attribute not allowed"
+    targets="attr"
     modules="Web::HTML::Validator Whatpm::RDFXML">
   <d:message xml:lang="en">The attribute is not allowed here</d:message>
   <d:message xml:lang="ja">この属性はここでは使えません</d:message>
@@ -2820,6 +2962,11 @@ p {
     <dd>The <code>coords</code> attribute cannot be used if the
     <code>shape</code> attribute is <code>default</code>.</dd>
 
+    <dd>Attributes <code>target</code>, <code>ping</code>,
+    <code>rel</code>, <code>hreflang</code>, <code>type</code>, and
+    <code>alt</code> are not allowed when the <code>href</code>
+    attribute is not specified.</dd>
+
     <dt>HTML <code>meta</code> element</dt>
 
     <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,
@@ -2850,6 +2997,17 @@ p {
     <code>charset</code> are not allowed unless the <code>src</code>
     attribute is specified.  Likewise, the <code>crossorigin</code>
     attribute has no effect unless the <code>src</code> attribute is
+    specified.</dd>
+
+    <dt>HTML <code>img</code> element</dt>
+
+    <dd>The <code>start</code> attribute is not allowed unless the
+    <code>dynsrc</code> attribute is specified.</dd>
+
+    <dt>HTML <code>object</code> element</dt>
+
+    <dd>The <code>typemustmatch</code> attribute is not allowed unless
+    both <code>data</code> and <code>type</code> attributes are
     specified.</dd>
 
     </dl>
@@ -2883,6 +3041,11 @@ p {
     <dd><code>coords</code> 属性は <code>shape</code> 属性が
     <code>default</code> の時使えません。</dd>
 
+    <dd><code>target</code>, <code>ping</code>,
+    <code>rel</code>, <code>hreflang</code>, <code>type</code>,
+    <code>alt</code> 各属性は <code>href</code>
+    属性が指定されていないと使えません。</dd>
+
     <dt>HTML <code>meta</code> 要素</dt>
 
     <dd><code>name</code>, <code>http-equiv</code>,
@@ -2912,15 +3075,33 @@ p {
     属性がないと指定してはいけません。同様に <code>crossorigin</code>
     属性は <code>src</code> 属性がないと意味がありません。</dd>
 
+    <dt>HTML <code>img</code> 要素</dt>
+
+    <dd><code>start</code> 属性は
+    <code>dynsrc</code> 属性が指定されていないと使えません。</dd>
+
+    <dt>HTML <code>object</code> 要素</dt>
+
+    <dd><code>typemustmatch</code> 属性は
+    <code>data</code> 属性と <code>type</code> 属性の両方が指定されていないと使えません。</dd>
+
     </dl>
   </d:desc>
 </d:item>
 
 <d:item name="attribute not allowed:ismap"
     targets="attr"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>ismap</code> attribute may only be
-  used for the image contained in an <code>a</code> element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is no hyperlink</d:message>
+  <d:message xml:lang="ja">ハイパーリンクがありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>img</code> element with the <code>ismap</code>
+    attribute can only be used within the <code>a</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>img</code> 要素の <code>ismap</code> 属性が使えるのは
+    <code>a</code> 要素内でだけです。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="attribute not defined"
@@ -2974,6 +3155,14 @@ p {
     <dd>Namespace attributes are not allowed in HTML.  Since they have
     no effect, it's safe to delete them entirely.</dd>
 
+    <dt>The <code>embed</code> element</dt>
+
+    <dd>Attributes <code>align</code>, <code>border</code>,
+    <code>hspace</code>, and <code>vspace</code> should be replaced by
+    appropriate style sheet specifications.  The <code>name</code>
+    attribute should be replaced by the <code>id</code>
+    attribute.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="en">
@@ -3018,11 +3207,19 @@ p {
     <dd>HTML では名前空間属性は使えません。
     効果はないので削除して問題ありません。</dd>
 
+    <dt><code>embed</code> 要素</dt>
+
+    <dd><code>align</code>, <code>border</code>, <code>hspace</code>,
+    <code>vspace</code> 各属性はスタイルシートに置き換えるべきです。
+    <code>name</code> 属性は
+    <code>id</code> 属性に置き換えるべきです。</dd>
+
     </dl>
   </d:desc>
 </d:item>
 
 <d:item name="_charset_ value"
+    targets="attr"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The <code>value</code> attribute cannot be 
   specified to an <code>input</code> element whose <code>type</code>
@@ -3044,6 +3241,7 @@ p {
 </d:item>
 
 <d:item name="in HTML:xml:lang"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>xml:lang</code> attribute cannot be
   used in HTML document</d:message>
@@ -3061,6 +3259,7 @@ p {
 </d:item>
 
 <d:item name="in HTML:xml:space"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>xml:space</code> attribute is not
   allowed in HTML document</d:message>
@@ -3128,6 +3327,7 @@ p {
 </d:item>
 
 <d:item name="in XML:xml:lang"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>xml:lang</code> attribute in no namespace
   is not allowed in XML document</d:message>
@@ -3145,6 +3345,7 @@ p {
 </d:item>
 
 <d:item name="in XML:xmlns"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>xmlns</code> attribute 
   in no namespace is not allowed in XML document</d:message>
@@ -3168,6 +3369,7 @@ p {
 </d:item>
 
 <d:item name="input attr not applicable"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The attribute is not applied to the
   <code>input</code> element whose <code>type</code> is
@@ -3189,6 +3391,7 @@ p {
 </d:item>
 
 <d:item name="non-ol li value"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>value</code> attribute is not
   allowed unless the parent is the <code>ol</code> element</d:message>
@@ -3210,6 +3413,7 @@ p {
 </d:item>
 
 <d:item name="xml:lang not allowed"
+    targets="attr"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The <code>xml:lang</code> attribute is only allowed
   when the <code>lang</code> attribute is specified.</d:message>
@@ -3733,6 +3937,25 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="duplicate default track"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is another default track of same kind</d:message>
+  <d:message xml:lang="ja">同じ種類の既定のトラックが他にもあります</d:message>
+  <d:desc xml:lang="en">
+    <p>There must be at most one default track (i.e. the
+    <code>track</code> element with the <code>default</code>
+    attribute) with same kind for a media element.</p>
+    <p>In this context, <code>kind</code>s <code>subtitles</code> and
+    <code>captions</code> are considered as same kind.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>同じ媒体要素に対して同じ種類の既定のトラック (<code>default</code>
+    属性のある <code>track</code> 要素) は高々1つしかあってはいけません。</p>
+    <p>ただしここでは <code>kind</code> の値 <code>subtitles</code>
+    と <code>captions</code> は同じ種類とします。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="duplicate form name"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">Form name <code><var>{value}</var></code> is already
@@ -3769,6 +3992,21 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="duplicate map name"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The map name is assigned with
+  another element</d:message>
+  <d:message xml:lang="ja">この画像マップ名は他の要素に割り当てられています</d:message>
+  <d:desc xml:lang="en">
+    <p>The name of the image map must be unique.  A map name cannot be
+    assigned with multiple elements.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>画像マップ名は固有でなければいけません。
+    同じ名前を複数の要素に割り当てることはできません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="duplicate token"
     modules="Web::HTML::Validator Whatpm::HTML::Table">
   <d:message xml:lang="en">The token <code><var>{value}</var></code>
@@ -3782,6 +4020,24 @@ p {
   <d:desc xml:lang="ja">
     <p>この値には空白区切りで複数の字句を指定することができますが、
     同じ字句を何個も含めることはできません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="duplicate track"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is another <code>track</code> element with same
+  <code>kind</code>, <code>srclang</code>, and <code>label</code></d:message>
+  <d:message xml:lang="ja"><code>kind</code>, <code>srclang</code>, <code>label</code>
+  の組み合わせが同じ<code>track</code> 要素が他にあります</d:message>
+  <d:desc xml:lang="en">
+    <p>There must not be multiple <code>track</code> elements for the
+    same media element with the same combination of <code>kind</code>,
+    <code>srclang</code>, and <code>label</code> values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>kind</code>,
+    <code>srclang</code>, <code>label</code> の値の組み合わせが同じ
+    <code>track</code> 要素が同じ媒体要素に対して複数あってはいけません。</p>
   </d:desc>
 </d:item>
 
@@ -3813,17 +4069,15 @@ p {
 <d:item name="empty area alt"
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The <code>alt</code> attribute value is
-  empty.</d:message>
-  <d:message xml:lang="ja"><code>alt</code> 属性値が空です。</d:message>
+  empty</d:message>
+  <d:message xml:lang="ja"><code>alt</code> 属性値が空です</d:message>
   <d:desc xml:lang="en">
-    <p>The value of the <code>alt</code> attribute of an <code>area</code>
-    element is an empty value.</p>
-
-    <p>In general, the <code>alt</code> attribute value cannot be empty.
-    It must provide an alternative text for the hyperlink represented by
-    the <code>area</code> element.  The alternative text is to be used
-    when the Web browser cannot display the image, or is configured not
-    to display images.</p>
+    <p>In general, the <code>alt</code> attribute value of the
+    <code>area</code> element cannot be empty.  It must provide an
+    alternative text for the hyperlink represented by the
+    <code>area</code> element.  The alternative text is to be used
+    when the Web browser cannot display the image, or is configured
+    not to display images.</p>
 
     <p>As an exception, the <code>alt</code> attribute may be left blank
     if the same image map (i.e. the ancestor <code>map</code> element)
@@ -3831,7 +4085,17 @@ p {
     attribute references the same resource as the <code>href</code>
     attribute of the <code>area</code> element in question, and the other
     <code>area</code> element has an <code>alt</code> attribute with
-    non‐empty value.</p>
+    non-empty value.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>一般に <code>map</code> 要素の <code>alt</code> 属性値は空にはできません。
+    <code>alt</code> 属性はその要素が表すハイパーリンクの代替文を含まなければいけません。
+    代替文は Web ブラウザーが画像を表示できない時や、表示しないように設定されているときに使われます。</p>
+
+    <p>例外として、同じ画像マップ (先祖 <code>map</code> 要素)
+    に同じ <code>href</code> 属性の <code>area</code> 要素があって、
+    そちらには空でない <code>alt</code> 属性が指定されている場合には、
+    <code>alt</code> 属性を空にすることができます。</p>
   </d:desc>
 </d:item>
 
@@ -3852,6 +4116,11 @@ p {
     the element has no identifier, the <code>id</code> attribute
     should be omitted.</dd>
 
+    <dt>The <code>map</code> element, the <code>name</code>
+    attribute</dt>
+
+    <dd>The map name cannot be empty.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -3864,6 +4133,10 @@ p {
 
     <dd>要素の固有識別子 (ID) は空文字列にはできません。
     要素に識別子がないときは属性自体を省略してください。</dd>
+
+    <dt><code>map</code> 要素 <code>name</code> 属性</dt>
+
+    <dd>画像マップ名は空文字列にはできません。</dd>
 
     </dl>
   </d:desc>
@@ -4083,6 +4356,32 @@ p {
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The <code>id</code> attribute value is 
   different from the <code>name</code> attribute value.</d:message>
+</d:item>
+
+<d:item name="img border:0"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>border</code> attribute is obsolete</d:message>
+  <d:message xml:lang="ja"><code>border</code> 属性は廃止されました</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>border</code> attribute of the <code>img</code>
+    element is obsolete.</p><!-- obsolete but conforming -->
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>img</code> 要素の <code>border</code> 属性は廃止されました。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="img border:nninteger"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>border</code> attribute is obsolete</d:message>
+  <d:message xml:lang="ja"><code>border</code> 属性は廃止されました</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>border</code> attribute of the <code>img</code>
+    element is obsolete.</p><!-- obsolete and non-conforming -->
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>img</code> 要素の <code>border</code> 属性は廃止されました。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="integer:out of range"
@@ -4317,6 +4616,32 @@ p {
     <code>1</code>, <code>A</code>, <code>a</code>, <code>I</code>,
     <code>i</code>, <code>circle</code>, <code>square</code>,
     <code>disc</code> のいずれかでなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="localsrc:deprecated"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is deprecated</d:message>
+  <d:message xml:lang="ja">この値は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>The specified <code>localsrc</code> attribute value is
+    deprecated.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>指定された <code>localsrc</code> 属性値は非推奨です。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="localsrc:invalid"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is invalid</d:message>
+  <d:message xml:lang="ja">この値は正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The specified <code>localsrc</code> attribute value is
+    invalid.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>指定された <code>localsrc</code> 属性値は正しくありません。</p>
   </d:desc>
 </d:item>
 
@@ -4585,6 +4910,24 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="sandbox allow-same-origin allow-scripts"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">It is dangerous to specify both
+  <code>allow-scripts</code> and <code>allow-same-origin</code></d:message>
+  <d:message xml:lang="ja"><code>allow-scripts</code> と
+  <code>allow-same-origin</code> を同時に指定するのは危険です</d:message>
+  <d:desc xml:lang="en">
+    <p>It is dangerous to specify both <code>allow-scripts</code> and
+    <code>allow-same-origin</code> in the <code>sandbox</code>
+    attribute of the <code>iframe</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>allow-scripts</code> と
+    <code>allow-same-origin</code> を同時に <code>iframe</code>
+    要素の <code>sandbox</code> 属性に指定するのは危険です。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="script language"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>language</code> attribute is
@@ -4683,6 +5026,18 @@ p {
   </d:desc>
   <d:desc xml:lang="ja">
     <p>要素の固有識別子 (ID) に空白文字を含めてはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="space in map name"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Spaces are not allowed in the map name</d:message>
+  <d:message xml:lang="ja">空白文字は画像マップ名に使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The name of the image map cannot contain space characters.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>画像マップ名に空白文字を含めてはいけません。</p>
   </d:desc>
 </d:item>
 

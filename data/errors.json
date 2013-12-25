@@ -435,6 +435,9 @@
    "_charset_ value" : {
       "message" : {
          "en" : "The <code>value</code> attribute cannot be \n  specified to an <code>input</code> element whose <code>type</code>\n  is <code>hidden</code> and <code>name</code> is\n  <code>_charset_</code>."
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "ab+b not integer" : {
@@ -556,6 +559,9 @@
       "message" : {
          "en" : "The attribute obsolete",
          "ja" : "この属性は廃止されました"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "anchor name:empty" : {
@@ -611,17 +617,32 @@
    },
    "attribute missing" : {
       "desc" : {
-         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>href</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>The <code>content</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>For the <code>style</code> element outside of the\n    <code>head</code> element, the <code>scoped</code> attribute must\n    be specified.</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dt>HTML <code>bdo</code> element</dt>\n\n    <dd>The <code>dir</code> attribute is required.</dd>\n\n    <dt>HTML <code>b</code> or <code>i</code> element</dt>\n\n    <dd>It might be a good idea to specify the <code>class</code>\n    attribute for these elements such that their purpose can be\n    clarified and that it can be used as a hook for styling.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>href</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>content</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>head</code> 要素外の <code>style</code> 要素には\n    <code>scoped</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dt>HTML <code>bdo</code> 要素</dt>\n\n    <dd><code>dir</code> 属性が必要です。</dd>\n\n    <dt>HTML <code>b</code> 要素、<code>i</code> 要素</dt>\n\n    <dd><code>class</code> を指定しておくと用途が明確になり、\n    スタイルを指定するときにも便利かもしれません。</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    </dl>\n  "
+         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>In many cases, the <code>alt</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>source</code> or <code>bgsound</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dt>HTML <code>track</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>If the <code>kind</code> attribute is <code>subtitles</code>\n    (which is the default), the <code>srclang</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>href</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>The <code>content</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>For the <code>style</code> element outside of the\n    <code>head</code> element, the <code>scoped</code> attribute must\n    be specified.</dd>\n\n    <dt>HTML <code>embed</code> element</dt>\n\n    <dd>An <code>embed</code> element with no <code>src</code>\n    attribute has no effect.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>If both <code>data</code> and <code>type</code> attributes are\n    specified, it might be a good practice to also specify the\n    <code>typemustmatch</code> attribute to ensure that the expected\n    content is rendered.</dd>\n\n    <dd>If the <code>classid</code> attribute is specified, the\n    <code>codetype</code> attribute should also be specified.</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>map</code> element</dt>\n\n    <dd>The <code>name</code> attribute is required.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dd>If the <code>href</code> attribute is specified, the\n    <code>alt</code> attribute is required.</dd>\n\n    <dt>HTML <code>bdo</code> element</dt>\n\n    <dd>The <code>dir</code> attribute is required.</dd>\n\n    <dt>HTML <code>b</code> or <code>i</code> element</dt>\n\n    <dd>It might be a good idea to specify the <code>class</code>\n    attribute for these elements such that their purpose can be\n    clarified and that it can be used as a hook for styling.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    <dt>HTML <code>param</code> element</dt>\n\n    <dd>Attributes <code>name</code> and <code>value</code> must be\n    specified.</dd>\n\n    <dt>HTML <code>applet</code> element</dt>\n\n    <dd>Attributes <code>width</code> and <code>height</code> must be\n    specified.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd>多くの場合 <code>alt</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>source</code> 要素、 <code>bgsound</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>track</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd><code>kind</code> 属性が <code>subtitles</code> (既定値) なら、\n    <code>srclang</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>href</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>content</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>head</code> 要素外の <code>style</code> 要素には\n    <code>scoped</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>object</code> 要素</dt>\n\n    <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、\n    意図した内容しかレンダリングされないように\n    <code>typemustmatch</code> 属性も指定したほうがいいかもしれません。</dd>\n\n    <dd><code>classid</code> 属性が指定されている時は、\n    <code>codetype</code> 属性も指定するべきです。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>map</code> 要素</dt>\n\n    <dd><code>name</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dd><code>href</code> 属性が指定されている場合\n    <code>alt</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>bdo</code> 要素</dt>\n\n    <dd><code>dir</code> 属性が必要です。</dd>\n\n    <dt>HTML <code>b</code> 要素、<code>i</code> 要素</dt>\n\n    <dd><code>class</code> を指定しておくと用途が明確になり、\n    スタイルを指定するときにも便利かもしれません。</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    <dt>HTML <code>param</code> 要素</dt>\n    \n    <dd><code>name</code> 属性と <code>height</code>\n    属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>applet</code> 要素</dt>\n\n    <dd><code>width</code> 属性と <code>height</code> 属性を指定しなければいけません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "Attribute <code><var>{text}</var></code>\n  is not specified",
          "ja" : "属性 <code><var>{text}</var></code>\n  が指定されていません"
       }
    },
-   "attribute missing:data|type" : {
+   "attribute missing:code|object" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>applet</code> element must have either or both of\n    <code>code</code> and <code>object</code> attributes.</p>\n  ",
+         "ja" : "\n    <p><code>applet</code> 要素には\n    <code>code</code> 属性と <code>object</code>\n    属性の一方または両方を指定しなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "For an <code>object</code> at least one of\n  <code>data</code> and <code>type</code> attributes must be \n  specified."
+         "en" : "Neither <code>code</code> or <code>object</code>\n  attribute is specified",
+         "ja" : "<code>code</code> 属性も <code>object</code>\n  属性も指定されていません"
+      }
+   },
+   "attribute missing:data|type" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>object</code> element must have either or both of\n    <code>data</code> and <code>type</code> attributes.</p>\n  ",
+         "ja" : "\n    <p><code>object</code> 要素には\n    <code>data</code> 属性と <code>type</code>\n    属性の一方または両方を指定しなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "Neither <code>data</code> or <code>type</code>\n  attribute is specified",
+         "ja" : "<code>data</code> 属性も <code>type</code>\n  属性も指定されていません"
       }
    },
    "attribute missing:href|target" : {
@@ -656,17 +677,25 @@
    },
    "attribute not allowed" : {
       "desc" : {
-         "en" : "\n    <p>The attribute is not allowed to be specified in this context.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> element</dt>\n\n    <dd>Following attributes cannot be used unless there is the\n    <code>href</code> attribute: <code>target</code>,\n    <code>ping</code>, <code>rel</code>, <code>hreflang</code>,\n    <code>type</code>, <code>ilet</code>, <code>iswf</code>,\n    <code>irst</code>, <code>ib</code>, <code>ifb</code>,\n    <code>ijam</code>, <code>email</code>, <code>telbook</code>,\n    <code>kana</code>, <code>memoryname</code>, <code>lcs</code>,\n    <code>loop</code>, <code>soundstart</code>, and\n    <code>volume</code>.</dd>\n\n    <dd>Following attributes cannot be used if there is the\n    <code>target</code> attribute: <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>lcs</code>, and\n    <code>utn</code>.</dd>\n\n    <dd>The <code>viblength</code> attribute cannot be used unless\n    there is the <code>vibration</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute cannot be used if the\n    <code>shape</code> attribute is <code>default</code>.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, and <code>charset</code> attributes can be\n    specified.</dd>\n\n    <dd>If you are using OGP and the <code>property</code> attribute\n    is also specified, the error for the <code>content</code>\n    attribute may be ignored.</dd>\n\n    <dd>If there is the <code>charset</code> attribute, the\n    <code>content</code> attribute must not be specified.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>sizes</code> attribute cannot be specified unless\n    the <code>rel</code> attribute has the <code>icon</code> link\n    type.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>The <code>scoped</code> attribute is not allowed for the\n    <code>style</code> element in the <code>head</code> element.</dd>\n\n    <dt>HTML <code>script</code> element</dt>\n\n    <dd>Attributes <code>defer</code>, <code>async</code>, and\n    <code>charset</code> are not allowed unless the <code>src</code>\n    attribute is specified.  Likewise, the <code>crossorigin</code>\n    attribute has no effect unless the <code>src</code> attribute is\n    specified.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この属性はこの文脈で使うことが認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> 要素</dt>\n\n    <dd>次に示す属性は<code>href</code> 属性がないと使えません:\n    <code>target</code>, <code>ping</code>, <code>rel</code>,\n    <code>hreflang</code>, <code>type</code>, <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>email</code>,\n    <code>telbook</code>, <code>kana</code>, <code>memoryname</code>,\n    <code>lcs</code>, <code>loop</code>, <code>soundstart</code>,\n    <code>volume</code>。</dd>\n\n    <dd>次に示す属性は <code>target</code> 属性があると使えません:\n    <code>ilet</code>, <code>iswf</code>, <code>irst</code>,\n    <code>ib</code>, <code>ifb</code>, <code>ijam</code>,\n    <code>lcs</code>, <code>utn</code>。</dd>\n\n    <dd><code>viblength</code> 属性は\n    <code>vibration</code> 属性がないと使えません。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性は <code>shape</code> 属性が\n    <code>default</code> の時使えません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, <code>charset</code>\n    のどれか1つの属性だけ指定できます。</dd>\n\n    <dd>OGP を使っていて <code>property</code> 属性も指定されていれば、\n    <code>content</code> 属性のエラーは無視して構いません。</dd>\n\n    <dd><code>charset</code> 属性があるときは <code>content</code>\n    属性は使えません。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>sizes</code> 属性を使う時は <code>rel</code> 属性にリンク型\n    <code>icon</code> が含まれていなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>scoped</code> 属性は <code>head</code> 要素内の\n    <code>style</code> 要素では使えません。</dd>\n\n    <dt>HTML <code>script</code> 要素</dt>\n\n    <dd><code>defer</code>, <code>async</code>,\n    <code>charset</code> 各属性は <code>src</code>\n    属性がないと指定してはいけません。同様に <code>crossorigin</code>\n    属性は <code>src</code> 属性がないと意味がありません。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The attribute is not allowed to be specified in this context.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> element</dt>\n\n    <dd>Following attributes cannot be used unless there is the\n    <code>href</code> attribute: <code>target</code>,\n    <code>ping</code>, <code>rel</code>, <code>hreflang</code>,\n    <code>type</code>, <code>ilet</code>, <code>iswf</code>,\n    <code>irst</code>, <code>ib</code>, <code>ifb</code>,\n    <code>ijam</code>, <code>email</code>, <code>telbook</code>,\n    <code>kana</code>, <code>memoryname</code>, <code>lcs</code>,\n    <code>loop</code>, <code>soundstart</code>, and\n    <code>volume</code>.</dd>\n\n    <dd>Following attributes cannot be used if there is the\n    <code>target</code> attribute: <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>lcs</code>, and\n    <code>utn</code>.</dd>\n\n    <dd>The <code>viblength</code> attribute cannot be used unless\n    there is the <code>vibration</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute cannot be used if the\n    <code>shape</code> attribute is <code>default</code>.</dd>\n\n    <dd>Attributes <code>target</code>, <code>ping</code>,\n    <code>rel</code>, <code>hreflang</code>, <code>type</code>, and\n    <code>alt</code> are not allowed when the <code>href</code>\n    attribute is not specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, and <code>charset</code> attributes can be\n    specified.</dd>\n\n    <dd>If you are using OGP and the <code>property</code> attribute\n    is also specified, the error for the <code>content</code>\n    attribute may be ignored.</dd>\n\n    <dd>If there is the <code>charset</code> attribute, the\n    <code>content</code> attribute must not be specified.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>sizes</code> attribute cannot be specified unless\n    the <code>rel</code> attribute has the <code>icon</code> link\n    type.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>The <code>scoped</code> attribute is not allowed for the\n    <code>style</code> element in the <code>head</code> element.</dd>\n\n    <dt>HTML <code>script</code> element</dt>\n\n    <dd>Attributes <code>defer</code>, <code>async</code>, and\n    <code>charset</code> are not allowed unless the <code>src</code>\n    attribute is specified.  Likewise, the <code>crossorigin</code>\n    attribute has no effect unless the <code>src</code> attribute is\n    specified.</dd>\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>start</code> attribute is not allowed unless the\n    <code>dynsrc</code> attribute is specified.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>The <code>typemustmatch</code> attribute is not allowed unless\n    both <code>data</code> and <code>type</code> attributes are\n    specified.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性はこの文脈で使うことが認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> 要素</dt>\n\n    <dd>次に示す属性は<code>href</code> 属性がないと使えません:\n    <code>target</code>, <code>ping</code>, <code>rel</code>,\n    <code>hreflang</code>, <code>type</code>, <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>email</code>,\n    <code>telbook</code>, <code>kana</code>, <code>memoryname</code>,\n    <code>lcs</code>, <code>loop</code>, <code>soundstart</code>,\n    <code>volume</code>。</dd>\n\n    <dd>次に示す属性は <code>target</code> 属性があると使えません:\n    <code>ilet</code>, <code>iswf</code>, <code>irst</code>,\n    <code>ib</code>, <code>ifb</code>, <code>ijam</code>,\n    <code>lcs</code>, <code>utn</code>。</dd>\n\n    <dd><code>viblength</code> 属性は\n    <code>vibration</code> 属性がないと使えません。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性は <code>shape</code> 属性が\n    <code>default</code> の時使えません。</dd>\n\n    <dd><code>target</code>, <code>ping</code>,\n    <code>rel</code>, <code>hreflang</code>, <code>type</code>,\n    <code>alt</code> 各属性は <code>href</code>\n    属性が指定されていないと使えません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, <code>charset</code>\n    のどれか1つの属性だけ指定できます。</dd>\n\n    <dd>OGP を使っていて <code>property</code> 属性も指定されていれば、\n    <code>content</code> 属性のエラーは無視して構いません。</dd>\n\n    <dd><code>charset</code> 属性があるときは <code>content</code>\n    属性は使えません。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>sizes</code> 属性を使う時は <code>rel</code> 属性にリンク型\n    <code>icon</code> が含まれていなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>scoped</code> 属性は <code>head</code> 要素内の\n    <code>style</code> 要素では使えません。</dd>\n\n    <dt>HTML <code>script</code> 要素</dt>\n\n    <dd><code>defer</code>, <code>async</code>,\n    <code>charset</code> 各属性は <code>src</code>\n    属性がないと指定してはいけません。同様に <code>crossorigin</code>\n    属性は <code>src</code> 属性がないと意味がありません。</dd>\n\n    <dt>HTML <code>img</code> 要素</dt>\n\n    <dd><code>start</code> 属性は\n    <code>dynsrc</code> 属性が指定されていないと使えません。</dd>\n\n    <dt>HTML <code>object</code> 要素</dt>\n\n    <dd><code>typemustmatch</code> 属性は\n    <code>data</code> 属性と <code>type</code> 属性の両方が指定されていないと使えません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute is not allowed here",
          "ja" : "この属性はここでは使えません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "attribute not allowed:ismap" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>img</code> element with the <code>ismap</code>\n    attribute can only be used within the <code>a</code> element.</p>\n  ",
+         "ja" : "\n    <p><code>img</code> 要素の <code>ismap</code> 属性が使えるのは\n    <code>a</code> 要素内でだけです。</p>\n  "
+      },
       "message" : {
-         "en" : "The <code>ismap</code> attribute may only be\n  used for the image contained in an <code>a</code> element."
+         "en" : "There is no hyperlink",
+         "ja" : "ハイパーリンクがありません"
       },
       "targets" : {
          "attr" : 1
@@ -674,7 +703,7 @@
    },
    "attribute not defined" : {
       "desc" : {
-         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>property</code> 属性</dt>\n\n    <dd>OGP を使っているなら、このエラーは無視してください。</dd>\n\n    <dt>HTML <code>prefix</code> 属性</dt>\n\n    <dd>削除して問題ありません。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    <dt><code>xmlns:<var>*</var></code> 属性<!-- in no namespace --></dt>\n\n    <dd>HTML では名前空間属性は使えません。\n    効果はないので削除して問題ありません。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>property</code> 属性</dt>\n\n    <dd>OGP を使っているなら、このエラーは無視してください。</dd>\n\n    <dt>HTML <code>prefix</code> 属性</dt>\n\n    <dd>削除して問題ありません。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    <dt><code>xmlns:<var>*</var></code> 属性<!-- in no namespace --></dt>\n\n    <dd>HTML では名前空間属性は使えません。\n    効果はないので削除して問題ありません。</dd>\n\n    <dt><code>embed</code> 要素</dt>\n\n    <dd><code>align</code>, <code>border</code>, <code>hspace</code>,\n    <code>vspace</code> 各属性はスタイルシートに置き換えるべきです。\n    <code>name</code> 属性は\n    <code>id</code> 属性に置き換えるべきです。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute is not allowed",
@@ -997,8 +1026,8 @@
    },
    "child element missing" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the element requires a specific kind of\n    element, but it is not found.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dl</code> element</dt>\n\n    <dd>The last element child must be the <code>dd</code>\n    element.</dd>\n\n    <dt>HTML <code>head</code> element</dt>\n\n    <dd>There must be a <code>title</code> element child (unless it is\n    in an <code>iframe</code> <code>srcdoc</code> attribute, or it is\n    in an e-mail message).</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>There must be <code>head</code> and <code>body</code> element\n    children.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この要素の内容モデルで要求されている子要素が見つかりません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dl</code> 要素</dt>\n\n    <dd>最後の子要素は <code>dd</code> 要素でなければいけません。</dd>\n\n    <dt>HTML <code>head</code> 要素</dt>\n\n    <dd><code>title</code> 要素が子供として必要です\n    (<code>iframe</code> <code>srcdoc</code> 属性内や電子メールメッセージ内を除きます)。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd><code>head</code> 要素や <code>body</code> 要素が子供として必要です。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The content model of the element requires a specific kind of\n    element, but it is not found.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dl</code> element</dt>\n\n    <dd>The last element child must be the <code>dd</code>\n    element.</dd>\n\n    <dt>HTML <code>head</code> element</dt>\n\n    <dd>There must be a <code>title</code> element child (unless it is\n    in an <code>iframe</code> <code>srcdoc</code> attribute, or it is\n    in an e-mail message).</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>There must be <code>head</code> and <code>body</code> element\n    children.</dd>\n\n    <dt>HTML <code>video</code> or <code>audio</code> element</dt>\n\n    <dd>Unless there is the <code>src</code> attribute or one or more\n    <code>source</code> element children, the element has no\n    effect.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この要素の内容モデルで要求されている子要素が見つかりません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dl</code> 要素</dt>\n\n    <dd>最後の子要素は <code>dd</code> 要素でなければいけません。</dd>\n\n    <dt>HTML <code>head</code> 要素</dt>\n\n    <dd><code>title</code> 要素が子供として必要です\n    (<code>iframe</code> <code>srcdoc</code> 属性内や電子メールメッセージ内を除きます)。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd><code>head</code> 要素や <code>body</code> 要素が子供として必要です。</dd>\n\n    <dt>HTML <code>video</code> 要素、<code>audio</code> 要素</dt>\n\n    <dd><code>src</code> 属性か、1つ以上の\n    <code>source</code> 子要素かどちらかがないとこの要素の意味がありません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "There is no <code><var>{text}</var></code>\n  element child",
@@ -1329,6 +1358,16 @@
          "en" : "Constructor name <code><var>{value}</var></code>\n  specified by extended attribute <code><var>{text}</var></code> is already\n  used for an interface."
       }
    },
+   "duplicate default track" : {
+      "desc" : {
+         "en" : "\n    <p>There must be at most one default track (i.e. the\n    <code>track</code> element with the <code>default</code>\n    attribute) with same kind for a media element.</p>\n    <p>In this context, <code>kind</code>s <code>subtitles</code> and\n    <code>captions</code> are considered as same kind.</p>\n  ",
+         "ja" : "\n    <p>同じ媒体要素に対して同じ種類の既定のトラック (<code>default</code>\n    属性のある <code>track</code> 要素) は高々1つしかあってはいけません。</p>\n    <p>ただしここでは <code>kind</code> の値 <code>subtitles</code>\n    と <code>captions</code> は同じ種類とします。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is another default track of same kind",
+         "ja" : "同じ種類の既定のトラックが他にもあります"
+      }
+   },
    "duplicate form name" : {
       "message" : {
          "en" : "Form name <code><var>{value}</var></code> is already\n  used for another element."
@@ -1342,6 +1381,16 @@
       "message" : {
          "en" : "There is another character encoding\n  declaration",
          "ja" : "文字符号化宣言が他にもあります"
+      }
+   },
+   "duplicate map name" : {
+      "desc" : {
+         "en" : "\n    <p>The name of the image map must be unique.  A map name cannot be\n    assigned with multiple elements.</p>\n  ",
+         "ja" : "\n    <p>画像マップ名は固有でなければいけません。\n    同じ名前を複数の要素に割り当てることはできません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The map name is assigned with\n  another element",
+         "ja" : "この画像マップ名は他の要素に割り当てられています"
       }
    },
    "duplicate member" : {
@@ -1382,6 +1431,16 @@
       "message" : {
          "en" : "The token <code><var>{value}</var></code>\n  appears twice",
          "ja" : "字句 <code><var>{value}</var></code>\n  が複数回現れました"
+      }
+   },
+   "duplicate track" : {
+      "desc" : {
+         "en" : "\n    <p>There must not be multiple <code>track</code> elements for the\n    same media element with the same combination of <code>kind</code>,\n    <code>srclang</code>, and <code>label</code> values.</p>\n  ",
+         "ja" : "\n    <p><code>kind</code>,\n    <code>srclang</code>, <code>label</code> の値の組み合わせが同じ\n    <code>track</code> 要素が同じ媒体要素に対して複数あってはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is another <code>track</code> element with same\n  <code>kind</code>, <code>srclang</code>, and <code>label</code>",
+         "ja" : "<code>kind</code>, <code>srclang</code>, <code>label</code>\n  の組み合わせが同じ<code>track</code> 要素が他にあります"
       }
    },
    "duplicate unqualified attr" : {
@@ -1428,8 +1487,13 @@
       }
    },
    "element not allowed:area" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>area</code> element can only used as a descendant\n    of the <code>map</code> element.</p>\n  ",
+         "ja" : "\n    <p><code>area</code> 要素は <code>map</code> 要素の子孫としてのみ使えます。</p>\n  "
+      },
       "message" : {
-         "en" : "An <code>area</code> element cannot be used\n  outside of a <code>map</code> element."
+         "en" : "The <code>area</code> element cannot be used\n  outside of the <code>map</code> element",
+         "ja" : "<code>area</code> 要素は <code>map</code>\n  要素外では使えません"
       }
    },
    "element not allowed:atom|PersonConstruct" : {
@@ -1638,17 +1702,18 @@
    },
    "empty area alt" : {
       "desc" : {
-         "en" : "\n    <p>The value of the <code>alt</code> attribute of an <code>area</code>\n    element is an empty value.</p>\n\n    <p>In general, the <code>alt</code> attribute value cannot be empty.\n    It must provide an alternative text for the hyperlink represented by\n    the <code>area</code> element.  The alternative text is to be used\n    when the Web browser cannot display the image, or is configured not\n    to display images.</p>\n\n    <p>As an exception, the <code>alt</code> attribute may be left blank\n    if the same image map (i.e. the ancestor <code>map</code> element)\n    contains another <code>area</code> element whose <code>href</code>\n    attribute references the same resource as the <code>href</code>\n    attribute of the <code>area</code> element in question, and the other\n    <code>area</code> element has an <code>alt</code> attribute with\n    non‐empty value.</p>\n  "
+         "en" : "\n    <p>In general, the <code>alt</code> attribute value of the\n    <code>area</code> element cannot be empty.  It must provide an\n    alternative text for the hyperlink represented by the\n    <code>area</code> element.  The alternative text is to be used\n    when the Web browser cannot display the image, or is configured\n    not to display images.</p>\n\n    <p>As an exception, the <code>alt</code> attribute may be left blank\n    if the same image map (i.e. the ancestor <code>map</code> element)\n    contains another <code>area</code> element whose <code>href</code>\n    attribute references the same resource as the <code>href</code>\n    attribute of the <code>area</code> element in question, and the other\n    <code>area</code> element has an <code>alt</code> attribute with\n    non-empty value.</p>\n  ",
+         "ja" : "\n    <p>一般に <code>map</code> 要素の <code>alt</code> 属性値は空にはできません。\n    <code>alt</code> 属性はその要素が表すハイパーリンクの代替文を含まなければいけません。\n    代替文は Web ブラウザーが画像を表示できない時や、表示しないように設定されているときに使われます。</p>\n\n    <p>例外として、同じ画像マップ (先祖 <code>map</code> 要素)\n    に同じ <code>href</code> 属性の <code>area</code> 要素があって、\n    そちらには空でない <code>alt</code> 属性が指定されている場合には、\n    <code>alt</code> 属性を空にすることができます。</p>\n  "
       },
       "message" : {
-         "en" : "The <code>alt</code> attribute value is\n  empty.",
-         "ja" : "<code>alt</code> 属性値が空です。"
+         "en" : "The <code>alt</code> attribute value is\n  empty",
+         "ja" : "<code>alt</code> 属性値が空です"
       }
    },
    "empty attribute value" : {
       "desc" : {
-         "en" : "\n    <p>The attribute value cannot be empty.  Otherwise the user\n    cannot figure what to do as the item is not described or\n    not rendered at all.</p>\n\n    <dl class=\"switch\">\n\n    <dt>The <code>id</code> attribute</dt>\n\n    <dd>The unique identifier (ID) of the element cannot be empty.  If\n    the element has no identifier, the <code>id</code> attribute\n    should be omitted.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>属性値は空にできません。空だと利用者が何かわからなかったり、\n    表示もされなかったりするかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>id</code> 属性</dt>\n\n    <dd>要素の固有識別子 (ID) は空文字列にはできません。\n    要素に識別子がないときは属性自体を省略してください。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The attribute value cannot be empty.  Otherwise the user\n    cannot figure what to do as the item is not described or\n    not rendered at all.</p>\n\n    <dl class=\"switch\">\n\n    <dt>The <code>id</code> attribute</dt>\n\n    <dd>The unique identifier (ID) of the element cannot be empty.  If\n    the element has no identifier, the <code>id</code> attribute\n    should be omitted.</dd>\n\n    <dt>The <code>map</code> element, the <code>name</code>\n    attribute</dt>\n\n    <dd>The map name cannot be empty.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>属性値は空にできません。空だと利用者が何かわからなかったり、\n    表示もされなかったりするかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>id</code> 属性</dt>\n\n    <dd>要素の固有識別子 (ID) は空文字列にはできません。\n    要素に識別子がないときは属性自体を省略してください。</dd>\n\n    <dt><code>map</code> 要素 <code>name</code> 属性</dt>\n\n    <dd>画像マップ名は空文字列にはできません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute value is empty",
@@ -1895,6 +1960,26 @@
          "en" : "The <code>image</code> element is\n  obsolete."
       }
    },
+   "img border:0" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>border</code> attribute of the <code>img</code>\n    element is obsolete.</p><!-- obsolete but conforming -->\n  ",
+         "ja" : "\n    <p><code>img</code> 要素の <code>border</code> 属性は廃止されました。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>border</code> attribute is obsolete",
+         "ja" : "<code>border</code> 属性は廃止されました"
+      }
+   },
+   "img border:nninteger" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>border</code> attribute of the <code>img</code>\n    element is obsolete.</p><!-- obsolete and non-conforming -->\n  ",
+         "ja" : "\n    <p><code>img</code> 要素の <code>border</code> 属性は廃止されました。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>border</code> attribute is obsolete",
+         "ja" : "<code>border</code> 属性は廃止されました"
+      }
+   },
    "in CDATA:#eof" : {
       "message" : {
          "en" : "Element is not closed before the end of\n  file."
@@ -1908,6 +1993,9 @@
       "message" : {
          "en" : "The <code>xml:lang</code> attribute cannot be\n  used in HTML document",
          "ja" : "<code>xml:lang</code> 属性は HTML \n  文書では使えません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "in HTML:xml:space" : {
@@ -1918,6 +2006,9 @@
       "message" : {
          "en" : "The <code>xml:space</code> attribute is not\n  allowed in HTML document",
          "ja" : "<code>xml:space</code> 属性は HTML\n  文書では使えません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "in PCDATA:#eof" : {
@@ -1953,6 +2044,9 @@
       "message" : {
          "en" : "The <code>xml:lang</code> attribute in no namespace\n  is not allowed in XML document",
          "ja" : "名前空間に属さない <code>xml:lang</code> \n  属性は XML 文書では使えません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "in XML:xmlns" : {
@@ -1963,6 +2057,9 @@
       "message" : {
          "en" : "The <code>xmlns</code> attribute \n  in no namespace is not allowed in XML document",
          "ja" : "名前空間に属さない <code>xmlns</code>\n  属性は XML 文書では使えません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "in a:a" : {
@@ -2090,6 +2187,9 @@
       },
       "message" : {
          "en" : "この属性は <code>type</code> が\n  <code><var>{text}</var></code> の <code>input</code>\n  要素には適用されません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "integer:out of range" : {
@@ -2591,6 +2691,26 @@
          "ja" : "リスト項目型が正しくありません"
       }
    },
+   "localsrc:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>The specified <code>localsrc</code> attribute value is\n    deprecated.</p>\n  ",
+         "ja" : "\n    <p>指定された <code>localsrc</code> 属性値は非推奨です。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is deprecated",
+         "ja" : "この値は非推奨です"
+      }
+   },
+   "localsrc:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>The specified <code>localsrc</code> attribute value is\n    invalid.</p>\n  ",
+         "ja" : "\n    <p>指定された <code>localsrc</code> 属性値は正しくありません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is invalid",
+         "ja" : "この値は正しくありません"
+      }
+   },
    "media query" : {
       "message" : {
          "en" : "Conformance checking for media query\n  is not supported; <em>it might or might not be conforming.</em>"
@@ -2984,6 +3104,9 @@
       "message" : {
          "en" : "The <code>value</code> attribute is not\n  allowed unless the parent is the <code>ol</code> element",
          "ja" : "<code>value</code> 属性は親が\n  <code>ol</code> 要素の時だけ認められています"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "non-utf-8 character encoding" : {
@@ -3183,6 +3306,16 @@
          "en" : "This URL is same as the manifest URL."
       }
    },
+   "sandbox allow-same-origin allow-scripts" : {
+      "desc" : {
+         "en" : "\n    <p>It is dangerous to specify both <code>allow-scripts</code> and\n    <code>allow-same-origin</code> in the <code>sandbox</code>\n    attribute of the <code>iframe</code> element.</p>\n  ",
+         "ja" : "\n    <p><code>allow-scripts</code> と\n    <code>allow-same-origin</code> を同時に <code>iframe</code>\n    要素の <code>sandbox</code> 属性に指定するのは危険です。</p>\n  "
+      },
+      "message" : {
+         "en" : "It is dangerous to specify both\n  <code>allow-scripts</code> and <code>allow-same-origin</code>",
+         "ja" : "<code>allow-scripts</code> と\n  <code>allow-same-origin</code> を同時に指定するのは危険です"
+      }
+   },
    "scoped name" : {
       "message" : {
          "en" : "A scoped name is expected here."
@@ -3374,6 +3507,16 @@
       "message" : {
          "en" : "Spaces are not allowed in the identifier",
          "ja" : "空白文字は識別子に使えません"
+      }
+   },
+   "space in map name" : {
+      "desc" : {
+         "en" : "\n    <p>The name of the image map cannot contain space characters.</p>\n  ",
+         "ja" : "\n    <p>画像マップ名に空白文字を含めてはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "Spaces are not allowed in the map name",
+         "ja" : "空白文字は画像マップ名に使えません"
       }
    },
    "srcdoc:charset" : {
@@ -4335,6 +4478,9 @@
       "message" : {
          "en" : "The <code>xml:lang</code> attribute is only allowed\n  when the <code>lang</code> attribute is specified.",
          "ja" : "<code>xml:lang</code> 属性を指定できるのは\n  <code>lang</code> 属性が指定されている時だけです。"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "xmlns:* empty" : {
