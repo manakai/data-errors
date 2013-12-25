@@ -57,6 +57,16 @@
          "en" : "An Internet Media Type whose intended usage\n  is limited use, <code><var>{value}</var></code> is used."
       }
    },
+   "IMT:not styling lang" : {
+      "desc" : {
+         "en" : "\n    <p>The language specified by the MIME type is not considered as a\n    styling language, e.g. <code>text/css</code> (CSS).</p>\n  ",
+         "ja" : "\n    <p>この MIME 型で表される言語は、 <code>text/css</code> (CSS)\n    などのようなスタイル言語ではありません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The MIME type is not a styling language",
+         "ja" : "この MIME 型はスタイル言語ではありません"
+      }
+   },
    "IMT:obsolete parameter" : {
       "message" : {
          "en" : "An obsolete parameter\n  <code><var>{value}</var></code> is used."
@@ -77,8 +87,13 @@
       }
    },
    "IMT:parameter not allowed" : {
+      "desc" : {
+         "en" : "\n    <p>The MIME type parameter is not allowed.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>style</code> element, the <code>type</code>\n    attribute</dt>\n    <dt>HTML <code>script</code> element, the <code>type</code>\n    attribute</dt>\n\n    <dd>The <code>charset</code> parameter is not allowed.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この MIME 型引数は認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>style</code> 要素 <code>type</code> 属性</dt>\n    <dt>HTML <code>script</code> 要素 <code>type</code> 属性</dt>\n\n    <dd><code>charset</code> 引数は認められていません。</dd>\n\n    </dl>\n  "
+      },
       "message" : {
-         "en" : "Parameter <code><var>{value}</var></code> is not\n  allowed for this Internet Media Type."
+         "en" : "The parameter is not allowed",
+         "ja" : "この引数は認められていません"
       }
    },
    "IMT:private subtype" : {
@@ -389,13 +404,23 @@
       }
    },
    "XML script lang" : {
+      "desc" : {
+         "en" : "\n    <p>The conformance checker does not support the scripting language\n    in use.</p>\n\n    <p>Whether it is conforming or not is <em>unknown</em>.</p>\n  ",
+         "ja" : "\n    <p>適合性検査器は使用されているスクリプト言語に対応していません。</p>\n\n    <p>適合か不適合かは<em>不明</em>です。</p>\n  "
+      },
       "message" : {
-         "en" : "Conformance checking for script\n  language <code><var>{text}</var></code> is not supported;\n  <em>it might or might not be conforming.</em>"
+         "en" : "Validation of scripting language\n  <code><var>{text}</var></code> is not supported",
+         "ja" : "スクリプト言語 <code><var>{text}</var></code>\n  の妥当性検証には対応していません"
       }
    },
    "XML style lang" : {
+      "desc" : {
+         "en" : "\n    <p>The conformance checker does not support the styling language\n    in use.</p>\n\n    <p>Whether it is conforming or not is <em>unknown</em>.</p>\n  ",
+         "ja" : "\n    <p>適合性検査器は使用されているスタイル言語に対応していません。</p>\n\n    <p>適合か不適合かは<em>不明</em>です。</p>\n  "
+      },
       "message" : {
-         "en" : "Conformance checking for style\n  language <code><var>{text}</var></code> is not supported;\n  <em>it might or might not be conforming.</em>"
+         "en" : "Validation of styling language\n  <code><var>{text}</var></code> is not supported",
+         "ja" : "スタイル言語 <code><var>{text}</var></code>\n  の妥当性検証には対応していません"
       }
    },
    "XSLT-compat" : {
@@ -586,8 +611,8 @@
    },
    "attribute missing" : {
       "desc" : {
-         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    </dl>\n  "
+         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>href</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>The <code>content</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>For the <code>style</code> element outside of the\n    <code>head</code> element, the <code>scoped</code> attribute must\n    be specified.</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>href</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>content</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>head</code> 要素外の <code>style</code> 要素には\n    <code>scoped</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "Attribute <code><var>{text}</var></code>\n  is not specified",
@@ -601,12 +626,22 @@
    },
    "attribute missing:href|target" : {
       "desc" : {
-         "en" : "\n    <p>The HTML <code>base</code> element must have either or both of\n    <code>href</code> and <code>target</code> attributes.  Otherwise\n    the element is useless.</p>\n  ",
-         "ja" : "\n    <p>HTML <code>base</code> 要素は <code>href</code> 属性と\n    <code>target</code> 属性の一方または両方が必要です。どちらもない\n    <code>base</code> 要素には意味がありません。</p>\n  "
+         "en" : "\n    <p>The HTML <code>base</code> element must have either or both of\n    <code>href</code> and <code>target</code> attributes.  The\n    <code>base</code> element with no attribute has no effect.</p>\n  ",
+         "ja" : "\n    <p>HTML <code>base</code> 要素は <code>href</code> 属性と\n    <code>target</code> 属性の一方または両方が必要です。どちらもない\n    <code>base</code> 要素は意味がありません。</p>\n  "
       },
       "message" : {
-         "en" : "Attribute <code>href</code> or\n  <code>target</code> must be specified",
-         "ja" : "<code>href</code> 属性か <code>target</code>\n  属性のどちらかは必要です"
+         "en" : "Neither <code>href</code> or\n  <code>target</code> attribute is specified",
+         "ja" : "<code>href</code> 属性も <code>target</code>\n  属性も指定されていません"
+      }
+   },
+   "attribute missing:meta" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>meta</code> element must have one of following\n    attributes:</p>\n\n    <ul>\n    <li>The <code>name</code> attribute</li>\n    <li>The <code>http-equiv</code> attribute</li>\n    <li>The <code>itemprop</code> attribute</li>\n    <li>The <code>charset</code> attribute</li>\n    </ul>\n\n    <p>If the <code>meta</code> element is for OGP, you can ignore\n    this error.</p>\n  ",
+         "ja" : "\n    <p><code>meta</code> 要素は次のいずれかの属性が必要です。</p>\n\n    <ul>\n    <li><code>name</code> 属性</li>\n    <li><code>http-equiv</code> 属性</li>\n    <li><code>itemprop</code> 属性</li>\n    <li><code>charset</code> 属性</li>\n    </ul>\n\n    <p>この <code>meta</code> 要素が OGP なら、\n    このエラーは無視して構いません。</p>\n  "
+      },
+      "message" : {
+         "en" : "Required attribute is not specified",
+         "ja" : "必須の属性が指定されていません"
       }
    },
    "attribute missing:name|http-equiv" : {
@@ -621,15 +656,12 @@
    },
    "attribute not allowed" : {
       "desc" : {
-         "en" : "\n    <p>The attribute is not allowed to be specified in this context.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute cannot be used if the\n    <code>shape</code> attribute is <code>default</code>.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この属性はこの文脈で使うことが認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性は <code>shape</code> 属性が\n    <code>default</code> の時使えません。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The attribute is not allowed to be specified in this context.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute cannot be used if the\n    <code>shape</code> attribute is <code>default</code>.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, and <code>charset</code> attributes can be\n    specified.</dd>\n\n    <dd>If you are using OGP and the <code>property</code> attribute\n    is also specified, the error for the <code>content</code>\n    attribute may be ignored.</dd>\n\n    <dd>If there is the <code>charset</code> attribute, the\n    <code>content</code> attribute must not be specified.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>sizes</code> attribute cannot be specified unless\n    the <code>rel</code> attribute has the <code>icon</code> link\n    type.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>The <code>scoped</code> attribute is not allowed for the\n    <code>style</code> element in the <code>head</code> element.</dd>\n\n    <dt>HTML <code>script</code> element</dt>\n\n    <dd>Attributes <code>defer</code>, <code>async</code>, and\n    <code>charset</code> are not allowed unless the <code>src</code>\n    attribute is specified.  Likewise, the <code>crossorigin</code>\n    attribute has no effect unless the <code>src</code> attribute is\n    specified.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性はこの文脈で使うことが認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性は <code>shape</code> 属性が\n    <code>default</code> の時使えません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, <code>charset</code>\n    のどれか1つの属性だけ指定できます。</dd>\n\n    <dd>OGP を使っていて <code>property</code> 属性も指定されていれば、\n    <code>content</code> 属性のエラーは無視して構いません。</dd>\n\n    <dd><code>charset</code> 属性があるときは <code>content</code>\n    属性は使えません。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>sizes</code> 属性を使う時は <code>rel</code> 属性にリンク型\n    <code>icon</code> が含まれていなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>scoped</code> 属性は <code>head</code> 要素内の\n    <code>style</code> 要素では使えません。</dd>\n\n    <dt>HTML <code>script</code> 要素</dt>\n\n    <dd><code>defer</code>, <code>async</code>,\n    <code>charset</code> 各属性は <code>src</code>\n    属性がないと指定してはいけません。同様に <code>crossorigin</code>\n    属性は <code>src</code> 属性がないと意味がありません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute is not allowed here",
          "ja" : "この属性はここでは使えません"
-      },
-      "targets" : {
-         "attr" : 1
       }
    },
    "attribute not allowed:ismap" : {
@@ -642,7 +674,7 @@
    },
    "attribute not defined" : {
       "desc" : {
-         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>property</code>, <code>prefix</code> 属性</dt>\n\n    <dd>OGP を使っているなら、このエラーは無視してください。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>property</code> 属性</dt>\n\n    <dd>OGP を使っているなら、このエラーは無視してください。</dd>\n\n    <dt>HTML <code>prefix</code> 属性</dt>\n\n    <dd>削除して問題ありません。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    <dt><code>xmlns:<var>*</var></code> 属性<!-- in no namespace --></dt>\n\n    <dd>HTML では名前空間属性は使えません。\n    効果はないので削除して問題ありません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute is not allowed",
@@ -722,13 +754,22 @@
       }
    },
    "basehref after URL attribute" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>base</code> element with the <code>href</code>\n    attribute cannot be placed after any attribute whose value is\n    URL(s).  For example, the <code>link</code> element must appear\n    after the <code>base</code> element.  (The <code>manifest</code>\n    attribute of the <code>html</code> element is the exception for\n    this rule.)</p>\n  ",
+         "ja" : "\n    <p><code>href</code> 属性のある <code>base</code> 要素は、値が URL\n    の属性より後にあってはいけません。例えば、 <code>link</code>\n    要素は <code>base</code> 要素より後になければいけません。\n    (<code>html</code> 要素の <code>manifest</code>\n    属性はこの規則の例外です。)</p>\n  "
+      },
       "message" : {
-         "en" : "The <code>base</code> element with the \n  <code>href</code> attribute specified cannot be placed after\n  any attribute with a URL."
+         "en" : "There is a URL attribute before the\n  <code>base</code> element",
+         "ja" : "<code>base</code> 要素より前に URL\n  属性がありました"
       }
    },
    "basetarget after hyperlink" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>base</code> element with the <code>target</code>\n    attribute cannot be placed after any element which defines a\n    hyperlink.</p>\n  "
+      },
       "message" : {
-         "en" : "The <code>base</code> element with the\n  <code>target</code> attribute specified cannot be placed after\n  any element that defines a hyperlink."
+         "en" : "There is a hyperlink before the\n  <code>base</code> element",
+         "ja" : "<code>base</code> 要素より前にハイパーリンクがありました"
       }
    },
    "before exception member" : {
@@ -847,10 +888,12 @@
    },
    "character not allowed" : {
       "desc" : {
-         "en" : "\n    <p>A data character appears where it is not allowed in this\n    context.  The document is non-conforming.</p>\n\n    <p>Possible causes:\n      <ul>\n      <li><p>A data character cannot be a child\n      of certain sectioning elements such as <code>body</code>,\n      <code>section</code>, and <code>blockquote</code>.</p>\n\n      <p>Any inline-level content must be put\n      in e.g. paragraph element such as <code>p</code>.</p></li>\n      <li><p>Though some elements such as <code>div</code>,\n      <code>li</code>, and <code>td</code> allow\n      <em>either one</em> of block-level or inline-level content\n      is allowed.  If there is a block-level content, \n      any inline-level content must be put\n      in e.g. paragraph element such as <code>p</code>.</p></li>\n      </ul>\n    </p>\n  "
+         "en" : "\n    <p>The content model of the parent element does not allow\n    non-space characters.</p>\n\n    <dl class=\"switch\">\n\n    <dt>In HTML <code>ul</code>, <code>ol</code>, or <code>dir</code>\n    element</dt>\n\n    <dd>Only the <code>li</code> element is allowed.  Characters in\n    the list must be wrapped by the <code>li</code> element.  The\n    element cannot be used for indentation.</dd>\n\n    <dt>In HTML <code>dl</code> element</dt>\n\n    <dd>Only the <code>dt</code> or <code>dd</code> element is\n    allowed.  Characters in the \"name\" component must be wrapped by\n    the <code>dt</code> element.  Characters in the \"value\" component\n    must be wrapped by the <code>dd</code> element.</dd>\n\n    <dt>In HTML <code>table</code>, <code>thead</code>,\n    <code>tbody</code>, <code>tfoot</code>, <code>tr</code>, or\n    <code>colgroup</code> element</dt>\n\n    <dd>Characters in the table must appear within the <code>td</code>\n    or <code>th</code> element (if they are data or heading data in\n    the table) or within the <code>caption</code> element (if they are\n    caption of the table).</dd>\n\n    <dt>In HTML <code>select</code> or <code>optgroup</code>\n    element</dt>\n\n    <dd>Characters in the selection control must appear within the\n    <code>option</code> element.</dd>\n\n    <dt>In HTML <code>datalist</code> element</dt>\n\n    <dd>The element contains either one or more <code>option</code>\n    elements, or fallback content for old browsers, but not both.\n    Characters are not allowed when <code>option</code> element child\n    is used.</dd>\n\n    <dt>In HTML <code>html</code> or <code>head</code> element</dt>\n\n    <dt>In HTML <code>noscript</code> element in the <code>head</code>\n    element</dt>\n\n    <dd>Data must be put into the <code>body</code> element.</dd>\n\n    <dt>In HTML <code>frameset</code> element</dt>\n\n    <dd>Characters are not allowed when frames are used.  Fallback\n    content for really old browsers must be put into the\n    <code>noframes</code> element.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルが空白以外の文字を認めていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>ul</code>, <code>ol</code>, <code>dir</code> 要素</dt>\n\n    <dd><code>li</code> 要素だけが認められています。リスト中の文字は\n    <code>li</code> 要素で包まないといけません。\n    リスト要素はインデント用ではありません。</dd>\n\n    <dt>HTML <code>dl</code> 要素</dt>\n\n    <dd><code>dt</code> 要素と <code>dd</code> 要素だけが認められています。\n    「名前」にあたる文字は <code>dt</code> 要素で包まなければいけません。\n    「値」にあたる文字は <code>dd</code> 要素で包まなければいけません。</dd>\n\n    <dt>HTML <code>table</code>, <code>thead</code>,\n    <code>tbody</code>, <code>tfoot</code>, <code>tr</code>,\n    <code>colgroup</code> 要素</dt>\n\n    <dd>表の中の文字は、 <code>td</code> 要素や <code>th</code> 要素の中\n    (表のデータや見出しデータの場合) か <code>caption</code> 要素の中\n    (表題の場合) にしか入れられません。</dd>\n\n    <dt>HTML <code>select</code> 要素、<code>optgroup</code> 要素</dt>\n\n    <dd>選択肢の文字は <code>option</code> 要素の中に入れなければいけません。</dd>\n\n    <dt>HTML <code>datalist</code> 要素</dt>\n\n    <dd><code>option</code> 要素1つ以上か、古いブラウザー向けの代替の内容かを含められますが、\n    両方は入れられません。 <code>option</code> 要素が子供として使われている時には、\n    文字は使えません。</dd>\n\n    <dt>HTML <code>html</code> 要素、 <code>head</code> 要素</dt>\n\n    <dt>HTML <code>head</code> 要素内の <code>noscript</code> 要素</dt>\n\n    <dd>データは <code>body</code> 要素の中に入れなければいけません。</dd>\n\n    <dt>HTML <code>frameset</code> 要素</dt>\n\n    <dd>フレームの時は文字は使えません。極めて古いブラウザーのための代替の内容は\n    <code>noframes</code> 要素の中に入れなければいけません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "Data character is not allowed in this\n  context."
+         "en" : "Non-space characters are not allowed here",
+         "ja" : "空白以外の文字はここでは認められていません"
       }
    },
    "character not allowed:atom|PersonConstruct" : {
@@ -887,8 +930,13 @@
       }
    },
    "charref in charset" : {
+      "desc" : {
+         "en" : "\n    <p>The character encoding declaration cannot contain any HTML\n    character reference.</p>\n  ",
+         "ja" : "\n    <p>文字符号化宣言は HTML の文字参照を含んではいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "A character reference cannot be used to\n  represent a character encoding name."
+         "en" : "The character encoding declaration contains\n  a character reference",
+         "ja" : "文字符号化宣言に文字参照が使われています"
       }
    },
    "charset label detected" : {
@@ -949,10 +997,12 @@
    },
    "child element missing" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the element is so defined that it\n    must contain a <code><var>$0</var></code> child element.\n    The document is non-conforming.</p>\n\n    <dl class=\"switch\">\n    <dt>HTML <code>head</code> element</dt>\n      <dd>There must be a <code>title</code> child element.</dd>\n    <dt>HTML <code>html</code> element</dt>\n      <dd>There must be a <code>head</code> child element followed\n      by a <code>body</code> element.</dd>\n    <dt>HTML <code>tr</code> element</dt>\n      <dd><a href=\"#child-element-missing:td%7Cth\">There must be\n      one or more <code>td</code> or <code>th</code> child element.</a></dd>\n    </dl>\n  "
+         "en" : "\n    <p>The content model of the element requires a specific kind of\n    element, but it is not found.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>head</code> element</dt>\n\n    <dd>There must be a <code>title</code> element child (unless it is\n    in an <code>iframe</code> <code>srcdoc</code> attribute, or it is\n    in an e-mail message).</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>There must be <code>head</code> and <code>body</code> element\n    children.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この要素の内容モデルで要求されている子要素が見つかりません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>head</code> 要素</dt>\n\n    <dd><code>title</code> 要素が子供として必要です\n    (<code>iframe</code> <code>srcdoc</code> 属性内や電子メールメッセージ内を除きます)。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd><code>head</code> 要素や <code>body</code> 要素が子供として必要です。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "There must be an element\n  <code><var>{text}</var></code> as a child of this element."
+         "en" : "There is no <code><var>{text}</var></code>\n  element child",
+         "ja" : "子要素 <code><var>{text}</var></code>\n  が見つかりません"
       }
    },
    "child element missing:atom" : {
@@ -1275,13 +1325,28 @@
       }
    },
    "duplicate http-equiv" : {
+      "desc" : {
+         "en" : "\n    <p>There must not be multiple <code>meta</code> elements whose\n    <code>http-equiv</code> attribute value is <code>Content-Type</code>.</p>\n  ",
+         "ja" : "\n    <p><code>http-equiv</code> 属性値が <code>Content-Type</code>\n    の <code>meta</code> 要素が複数あってはいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "There is another pragma\n  <code><var>{value}</var></code>."
+         "en" : "There is another character encoding\n  declaration",
+         "ja" : "文字符号化宣言が他にもあります"
       }
    },
    "duplicate member" : {
       "message" : {
          "en" : "Name <code><var>{text}</var></code> is\n  already used."
+      }
+   },
+   "duplicate meta charset" : {
+      "desc" : {
+         "en" : "\n    <p>There must be at most one character encoding declaration\n    (<code>&lt;meta charset&gt;</code> or <code>&lt;meta\n    http-equiv=Content-Type&gt;</code>).</p>\n  ",
+         "ja" : "\n    <p>文字符号化宣言(<code>&lt;meta charset&gt;</code> や<code>&lt;meta\n    http-equiv=Content-Type&gt;</code>) は高々1回だけ使えます。</p>\n  "
+      },
+      "message" : {
+         "en" : "There are multiple character encoding\n  declarations",
+         "ja" : "文字符号化宣言が複数あります"
       }
    },
    "duplicate oc namespace" : {
@@ -1340,12 +1405,12 @@
    },
    "element not allowed" : {
       "desc" : {
-         "en" : "\n    <p>An element appears where it is not allowed.</p>\n  ",
-         "ja" : "\n    <p>親要素の内容モデルで認められていない子要素が現れました。</p>\n  "
+         "en" : "\n    <p>The content model of the parent element does not allow the element.</p>\n\n    <dl class=\"switch\">\n\n    <dt>In HTML <code>style</code> element</dt>\n\n    <dd>Child elements are not allowed.</dd>\n\n    <dt>In HTML <code>html</code> element</dt>\n\n    <dd>There must be a <code>head</code> element followed by a\n    <code>body</code> element.  The <code>frameset</code> element is\n    obsolete and is not allowed.  No other element is allowed.  Any\n    actual content of the document must be put into the\n    <code>body</code> element.  Scripts must be put into the\n    <code>head</code> or the <code>body</code> element.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルがこの要素を認めていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>style</code> 要素内</dt>\n\n    <dd>子要素は認められていません。</dd>\n\n    <dt>HTML <code>html</code> 要素内</dt>\n\n    <dd><code>head</code> 要素が1つあって、その後に <code>body</code>\n    要素が1つなければいけません。 <code>frameset</code>\n    要素は廃止されたので認められていません。文書の実質的な内容は\n    <code>body</code> 要素内に入れなければいけません。\n    スクリプトは <code>head</code> 要素か <code>body</code>\n    要素の中に入れなければいけません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "This element is not allowed in this \n  context.",
-         "ja" : "この要素はこの場所では認められていません。"
+         "en" : "This element is not allowed here",
+         "ja" : "この要素はここでは認められていません"
       }
    },
    "element not allowed:area" : {
@@ -1369,8 +1434,13 @@
       }
    },
    "element not allowed:base" : {
+      "desc" : {
+         "en" : "\n    <p>There cannnot be multiple <code>base</code> elements.</p>\n  ",
+         "ja" : "\n    <p><code>base</code> 要素は複数あってはいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "There is another <code>base</code>\n  element."
+         "en" : "There is another <code>base</code>\n  element",
+         "ja" : "<code>base</code> 要素が他にもありました"
       }
    },
    "element not allowed:datatemplate" : {
@@ -1385,8 +1455,8 @@
    },
    "element not allowed:empty" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the parent element is empty such that\n    the element is not allowed.</p>\n  ",
-         "ja" : "\n    <p>親要素の内容モデルが空なので、この要素は認められていません。</p>\n  "
+         "en" : "\n    <p>The content model of the parent element is empty such that\n    the element is not allowed.</p>\n    \n    <dl class=\"switch\">\n\n    <dt>HTML <code>script</code> element</dt>\n\n    <dd>If the <code>script</code> element has the <code>src</code>\n    attribute, the element can only contain documentation\n    comments.</dd>\n    \n    </dl>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルが空なので、この要素は認められていません。</p>\n    \n    <dl class=\"switch\">\n\n    <dt>HTML <code>script</code> 要素</dt>\n\n    <dd><code>script</code> 要素が <code>src</code>\n    属性を持っている時は内容としてはドキュメント注釈のみ含められます。</dd>\n    \n    </dl>\n  "
       },
       "message" : {
          "en" : "The parent is an empty element such that element is not allowed",
@@ -1418,8 +1488,13 @@
       }
    },
    "element not allowed:head noscript" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>noscript</code> element, used within the\n    <code>head</code> element, can only contain <code>link</code>,\n    <code>style</code>, and <code>meta</code> elements.  No other\n    elements are allowed.</p>\n  ",
+         "ja" : "\n    <p><code>head</code> 要素内の <code>noscript</code> 要素は\n    <code>link</code>, <code>style</code>, <code>meta</code>\n    各要素だけ含められます。他の要素は含められません。</p>\n  "
+      },
       "message" : {
-         "en" : "This element is not allowed in a\n  <code>noscript</code> element in the <code>head</code> element."
+         "en" : "The element is not allowed in the\n  <code>noscript</code> element in the <code>head</code>\n  element",
+         "ja" : "この要素は <code>head</code>\n  要素内の <code>noscript</code> 要素では使えません"
       }
    },
    "element not allowed:head style" : {
@@ -1428,8 +1503,13 @@
       }
    },
    "element not allowed:head title" : {
+      "desc" : {
+         "en" : "\n    <p>There must be exactly one <code>title</code> element.</p>\n  ",
+         "ja" : "\n    <p><code>title</code> 要素はちょうど1つだけ必要です。</p>\n  "
+      },
       "message" : {
-         "en" : "There is another <code>title</code>\n  element."
+         "en" : "There is another <code>title</code>\n  element",
+         "ja" : "他にも <code>title</code> 要素があります"
       }
    },
    "element not allowed:meta charset" : {
@@ -1442,8 +1522,13 @@
       }
    },
    "element not allowed:metadata" : {
+      "desc" : {
+         "en" : "\n    <p>The content model of the parent element is metadata content, but\n    the element is not metadata content.</p>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルはメタデータ内容ですが、この要素はメタデータ内容ではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "This element is not allowed where metadata\n  content is expected."
+         "en" : "The element is not metadata content",
+         "ja" : "この要素はメタデータ内容ではありません"
       }
    },
    "element not allowed:minus" : {
@@ -1596,11 +1681,12 @@
    },
    "empty style sheet title" : {
       "desc" : {
-         "en" : "\n    <p>The <code>title</code> attribute value of the <code>link</code>\n    element that defines an alternate style sheet is an empty value.</p>\n\n    <p>A <code>link</code> element whose <code>rel</code> attribute\n    is <code>alternate stylesheet</code> defines an alternate style sheet.\n    An alternate style sheet must be associated with a name using the\n    <code>title</code> attribute.  The name cannot be empty.</p>\n  "
+         "en" : "\n    <p>The style sheet title cannot be the empty string.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>link</code> element, the <code>title</code>\n    attribute</dt>\n\n    <dd>If the <code>link</code> element defines an alternative style\n    sheet (i.e. the <code>rel</code> attribute is <code>alternate\n    stylesheet</code>), it must have the <code>title</code> attribute\n    whose value is not the empty string.</dd>\n\n    <dt>HTML <code>meta</code> element whose <code>http-equiv</code>\n    attribute is <code>Default-Style</code>, the <code>content</code>\n    attribute</dt>\n\n    <dd>If the attribute value is the empty string, the element is\n    ignored.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>スタイルシートの題名は空文字列にはできません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>link</code> 要素 <code>title</code> 属性</dt>\n\n    <dd><code>link</code> 要素が代替スタイルシートを定義する場合\n    (<code>rel</code> 属性が <code>alternate stylesheet</code> の時) は、\n    <code>title</code> 属性が空文字列以外の値を持たなければいけません。</dd>\n\n    <dt>HTML <code>meta</code> 要素の<code>http-equiv</code> 属性が\n    <code>Default-Style</code> の時、 <code>content</code> 属性</dt>\n\n    <dd>属性値が空文字列だとこの要素は無視されます。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "The value of the <code>title</code> attribute\n  is empty.",
-         "ja" : "<code>title</code> 属性の値が空です。"
+         "en" : "The style sheet title is empty",
+         "ja" : "スタイルシートの題名が空文字列です"
       }
    },
    "empty unquoted attribute value" : {
@@ -1817,15 +1903,22 @@
    },
    "in XML:charset" : {
       "desc" : {
-         "en" : "\n    <p>The <code>charset</code> attribute of a\n    <code>meta</code> element is not allowed in XML document.\n    The document is non-conforming.</p>\n\n    <p>To specify the character encoding used for serialization,\n    if necessary, use XML declaration instead:\n      <pre class=\"xml example\">\n<code>&lt;?xml version=\"1.0\" encoding=\"<var>encoding-name</var>\"?&gt;</code></pre>\n    </p>\n  "
+         "en" : "\n    <p>In XML document, the character encoding declaration\n    (<code>&lt;meta charset&gt;</code> or <code>&lt;meta\n    http-equiv=Content-Type&gt;</code>) cannot be used.</p>\n\n    <p>The only exception to this rule is that <code>&lt;meta\n    charset=utf-8&gt;</code> is allowed in XML document.  (However,\n    <code>&lt;meta http-equiv=Content-Type&gt;</code> is not allowed even\n    with UTF-8.)</p>\n\n    <p>Instad, specify the character encoding by the\n    <code>charset</code> parameter in the <code>Content-Type</code>\n    header and/or the <code>encoding</code> pseudo-attribute of the\n    XML declaration.</p>\n  ",
+         "ja" : "\n    <p>XML 文書では、文字符号化宣言\n    (<code>&lt;meta charset&gt;</code> や <code>&lt;meta\n    http-equiv=Content-Type&gt;</code>) を使えません。</p>\n\n    <p>唯一例外として、 XML でも <code>&lt;meta\n    charset=utf-8&gt;</code> は使えます。  (ただし\n    <code>&lt;meta http-equiv=Content-Type&gt;</code> は UTF-8\n    であっても使えません。</p>\n\n    <p>かわりに <code>Content-Type</code> ヘッダーの <code>charset</code>\n    引数や、 XML 宣言の <code>encoding</code>\n    擬似属性の一方または両方を使ってください。</p>\n  "
       },
       "message" : {
-         "en" : "The <code>charset</code> attribute is not \n  allowed in XML document."
+         "en" : "The character encoding declaration is not allowed\n  in XML",
+         "ja" : "この文字符号化宣言は XML では使えません"
       }
    },
    "in XML:noscript" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>noscript</code> element is only allowed in HTML\n    documents.  It is not allowed in XML documents.</p>\n  ",
+         "ja" : "\n    <p><code>noscript</code> 要素は HTML 文書でだけ認められています。\n    XML 文書では使えません。</p>\n  "
+      },
       "message" : {
-         "en" : "A <code>noscript</code> element cannot be \n  used in XML document."
+         "en" : "The <code>noscript</code> element is not allowed\n  in XML document",
+         "ja" : "<code>noscript</code> 要素は XML\n  文書では使えません"
       }
    },
    "in XML:xml:lang" : {
@@ -2469,16 +2562,23 @@
       }
    },
    "meta content-type syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>content</code> attribute value is syntactically\n    incorrect.</p>\n\n    <p>It must be <code>text/html; charset=</code> followed by the\n    encoding label.</p>\n\n    <p>The MIME type cannot be a value other than <code>text/html</code>,\n    such as <code>application/xhtml+xml</code>, <code>text/xml</code>,\n    or <code>text/plain</code>.</p>\n\n    <p>The encoding label cannot be enclosed by quotation marks.</p>\n\n    <p>The entire <code>content</code> attribute value must be\n    separated by quotation marks (<code>\"</code> or <code>'</code>\n    characters).</p>\n  ",
+         "ja" : "\n    <p><code>content</code> 属性値が構文的に正しくありません。</p>\n\n    <p><code>content</code> 属性値は <code>text/html; charset=</code>\n    の後に符号化の名札を続けたものでなければいけません。</p>\n\n    <p>MIME 型は <code>text/html</code> でなければならず、\n    <code>application/xhtml+xml</code>, <code>text/xml</code>,\n    <code>text/plain</code> などは使えません。</p>\n\n    <p>符号化の名札は引用符で括ってはいけません。</p>\n\n    <p><code>content</code> 属性値全体は引用符 (<code>\"</code> か\n    <code>'</code>) で括らなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The specified value is not a valid as a long\n  character encoding declaration."
+         "en" : "The character encoding declaration is invalid",
+         "ja" : "この文字符号化宣言は正しくありません"
       }
    },
    "mismatched charset name" : {
       "desc" : {
-         "en" : "\n    <p>The specified character encoding name is different from\n    the character encoding of the document.  The document\n    is non‐conforming.</p>\n  "
+         "en" : "\n    <p>The character encoding specified by the character encoding\n    declaration is not equal to the character encoding of the\n    document.</p>\n  ",
+         "ja" : "\n    <p>文字符号化宣言で指定された文字符号化は、実際の文書の符号化とは違うものです。</p>\n  "
       },
       "message" : {
-         "en" : "The specified character encoding name\n  <code><var>{value}</var></code> is different from the actual document\n  character encoding <code><var>{text}</var></code>."
+         "en" : "The specified character encoding is\n  different from the actual encoding: <var>{text}</var>",
+         "ja" : "指定された文字符号化は実際の文字符号化\n  <var>{text}</var> と異なります"
       }
    },
    "mismatched charset name not checked" : {
@@ -2754,8 +2854,13 @@
       }
    },
    "no significant content" : {
+      "desc" : {
+         "en" : "\n    <p>The element does not contain any content that can be considered\n    as significant.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>title</code> element</dt>\n\n    <p>There must be non-space characters.</p>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この要素には実質的に内容がありません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>title</code> 要素</dt>\n\n    <p>空白以外の文字が含まれていなければいけません。</p>\n\n    </dl>\n  "
+      },
       "message" : {
-         "en" : "No significant content is contained\n  in this element."
+         "en" : "The element has no actual content",
+         "ja" : "この要素の中身はほとんど空です"
       }
    },
    "no significant content at the end" : {
@@ -2953,10 +3058,11 @@
    },
    "ps element missing" : {
       "desc" : {
-         "en" : "\n    <p>There must be an element before another element, but there\n    is not.  The document is non-conforming.</p>\n\n    <p>For example, there must be a <code>dt</code> element\n    before any <code>dd</code> element.</p>\n  "
+         "en" : "\n    <p>According to the content model of the parent element, there\n    must be another element before this element.</p>\n\n    <dl class=\"switch\">\n\n    <dt>In HTML <code>html</code> element</dt>\n\n    <dd>There must be a <code>head</code> element followed by a\n    <code>body</code> element.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルによると、この要素の前に別の要素が必要です。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>html</code> 要素の子供</dt>\n\n    <dd><code>head</code> 要素の次に <code>body</code>\n    要素がなければいけません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "There is no <code><var>{text}</var></code>\n  element before this element."
+         "en" : "この要素より前に <code><var>{text}</var></code>\n  要素がありません"
       }
    },
    "referenced attr not defined" : {
@@ -2964,9 +3070,24 @@
          "en" : "Attribute <code><var>{value}</var></code> is\n  not defined in the interface specified for the attribute to which\n  extended attribute <code><var>{text}</var></code> is set."
       }
    },
-   "refresh:syntax error" : {
+   "refresh:bad url" : {
+      "desc" : {
+         "en" : "\n    <p>The URL in the <code>meta http-equiv=Refresh</code> element\n    cannot start with the quotation mark (<code>\"</code> or\n    <code>'</code>).</p>\n  ",
+         "ja" : "\n    <p><code>meta http-equiv=Refresh</code> の URL は引用符\n    (<code>\"</code> や <code>'</code>) から始まってはいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "the specified value is not a valid as part\n  of a <code>Refresh</code> pragma."
+         "en" : "The URL cannot start with the quotation mark",
+         "ja" : "URL を引用符から始めることはできません"
+      }
+   },
+   "refresh:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>content</code> attribute value of the <code>meta</code>\n    element whose <code>http-equiv</code> is <code>Refresh</code> is\n    syntactically invalid.</p>\n\n    <p>The value must be a non-negative integer, optionally followed\n    by <code>; url=</code> and a URL.</p>\n  ",
+         "ja" : "\n    <p><code>meta</code> 要素の <code>http-equiv</code> が\n    <code>Refresh</code> の時の <code>content</code> 属性値が構文的に正しくありません。</p>\n\n    <p>属性値は非負整数だけか、非負整数の後に\n    <code>; url=</code> と URL が続くものでなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The refresh specification is invalid",
+         "ja" : "<code>Refresh</code> の指定が正しくありません"
       }
    },
    "repeat:syntax error" : {
@@ -3014,12 +3135,32 @@
    },
    "script language" : {
       "desc" : {
+         "en" : "\n    <p>The <code>language</code> attribute of the <code>script</code>\n    element is obsolete.  Use the <code>type</code> attribute instead.</p>\n    <p>If the script language is JavaScrpt, you can omit them.</p>\n  ",
+         "ja" : "\n    <p><code>script</code> 要素の <code>language</code> 属性は廃止されました。\n    かわりに <code>type</code> 属性を使ってください。</p>\n    <p>スクリプト言語が JavaScript の時はどちらも省略できます。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>language</code> attribute is\n  obsolete",
+         "ja" : "<code>language</code> 属性は廃止されました"
+      }
+   },
+   "script language:ne type" : {
+      "desc" : {
+         "en" : "\n    <p>The script language specified by the <code>language</code> attribute\n    is different from the one specified by the <code>type</code> attribute.</p>\n    <p>Use the <code>type</code> attribute only.  The <code>language</code>\n    attribute is obsolete.</p>\n  ",
+         "ja" : "\n    <p><code>language</code> 属性で指定されたスクリプト言語が \n    <code>type</code> 属性で指定されたスクリプト言語と異なります。</p>\n    <p><code>type</code> 属性だけを使ってください。 <code>language</code>\n    属性は廃止されました。</p>\n  "
+      },
+      "message" : {
+         "en" : "The script language is different from the\n  language in the <code>type</code> attribute",
+         "ja" : "スクリプト言語が <code>type</code>\n  属性と異なります"
+      }
+   },
+   "script language:not js" : {
+      "desc" : {
          "en" : "\n    <p>The <code>language</code> attribute value must be \n    <code>javascript</code>.</p>\n  ",
          "ja" : "\n    <p><code>language</code> 属性値は <code>javascript</code>\n    でなければいけません。</p>\n  "
       },
       "message" : {
-         "en" : "The value must be <code>javascript</code>",
-         "ja" : "値は <code>javascript</code> でなければいけません"
+         "en" : "The script language must be\n  <code>javascript</code>",
+         "ja" : "スクリプト言語は <code>javascript</code>\n  でなければいけません"
       }
    },
    "second node element" : {
@@ -3146,8 +3287,13 @@
       }
    },
    "sizes:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>sizes</code> attribute is a\n    spece-separated list of either:</p>\n\n    <ul>\n\n    <li>The word <code>any</code>, or</li>\n\n    <li>Two non-negative integer separated by a <code>x</code>\n    character, where integers cannot have any leading <code>0</code>\n    character.</li>\n\n    </ul>\n  ",
+         "ja" : "\n    <p><code>sizes</code> 属性の値は空白区切りの</p>\n\n    <ul>\n\n    <li><code>any</code></li>\n\n    <li>非負整数2つを <code>x</code> で連結したもの (ただし整数の先頭に余分な\n    <code>0</code> をつけてはいけない)</li>\n\n    </ul>\n\n    <p>... のリストでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The specified value <code><var>{value}</var></code>\n  is not a valid value."
+         "en" : "The value is not a valid size\n  specification",
+         "ja" : "この値は正しいサイズの指定ではありません"
       }
    },
    "sniffing:chardet" : {
@@ -3168,6 +3314,16 @@
       "message" : {
          "en" : "Spaces are not allowed in the identifier",
          "ja" : "空白文字は識別子に使えません"
+      }
+   },
+   "srcdoc:charset" : {
+      "desc" : {
+         "en" : "\n    <p>In an <code>iframe</code> <code>srcdoc</code> document, the\n    character encoding declaration (<code>&lt;meta charset&gt;</code> or\n    <code>&lt;meta http-equiv=Content-Type&gt;</code>) is not\n    allowed.</p>\n    <p>The <code>iframe</code> <code>srcdoc</code> document is already\n    decoded as part of the external document such that the character\n    encoding declaration has no effect.</p>\n  ",
+         "ja" : "\n    <p><code>iframe</code> <code>srcdoc</code> 文書では文字符号化宣言\n    (<code>&lt;meta charset&gt;</code> や\n    <code>&lt;meta http-equiv=Content-Type&gt;</code>) は認められていません。</p>\n    <p><code>iframe</code> <code>srcdoc</code> 文書は既に外側の文書の一部として復号されているので、\n    文字符号化宣言は意味を持ちません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The character encoding declaration is not\n  allowed in an <code>iframe</code> <code>srcdoc</code> document",
+         "ja" : "<code>iframe</code> <code>srcdoc</code>\n  文書では文字符号化宣言は使えません"
       }
    },
    "ss after pseudo-element" : {
@@ -3634,6 +3790,12 @@
    "unclosed attribute value" : {
       "message" : {
          "en" : "Attribute value is not closed by a quotation\n  mark."
+      }
+   },
+   "unclosed cdo" : {
+      "desc" : {
+         "en" : "\n    <p>In the <code>style</code> element, any substring\n    <code>&lt;!--</code> must be closed by corresponding substring\n    <code>--&gt;</code>.</p>\n  ",
+         "ja" : "\n    <p><code>style</code> 要素内では\n    <code>&lt;!--</code> には対応する <code>--&gt;</code>\n    がなければいけません。</p>\n  "
       }
    },
    "unclosed comment" : {

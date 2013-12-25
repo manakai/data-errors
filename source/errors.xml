@@ -1722,43 +1722,148 @@ p {
 <h2>Element Content Model Errors</h2>
 
 <d:item name="basehref after URL attribute"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>base</code> element with the 
-  <code>href</code> attribute specified cannot be placed after
-  any attribute with a URL.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is a URL attribute before the
+  <code>base</code> element</d:message>
+  <d:message xml:lang="ja"><code>base</code> 要素より前に URL
+  属性がありました</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>base</code> element with the <code>href</code>
+    attribute cannot be placed after any attribute whose value is
+    URL(s).  For example, the <code>link</code> element must appear
+    after the <code>base</code> element.  (The <code>manifest</code>
+    attribute of the <code>html</code> element is the exception for
+    this rule.)</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>href</code> 属性のある <code>base</code> 要素は、値が URL
+    の属性より後にあってはいけません。例えば、 <code>link</code>
+    要素は <code>base</code> 要素より後になければいけません。
+    (<code>html</code> 要素の <code>manifest</code>
+    属性はこの規則の例外です。)</p>
+  </d:desc>
 </d:item>
 
 <d:item name="basetarget after hyperlink"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>base</code> element with the
-  <code>target</code> attribute specified cannot be placed after
-  any element that defines a hyperlink.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is a hyperlink before the
+  <code>base</code> element</d:message>
+  <d:message xml:lang="ja"><code>base</code> 要素より前にハイパーリンクがありました</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>base</code> element with the <code>target</code>
+    attribute cannot be placed after any element which defines a
+    hyperlink.</p>
+  </d:desc>
 </d:item>
 
 <d:item name="character not allowed"
-    modules="Whatpm::ContentChecker::HTML Whatpm::RDFXML">
-  <d:message xml:lang="en">Data character is not allowed in this
-  context.</d:message>
+    modules="Web::HTML::Validator Whatpm::RDFXML">
+  <d:message xml:lang="en">Non-space characters are not allowed here</d:message>
+  <d:message xml:lang="ja">空白以外の文字はここでは認められていません</d:message>
   <d:desc xml:lang="en">
-    <p>A data character appears where it is not allowed in this
-    context.  The document is non-conforming.</p>
+    <p>The content model of the parent element does not allow
+    non-space characters.</p>
 
-    <p>Possible causes:
-      <ul>
-      <li><p>A data character cannot be a child
-      of certain sectioning elements such as <code>body</code>,
-      <code>section</code>, and <code>blockquote</code>.</p>
+    <dl class="switch">
 
-      <p>Any inline-level content must be put
-      in e.g. paragraph element such as <code>p</code>.</p></li>
-      <li><p>Though some elements such as <code>div</code>,
-      <code>li</code>, and <code>td</code> allow
-      <em>either one</em> of block-level or inline-level content
-      is allowed.  If there is a block-level content, 
-      any inline-level content must be put
-      in e.g. paragraph element such as <code>p</code>.</p></li>
-      </ul>
-    </p>
+    <dt>In HTML <code>ul</code>, <code>ol</code>, or <code>dir</code>
+    element</dt>
+
+    <dd>Only the <code>li</code> element is allowed.  Characters in
+    the list must be wrapped by the <code>li</code> element.  The
+    element cannot be used for indentation.</dd>
+
+    <dt>In HTML <code>dl</code> element</dt>
+
+    <dd>Only the <code>dt</code> or <code>dd</code> element is
+    allowed.  Characters in the "name" component must be wrapped by
+    the <code>dt</code> element.  Characters in the "value" component
+    must be wrapped by the <code>dd</code> element.</dd>
+
+    <dt>In HTML <code>table</code>, <code>thead</code>,
+    <code>tbody</code>, <code>tfoot</code>, <code>tr</code>, or
+    <code>colgroup</code> element</dt>
+
+    <dd>Characters in the table must appear within the <code>td</code>
+    or <code>th</code> element (if they are data or heading data in
+    the table) or within the <code>caption</code> element (if they are
+    caption of the table).</dd>
+
+    <dt>In HTML <code>select</code> or <code>optgroup</code>
+    element</dt>
+
+    <dd>Characters in the selection control must appear within the
+    <code>option</code> element.</dd>
+
+    <dt>In HTML <code>datalist</code> element</dt>
+
+    <dd>The element contains either one or more <code>option</code>
+    elements, or fallback content for old browsers, but not both.
+    Characters are not allowed when <code>option</code> element child
+    is used.</dd>
+
+    <dt>In HTML <code>html</code> or <code>head</code> element</dt>
+
+    <dt>In HTML <code>noscript</code> element in the <code>head</code>
+    element</dt>
+
+    <dd>Data must be put into the <code>body</code> element.</dd>
+
+    <dt>In HTML <code>frameset</code> element</dt>
+
+    <dd>Characters are not allowed when frames are used.  Fallback
+    content for really old browsers must be put into the
+    <code>noframes</code> element.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>親要素の内容モデルが空白以外の文字を認めていません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>ul</code>, <code>ol</code>, <code>dir</code> 要素</dt>
+
+    <dd><code>li</code> 要素だけが認められています。リスト中の文字は
+    <code>li</code> 要素で包まないといけません。
+    リスト要素はインデント用ではありません。</dd>
+
+    <dt>HTML <code>dl</code> 要素</dt>
+
+    <dd><code>dt</code> 要素と <code>dd</code> 要素だけが認められています。
+    「名前」にあたる文字は <code>dt</code> 要素で包まなければいけません。
+    「値」にあたる文字は <code>dd</code> 要素で包まなければいけません。</dd>
+
+    <dt>HTML <code>table</code>, <code>thead</code>,
+    <code>tbody</code>, <code>tfoot</code>, <code>tr</code>,
+    <code>colgroup</code> 要素</dt>
+
+    <dd>表の中の文字は、 <code>td</code> 要素や <code>th</code> 要素の中
+    (表のデータや見出しデータの場合) か <code>caption</code> 要素の中
+    (表題の場合) にしか入れられません。</dd>
+
+    <dt>HTML <code>select</code> 要素、<code>optgroup</code> 要素</dt>
+
+    <dd>選択肢の文字は <code>option</code> 要素の中に入れなければいけません。</dd>
+
+    <dt>HTML <code>datalist</code> 要素</dt>
+
+    <dd><code>option</code> 要素1つ以上か、古いブラウザー向けの代替の内容かを含められますが、
+    両方は入れられません。 <code>option</code> 要素が子供として使われている時には、
+    文字は使えません。</dd>
+
+    <dt>HTML <code>html</code> 要素、 <code>head</code> 要素</dt>
+
+    <dt>HTML <code>head</code> 要素内の <code>noscript</code> 要素</dt>
+
+    <dd>データは <code>body</code> 要素の中に入れなければいけません。</dd>
+
+    <dt>HTML <code>frameset</code> 要素</dt>
+
+    <dd>フレームの時は文字は使えません。極めて古いブラウザーのための代替の内容は
+    <code>noframes</code> 要素の中に入れなければいけません。</dd>
+
+    </dl>
   </d:desc>
 </d:item>
 
@@ -1789,23 +1894,44 @@ p {
 </d:item>
 
 <d:item name="child element missing"
-    modules="Whatpm::ContentChecker::HTML Whatpm::ContentChecker::Atom">
-  <d:message xml:lang="en">There must be an element
-  <code><var>{text}</var></code> as a child of this element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is no <code><var>{text}</var></code>
+  element child</d:message>
+  <d:message xml:lang="ja">子要素 <code><var>{text}</var></code>
+  が見つかりません</d:message>
   <d:desc xml:lang="en">
-    <p>The content model of the element is so defined that it
-    must contain a <code><var>$0</var></code> child element.
-    The document is non-conforming.</p>
+    <p>The content model of the element requires a specific kind of
+    element, but it is not found.</p>
 
     <dl class="switch">
+
     <dt>HTML <code>head</code> element</dt>
-      <dd>There must be a <code>title</code> child element.</dd>
+
+    <dd>There must be a <code>title</code> element child (unless it is
+    in an <code>iframe</code> <code>srcdoc</code> attribute, or it is
+    in an e-mail message).</dd>
+
     <dt>HTML <code>html</code> element</dt>
-      <dd>There must be a <code>head</code> child element followed
-      by a <code>body</code> element.</dd>
-    <dt>HTML <code>tr</code> element</dt>
-      <dd><a href="#child-element-missing:td%7Cth">There must be
-      one or more <code>td</code> or <code>th</code> child element.</a></dd>
+
+    <dd>There must be <code>head</code> and <code>body</code> element
+    children.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この要素の内容モデルで要求されている子要素が見つかりません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>head</code> 要素</dt>
+
+    <dd><code>title</code> 要素が子供として必要です
+    (<code>iframe</code> <code>srcdoc</code> 属性内や電子メールメッセージ内を除きます)。</dd>
+
+    <dt>HTML <code>html</code> 要素</dt>
+
+    <dd><code>head</code> 要素や <code>body</code> 要素が子供として必要です。</dd>
+
     </dl>
   </d:desc>
 </d:item>
@@ -1883,16 +2009,48 @@ p {
 </d:item>
 
 <d:item name="element not allowed"
-    modules="Whatpm::ContentChecker::HTML Whatpm::ContentChecker::Atom
-             Whatpm::RDFXML Temma::Processor">
-  <d:message xml:lang="en">This element is not allowed in this 
-  context.</d:message>
-  <d:message xml:lang="ja">この要素はこの場所では認められていません。</d:message>
+    modules="Web::HTML::Validator Whatpm::RDFXML Temma::Processor">
+  <d:message xml:lang="en">This element is not allowed here</d:message>
+  <d:message xml:lang="ja">この要素はここでは認められていません</d:message>
   <d:desc xml:lang="en">
-    <p>An element appears where it is not allowed.</p>
+    <p>The content model of the parent element does not allow the element.</p>
+
+    <dl class="switch">
+
+    <dt>In HTML <code>style</code> element</dt>
+
+    <dd>Child elements are not allowed.</dd>
+
+    <dt>In HTML <code>html</code> element</dt>
+
+    <dd>There must be a <code>head</code> element followed by a
+    <code>body</code> element.  The <code>frameset</code> element is
+    obsolete and is not allowed.  No other element is allowed.  Any
+    actual content of the document must be put into the
+    <code>body</code> element.  Scripts must be put into the
+    <code>head</code> or the <code>body</code> element.</dd>
+
+    </dl>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p>親要素の内容モデルで認められていない子要素が現れました。</p>
+    <p>親要素の内容モデルがこの要素を認めていません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>style</code> 要素内</dt>
+
+    <dd>子要素は認められていません。</dd>
+
+    <dt>HTML <code>html</code> 要素内</dt>
+
+    <dd><code>head</code> 要素が1つあって、その後に <code>body</code>
+    要素が1つなければいけません。 <code>frameset</code>
+    要素は廃止されたので認められていません。文書の実質的な内容は
+    <code>body</code> 要素内に入れなければいけません。
+    スクリプトは <code>head</code> 要素か <code>body</code>
+    要素の中に入れなければいけません。</dd>
+
+    </dl>
   </d:desc>
 </d:item>
 
@@ -1903,9 +2061,16 @@ p {
 </d:item>
 
 <d:item name="element not allowed:base"
-    modules="Whatpm::ContentChecker Whatpm::ContentChecker::HTML">
+    modules="Web::HTML::Validator">
   <d:message xml:lang="en">There is another <code>base</code>
-  element.</d:message>
+  element</d:message>
+  <d:message xml:lang="ja"><code>base</code> 要素が他にもありました</d:message>
+  <d:desc xml:lang="en">
+    <p>There cannnot be multiple <code>base</code> elements.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>base</code> 要素は複数あってはいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:datatemplate"
@@ -1928,9 +2093,28 @@ p {
   <d:desc xml:lang="en">
     <p>The content model of the parent element is empty such that
     the element is not allowed.</p>
+    
+    <dl class="switch">
+
+    <dt>HTML <code>script</code> element</dt>
+
+    <dd>If the <code>script</code> element has the <code>src</code>
+    attribute, the element can only contain documentation
+    comments.</dd>
+    
+    </dl>
   </d:desc>
   <d:desc xml:lang="ja">
     <p>親要素の内容モデルが空なので、この要素は認められていません。</p>
+    
+    <dl class="switch">
+
+    <dt>HTML <code>script</code> 要素</dt>
+
+    <dd><code>script</code> 要素が <code>src</code>
+    属性を持っている時は内容としてはドキュメント注釈のみ含められます。</dd>
+    
+    </dl>
   </d:desc>
 </d:item>
 
@@ -1978,9 +2162,23 @@ p {
 </d:item>
 
 <d:item name="element not allowed:head noscript"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">This element is not allowed in a
-  <code>noscript</code> element in the <code>head</code> element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is not allowed in the
+  <code>noscript</code> element in the <code>head</code>
+  element</d:message>
+  <d:message xml:lang="ja">この要素は <code>head</code>
+  要素内の <code>noscript</code> 要素では使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>noscript</code> element, used within the
+    <code>head</code> element, can only contain <code>link</code>,
+    <code>style</code>, and <code>meta</code> elements.  No other
+    elements are allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>head</code> 要素内の <code>noscript</code> 要素は
+    <code>link</code>, <code>style</code>, <code>meta</code>
+    各要素だけ含められます。他の要素は含められません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:head style"
@@ -1991,9 +2189,16 @@ p {
 </d:item>
 
 <d:item name="element not allowed:head title"
-    modules="Whatpm::ContentChecker Whatpm::ContentChecker::HTML">
+    modules="Web::HTML::Validator">
   <d:message xml:lang="en">There is another <code>title</code>
-  element.</d:message>
+  element</d:message>
+  <d:message xml:lang="ja">他にも <code>title</code> 要素があります</d:message>
+  <d:desc xml:lang="en">
+    <p>There must be exactly one <code>title</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>title</code> 要素はちょうど1つだけ必要です。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:minus"
@@ -2034,9 +2239,16 @@ p {
 </d:item>
 
 <d:item name="element not allowed:metadata"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">This element is not allowed where metadata
-  content is expected.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is not metadata content</d:message>
+  <d:message xml:lang="ja">この要素はメタデータ内容ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content model of the parent element is metadata content, but
+    the element is not metadata content.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>親要素の内容モデルはメタデータ内容ですが、この要素はメタデータ内容ではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:phrasing"
@@ -2203,9 +2415,32 @@ p {
 </d:item>
 
 <d:item name="no significant content"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">No significant content is contained
-  in this element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element has no actual content</d:message>
+  <d:message xml:lang="ja">この要素の中身はほとんど空です</d:message>
+  <d:desc xml:lang="en">
+    <p>The element does not contain any content that can be considered
+    as significant.</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>title</code> element</dt>
+
+    <p>There must be non-space characters.</p>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この要素には実質的に内容がありません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>title</code> 要素</dt>
+
+    <p>空白以外の文字が含まれていなければいけません。</p>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="no significant content before"
@@ -2221,15 +2456,35 @@ p {
 </d:item>
 
 <d:item name="ps element missing"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">There is no <code><var>{text}</var></code>
-  element before this element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">No <code><var>{text}</var></code>
+  element sibling found before this element</d:message>
+  <d:message xml:lang="en">この要素より前に <code><var>{text}</var></code>
+  要素がありません</d:message>
   <d:desc xml:lang="en">
-    <p>There must be an element before another element, but there
-    is not.  The document is non-conforming.</p>
+    <p>According to the content model of the parent element, there
+    must be another element before this element.</p>
 
-    <p>For example, there must be a <code>dt</code> element
-    before any <code>dd</code> element.</p>
+    <dl class="switch">
+
+    <dt>In HTML <code>html</code> element</dt>
+
+    <dd>There must be a <code>head</code> element followed by a
+    <code>body</code> element.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>親要素の内容モデルによると、この要素の前に別の要素が必要です。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>html</code> 要素の子供</dt>
+
+    <dd><code>head</code> 要素の次に <code>body</code>
+    要素がなければいけません。</dd>
+
+    </dl>
   </d:desc>
 </d:item>
 
@@ -2237,6 +2492,22 @@ p {
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">The content of a <code>rp</code> element must
   be a parenthesis.</d:message>
+</d:item>
+
+<d:item name="unclosed cdo"
+    modules="Web::HTML::Validator">
+  <d:desc xml:lang="en"><code>--></code> not found</d:desc>
+  <d:desc xml:lang="ja"><code>--></code> が見つかりません</d:desc>
+  <d:desc xml:lang="en">
+    <p>In the <code>style</code> element, any substring
+    <code>&lt;!--</code> must be closed by corresponding substring
+    <code>--></code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>style</code> 要素内では
+    <code>&lt;!--</code> には対応する <code>--></code>
+    がなければいけません。</p>
+  </d:desc>
 </d:item>
 
 </section>
@@ -2284,6 +2555,20 @@ p {
 
     <dl class="switch">
 
+    <dt>HTML <code>link</code> element</dt>
+
+    <dd>The <code>href</code> attribute must be specified.</dd>
+
+    <dt>HTML <code>meta</code> element</dt>
+
+    <dd>The <code>content</code> attribute must be specified.</dd>
+
+    <dt>HTML <code>style</code> element</dt>
+
+    <dd>For the <code>style</code> element outside of the
+    <code>head</code> element, the <code>scoped</code> attribute must
+    be specified.</dd>
+
     <dt>HTML <code>html</code> element</dt>
 
     <dd>Although it is not required, it is encouraged to specify the
@@ -2309,6 +2594,19 @@ p {
     利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>
 
     <dl class="switch">
+
+    <dt>HTML <code>link</code> 要素</dt>
+
+    <dd><code>href</code> 属性を指定しなければいけません。</dd>
+
+    <dt>HTML <code>meta</code> 要素</dt>
+
+    <dd><code>content</code> 属性を指定しなければいけません。</dd>
+
+    <dt>HTML <code>style</code> 要素</dt>
+
+    <dd><code>head</code> 要素外の <code>style</code> 要素には
+    <code>scoped</code> 属性を指定しなければいけません。</dd>
 
     <dt>HTML <code>html</code> 要素</dt>
 
@@ -2340,19 +2638,52 @@ p {
 
 <d:item name="attribute missing:href|target"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">Attribute <code>href</code> or
-  <code>target</code> must be specified</d:message>
-  <d:message xml:lang="ja"><code>href</code> 属性か <code>target</code>
-  属性のどちらかは必要です</d:message>
+  <d:message xml:lang="en">Neither <code>href</code> or
+  <code>target</code> attribute is specified</d:message>
+  <d:message xml:lang="ja"><code>href</code> 属性も <code>target</code>
+  属性も指定されていません</d:message>
   <d:desc xml:lang="en">
     <p>The HTML <code>base</code> element must have either or both of
-    <code>href</code> and <code>target</code> attributes.  Otherwise
-    the element is useless.</p>
+    <code>href</code> and <code>target</code> attributes.  The
+    <code>base</code> element with no attribute has no effect.</p>
   </d:desc>
   <d:desc xml:lang="ja">
     <p>HTML <code>base</code> 要素は <code>href</code> 属性と
     <code>target</code> 属性の一方または両方が必要です。どちらもない
-    <code>base</code> 要素には意味がありません。</p>
+    <code>base</code> 要素は意味がありません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="attribute missing:meta"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Required attribute is not specified</d:message>
+  <d:message xml:lang="ja">必須の属性が指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>meta</code> element must have one of following
+    attributes:</p>
+
+    <ul>
+    <li>The <code>name</code> attribute</li>
+    <li>The <code>http-equiv</code> attribute</li>
+    <li>The <code>itemprop</code> attribute</li>
+    <li>The <code>charset</code> attribute</li>
+    </ul>
+
+    <p>If the <code>meta</code> element is for OGP, you can ignore
+    this error.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>meta</code> 要素は次のいずれかの属性が必要です。</p>
+
+    <ul>
+    <li><code>name</code> 属性</li>
+    <li><code>http-equiv</code> 属性</li>
+    <li><code>itemprop</code> 属性</li>
+    <li><code>charset</code> 属性</li>
+    </ul>
+
+    <p>この <code>meta</code> 要素が OGP なら、
+    このエラーは無視して構いません。</p>
   </d:desc>
 </d:item>
 
@@ -2372,7 +2703,6 @@ p {
 </d:item>
 
 <d:item name="attribute not allowed"
-    targets="attr"
     modules="Web::HTML::Validator Whatpm::RDFXML">
   <d:message xml:lang="en">The attribute is not allowed here</d:message>
   <d:message xml:lang="ja">この属性はここでは使えません</d:message>
@@ -2386,6 +2716,38 @@ p {
     <dd>The <code>coords</code> attribute cannot be used if the
     <code>shape</code> attribute is <code>default</code>.</dd>
 
+    <dt>HTML <code>meta</code> element</dt>
+
+    <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,
+    <code>itemprop</code>, and <code>charset</code> attributes can be
+    specified.</dd>
+
+    <dd>If you are using OGP and the <code>property</code> attribute
+    is also specified, the error for the <code>content</code>
+    attribute may be ignored.</dd>
+
+    <dd>If there is the <code>charset</code> attribute, the
+    <code>content</code> attribute must not be specified.</dd>
+
+    <dt>HTML <code>link</code> element</dt>
+
+    <dd>The <code>sizes</code> attribute cannot be specified unless
+    the <code>rel</code> attribute has the <code>icon</code> link
+    type.</dd>
+
+    <dt>HTML <code>style</code> element</dt>
+
+    <dd>The <code>scoped</code> attribute is not allowed for the
+    <code>style</code> element in the <code>head</code> element.</dd>
+
+    <dt>HTML <code>script</code> element</dt>
+
+    <dd>Attributes <code>defer</code>, <code>async</code>, and
+    <code>charset</code> are not allowed unless the <code>src</code>
+    attribute is specified.  Likewise, the <code>crossorigin</code>
+    attribute has no effect unless the <code>src</code> attribute is
+    specified.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -2397,6 +2759,35 @@ p {
 
     <dd><code>coords</code> 属性は <code>shape</code> 属性が
     <code>default</code> の時使えません。</dd>
+
+    <dt>HTML <code>meta</code> 要素</dt>
+
+    <dd><code>name</code>, <code>http-equiv</code>,
+    <code>itemprop</code>, <code>charset</code>
+    のどれか1つの属性だけ指定できます。</dd>
+
+    <dd>OGP を使っていて <code>property</code> 属性も指定されていれば、
+    <code>content</code> 属性のエラーは無視して構いません。</dd>
+
+    <dd><code>charset</code> 属性があるときは <code>content</code>
+    属性は使えません。</dd>
+
+    <dt>HTML <code>link</code> 要素</dt>
+
+    <dd><code>sizes</code> 属性を使う時は <code>rel</code> 属性にリンク型
+    <code>icon</code> が含まれていなければいけません。</dd>
+
+    <dt>HTML <code>style</code> 要素</dt>
+
+    <dd><code>scoped</code> 属性は <code>head</code> 要素内の
+    <code>style</code> 要素では使えません。</dd>
+
+    <dt>HTML <code>script</code> 要素</dt>
+
+    <dd><code>defer</code>, <code>async</code>,
+    <code>charset</code> 各属性は <code>src</code>
+    属性がないと指定してはいけません。同様に <code>crossorigin</code>
+    属性は <code>src</code> 属性がないと意味がありません。</dd>
 
     </dl>
   </d:desc>
@@ -2437,6 +2828,10 @@ p {
 
     <dd>If you are using OGP, ignore this error.</dd>
 
+    <dt>HTML <code>prefix</code> attribute</dt>
+
+    <dd>The attribute can be deleted safely.</dd>
+
     <dt>HTML <code>head</code> element, the <code>profile</code>
     attribute</dt>
 
@@ -2450,6 +2845,11 @@ p {
     <code>rel</code> attribute with appropriate link type.  For
     example, instead of <code>rev=made</code>, use
     <code>rel=author</code>.</dd>
+
+    <dt><code>xmlns:<var>*</var></code> attribute<!-- in no namespace --></dt>
+
+    <dd>Namespace attributes are not allowed in HTML.  Since they have
+    no effect, it's safe to delete them entirely.</dd>
 
     </dl>
   </d:desc>
@@ -2470,9 +2870,13 @@ p {
 
     <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>
 
-    <dt>HTML <code>property</code>, <code>prefix</code> 属性</dt>
+    <dt>HTML <code>property</code> 属性</dt>
 
     <dd>OGP を使っているなら、このエラーは無視してください。</dd>
+
+    <dt>HTML <code>prefix</code> 属性</dt>
+
+    <dd>削除して問題ありません。</dd>
 
     <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>
 
@@ -2485,6 +2889,11 @@ p {
     <code>rel</code> 属性と適当なリンク型を使ってください。例えば、
     <code>rev=made</code> ではなく <code>rel=author</code>
     を使ってください。</dd>
+
+    <dt><code>xmlns:<var>*</var></code> 属性<!-- in no namespace --></dt>
+
+    <dd>HTML では名前空間属性は使えません。
+    効果はないので削除して問題ありません。</dd>
 
     </dl>
   </d:desc>
@@ -2544,25 +2953,55 @@ p {
 </d:item>
 
 <d:item name="in XML:charset"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>charset</code> attribute is not 
-  allowed in XML document.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The character encoding declaration is not allowed
+  in XML</d:message>
+  <d:message xml:lang="ja">この文字符号化宣言は XML では使えません</d:message>
   <d:desc xml:lang="en">
-    <p>The <code>charset</code> attribute of a
-    <code>meta</code> element is not allowed in XML document.
-    The document is non-conforming.</p>
+    <p>In XML document, the character encoding declaration
+    (<code>&lt;meta charset></code> or <code>&lt;meta
+    http-equiv=Content-Type></code>) cannot be used.</p>
 
-    <p>To specify the character encoding used for serialization,
-    if necessary, use XML declaration instead:
-      <pre class="xml example"><code>&lt;?xml version="1.0" encoding="<var>encoding-name</var>"?></code></pre>
-    </p>
+    <p>The only exception to this rule is that <code>&lt;meta
+    charset=utf-8></code> is allowed in XML document.  (However,
+    <code>&lt;meta http-equiv=Content-Type></code> is not allowed even
+    with UTF-8.)</p>
+
+    <p>Instad, specify the character encoding by the
+    <code>charset</code> parameter in the <code>Content-Type</code>
+    header and/or the <code>encoding</code> pseudo-attribute of the
+    XML declaration.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>XML 文書では、文字符号化宣言
+    (<code>&lt;meta charset></code> や <code>&lt;meta
+    http-equiv=Content-Type></code>) を使えません。</p>
+
+    <p>唯一例外として、 XML でも <code>&lt;meta
+    charset=utf-8></code> は使えます。  (ただし
+    <code>&lt;meta http-equiv=Content-Type></code> は UTF-8
+    であっても使えません。</p>
+
+    <p>かわりに <code>Content-Type</code> ヘッダーの <code>charset</code>
+    引数や、 XML 宣言の <code>encoding</code>
+    擬似属性の一方または両方を使ってください。</p>
   </d:desc>
 </d:item>
 
 <d:item name="in XML:noscript"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">A <code>noscript</code> element cannot be 
-  used in XML document.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>noscript</code> element is not allowed
+  in XML document</d:message>
+  <d:message xml:lang="ja"><code>noscript</code> 要素は XML
+  文書では使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>noscript</code> element is only allowed in HTML
+    documents.  It is not allowed in XML documents.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>noscript</code> 要素は HTML 文書でだけ認められています。
+    XML 文書では使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="in XML:xml:lang"
@@ -2680,9 +3119,17 @@ p {
 </d:item>
 
 <d:item name="charref in charset"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">A character reference cannot be used to
-  represent a character encoding name.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The character encoding declaration contains
+  a character reference</d:message>
+  <d:message xml:lang="ja">文字符号化宣言に文字参照が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The character encoding declaration cannot contain any HTML
+    character reference.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>文字符号化宣言は HTML の文字参照を含んではいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="charset:not ascii compat"
@@ -3139,9 +3586,18 @@ p {
 </d:item>
 
 <d:item name="duplicate http-equiv"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">There is another pragma
-  <code><var>{value}</var></code>.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is another character encoding
+  declaration</d:message>
+  <d:message xml:lang="ja">文字符号化宣言が他にもあります</d:message>
+  <d:desc xml:lang="en">
+    <p>There must not be multiple <code>meta</code> elements whose
+    <code>http-equiv</code> attribute value is <code>Content-Type</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>http-equiv</code> 属性値が <code>Content-Type</code>
+    の <code>meta</code> 要素が複数あってはいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="duplicate ID"
@@ -3278,18 +3734,48 @@ p {
 </d:item>
 
 <d:item name="empty style sheet title"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The value of the <code>title</code> attribute
-  is empty.</d:message>
-  <d:message xml:lang="ja"><code>title</code> 属性の値が空です。</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The style sheet title is empty</d:message>
+  <d:message xml:lang="ja">スタイルシートの題名が空文字列です</d:message>
   <d:desc xml:lang="en">
-    <p>The <code>title</code> attribute value of the <code>link</code>
-    element that defines an alternate style sheet is an empty value.</p>
+    <p>The style sheet title cannot be the empty string.</p>
 
-    <p>A <code>link</code> element whose <code>rel</code> attribute
-    is <code>alternate stylesheet</code> defines an alternate style sheet.
-    An alternate style sheet must be associated with a name using the
-    <code>title</code> attribute.  The name cannot be empty.</p>
+    <dl class="switch">
+
+    <dt>HTML <code>link</code> element, the <code>title</code>
+    attribute</dt>
+
+    <dd>If the <code>link</code> element defines an alternative style
+    sheet (i.e. the <code>rel</code> attribute is <code>alternate
+    stylesheet</code>), it must have the <code>title</code> attribute
+    whose value is not the empty string.</dd>
+
+    <dt>HTML <code>meta</code> element whose <code>http-equiv</code>
+    attribute is <code>Default-Style</code>, the <code>content</code>
+    attribute</dt>
+
+    <dd>If the attribute value is the empty string, the element is
+    ignored.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>スタイルシートの題名は空文字列にはできません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>link</code> 要素 <code>title</code> 属性</dt>
+
+    <dd><code>link</code> 要素が代替スタイルシートを定義する場合
+    (<code>rel</code> 属性が <code>alternate stylesheet</code> の時) は、
+    <code>title</code> 属性が空文字列以外の値を持たなければいけません。</dd>
+
+    <dt>HTML <code>meta</code> 要素の<code>http-equiv</code> 属性が
+    <code>Default-Style</code> の時、 <code>content</code> 属性</dt>
+
+    <dd>属性値が空文字列だとこの要素は無視されます。</dd>
+
+    </dl>
   </d:desc>
 </d:item>
 
@@ -3646,20 +4132,56 @@ p {
 </d:item>
 
 <d:item name="meta content-type syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The specified value is not a valid as a long
-  character encoding declaration.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The character encoding declaration is invalid</d:message>
+  <d:message xml:lang="ja">この文字符号化宣言は正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>content</code> attribute value is syntactically
+    incorrect.</p>
+
+    <p>It must be <code>text/html; charset=</code> followed by the
+    encoding label.</p>
+
+    <p>The MIME type cannot be a value other than <code>text/html</code>,
+    such as <code>application/xhtml+xml</code>, <code>text/xml</code>,
+    or <code>text/plain</code>.</p>
+
+    <p>The encoding label cannot be enclosed by quotation marks.</p>
+
+    <p>The entire <code>content</code> attribute value must be
+    separated by quotation marks (<code>"</code> or <code>'</code>
+    characters).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>content</code> 属性値が構文的に正しくありません。</p>
+
+    <p><code>content</code> 属性値は <code>text/html; charset=</code>
+    の後に符号化の名札を続けたものでなければいけません。</p>
+
+    <p>MIME 型は <code>text/html</code> でなければならず、
+    <code>application/xhtml+xml</code>, <code>text/xml</code>,
+    <code>text/plain</code> などは使えません。</p>
+
+    <p>符号化の名札は引用符で括ってはいけません。</p>
+
+    <p><code>content</code> 属性値全体は引用符 (<code>"</code> か
+    <code>'</code>) で括らなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="mismatched charset name"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The specified character encoding name
-  <code><var>{value}</var></code> is different from the actual document
-  character encoding <code><var>{text}</var></code>.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The specified character encoding is
+  different from the actual encoding: <var>{text}</var></d:message>
+  <d:message xml:lang="ja">指定された文字符号化は実際の文字符号化
+  <var>{text}</var> と異なります</d:message>
   <d:desc xml:lang="en">
-    <p>The specified character encoding name is different from
-    the character encoding of the document.  The document
-    is non‐conforming.</p>
+    <p>The character encoding specified by the character encoding
+    declaration is not equal to the character encoding of the
+    document.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>文字符号化宣言で指定された文字符号化は、実際の文書の符号化とは違うものです。</p>
   </d:desc>
 </d:item> 
 
@@ -3778,10 +4300,40 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="refresh:bad url"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The URL cannot start with the quotation mark</d:message>
+  <d:message xml:lang="ja">URL を引用符から始めることはできません</d:message>
+  <d:desc xml:lang="en">
+    <p>The URL in the <code>meta http-equiv=Refresh</code> element
+    cannot start with the quotation mark (<code>"</code> or
+    <code>'</code>).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>meta http-equiv=Refresh</code> の URL は引用符
+    (<code>"</code> や <code>'</code>) から始まってはいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="refresh:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">the specified value is not a valid as part
-  of a <code>Refresh</code> pragma.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The refresh specification is invalid</d:message>
+  <d:message xml:lang="ja"><code>Refresh</code> の指定が正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>content</code> attribute value of the <code>meta</code>
+    element whose <code>http-equiv</code> is <code>Refresh</code> is
+    syntactically invalid.</p>
+
+    <p>The value must be a non-negative integer, optionally followed
+    by <code>; url=</code> and a URL.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>meta</code> 要素の <code>http-equiv</code> が
+    <code>Refresh</code> の時の <code>content</code> 属性値が構文的に正しくありません。</p>
+
+    <p>属性値は非負整数だけか、非負整数の後に
+    <code>; url=</code> と URL が続くものでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="repeat:syntax error"
@@ -3812,8 +4364,47 @@ p {
 
 <d:item name="script language"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The value must be <code>javascript</code></d:message>
-  <d:message xml:lang="ja">値は <code>javascript</code> でなければいけません</d:message>
+  <d:message xml:lang="en">The <code>language</code> attribute is
+  obsolete</d:message>
+  <d:message xml:lang="ja"><code>language</code> 属性は廃止されました</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>language</code> attribute of the <code>script</code>
+    element is obsolete.  Use the <code>type</code> attribute instead.</p>
+    <p>If the script language is JavaScrpt, you can omit them.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>script</code> 要素の <code>language</code> 属性は廃止されました。
+    かわりに <code>type</code> 属性を使ってください。</p>
+    <p>スクリプト言語が JavaScript の時はどちらも省略できます。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="script language:ne type"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The script language is different from the
+  language in the <code>type</code> attribute</d:message>
+  <d:message xml:lang="ja">スクリプト言語が <code>type</code>
+  属性と異なります</d:message>
+  <d:desc xml:lang="en">
+    <p>The script language specified by the <code>language</code> attribute
+    is different from the one specified by the <code>type</code> attribute.</p>
+    <p>Use the <code>type</code> attribute only.  The <code>language</code>
+    attribute is obsolete.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>language</code> 属性で指定されたスクリプト言語が 
+    <code>type</code> 属性で指定されたスクリプト言語と異なります。</p>
+    <p><code>type</code> 属性だけを使ってください。 <code>language</code>
+    属性は廃止されました。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="script language:not js"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The script language must be
+  <code>javascript</code></d:message>
+  <d:message xml:lang="ja">スクリプト言語は <code>javascript</code>
+  でなければいけません</d:message>
   <d:desc xml:lang="en">
     <p>The <code>language</code> attribute value must be 
     <code>javascript</code>.</p>
@@ -3825,9 +4416,38 @@ p {
 </d:item>
 
 <d:item name="sizes:syntax error"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The specified value <code><var>{value}</var></code>
-  is not a valid value.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not a valid size
+  specification</d:message>
+  <d:message xml:lang="ja">この値は正しいサイズの指定ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of the <code>sizes</code> attribute is a
+    spece-separated list of either:</p>
+
+    <ul>
+
+    <li>The word <code>any</code>, or</li>
+
+    <li>Two non-negative integer separated by a <code>x</code>
+    character, where integers cannot have any leading <code>0</code>
+    character.</li>
+
+    </ul>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>sizes</code> 属性の値は空白区切りの</p>
+
+    <ul>
+
+    <li><code>any</code></li>
+
+    <li>非負整数2つを <code>x</code> で連結したもの (ただし整数の先頭に余分な
+    <code>0</code> をつけてはいけない)</li>
+
+    </ul>
+
+    <p>... のリストでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="space in ID"
@@ -4101,6 +4721,20 @@ p {
   is limited use, <code><var>{value}</var></code> is used.</d:message>
 </d:item>
 
+<d:item name="IMT:not styling lang"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The MIME type is not a styling language</d:message>
+  <d:message xml:lang="ja">この MIME 型はスタイル言語ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The language specified by the MIME type is not considered as a
+    styling language, e.g. <code>text/css</code> (CSS).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この MIME 型で表される言語は、 <code>text/css</code> (CSS)
+    などのようなスタイル言語ではありません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="IMT:syntax error"
     modules="Whatpm::ContentChecker::HTML Whatpm::ContentChecker::Atom">
   <d:message xml:lang="en">The specified value is not an Internet Media
@@ -4147,9 +4781,35 @@ p {
 </d:item>
 
 <d:item name="IMT:parameter not allowed"
-    modules="Whatpm::IMTChecker">
-  <d:message xml:lang="en">Parameter <code><var>{value}</var></code> is not
-  allowed for this Internet Media Type.</d:message>
+    modules="Whatpm::IMTChecker Web::HTML::Validator">
+  <d:message xml:lang="en">The parameter is not allowed</d:message>
+  <d:message xml:lang="ja">この引数は認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The MIME type parameter is not allowed.</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>style</code> element, the <code>type</code>
+    attribute</dt>
+    <dt>HTML <code>script</code> element, the <code>type</code>
+    attribute</dt>
+
+    <dd>The <code>charset</code> parameter is not allowed.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この MIME 型引数は認められていません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>style</code> 要素 <code>type</code> 属性</dt>
+    <dt>HTML <code>script</code> 要素 <code>type</code> 属性</dt>
+
+    <dd><code>charset</code> 引数は認められていません。</dd>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="IMT:private subtype"
@@ -5970,6 +6630,22 @@ Regexp::Parser::JavaScript's extension. -->
   already used.</d:message>
 </d:item>
 
+<d:item name="duplicate meta charset"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There are multiple character encoding
+  declarations</d:message>
+  <d:message xml:lang="ja">文字符号化宣言が複数あります</d:message>
+  <d:desc xml:lang="en">
+    <p>There must be at most one character encoding declaration
+    (<code>&lt;meta charset></code> or <code>&lt;meta
+    http-equiv=Content-Type></code>).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>文字符号化宣言(<code>&lt;meta charset></code> や<code>&lt;meta
+    http-equiv=Content-Type></code>) は高々1回だけ使えます。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="duplicate qname"
     modules="Whatpm::WebIDL::Checker">
   <d:message xml:lang="en">Qualified name <code><var>{text}</var></code> is
@@ -6098,6 +6774,30 @@ Regexp::Parser::JavaScript's extension. -->
     modules="Whatpm::WebIDL::Parser">
   <d:message xml:lang="en">A <code>::</code> token is not followed by
   an identifier or a <code>DOMString</code> keyword.</d:message>
+</d:item>
+
+<d:item name="srcdoc:charset"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The character encoding declaration is not
+  allowed in an <code>iframe</code> <code>srcdoc</code> document</d:message>
+  <d:message xml:lang="ja"><code>iframe</code> <code>srcdoc</code>
+  文書では文字符号化宣言は使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>In an <code>iframe</code> <code>srcdoc</code> document, the
+    character encoding declaration (<code>&lt;meta charset></code> or
+    <code>&lt;meta http-equiv=Content-Type></code>) is not
+    allowed.</p>
+    <p>The <code>iframe</code> <code>srcdoc</code> document is already
+    decoded as part of the external document such that the character
+    encoding declaration has no effect.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>iframe</code> <code>srcdoc</code> 文書では文字符号化宣言
+    (<code>&lt;meta charset></code> や
+    <code>&lt;meta http-equiv=Content-Type></code>) は認められていません。</p>
+    <p><code>iframe</code> <code>srcdoc</code> 文書は既に外側の文書の一部として復号されているので、
+    文字符号化宣言は意味を持ちません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="type not defined"
@@ -7548,17 +8248,41 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="XML script lang"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Conformance checking for script
-  language <code><var>{text}</var></code> is not supported;
-  <em>it might or might not be conforming.</em></d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Validation of scripting language
+  <code><var>{text}</var></code> is not supported</d:message>
+  <d:message xml:lang="ja">スクリプト言語 <code><var>{text}</var></code>
+  の妥当性検証には対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>The conformance checker does not support the scripting language
+    in use.</p>
+
+    <p>Whether it is conforming or not is <em>unknown</em>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>適合性検査器は使用されているスクリプト言語に対応していません。</p>
+
+    <p>適合か不適合かは<em>不明</em>です。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="XML style lang"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Conformance checking for style
-  language <code><var>{text}</var></code> is not supported;
-  <em>it might or might not be conforming.</em></d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Validation of styling language
+  <code><var>{text}</var></code> is not supported</d:message>
+  <d:message xml:lang="ja">スタイル言語 <code><var>{text}</var></code>
+  の妥当性検証には対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>The conformance checker does not support the styling language
+    in use.</p>
+
+    <p>Whether it is conforming or not is <em>unknown</em>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>適合性検査器は使用されているスタイル言語に対応していません。</p>
+
+    <p>適合か不適合かは<em>不明</em>です。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="atom|content not supported"
