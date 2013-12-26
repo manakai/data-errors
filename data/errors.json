@@ -1579,8 +1579,8 @@
    },
    "element not allowed" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the parent element does not allow the element.</p>\n\n    <dl class=\"switch\">\n\n    <dt>In HTML <code>ul</code>, <code>ol</code>, or\n    <code>dir</code> element</dt>\n\n    <dd>Only <code>li</code> elements are allowed as children.</dd>\n\n    <dt>In HTML <code>dl</code> element</dt>\n\n    <dd>Only <code>dt</code> and <code>dd</code> elements are allowed\n    as children.</dd>\n\n    <dt>In HTML <code>table</code> element</dt>\n\n    <dd>The content must be:\n\n      <ol>\n\n      <li>Optionally, a <code>caption</code> element</li>\n\n      <li>Zero or more <code>colgroup</code> elements</li>\n\n      <li>Optionally, a <code>thead</code> element</li>\n\n      <li>Optionally, a <code>tfoot</code> element</li>\n\n      <li>Zero or more <code>tbody</code> elements or one or more\n      <code>tr</code> elements</li>\n\n      <li>Optionally, a <code>tfoot</code> element</li>\n\n      </ol>\n\n    </dd>\n\n    <dd>In addition, <code>script</code> and <code>template</code>\n    elements can be used anywhere.</dd>\n\n    <dd>The <code>tfoot</code> element can be used only once.</dd>\n\n    <dt>In HTML <code>style</code> element</dt>\n\n    <dd>Child elements are not allowed.</dd>\n\n    <dt>In HTML <code>hgroup</code> element</dt>\n\n    <dd>Only <code>h<var>n</var></code> elements can be used.</dd>\n\n    <dt>In HTML <code>select</code> element</dt>\n\n    <dd>Only <code>option</code> and <code>optgroup</code> elements\n    can be used.</dd>\n\n    <dt>In HTML <code>optgroup</code> element</dt>\n\n    <dd>Only <code>option</code> elements can be used.  The\n    <code>optgroup</code> element cannot be nested.</dd>\n\n    <dt>In HTML <code>datalist</code> element</dt>\n\n    <dd>The element contains either one or more <code>option</code>\n    elements, or fallback content for old browsers, but not both.  No\n    other element is not allowed when <code>option</code> element\n    child is used.</dd>\n\n    <dt>In HTML <code>html</code> element</dt>\n\n    <dd>There must be a <code>head</code> element followed by a\n    <code>body</code> element.  The <code>frameset</code> element is\n    obsolete and is not allowed.  No other element is allowed.  Any\n    actual content of the document must be put into the\n    <code>body</code> element.  Scripts must be put into the\n    <code>head</code> or the <code>body</code> element.</dd>\n\n    <dt>In HTML <code>frameset</code> element</dt>\n\n    <dd>Only <code>frameset</code>, <code>frame</code>, and\n    <code>noframes</code> elements can be used.</dd>\n\n    <dd>For the frameset document, the <code>noframes</code> element\n    can only be used once as a child of the outermost\n    <code>frameset</code> element.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>親要素の内容モデルがこの要素を認めていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>ul</code>, <code>ol</code>,\n    <code>dir</code> 要素内</dt>\n\n    <dd>子要素として使えるのは <code>li</code> 要素だけです。</dd>\n\n    <dt>HTML <code>dl</code> 要素内</dt>\n\n    <dd>子要素として使えるのは <code>dt</code> 要素と <code>dd</code>\n    要素だけです。</dd>\n\n    <dt>HTML <code>table</code> 要素</dt>\n\n    <dd>内容は次の要素でなければいけません。\n\n      <ol>\n\n      <li><code>caption</code> 要素最大1つ</li>\n\n      <li><code>colgroup</code> 要素任意個</li>\n\n      <li><code>thead</code> 要素最大1つ</li>\n\n      <li><code>tfoot</code> 要素最大1つ</li>\n\n      <li><code>tbody</code> 要素任意個または\n      <code>tr</code> 要素1個以上</li>\n\n      <li><code>tfoot</code> 要素最大1つ</li>\n\n      </ol>\n\n    </dd>\n\n    <dd>加えて、 <code>script</code> 要素と <code>template</code>\n    要素はどこでも使えます。</dd>\n\n    <dd><code>tfoot</code> 要素は1つだけ使えます。</dd>\n\n    <dt>HTML <code>style</code> 要素内</dt>\n\n    <dd>子要素は認められていません。</dd>\n\n    <dt>HTML <code>hgroup</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>h<var>n</var></code> 要素だけです。</dd>\n\n    <dt>HTML <code>select</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>option</code> 要素と <code>optgroup</code>\n    要素だけです。</dd>\n\n    <dt>HTML <code>optgroup</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>option</code> 要素だけです。\n    <code>optgroup</code> 要素を入れ子にはできません。</dd>\n\n    <dt>HTML <code>datalist</code> 要素</dt>\n\n    <dd><code>option</code> 要素1つ以上か、古いブラウザー向けの代替の内容かを含められますが、\n    両方は入れられません。 <code>option</code> 要素が子供として使われている時には、\n    他の要素は使えません。</dd>\n\n    <dt>HTML <code>html</code> 要素内</dt>\n\n    <dd><code>head</code> 要素が1つあって、その後に <code>body</code>\n    要素が1つなければいけません。 <code>frameset</code>\n    要素は廃止されたので認められていません。文書の実質的な内容は\n    <code>body</code> 要素内に入れなければいけません。\n    スクリプトは <code>head</code> 要素か <code>body</code>\n    要素の中に入れなければいけません。</dd>\n\n    <dt>HTML <code>frameset</code> 要素内</dt>\n\n    <dd><code>frameset</code>, <code>frame</code>,\n    <code>noframes</code> 各要素だけ使えます。</dd>\n\n    <dd>フレーム集合文書では <code>noframes</code> 要素は最外\n    <code>frameset</code> 要素の子供としてのみ使えます。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The content model of the parent element does not allow the element.</p>\n\n    <dl class=\"switch\">\n\n    <dt>In HTML <code>ul</code>, <code>ol</code>, or\n    <code>dir</code> element</dt>\n\n    <dd>Only <code>li</code> elements are allowed as children.</dd>\n\n    <dt>In HTML <code>dl</code> element</dt>\n\n    <dd>Only <code>dt</code> and <code>dd</code> elements are allowed\n    as children.</dd>\n\n    <dt>In HTML <code>table</code> element</dt>\n\n    <dd>The content must be:\n\n      <ol>\n\n      <li>Optionally, a <code>caption</code> element</li>\n\n      <li>Zero or more <code>colgroup</code> elements</li>\n\n      <li>Optionally, a <code>thead</code> element</li>\n\n      <li>Optionally, a <code>tfoot</code> element</li>\n\n      <li>Zero or more <code>tbody</code> elements or one or more\n      <code>tr</code> elements</li>\n\n      <li>Optionally, a <code>tfoot</code> element</li>\n\n      </ol>\n\n    </dd>\n\n    <dd>In addition, <code>script</code> and <code>template</code>\n    elements can be used anywhere.</dd>\n\n    <dd>The <code>tfoot</code> element can be used only once.</dd>\n\n    <dt>In HTML <code>style</code> element</dt>\n\n    <dd>Child elements are not allowed.</dd>\n\n    <dt>In HTML <code>hgroup</code> element</dt>\n\n    <dd>Only <code>h<var>n</var></code> elements can be used.</dd>\n\n    <dt>In HTML <code>select</code> element</dt>\n\n    <dd>Only <code>option</code> and <code>optgroup</code> elements\n    can be used.</dd>\n\n    <dt>In HTML <code>optgroup</code> element</dt>\n\n    <dd>Only <code>option</code> elements can be used.  The\n    <code>optgroup</code> element cannot be nested.</dd>\n\n    <dt>In HTML <code>datalist</code> element</dt>\n\n    <dd>The element contains either one or more <code>option</code>\n    elements, or fallback content for old browsers, but not both.  No\n    other element is not allowed when <code>option</code> element\n    child is used.</dd>\n\n    <dt>In HTML <code>style</code> and <code>script</code>\n    element</dt>\n\n    <dd>The element cannot contain child elements unless the styling\n    or scripting language is XML-based, or the <code>script</code>\n    element has the <code>src</code> attribute.</dd>\n\n    <dt>In HTML <code>html</code> element</dt>\n\n    <dd>There must be a <code>head</code> element followed by a\n    <code>body</code> element.  The <code>frameset</code> element is\n    obsolete and is not allowed.  No other element is allowed.  Any\n    actual content of the document must be put into the\n    <code>body</code> element.  Scripts must be put into the\n    <code>head</code> or the <code>body</code> element.</dd>\n\n    <dt>In HTML <code>frameset</code> element</dt>\n\n    <dd>Only <code>frameset</code>, <code>frame</code>, and\n    <code>noframes</code> elements can be used.</dd>\n\n    <dd>For the frameset document, the <code>noframes</code> element\n    can only be used once as a child of the outermost\n    <code>frameset</code> element.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルがこの要素を認めていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>ul</code>, <code>ol</code>,\n    <code>dir</code> 要素内</dt>\n\n    <dd>子要素として使えるのは <code>li</code> 要素だけです。</dd>\n\n    <dt>HTML <code>dl</code> 要素内</dt>\n\n    <dd>子要素として使えるのは <code>dt</code> 要素と <code>dd</code>\n    要素だけです。</dd>\n\n    <dt>HTML <code>table</code> 要素</dt>\n\n    <dd>内容は次の要素でなければいけません。\n\n      <ol>\n\n      <li><code>caption</code> 要素最大1つ</li>\n\n      <li><code>colgroup</code> 要素任意個</li>\n\n      <li><code>thead</code> 要素最大1つ</li>\n\n      <li><code>tfoot</code> 要素最大1つ</li>\n\n      <li><code>tbody</code> 要素任意個または\n      <code>tr</code> 要素1個以上</li>\n\n      <li><code>tfoot</code> 要素最大1つ</li>\n\n      </ol>\n\n    </dd>\n\n    <dd>加えて、 <code>script</code> 要素と <code>template</code>\n    要素はどこでも使えます。</dd>\n\n    <dd><code>tfoot</code> 要素は1つだけ使えます。</dd>\n\n    <dt>HTML <code>style</code> 要素内</dt>\n\n    <dd>子要素は認められていません。</dd>\n\n    <dt>HTML <code>hgroup</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>h<var>n</var></code> 要素だけです。</dd>\n\n    <dt>HTML <code>select</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>option</code> 要素と <code>optgroup</code>\n    要素だけです。</dd>\n\n    <dt>HTML <code>optgroup</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>option</code> 要素だけです。\n    <code>optgroup</code> 要素を入れ子にはできません。</dd>\n\n    <dt>HTML <code>datalist</code> 要素</dt>\n\n    <dd><code>option</code> 要素1つ以上か、古いブラウザー向けの代替の内容かを含められますが、\n    両方は入れられません。 <code>option</code> 要素が子供として使われている時には、\n    他の要素は使えません。</dd>\n\n    <dt>HTML <code>style</code> 要素、<code>script</code> 要素</dt>\n\n    <dd>スタイル言語・スクリプト言語が XML ベースの場合や\n    <code>src</code> 属性がある場合を除き、子要素は使えません。</dd>\n\n    <dt>HTML <code>html</code> 要素内</dt>\n\n    <dd><code>head</code> 要素が1つあって、その後に <code>body</code>\n    要素が1つなければいけません。 <code>frameset</code>\n    要素は廃止されたので認められていません。文書の実質的な内容は\n    <code>body</code> 要素内に入れなければいけません。\n    スクリプトは <code>head</code> 要素か <code>body</code>\n    要素の中に入れなければいけません。</dd>\n\n    <dt>HTML <code>frameset</code> 要素内</dt>\n\n    <dd><code>frameset</code>, <code>frame</code>,\n    <code>noframes</code> 各要素だけ使えます。</dd>\n\n    <dd>フレーム集合文書では <code>noframes</code> 要素は最外\n    <code>frameset</code> 要素の子供としてのみ使えます。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "This element is not allowed here",
@@ -1644,8 +1644,8 @@
    },
    "element not allowed:empty" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the parent element is empty such that\n    the element is not allowed.</p>\n    \n    <dl class=\"switch\">\n\n    <dt>HTML <code>script</code> element</dt>\n\n    <dd>If the <code>script</code> element has the <code>src</code>\n    attribute, the element can only contain documentation\n    comments.</dd>\n    \n    </dl>\n  ",
-         "ja" : "\n    <p>親要素の内容モデルが空なので、この要素は認められていません。</p>\n    \n    <dl class=\"switch\">\n\n    <dt>HTML <code>script</code> 要素</dt>\n\n    <dd><code>script</code> 要素が <code>src</code>\n    属性を持っている時は内容としてはドキュメント注釈のみ含められます。</dd>\n    \n    </dl>\n  "
+         "en" : "\n    <p>The content model of the parent element is empty such that\n    the element is not allowed.</p>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルが空なので、この要素は認められていません。</p>\n  "
       },
       "message" : {
          "en" : "The parent is an empty element such that element is not allowed",
@@ -1975,8 +1975,16 @@
       }
    },
    "event handler" : {
+      "desc" : {
+         "en" : "\n    <p>Conformance checking of the event handler content attributes is\n    not (yet) supported.</p>\n\n    <p>Whether it is conforming or not is <em>unknown</em>.</p>\n  ",
+         "ja" : "\n    <p>イベントハンドラー内容属性の適合性検査には (まだ)\n    対応していません。</p>\n\n    <p>適合か不適合かは<em>不明</em>です。</p>\n  "
+      },
       "message" : {
-         "en" : "Conformance checking for event handler attribute\n  is not supported; <em>it might or might not be conforming.</em>"
+         "en" : "Validation of event handler attributes\n  is not supported",
+         "ja" : "イベントハンドラー属性の妥当性検証は未対応です"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "exception not defined" : {
@@ -3717,6 +3725,36 @@
          "ja" : "スクリプト言語は <code>javascript</code>\n  でなければいけません"
       }
    },
+   "script:external data block" : {
+      "desc" : {
+         "en" : "The <code>script</code> element with the\n  <code>src</code> attribute is used for a non-scripting language",
+         "ja" : "<code>src</code> 属性のある\n  <code>script</code> 要素がスクリプト言語以外に使われています"
+      },
+      "message" : {
+         "en" : "\n    <p>If the <code>script</code> element is used to embed the data\n    block, the <code>src</code> attribute cannot be used.  If the\n    <code>src</code> attribute is specified, the <code>type</code>\n    attribute identifies a scripting language.</p>\n  ",
+         "ja" : "\n    <p><code>script</code> 要素をデータブロックの埋め込みに使う時には\n    <code>src</code> 属性は使えません。 <code>src</code>\n    属性が指定されている時には <code>type</code>\n    属性はスクリプト言語の MIME 型でなければいけません。</p>\n  "
+      }
+   },
+   "script:inline doc:invalid" : {
+      "desc" : {
+         "en" : "The inline documentation is invalid",
+         "ja" : "外部スクリプトの説明が構文的に正しくありません"
+      },
+      "message" : {
+         "en" : "\n    <p>If the <code>script</code> element has the <code>src</code>\n    attribute, the content of the element is the inline documentation\n    for the external script.  It must be zero or more JavaScript\n    comments and/or spaces.</p>\n  ",
+         "ja" : "\n    <p><code>script</code> 要素に <code>src</code> 属性がある時は、\n    要素の内容は外部スクリプトの説明となります。 JavaScript\n    コメントと空白文字だけしか使えません。</p>\n  "
+      }
+   },
+   "script:nested <script>" : {
+      "desc" : {
+         "en" : "The <code>script</code> element contains\n  a <code>script</code> start tag as text",
+         "ja" : "<code>script</code> 要素の中に\n  <code>script</code> 開始タグがテキストとして含まれています"
+      },
+      "message" : {
+         "en" : "\n    <p>The <code>script</code> element cannot contain the\n    string <code>&lt;script</code> followed by a space character,\n    <code>/</code>, or <code>&gt;</code> as text.</p>\n  ",
+         "ja" : "\n    <p><code>script</code> 要素はテキストとして <code>&lt;script</code>\n    の後に空白文字か <code>/</code> か <code>&gt;</code> が続く文字列を含めることはできません。</p>\n  "
+      }
+   },
    "second node element" : {
       "message" : {
          "en" : "There is another element, such that\n  this element is not allowed."
@@ -4373,8 +4411,8 @@
    },
    "unclosed cdo" : {
       "desc" : {
-         "en" : "\n    <p>In the <code>style</code> element, any substring\n    <code>&lt;!--</code> must be closed by corresponding substring\n    <code>--&gt;</code>.</p>\n  ",
-         "ja" : "\n    <p><code>style</code> 要素内では\n    <code>&lt;!--</code> には対応する <code>--&gt;</code>\n    がなければいけません。</p>\n  "
+         "en" : "\n    <p>In the <code>style</code> or <code>script</code> element, any\n    substring <code>&lt;!--</code> must be closed by corresponding\n    substring <code>--&gt;</code>.</p>\n  ",
+         "ja" : "\n    <p><code>style</code> 要素や <code>script</code> 要素の中では\n    <code>&lt;!--</code> には対応する <code>--&gt;</code>\n    がなければいけません。</p>\n  "
       }
    },
    "unclosed comment" : {
@@ -4466,6 +4504,26 @@
    "unknown property" : {
       "message" : {
          "en" : "Property <code><var>{value}</var></code> is\n  not supported by the conformance checker."
+      }
+   },
+   "unknown script lang" : {
+      "desc" : {
+         "en" : "\n    <p>Conformance checking of the scripting language or data blocj\n    specified by the <code>type</code> attribute of the\n    <code>script</code> element is not supported.</p>\n\n    <p>Whether the content is conforming or not is\n    <em>unknown</em>.</p>\n  ",
+         "ja" : "\n    <p><code>script</code> 要素の <code>type</code>\n    属性で指定されたスクリプト言語、あたはデータブロックの適合性検査には対応していません。</p>\n    \n    <p>内容が適合しているかどうかは<em>不明</em>です。</p>\n  "
+      },
+      "message" : {
+         "en" : "Validation of the scripting language or\n  data block <code><var>{value}</var></code> is not\n  supported",
+         "ja" : "スクリプト言語またはデータブロック\n  <code><var>{value}</var></code>  の妥当性検証には対応していません"
+      }
+   },
+   "unknown style lang" : {
+      "desc" : {
+         "en" : "\n    <p>Conformance checking of the styling language specified by the\n    <code>type</code> attribute of the <code>style</code> element is\n    not supported.</p>\n\n    <p>Whether the content is conforming or not is\n    <em>unknown</em>.</p>\n  ",
+         "ja" : "\n    <p><code>style</code> 要素の <code>type</code>\n    属性で指定されたスタイル言語の適合性検査には対応していません。</p>\n    \n    <p>内容が適合しているかどうかは<em>不明</em>です。</p>\n  "
+      },
+      "message" : {
+         "en" : "Validation of the styling language\n  <code><var>{value}</var></code> is not supported",
+         "ja" : "スタイル言語 <code><var>{value}</var></code> \n  の妥当性検証には対応していません"
       }
    },
    "unknown xattr" : {

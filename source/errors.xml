@@ -2258,6 +2258,13 @@ p {
     other element is not allowed when <code>option</code> element
     child is used.</dd>
 
+    <dt>In HTML <code>style</code> and <code>script</code>
+    element</dt>
+
+    <dd>The element cannot contain child elements unless the styling
+    or scripting language is XML-based, or the <code>script</code>
+    element has the <code>src</code> attribute.</dd>
+
     <dt>In HTML <code>html</code> element</dt>
 
     <dd>There must be a <code>head</code> element followed by a
@@ -2344,6 +2351,11 @@ p {
     <dd><code>option</code> 要素1つ以上か、古いブラウザー向けの代替の内容かを含められますが、
     両方は入れられません。 <code>option</code> 要素が子供として使われている時には、
     他の要素は使えません。</dd>
+
+    <dt>HTML <code>style</code> 要素、<code>script</code> 要素</dt>
+
+    <dd>スタイル言語・スクリプト言語が XML ベースの場合や
+    <code>src</code> 属性がある場合を除き、子要素は使えません。</dd>
 
     <dt>HTML <code>html</code> 要素内</dt>
 
@@ -2440,28 +2452,9 @@ p {
   <d:desc xml:lang="en">
     <p>The content model of the parent element is empty such that
     the element is not allowed.</p>
-    
-    <dl class="switch">
-
-    <dt>HTML <code>script</code> element</dt>
-
-    <dd>If the <code>script</code> element has the <code>src</code>
-    attribute, the element can only contain documentation
-    comments.</dd>
-    
-    </dl>
   </d:desc>
   <d:desc xml:lang="ja">
     <p>親要素の内容モデルが空なので、この要素は認められていません。</p>
-    
-    <dl class="switch">
-
-    <dt>HTML <code>script</code> 要素</dt>
-
-    <dd><code>script</code> 要素が <code>src</code>
-    属性を持っている時は内容としてはドキュメント注釈のみ含められます。</dd>
-    
-    </dl>
   </d:desc>
 </d:item>
 
@@ -3170,19 +3163,98 @@ p {
   be a parenthesis.</d:message>
 </d:item>
 
+<d:item name="script:inline doc:invalid"
+    modules="Web::HTML::Validator">
+  <d:desc xml:lang="en">The inline documentation is invalid</d:desc>
+  <d:desc xml:lang="ja">外部スクリプトの説明が構文的に正しくありません</d:desc>
+  <d:message xml:lang="en">
+    <p>If the <code>script</code> element has the <code>src</code>
+    attribute, the content of the element is the inline documentation
+    for the external script.  It must be zero or more JavaScript
+    comments and/or spaces.</p>
+  </d:message>
+  <d:message xml:lang="ja">
+    <p><code>script</code> 要素に <code>src</code> 属性がある時は、
+    要素の内容は外部スクリプトの説明となります。 JavaScript
+    コメントと空白文字だけしか使えません。</p>
+  </d:message>
+</d:item>
+
+<d:item name="script:nested &lt;script>"
+    modules="Web::HTML::Validator">
+  <d:desc xml:lang="en">The <code>script</code> element contains
+  a <code>script</code> start tag as text</d:desc>
+  <d:desc xml:lang="ja"><code>script</code> 要素の中に
+  <code>script</code> 開始タグがテキストとして含まれています</d:desc>
+  <d:message xml:lang="en">
+    <p>The <code>script</code> element cannot contain the
+    string <code>&lt;script</code> followed by a space character,
+    <code>/</code>, or <code>></code> as text.</p>
+  </d:message>
+  <d:message xml:lang="ja">
+    <p><code>script</code> 要素はテキストとして <code>&lt;script</code>
+    の後に空白文字か <code>/</code> か <code>></code> が続く文字列を含めることはできません。</p>
+  </d:message>
+</d:item>
+
 <d:item name="unclosed cdo"
     modules="Web::HTML::Validator">
   <d:desc xml:lang="en"><code>--></code> not found</d:desc>
   <d:desc xml:lang="ja"><code>--></code> が見つかりません</d:desc>
   <d:desc xml:lang="en">
-    <p>In the <code>style</code> element, any substring
-    <code>&lt;!--</code> must be closed by corresponding substring
-    <code>--></code>.</p>
+    <p>In the <code>style</code> or <code>script</code> element, any
+    substring <code>&lt;!--</code> must be closed by corresponding
+    substring <code>--></code>.</p>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p><code>style</code> 要素内では
+    <p><code>style</code> 要素や <code>script</code> 要素の中では
     <code>&lt;!--</code> には対応する <code>--></code>
     がなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="unknown script lang"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Validation of the scripting language or
+  data block <code><var>{value}</var></code> is not
+  supported</d:message>
+  <d:message xml:lang="ja">スクリプト言語またはデータブロック
+  <code><var>{value}</var></code>  の妥当性検証には対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>Conformance checking of the scripting language or data blocj
+    specified by the <code>type</code> attribute of the
+    <code>script</code> element is not supported.</p>
+
+    <p>Whether the content is conforming or not is
+    <em>unknown</em>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>script</code> 要素の <code>type</code>
+    属性で指定されたスクリプト言語、あたはデータブロックの適合性検査には対応していません。</p>
+    
+    <p>内容が適合しているかどうかは<em>不明</em>です。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="unknown style lang"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Validation of the styling language
+  <code><var>{value}</var></code> is not supported</d:message>
+  <d:message xml:lang="ja">スタイル言語 <code><var>{value}</var></code> 
+  の妥当性検証には対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>Conformance checking of the styling language specified by the
+    <code>type</code> attribute of the <code>style</code> element is
+    not supported.</p>
+
+    <p>Whether the content is conforming or not is
+    <em>unknown</em>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>style</code> 要素の <code>type</code>
+    属性で指定されたスタイル言語の適合性検査には対応していません。</p>
+    
+    <p>内容が適合しているかどうかは<em>不明</em>です。</p>
   </d:desc>
 </d:item>
 
@@ -6404,6 +6476,26 @@ p {
 
 <section id="element-errors">
 <h2>Element usage errors</h2>
+
+<d:item name="script:external data block"
+    modules="Web::HTML::Validator">
+  <d:desc xml:lang="en">The <code>script</code> element with the
+  <code>src</code> attribute is used for a non-scripting language</d:desc>
+  <d:desc xml:lang="ja"><code>src</code> 属性のある
+  <code>script</code> 要素がスクリプト言語以外に使われています</d:desc>
+  <d:message xml:lang="en">
+    <p>If the <code>script</code> element is used to embed the data
+    block, the <code>src</code> attribute cannot be used.  If the
+    <code>src</code> attribute is specified, the <code>type</code>
+    attribute identifies a scripting language.</p>
+  </d:message>
+  <d:message xml:lang="ja">
+    <p><code>script</code> 要素をデータブロックの埋め込みに使う時には
+    <code>src</code> 属性は使えません。 <code>src</code>
+    属性が指定されている時には <code>type</code>
+    属性はスクリプト言語の MIME 型でなければいけません。</p>
+  </d:message>
+</d:item>
 
 <d:item name="last resort"
     modules="Web::HTML::Validator">
@@ -10115,9 +10207,23 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="event handler"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Conformance checking for event handler attribute
-  is not supported; <em>it might or might not be conforming.</em></d:message>
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Validation of event handler attributes
+  is not supported</d:message>
+  <d:message xml:lang="ja">イベントハンドラー属性の妥当性検証は未対応です</d:message>
+  <d:desc xml:lang="en">
+    <p>Conformance checking of the event handler content attributes is
+    not (yet) supported.</p>
+
+    <p>Whether it is conforming or not is <em>unknown</em>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>イベントハンドラー内容属性の適合性検査には (まだ)
+    対応していません。</p>
+
+    <p>適合か不適合かは<em>不明</em>です。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="media query"
