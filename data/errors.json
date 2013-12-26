@@ -642,8 +642,8 @@
    },
    "attribute missing" : {
       "desc" : {
-         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>In many cases, the <code>alt</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>source</code> or <code>bgsound</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dt>HTML <code>track</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>If the <code>kind</code> attribute is <code>subtitles</code>\n    (which is the default), the <code>srclang</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>href</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>The <code>content</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>For the <code>style</code> element outside of the\n    <code>head</code> element, the <code>scoped</code> attribute must\n    be specified.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>button</code>, the\n    <code>value</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>embed</code> element</dt>\n\n    <dd>An <code>embed</code> element with no <code>src</code>\n    attribute has no effect.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>If both <code>data</code> and <code>type</code> attributes are\n    specified, it might be a good practice to also specify the\n    <code>typemustmatch</code> attribute to ensure that the expected\n    content is rendered.</dd>\n\n    <dd>If the <code>classid</code> attribute is specified, the\n    <code>codetype</code> attribute should also be specified.</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>pattern</code> attribute is specified, the\n    <code>title</code> attribute should also be specified to describe\n    the restriction.</dd>\n\n    <dt>HTML <code>optgroup</code> element</dt>\n\n    <dd>The <code>label</code> attribute is required.</dd>\n\n    <dt>HTML <code>textarea</code> element</dt>\n\n    <dd>If the <code>pattern</code> attribute is specified, the\n    <code>title</code> attribute should also be specified to describe\n    the restriction.</dd>\n\n    <dd>If the value of the <code>wrap</code> attribute is\n    <code>hard</code>, the <code>cols</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>map</code> element</dt>\n\n    <dd>The <code>name</code> attribute is required.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dd>If the <code>href</code> attribute is specified, the\n    <code>alt</code> attribute is required.</dd>\n\n    <dt>HTML <code>bdo</code> element</dt>\n\n    <dd>The <code>dir</code> attribute is required.</dd>\n\n    <dt>HTML <code>b</code> or <code>i</code> element</dt>\n\n    <dd>It might be a good idea to specify the <code>class</code>\n    attribute for these elements such that their purpose can be\n    clarified and that it can be used as a hook for styling.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    <dt>HTML <code>meter</code> element</dt>\n\n    <dd>The <code>value</code> attribute is required.</dd>\n\n    <dt>HTML <code>menuitem</code> element</dt>\n\n    <dd>Either <code>label</code> or <code>command</code> attribute\n    must be specified.</dd>\n\n    <dt>HTML <code>param</code> element</dt>\n\n    <dd>Attributes <code>name</code> and <code>value</code> must be\n    specified.</dd>\n\n    <dt>HTML <code>applet</code> element</dt>\n\n    <dd>Attributes <code>width</code> and <code>height</code> must be\n    specified.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd>多くの場合 <code>alt</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>source</code> 要素、 <code>bgsound</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>track</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd><code>kind</code> 属性が <code>subtitles</code> (既定値) なら、\n    <code>srclang</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>href</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>content</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>head</code> 要素外の <code>style</code> 要素には\n    <code>scoped</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>input</code> 要素</dt>\n\n    <dd><code>type</code> が <code>button</code> の時は\n    <code>value</code> 属性を指定しなければいけません</dd>\n\n    <dt>HTML <code>embed</code> 要素</dt>\n\n    <dd><code>embed</code> 要素は <code>src</code>\n    属性がなければ意味がありません。</dd>\n\n    <dt>HTML <code>object</code> 要素</dt>\n\n    <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、\n    意図した内容しかレンダリングされないように\n    <code>typemustmatch</code> 属性も指定したほうがいいかもしれません。</dd>\n\n    <dd><code>classid</code> 属性が指定されている時は、\n    <code>codetype</code> 属性も指定するべきです。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>input</code> 要素</dt>\n\n    <dd><code>pattern</code> 属性があるときは、その制限内容を\n    <code>title</code> 属性で説明するべきです。</dd>\n\n    <dt>HTML <code>optgroup</code> 要素</dt>\n\n    <dd><code>label</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>textarea</code> 要素</dt>\n\n    <dd><code>pattern</code> 属性があるときは、その制限内容を\n    <code>title</code> 属性で説明するべきです。</dd>\n\n    <dd><code>wrap</code> 属性の値が\n    <code>hard</code> の時は、 <code>cols</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>map</code> 要素</dt>\n\n    <dd><code>name</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dd><code>href</code> 属性が指定されている場合\n    <code>alt</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>bdo</code> 要素</dt>\n\n    <dd><code>dir</code> 属性が必要です。</dd>\n\n    <dt>HTML <code>b</code> 要素、<code>i</code> 要素</dt>\n\n    <dd><code>class</code> を指定しておくと用途が明確になり、\n    スタイルを指定するときにも便利かもしれません。</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    <dt>HTML <code>meter</code> 要素</dt>\n\n    <dd><code>value</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>menuitem</code> 要素</dt>\n\n    <dd><code>label</code> 属性か <code>command</code>\n    属性のどちらかを指定しなければいけません。</dd>\n\n    <dt>HTML <code>param</code> 要素</dt>\n    \n    <dd><code>name</code> 属性と <code>height</code>\n    属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>applet</code> 要素</dt>\n\n    <dd><code>width</code> 属性と <code>height</code> 属性を指定しなければいけません。</dd>\n\n    </dl>\n  "
+         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>In many cases, the <code>alt</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>source</code> or <code>bgsound</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dt>HTML <code>track</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>If the <code>kind</code> attribute is <code>subtitles</code>\n    (which is the default), the <code>srclang</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>href</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>The <code>content</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>For the <code>style</code> element outside of the\n    <code>head</code> element, the <code>scoped</code> attribute must\n    be specified.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>button</code>, the\n    <code>value</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>embed</code> element</dt>\n\n    <dd>An <code>embed</code> element with no <code>src</code>\n    attribute has no effect.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>If both <code>data</code> and <code>type</code> attributes are\n    specified, it might be a good practice to also specify the\n    <code>typemustmatch</code> attribute to ensure that the expected\n    content is rendered.</dd>\n\n    <dd>If the <code>classid</code> attribute is specified, the\n    <code>codetype</code> attribute should also be specified.</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>pattern</code> attribute is specified, the\n    <code>title</code> attribute should also be specified to describe\n    the restriction.</dd>\n\n    <dt>HTML <code>optgroup</code> element</dt>\n\n    <dd>The <code>label</code> attribute is required.</dd>\n\n    <dt>HTML <code>textarea</code> element</dt>\n\n    <dd>If the <code>pattern</code> attribute is specified, the\n    <code>title</code> attribute should also be specified to describe\n    the restriction.</dd>\n\n    <dd>If the value of the <code>wrap</code> attribute is\n    <code>hard</code>, the <code>cols</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>map</code> element</dt>\n\n    <dd>The <code>name</code> attribute is required.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dd>If the <code>href</code> attribute is specified, the\n    <code>alt</code> attribute is required.</dd>\n\n    <dt>HTML <code>bdo</code> element</dt>\n\n    <dd>The <code>dir</code> attribute is required.</dd>\n\n    <dt>HTML <code>b</code> or <code>i</code> element</dt>\n\n    <dd>It might be a good idea to specify the <code>class</code>\n    attribute for these elements such that their purpose can be\n    clarified and that it can be used as a hook for styling.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    <dt>HTML <code>meter</code> element</dt>\n\n    <dd>The <code>value</code> attribute is required.</dd>\n\n    <dt>HTML <code>menuitem</code> element</dt>\n\n    <dd>Either <code>label</code> or <code>command</code> attribute\n    must be specified.</dd>\n\n    <dt>HTML <code>param</code> element</dt>\n\n    <dd>Attributes <code>name</code> and <code>value</code> must be\n    specified.</dd>\n\n    <dt>HTML <code>applet</code> element</dt>\n\n    <dd>Attributes <code>width</code> and <code>height</code> must be\n    specified.</dd>\n\n    <dt>HTML <code>title</code> attribute</dt>\n\n    <dd>If the element has the <code>draggable</code> or\n    <code>dropzone</code> attribute, the <code>title</code> attribute\n    should contain the description.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd>多くの場合 <code>alt</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>source</code> 要素、 <code>bgsound</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>track</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd><code>kind</code> 属性が <code>subtitles</code> (既定値) なら、\n    <code>srclang</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>href</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>content</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>head</code> 要素外の <code>style</code> 要素には\n    <code>scoped</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>input</code> 要素</dt>\n\n    <dd><code>type</code> が <code>button</code> の時は\n    <code>value</code> 属性を指定しなければいけません</dd>\n\n    <dt>HTML <code>embed</code> 要素</dt>\n\n    <dd><code>embed</code> 要素は <code>src</code>\n    属性がなければ意味がありません。</dd>\n\n    <dt>HTML <code>object</code> 要素</dt>\n\n    <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、\n    意図した内容しかレンダリングされないように\n    <code>typemustmatch</code> 属性も指定したほうがいいかもしれません。</dd>\n\n    <dd><code>classid</code> 属性が指定されている時は、\n    <code>codetype</code> 属性も指定するべきです。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>input</code> 要素</dt>\n\n    <dd><code>pattern</code> 属性があるときは、その制限内容を\n    <code>title</code> 属性で説明するべきです。</dd>\n\n    <dt>HTML <code>optgroup</code> 要素</dt>\n\n    <dd><code>label</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>textarea</code> 要素</dt>\n\n    <dd><code>pattern</code> 属性があるときは、その制限内容を\n    <code>title</code> 属性で説明するべきです。</dd>\n\n    <dd><code>wrap</code> 属性の値が\n    <code>hard</code> の時は、 <code>cols</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>map</code> 要素</dt>\n\n    <dd><code>name</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dd><code>href</code> 属性が指定されている場合\n    <code>alt</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>bdo</code> 要素</dt>\n\n    <dd><code>dir</code> 属性が必要です。</dd>\n\n    <dt>HTML <code>b</code> 要素、<code>i</code> 要素</dt>\n\n    <dd><code>class</code> を指定しておくと用途が明確になり、\n    スタイルを指定するときにも便利かもしれません。</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    <dt>HTML <code>meter</code> 要素</dt>\n\n    <dd><code>value</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>menuitem</code> 要素</dt>\n\n    <dd><code>label</code> 属性か <code>command</code>\n    属性のどちらかを指定しなければいけません。</dd>\n\n    <dt>HTML <code>param</code> 要素</dt>\n    \n    <dd><code>name</code> 属性と <code>height</code>\n    属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>applet</code> 要素</dt>\n\n    <dd><code>width</code> 属性と <code>height</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>title</code> 属性</dt>\n\n    <dd><code>draggable</code> 属性や\n    <code>dropzone</code> 属性が指定されている時は、 <code>title</code>\n    属性に説明を入れるべきです。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "Attribute <code><var>{text}</var></code>\n  is not specified",
@@ -1028,7 +1028,8 @@
    },
    "charset:not ascii compat" : {
       "desc" : {
-         "en" : "\n    <p>The character encoding is not ASCII-compatible.  Encodings that\n    are incompatible with ASCII cannot be used here.</p>\n\n    <p>Character encodings such as UTF-16, UTF-32, and EBCDIC are not\n    ASCII-compatible.</p>\n  "
+         "en" : "\n    <p>The character encoding is not ASCII-compatible.  Encodings that\n    are incompatible with ASCII cannot be used here.</p>\n\n    <p>Character encodings such as UTF-16, UTF-32, and EBCDIC are not\n    ASCII-compatible.</p>\n\n    <p>If <code>charset</code> parameter of the\n    <code>Content-Type</code> header is not specified and the document\n    does not start with the <code>BOM</code>, the character encoding\n    of the document must be ASCII-compatible.</p>\n\n    <p>The character encoding declaration (<code>&lt;meta\n    charset&gt;</code> or <code>&lt;meta http-equiv=Content-Type&gt;</code>)\n    cannot be used unless the character encoding is\n    ASCII-compatible.</p>\n\n    <p>The encodings specified in the <code>accept-charset</code>\n    attribute of the <code>form</code> element must be\n    ASCII-compatible.</p>\n  ",
+         "ja" : "\n    <p>文字符号化が ASCII 互換ではありません。ここでは ASCII\n    非互換な符号化は使えません。</p>\n\n    <p>UTF-16, UTF-32, EBCDIC などは ASCII 互換ではありません。</p>\n\n    <p><code>Content-Type</code> ヘッダーの <code>charset</code>\n    引数がなく、文書の先頭が <code>BOM</code> でないなら、\n    文書の文字符号化は ASCII 互換でなければいけません。</p>\n\n    <p>文字符号化宣言 (<code>&lt;meta\n    charset&gt;</code> や <code>&lt;meta http-equiv=Content-Type&gt;</code>)\n    は文字符号化が ASCII 互換でなければ使えません。</p>\n\n    <p><code>form</code> 要素の <code>accept-charset</code>\n    属性の文字符号化は ASCII 互換でなければいけません。</p>\n  "
       },
       "message" : {
          "en" : "The encoding\n  <code><var>{value}</var></code> is not ASCII-compatible",
@@ -1343,6 +1344,26 @@
          "en" : "Character encoding <code><var>{text}</var></code>\n  is not allowed for <abbr>HTML</abbr> document."
       }
    },
+   "doctype after element" : {
+      "desc" : {
+         "en" : "\n    <p>The document type node must appear before the document\n    element.</p>\n  ",
+         "ja" : "\n    <p>文書型節点は文書要素より前になければなりません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is an element before the document type",
+         "ja" : "文書型より前に要素がありました"
+      }
+   },
+   "document element not serializable" : {
+      "desc" : {
+         "en" : "\n    <p>Unless the document element of the HTML document is the\n    <code>html</code> element in the HTML namespace, the document is\n    not serializable in the HTML syntax.</p>\n  ",
+         "ja" : "\n    <p>HTML 文書の文書要素が HTML 名前空間の <code>html</code>\n    要素でないと HTML 構文で文字列化することができません。</p>\n  "
+      },
+      "message" : {
+         "en" : "This element is not serializable",
+         "ja" : "この要素は直列化可能ではありません"
+      }
+   },
    "dropzone:duplicate feedback" : {
       "desc" : {
          "en" : "\n    <p>The <code>dropzone</code> attribute can contain only a feedback\n    value (<code>move</code>, <code>copy</code>, or <code>link</code>).</p>\n  ",
@@ -1421,6 +1442,26 @@
       "message" : {
          "en" : "There is another default track of same kind",
          "ja" : "同じ種類の既定のトラックが他にもあります"
+      }
+   },
+   "duplicate doctype" : {
+      "desc" : {
+         "en" : "\n    <p>There can be at most one document type node in a document.</p>\n  ",
+         "ja" : "\n    <p>文書中に文書型節点は高々1つしか含められません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There are mutliple document types",
+         "ja" : "文書型が複数あります"
+      }
+   },
+   "duplicate document element" : {
+      "desc" : {
+         "en" : "\n    <p>The document can contain only an element as child.</p>\n  ",
+         "ja" : "\n    <p>文書の子供にできる要素は1つだけです。</p>\n  "
+      },
+      "message" : {
+         "en" : "There are multiple child elements in the document",
+         "ja" : "文書の子要素が複数あります"
       }
    },
    "duplicate form name" : {
@@ -1740,10 +1781,12 @@
    },
    "element not allowed:root" : {
       "desc" : {
-         "en" : "\n    <p>An element that is not allowed as the root element\n    is used as the root element of the document.  The document is\n    non-conforming, as far as the conformance checker can tell.</p>\n\n    <dl class=\"switch\">\n    <dt><code>html</code> element in an XHTML document</dt>\n        <dd><p>In <abbr>XHTML</abbr> document, the root <code>html</code>\n        element must have an <code>xmlns</code> attribute as:\n          <pre class=\"xml example\">\n<code>&lt;html xmlns=\"http://www.w3.org/1999/xhtml\"&gt;</code></pre></p></dd>\n    <dt><code>rss</code> element</dt>\n        <dd><p>The document is written in some version of RSS.</p>\n        <p>The conformance checker does not support any version\n        of RSS.  Use Atom 1.0 for feed documents.</p></dd>\n    <dt><code>feed</code> element</dt>\n        <dd><p>The Atom <code>feed</code> element must be\n        in the <code>http://www.w3.org/2005/Atom</code>\n        namespace as:\n          <pre class=\"xml example\">\n<code>&lt;feed xmlns=\"http://www.w3.org/2005/Atom\"&gt;</code></pre>\n        </p>\n        <p>The conformance checker does not support Atom 0.3.\n        Use Atom 1.0 for feed documents.</p></dd>\n    </dl>\n  "
+         "en" : "\n    <p>The element is not allowed as the document element (or the root\n    element).</p>\n  ",
+         "ja" : "\n    <p>この要素は文書要素 (根要素) として使えません。</p>\n  "
       },
       "message" : {
-         "en" : "This element is not allowed as the root\n  element of a document."
+         "en" : "The element is not allowed as the document\n  element",
+         "ja" : "この要素は文書要素にできません"
       }
    },
    "element not allowed:root:xml" : {
@@ -1778,11 +1821,12 @@
    },
    "element not defined" : {
       "desc" : {
-         "en" : "\n    <p>The element is not one of elements allowed\n    in the latest version of relevant specifications.</p>\n\n    <p>The element cannot be used.</p>\n\n    <dl class=\"switch\">\n    <dt><code>event-source</code> element</dt>\n        <dd>The element was renamed as <em><code>eventsource</code>\n        element</em> (no hyphen).</dd>\n    <dt><code>m</code> element</dt>\n        <dd>The element was renamed as <em><code>mark</code>\n        element</em>.</dd>\n    </dl>\n  "
+         "en" : "\n    <p>The element is not part of the language.  It might be an\n    obsolete element that are no longer part of the language, or it\n    might be simply an authoring error.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>center</code>, <code>marquee</code>,\n    <code>blink</code>, <code>strike</code>, <code>big</code>,\n    <code>font</code>, <code>tt</code>, and <code>nobr</code>\n    elements</dt>\n\n    <dd>These elements are obsolete.  Use CSS instead.</dd>\n\n    <dt>HTML <code>acronym</code> element</dt>\n\n    <dd>This element is obsolete.  Use the <code>abbr</code> element\n    instead.</dd>\n\n    <dt>HTML <code>dir</code> element</dt>\n\n    <dd>This element is obsolete.  Use the <code>ul</code> element\n    instead.</dd>\n\n    <dt>HTML <code>rb</code> element</dt>\n\n    <dd>This element is obsolete and redundant.  Use the content\n    directly in the <code>ruby</code> element.</dd>\n\n    <dt>HTML <code>rbc</code> and <code>rtc</code> elements</dt>\n\n    <dd>These elements are obsolete.  Use multiple <code>rt</code>\n    elements and/or nested <code>ruby</code> elements in the\n    <code>ruby</code> element.</dd>\n\n    <dt>HTML <code>applet</code> element</dt>\n\n    <dd>This element is obsolete.  Use the <code>object</code> element\n    instead.</dd>\n\n    <dt>HTML <code>bgsound</code> element</dt>\n\n    <dd>This element is obsolete.  Use the <code>audio</code> element\n    instead.</dd>\n\n    <dt>HTML <code>listing</code>, <code>xmp</code>, and\n    <code>plaintext</code> elements</dt>\n\n    <dd>These elements are obsolete.  Use <code>pre</code> and\n    <code>code</code> elements instead.</dd>\n\n    <dt>HTML <code>frameset</code>, <code>frame</code>, and\n    <code>noframes</code> elements</dt>\n\n    <dd>These elements are obsolete.  Use the <code>iframe</code>\n    element instead.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この要素は言語の一部ではありません。\n    既に廃止された古い要素かもしれませんし、\n    編集上の誤りかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>center</code>, <code>marquee</code>,\n    <code>blink</code>, <code>strike</code>, <code>big</code>,\n    <code>font</code>, <code>tt</code>, <code>nobr</code>\n    各要素</dt>\n\n    <dd>これらの要素は廃止されました。代わりに CSS をお使いください。</dd>\n\n    <dt>HTML <code>acronym</code> 要素</dt>\n\n    <dd>この要素は廃止されました。 <code>abbr</code>\n    要素をお使いください。</dd>\n\n    <dt>HTML <code>dir</code> 要素</dt>\n\n    <dd>この要素は廃止されました。 <code>ul</code>\n    要素をお使いください。</dd>\n\n    <dt>HTML <code>rb</code> 要素</dt>\n\n    <dd>この要素は廃止されました。冗長なので必要ありません。\n    内容を直接 <code>ruby</code> 要素に入れてください。</dd>\n\n    <dt>HTML <code>rbc</code> 要素、 <code>rtc</code> 要素</dt>\n\n    <dd>両要素は廃止されました。 <code>rt</code> 要素を複数使ったり、\n    <code>ruby</code> 要素の中に <code>ruby</code>\n    を入れたりしてください。</dd>\n\n    <dt>HTML <code>applet</code> 要素</dt>\n\n    <dd>この要素は廃止されました。 <code>object</code>\n    要素をお使いください。</dd>\n\n    <dt>HTML <code>bgsound</code> 要素</dt>\n\n    <dd>この要素は廃止されました。 <code>audio</code> 要素をお使いください。</dd>\n\n    <dt>HTML <code>listing</code>, <code>xmp</code>,\n    <code>plaintext</code> 各要素</dt>\n\n    <dd>これらの要素は廃止されました。 <code>pre</code> 要素と\n    <code>code</code> 要素をお使いください。</dd>\n\n    <dt>HTML <code>frameset</code>, <code>frame</code>,\n    <code>noframes</code> 各要素</dt>\n\n    <dd>これらの要素は廃止されました。 <code>iframe</code>\n    要素をお使いください。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "This element is not defined.",
-         "ja" : "この要素は定義されていません。"
+         "en" : "The element is not allowed",
+         "ja" : "この要素は認められていません"
       }
    },
    "email:syntax error" : {
@@ -2022,6 +2066,16 @@
       "message" : {
          "en" : "The value must be an image map name preceded\n  by a <code>#</code> character",
          "ja" : "値は <code>#</code> で始まる画像マップ名でないといけません"
+      }
+   },
+   "hashref:wrong case" : {
+      "desc" : {
+         "en" : "\n    <p>The image map name in the <code>usemap</code> attribute must be\n    case-sensitively equal to the <code>name</code> attribute value of\n    the <code>map</code> element.</p>\n  ",
+         "ja" : "\n    <p><code>usemap</code> 属性の画像マップ名は、 <code>map</code>\n    要素の <code>name</code> 属性の値と大文字・小文字の違いも含めて一致しなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value does not match to the map name exactly",
+         "ja" : "値と画像マップ名が正確に一致していません"
       }
    },
    "help not available" : {
@@ -3071,10 +3125,12 @@
    },
    "no character encoding declaration" : {
       "desc" : {
-         "en" : "\n    <p>The document does not contain a character encoding \n    declaration.  Unless the character encoding is explicitly \n    specified in lower‐level protocol, e.g. in <abbr>HTTP</abbr>,\n    or is implied by <abbr>BOM</abbr>, there must be a character\n    encoding declaration.  The document is non‐conforming.</p>\n\n    <p>The long character encoding declaration syntax\n    <code class=\"html bad example\">&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=<var>charset-name</var>\"&gt;</code>\n    is obsolete.  The new syntax is:</p>\n    <pre class=\"html example\">\n<code>&lt;meta charset=\"<var>charset-name</var>\"&gt;</code></pre>\n\n    <p>Note that the <code>encoding</code> declaration in <abbr>XML</abbr> \n    declaration has no effect for <abbr>HTML</abbr> document.</p>\n  "
+         "en" : "\n    <p>The document must contain the character encoding\n    declaration.</p>\n\n    <p>An HTML document must contain one or more of followings unless\n    it is an <code>iframe</code> <code>srcdoc</code> document:</p>\n\n    <ul>\n\n    <li>The <code>charset</code> parameter in the\n    <code>Content-Type</code> header</li>\n\n    <li>The BOM</li>\n\n    <li>The character encoding declaration (<code>&lt;meta\n    charset&gt;</code> or <code>&lt;meta\n    http-equiv=Content-Type&gt;</code>)</li>\n\n    </ul>\n  ",
+         "ja" : "\n    <p>この文書は文字符号化宣言を含んでいません。</p>\n\n    <p><code>iframe</code> <code>srcdoc</code> 文書以外の HTML 文書は、\n    次のいずれかを含まなければいけません。</p>\n\n    <ul>\n\n    <li><code>Content-Type</code> ヘッダーの <code>charset</code> 引数</li>\n\n    <li>BOM</li>\n\n    <li>文字符号化宣言 (<code>&lt;meta charset&gt;</code> か\n    <code>&lt;meta http-equiv=Content-Type&gt;</code>)</li>\n\n    </ul>\n  "
       },
       "message" : {
-         "en" : "There is no character encoding\n  declaration."
+         "en" : "There is no character encoding\n  declaration",
+         "ja" : "文字符号化宣言がありません"
       }
    },
    "no class name" : {
@@ -3100,6 +3156,16 @@
    "no declaration block" : {
       "message" : {
          "en" : "No declaration block is found after a group of\n  selectors."
+      }
+   },
+   "no document element" : {
+      "desc" : {
+         "en" : "\n    <p>The document with no document element is not serializable.</p>\n  ",
+         "ja" : "\n    <p>文書要素のない文書は文字列表現に変換できません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is no document element",
+         "ja" : "文書要素がありません"
       }
    },
    "no fallback entry URL" : {
@@ -3162,9 +3228,44 @@
          "en" : "Character reference must be closed by a\n  <code>;</code> character."
       }
    },
-   "no referenced form" : {
+   "no referenced control" : {
+      "desc" : {
+         "en" : "\n    <p>The value must be the <code>id</code> attribute value of a form\n    control element.</p>\n  ",
+         "ja" : "\n    <p>この値はフォーム制御子要素の <code>id</code>\n    属性の値でなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The element referneced by the <code>form</code>\n  attribute is not a <code>form</code> element, or no element is\n  found."
+         "en" : "The referenced element is not found or\n  is not a form control element",
+         "ja" : "参照されている要素が見つからないか、\n  フォーム制御子要素ではありません"
+      }
+   },
+   "no referenced datalist" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>list</code> attribute must be the\n    <code>id</code> attribute value of a <code>datalist</code>\n    element.</p>\n  ",
+         "ja" : "\n    <p><code>list</code> 属性の値は <code>datalist</code> 要素の\n    <code>id</code> 属性の値でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The referenced element is not found or\n  is not a <code>datalist</code> element",
+         "ja" : "参照されている要素が見つからないか、\n  <code>datalist</code> 要素ではありません"
+      }
+   },
+   "no referenced element" : {
+      "desc" : {
+         "en" : "\n    <p>The value must be the unique identifier (ID) of an element.</p>\n  ",
+         "ja" : "\n    <p>この値はいずれかの要素の固有識別子 (ID) でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The referenced element is not found",
+         "ja" : "参照されている要素が見つかりません"
+      }
+   },
+   "no referenced form" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>form</code> attribute must be the\n    <code>id</code> attribute value of a <code>form</code>\n    element.</p>\n  ",
+         "ja" : "\n    <p><code>form</code> 属性の値は <code>form</code> 要素の <code>id</code>\n    属性の値でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The referenced element is not found or\n  is not a <code>form</code> element",
+         "ja" : "参照されている要素が見つからないか、\n  <code>form</code> 要素ではありません"
       }
    },
    "no referenced header cell" : {
@@ -3178,13 +3279,43 @@
       }
    },
    "no referenced map" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>usemap</code> attribute must be a\n    <code>#</code> character followed by the <code>name</code>\n    attribute value of a <code>map</code> element.</p>\n  ",
+         "ja" : "\n    <p><code>usemap</code> 属性の値は\n    <code>#</code> の後に <code>map</code> 要素の <code>name</code>\n    属性の値を続けたものでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The element referneced by the <code>usemap</code>\n  attribute is not a <code>map</code> element, or no element is\n  found."
+         "en" : "The referenced element is not found or\n  is not a <code>map</code> element",
+         "ja" : "参照されている要素が見つからないか、\n  <code>map</code> 要素ではありません"
+      }
+   },
+   "no referenced master command" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>comment</code> attribute must be the\n    <code>id</code> attribute value of a command element.</p>\n  ",
+         "ja" : "\n    <p><code>command</code> 属性の値は命令の要素の\n    <code>id</code> 属性の値でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The referenced element is not found or\n  is not a command element",
+         "ja" : "参照されている要素が見つからないか、\n  命令の要素ではありません"
       }
    },
    "no referenced menu" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>contextmenu</code> attribute must be the\n    <code>id</code> attribute value of a <code>menu</code>\n    element.</p>\n  ",
+         "ja" : "\n    <p><code>contextmenu</code> 属性の値は <code>menu</code> 要素の\n    <code>id</code> 属性の値でなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The element referneced by the\n  <code>contextmenu</code> attribute is not a <code>menu</code> element, or\n  no element is found."
+         "en" : "The referenced element is not found or\n  is not a <code>menu</code> element",
+         "ja" : "参照されている要素が見つからないか、\n  <code>menu</code> 要素ではありません"
+      }
+   },
+   "no referenced object" : {
+      "desc" : {
+         "en" : "\n    <p>The value must be the <code>id</code> attribute value of an\n    <code>object</code> element.</p>\n  ",
+         "ja" : "\n    <p>この値は <code>object</code> 要素の <code>id</code>\n    属性の値でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The referenced element is not found or\n  is not an <code>object</code> element",
+         "ja" : "参照されている要素が見つからないか、\n  <code>object</code> 要素ではありません"
       }
    },
    "no sequence gt" : {
@@ -3262,6 +3393,16 @@
          "en" : "No semicolon is found at the end of the\n  definition or member."
       }
    },
+   "no xml encoding" : {
+      "desc" : {
+         "en" : "\n    <p>If an XML document contains the HTML character encoding\n    declaration, it should also contain the <code>encoding</code>\n    pseudo-attribute in the XML declaration.</p>\n  ",
+         "ja" : "\n    <p>XML 文書に HTML 文字符号化宣言が含まれている時は、\n    XML 宣言に <code>encoding</code> 擬似属性も指定されているべきです。</p>\n  "
+      },
+      "message" : {
+         "en" : "The document has no XML <code>encoding</code>\n  declaration",
+         "ja" : "この文書には XML <code>encoding</code>\n  宣言がありません"
+      }
+   },
    "non ascii superset" : {
       "desc" : {
          "en" : "\n    <p>The document is not labeled with character encoding name\n    in lower‐level protocol, e.g. in <abbr>HTTP</abbr>, and\n    the document is not begin with <abbr>BOM</abbr>.  In addition,\n    the character encoding of the document is not a superset of\n    <abbr>ASCII</abbr>.  The document is non‐conforming.</p>\n\n    <p>Unless there is a <abbr>BOM</abbr>, the character encoding\n    for the document must be specified in e.g. <abbr>HTTP</abbr>‐level,\n    as:</p>\n    <pre class=\"http example\">\n<code>Content-Type: text/html; charset=<var>charset-name</var></code></pre>\n\n    <p>Existence of <abbr>HTML</abbr> character encoding declaration, i.e.\n    <code class=\"html example\">&lt;meta charset=\"<var>charset-name</var>\"&gt;</code>,\n    does not allow to omit <code>charset</code> parameter\n    for <abbr>HTML</abbr> document encoded in non‐<abbr>ASCII</abbr>\n    compatible encoding.</p>\n\n    <p>Character encodings <code>Shift_JIS</code>, <code>Windows-31J</code>,\n    and <code>ISO-2022-JP</code> are <em>not</em> a superset of\n    <abbr>ASCII</abbr> for the purpose of <abbr>HTML</abbr> conformance.</p>\n  "
@@ -3300,7 +3441,7 @@
       },
       "message" : {
          "en" : "Historical character encoding is used",
-         "ja" : "昔の文字符号化が使われています"
+         "ja" : "歴史的な文字符号化が使われています"
       }
    },
    "nonchar" : {
@@ -3488,6 +3629,12 @@
       },
       "message" : {
          "en" : "Browsing context name \n  <code><var>{@}</var></code> is reserved."
+      }
+   },
+   "root text" : {
+      "desc" : {
+         "en" : "\n    <p>The document node cannot contain the text node as the\n    child.</p>\n  ",
+         "ja" : "\n    <p>文書節点はテキスト節点を子供として含めることができません。</p>\n  "
       }
    },
    "row with no anchored cell" : {
@@ -3824,14 +3971,19 @@
       "message" : {
          "en" : "The attribute is in earlier draft stage and\n  it not stable yet",
          "ja" : "この属性は仕様案の初期段階にあり、\n  まだ安定していません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "status:wd:element" : {
       "desc" : {
-         "en" : "\n    <p>The element is documented in a working or editor's draft\n    and not yet completed.</p>\n    \n    <p>The element should not be used for any practical purpose.\n    The feature might be drastically changed later or might be\n    entirely removed.</p>\n\n    <p>Most of new elements defined by HTML5 belong to this class.</p>\n  "
+         "en" : "\n    <p>The element is specified as part of an earlier draft\n    specification.  The specification is not stable yet and might be\n    changed later by implementation experiences or other input.</p>\n\n    <p>You should not use this feature unless you know what you are\n    doing.</p>\n  ",
+         "ja" : "\n    <p>この要素は初期段階の仕様案で規定されているものです。\n    仕様はまだ不安定で、実装経験その他によって今後変更される可能性もあります。</p>\n    <p>それでも使うのがどういうことか理解している場合を除き、\n    この機能はまだ使うべきではありません。</p>\n  "
       },
       "message" : {
-         "en" : "This element is documented in a <strong>working\n  draft</strong>."
+         "en" : "The element is in earlier draft stage and\n  it not stable yet",
+         "ja" : "この要素は仕様案の初期段階にあり、\n  まだ安定していません"
       }
    },
    "string after DOCTYPE name" : {
@@ -4280,10 +4432,12 @@
    },
    "unknown element" : {
       "desc" : {
-         "en" : "\n    <p>The conformant checker does not support the element.\n    It cannot determine whether the document is conforming or not.</p>\n  "
+         "en" : "\n    <p>The conformance checker does not support the validation of the\n    element (yet).</p>\n\n    <p>The conformance checker skips the validation of the element.\n    Whether it is conforming or not is unknown.</p>\n  ",
+         "ja" : "\n    <p>適合性検査器はこの要素の妥当性検証に (まだ) 対応していません。</p>\n    <p>適合性検査器はこの要素の妥当性検証を行いません。\n    この要素が適合しているかどうかはわかりません。</p>\n  "
       },
       "message" : {
-         "en" : "Conformance checking for element\n  <code><var>{local-name}</var></code> is not supported; <em>it might or\n  might not be conforming</em>."
+         "en" : "Validation of this element is not supported",
+         "ja" : "この要素の妥当性検証には対応していません"
       }
    },
    "unknown link type" : {
@@ -4297,6 +4451,16 @@
    "unknown media type" : {
       "message" : {
          "en" : "Media type <code><var>{value}</var></code> is\n  not supported by the conformance checker."
+      }
+   },
+   "unknown namespace element" : {
+      "desc" : {
+         "en" : "\n    <p>The namespace of the element is not supported by the\n    conformance checker.</p>\n\n    <p>The namespace is unlikely supported by the Web browsers.  If\n    the document is not intended for directly consumed by the browsers\n    but interpreted by author scripts or dedicated client software,\n    this warning can be ignored.</p>\n  ",
+         "ja" : "\n    <p>この要素の名前空間は適合性検査器が対応していないものです。</p>\n\n    <p>この名前空間はおそらく Web ブラウザーも対応していないものです。\n    この文書がブラウザーに直接解釈されることを想定しておらず、\n    著者のスクリプトや専用のクライアントソフトウェアにより利用されるものなら、\n    この警告は無視して構いません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The namespace is not supported",
+         "ja" : "この名前空間には対応していません"
       }
    },
    "unknown property" : {
