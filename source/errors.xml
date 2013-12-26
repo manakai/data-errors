@@ -1781,8 +1781,8 @@ p {
     must be wrapped by the <code>dd</code> element.</dd>
 
     <dt>In HTML <code>table</code>, <code>thead</code>,
-    <code>tbody</code>, <code>tfoot</code>, <code>tr</code>, or
-    <code>colgroup</code> element</dt>
+    <code>tbody</code>, <code>tfoot</code>, or <code>tr</code>
+    element</dt>
 
     <dd>Characters in the table must appear within the <code>td</code>
     or <code>th</code> element (if they are data or heading data in
@@ -1805,6 +1805,12 @@ p {
     <dt>In HTML <code>hgroup</code> element</dt>
 
     <dd>Only <code>h<var>n</var></code> elements can be used.</dd>
+
+    <dt>In HTML <code>menu</code> element</dt>
+
+    <dd>If the <code>li</code> element is used, or the
+    <code>type</code> of the element is <code>popup</code>, non-space
+    characters are not allowed.</dd>
 
     <dt>In HTML <code>html</code> or <code>head</code> element</dt>
 
@@ -1839,8 +1845,7 @@ p {
     「値」にあたる文字は <code>dd</code> 要素で包まなければいけません。</dd>
 
     <dt>HTML <code>table</code>, <code>thead</code>,
-    <code>tbody</code>, <code>tfoot</code>, <code>tr</code>,
-    <code>colgroup</code> 要素</dt>
+    <code>tbody</code>, <code>tfoot</code>, <code>tr</code> 各要素</dt>
 
     <dd>表の中の文字は、 <code>td</code> 要素や <code>th</code> 要素の中
     (表のデータや見出しデータの場合) か <code>caption</code> 要素の中
@@ -1860,6 +1865,11 @@ p {
 
     <dd><code>h<var>n</var></code> 要素しか使えません。</dd>
 
+    <dt>HTML <code>menu</code> 要素</dt>
+
+    <dd><code>li</code> 要素を使っている時や、要素の
+    <code>type</code> が <code>popup</code> の時は、空白以外の文字は使えません。</dd>
+
     <dt>HTML <code>html</code> 要素、 <code>head</code> 要素</dt>
 
     <dt>HTML <code>head</code> 要素内の <code>noscript</code> 要素</dt>
@@ -1872,6 +1882,19 @@ p {
     <code>noframes</code> 要素の中に入れなければいけません。</dd>
 
     </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="character not allowed:colgroup"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Text other than spaces is not allowed</d:message>
+  <d:message xml:lang="ja">空白以外のテキストは使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>In the <code>colgroup</code> elements, text other than space
+    characters is not allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>colgroup</code> 要素内では空白文字以外のテキストは使えません。</p>
   </d:desc>
 </d:item>
 
@@ -1918,6 +1941,11 @@ p {
     <dd>The last element child must be the <code>dd</code>
     element.</dd>
 
+    <dt>HTML <code>details</code> element</dt>
+
+    <dd>There must be a <code>summary</code> element as the first
+    child.</dd>
+
     <dt>HTML <code>head</code> element</dt>
 
     <dd>There must be a <code>title</code> element child (unless it is
@@ -1946,6 +1974,10 @@ p {
 
     <dd>最後の子要素は <code>dd</code> 要素でなければいけません。</dd>
 
+    <dt>HTML <code>details</code> 要素</dt>
+
+    <dd>最初の子要素は <code>summary</code> 要素でなければいけません。</dd>
+
     <dt>HTML <code>head</code> 要素</dt>
 
     <dd><code>title</code> 要素が子供として必要です
@@ -1962,6 +1994,22 @@ p {
 
     </dl>
   </d:desc>
+</d:item>
+
+<d:item name="child element missing:frame|frameset"
+    modules="Web::HTML::Validator">
+  <d:desc xml:lang="en">Neither <code>frame</code> or <code>frameset</code>
+  element is found</d:desc>
+  <d:desc xml:lang="ja"><code>frame</code> 要素も <code>frameset</code>
+  要素もありません</d:desc>
+  <d:message xml:lang="en">
+    <p>The <code>frameset</code> element must contain one or more
+    <code>frame</code> or <code>frameset</code> elements.</p>
+  </d:message>
+  <d:message xml:lang="ja">
+    <p><code>frameset</code> 要素には
+    <code>frame</code> 要素と <code>frameset</code> 要素が1つ以上必要です。</p>
+  </d:message>
 </d:item>
 
 <d:item name="child element missing:td|th"
@@ -2065,6 +2113,34 @@ p {
     <dd>Only <code>dt</code> and <code>dd</code> elements are allowed
     as children.</dd>
 
+    <dt>In HTML <code>table</code> element</dt>
+
+    <dd>The content must be:
+
+      <ol>
+
+      <li>Optionally, a <code>caption</code> element</li>
+
+      <li>Zero or more <code>colgroup</code> elements</li>
+
+      <li>Optionally, a <code>thead</code> element</li>
+
+      <li>Optionally, a <code>tfoot</code> element</li>
+
+      <li>Zero or more <code>tbody</code> elements or one or more
+      <code>tr</code> elements</li>
+
+      <li>Optionally, a <code>tfoot</code> element</li>
+
+      </ol>
+
+    </dd>
+
+    <dd>In addition, <code>script</code> and <code>template</code>
+    elements can be used anywhere.</dd>
+
+    <dd>The <code>tfoot</code> element can be used only once.</dd>
+
     <dt>In HTML <code>style</code> element</dt>
 
     <dd>Child elements are not allowed.</dd>
@@ -2072,6 +2148,23 @@ p {
     <dt>In HTML <code>hgroup</code> element</dt>
 
     <dd>Only <code>h<var>n</var></code> elements can be used.</dd>
+
+    <dt>In HTML <code>select</code> element</dt>
+
+    <dd>Only <code>option</code> and <code>optgroup</code> elements
+    can be used.</dd>
+
+    <dt>In HTML <code>optgroup</code> element</dt>
+
+    <dd>Only <code>option</code> elements can be used.  The
+    <code>optgroup</code> element cannot be nested.</dd>
+
+    <dt>In HTML <code>datalist</code> element</dt>
+
+    <dd>The element contains either one or more <code>option</code>
+    elements, or fallback content for old browsers, but not both.  No
+    other element is not allowed when <code>option</code> element
+    child is used.</dd>
 
     <dt>In HTML <code>html</code> element</dt>
 
@@ -2081,6 +2174,15 @@ p {
     actual content of the document must be put into the
     <code>body</code> element.  Scripts must be put into the
     <code>head</code> or the <code>body</code> element.</dd>
+
+    <dt>In HTML <code>frameset</code> element</dt>
+
+    <dd>Only <code>frameset</code>, <code>frame</code>, and
+    <code>noframes</code> elements can be used.</dd>
+
+    <dd>For the frameset document, the <code>noframes</code> element
+    can only be used once as a child of the outermost
+    <code>frameset</code> element.</dd>
 
     </dl>
   </d:desc>
@@ -2099,6 +2201,34 @@ p {
     <dd>子要素として使えるのは <code>dt</code> 要素と <code>dd</code>
     要素だけです。</dd>
 
+    <dt>HTML <code>table</code> 要素</dt>
+
+    <dd>内容は次の要素でなければいけません。
+
+      <ol>
+
+      <li><code>caption</code> 要素最大1つ</li>
+
+      <li><code>colgroup</code> 要素任意個</li>
+
+      <li><code>thead</code> 要素最大1つ</li>
+
+      <li><code>tfoot</code> 要素最大1つ</li>
+
+      <li><code>tbody</code> 要素任意個または
+      <code>tr</code> 要素1個以上</li>
+
+      <li><code>tfoot</code> 要素最大1つ</li>
+
+      </ol>
+
+    </dd>
+
+    <dd>加えて、 <code>script</code> 要素と <code>template</code>
+    要素はどこでも使えます。</dd>
+
+    <dd><code>tfoot</code> 要素は1つだけ使えます。</dd>
+
     <dt>HTML <code>style</code> 要素内</dt>
 
     <dd>子要素は認められていません。</dd>
@@ -2106,6 +2236,22 @@ p {
     <dt>HTML <code>hgroup</code> 要素</dt>
 
     <dd>子要素として使えるのは <code>h<var>n</var></code> 要素だけです。</dd>
+
+    <dt>HTML <code>select</code> 要素</dt>
+
+    <dd>子要素として使えるのは <code>option</code> 要素と <code>optgroup</code>
+    要素だけです。</dd>
+
+    <dt>HTML <code>optgroup</code> 要素</dt>
+
+    <dd>子要素として使えるのは <code>option</code> 要素だけです。
+    <code>optgroup</code> 要素を入れ子にはできません。</dd>
+
+    <dt>HTML <code>datalist</code> 要素</dt>
+
+    <dd><code>option</code> 要素1つ以上か、古いブラウザー向けの代替の内容かを含められますが、
+    両方は入れられません。 <code>option</code> 要素が子供として使われている時には、
+    他の要素は使えません。</dd>
 
     <dt>HTML <code>html</code> 要素内</dt>
 
@@ -2115,6 +2261,14 @@ p {
     <code>body</code> 要素内に入れなければいけません。
     スクリプトは <code>head</code> 要素か <code>body</code>
     要素の中に入れなければいけません。</dd>
+
+    <dt>HTML <code>frameset</code> 要素内</dt>
+
+    <dd><code>frameset</code>, <code>frame</code>,
+    <code>noframes</code> 各要素だけ使えます。</dd>
+
+    <dd>フレーム集合文書では <code>noframes</code> 要素は最外
+    <code>frameset</code> 要素の子供としてのみ使えます。</dd>
 
     </dl>
   </d:desc>
@@ -2152,6 +2306,32 @@ p {
     modules="Whatpm::ContentChecker Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">In a <code>datatemplate</code> element, only
   <code>rule</code> elements are allowed.</d:message>
+</d:item>
+
+<d:item name="element not allowed:colgroup"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element cannot be used here</d:message>
+  <d:message xml:lang="ja">この要素はここでは使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The element cannot be used in this context.</p>
+
+    <p>If the parent element is the <code>colgroup</code> element with
+    the <code>span</code> attribute, no child element is allowed.</p>
+
+    <p>If the parent element is the <code>colgroup</code> element with
+    no <code>span</code> attribute, only <code>col</code> and
+    <code>template</code> element children are allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この要素はこの文脈では使えません。</p>
+
+    <p>親要素が <code>colgroup</code> 要素で <code>span</code>
+    属性があるなら、子要素は認められていません。</p>
+
+    <p>親要素が <code>colgroup</code> 要素で <code>span</code>
+    属性がないなら、子要素は <code>col</code> か <code>template</code>
+    だけです。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:details legend"
@@ -2200,6 +2380,23 @@ p {
   may be used.</d:message>
 </d:item>
 
+<d:item name="element not allowed:figure table caption"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>caption</code> is redundant with the
+  <code>figcaption</code></d:message>
+  <d:message xml:lang="ja"><code>caption</code> が <code>figcaption</code>
+  と重複しています</d:message>
+  <d:desc xml:lang="en">
+    <p>If the table is contained in the <code>figure</code> element
+    with the <code>figcaption</code> element, the <code>caption</code>
+    element of the table should be omitted.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>表が <code>figure</code> 要素に含まれていて <code>figcaption</code>
+    要素がある時は、表の <code>caption</code> 要素は省略するべきです。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="element not allowed:flow"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The element is not flow content</d:message>
@@ -2207,9 +2404,51 @@ p {
   <d:desc xml:lang="en">
     <p>The content model of the parent element is flow content, but
     the element is not flow content.</p>
+
+    <dl class="switch">
+
+    <dt>The <code>summary</code> element</dt>
+
+    <dd>The <code>summary</code> element must be the first child of
+    the <code>details</code> element.</dd>
+
+    <dt>The <code>figcaption</code> element</dt>
+
+    <dd>The <code>figcaption</code> element must be the first or last
+    child of the <code>figure</code> element.  Only a
+    <code>figcaption</code> element can be used in the
+    <code>figure</code> element.</dd>
+
+    <dt>The <code>legend</code> element</dt>
+
+    <dd>The <code>legend</code> element must be the first child of the
+    <code>fieldset</code> element.</dd>
+
+    </dl>
   </d:desc>
   <d:desc xml:lang="en">
     <p>親要素の内容モデルはフロー内容ですが、この要素はフロー内容ではありません。</p>
+
+    <dl class="switch">
+
+    <dt><code>summary</code> 要素</dt>
+
+    <dd><code>summary</code> 要素は <code>details</code>
+    要素の最初の子供でなければいけません。</dd>
+
+    <dt><code>figcaption</code> 要素</dt>
+
+    <dd><code>figcaption</code> 要素は <code>figure</code>
+    要素の最初か最後の子供でなければいけません。
+    <code>figcaption</code> 要素は <code>figure</code>
+    要素の中で1つだけ使えます。</dd>
+
+    <dt><code>legend</code> 要素</dt>
+
+    <dd><code>legend</code> 要素は <code>fieldset</code>
+    要素の最初の子供でなければいけません。</dd>
+
+    </dl>
   </d:desc>
 </d:item>
 
@@ -2273,6 +2512,101 @@ p {
   </d:desc>
   <d:desc xml:lang="ja">
     <p><code>title</code> 要素はちょうど1つだけ必要です。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="element not allowed:menu type=popup"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is not allowed in popup menu</d:message>
+  <d:message xml:lang="ja">この要素はポップアップメニューでは使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content of the <code>menu</code> element whose
+    <code>type</code> is <code>popup</code> must be following
+    elements, in any order:</p>
+
+    <ol>
+
+    <li>The <code>menuitem</code> element</li>
+
+    <li>The <code>hr</code> element</li>
+
+    <li>The <code>menu</code> element whose <code>type</code> is
+    <code>popup</code></li>
+
+    <li>The <code>script</code> element</li>
+
+    <li>The <code>template</code> element</li>
+
+    </ol>
+
+    <p>No other flow content elements or the <code>li</code> elements
+    can be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>menu</code> 要素の
+    <code>type</code> が <code>popup</code> の時は次の要素が任意の順序で使えます。</p>
+
+    <ol>
+
+    <li><code>menuitem</code> 要素</li>
+
+    <li><code>hr</code> 要素</li>
+
+    <li><code>menu</code> 要素で <code>type</code> が
+    <code>popup</code> のもの</li>
+
+    <li><code>script</code> 要素</li>
+
+    <li><code>template</code> 要素</li>
+
+    </ol>
+
+    <p>他のフロー内容の要素や <code>li</code> 要素は使えません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="element not allowed:menu type=toolbar"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is not allowed in toolbar</d:message>
+  <d:message xml:lang="ja">この要素はツールバーでは使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content of the <code>menu</code> element whose
+    <code>type</code> is <code>toolbar</code> must be either:</p>
+
+    <ul>
+
+    <li>Zero or more <code>li</code>, <code>script</code>, and
+    <code>template</code> elements, or</li>
+
+    <li>Flow content.</li>
+
+    </ul>
+
+    <p>If the <code>li</code> element is used, flow content other than
+    <code>script</code> and <code>template</code> elements cannot be
+    used.  Also, the <code>menuitem</code> element cannot be used in
+    the <code>menu</code> element whose <code>type</code> is
+    <code>toolbar</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>menu</code> 要素の
+    <code>type</code> が <code>toolbar</code> の時は、
+    内容は次のいずれかでなければいけません。</p>
+
+    <ul>
+
+    <li><code>li</code>, <code>script</code>, <code>template</code>
+    各要素を任意個</li>
+
+    <li>フロー内容</li>
+
+    </ul>
+
+    <p><code>li</code> 要素を使っている時は、
+    <code>script</code> 要素と <code>template</code> 要素を除くフロー内容は使えません。
+    また、 <code>menu</code> 要素の <code>type</code> が
+    <code>toolbar</code> の時は <code>menuitem</code>
+    要素は使えません。</p>
   </d:desc>
 </d:item>
 
@@ -2489,6 +2823,45 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="multiple selected in select1"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is another <code>option</code> element with
+  <code>selected</code> attribute</d:message>
+  <d:message xml:lang="ja"><code>selected</code> 属性付きの
+  <code>option</code> 要素が他にもあります</d:message>
+  <d:desc xml:lang="en">
+    <p>In the <code>select</code> element without the
+    <code>multiple</code> attribute, there can be at most one
+    <code>option</code> element with the <code>selected</code>
+    attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>multiple</code> 属性のない <code>select</code>
+    要素の中では、 <code>selected</code> 属性付きの
+    <code>option</code> 要素は高々1つしか使えません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="no placeholder label option"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element has no placeholder label option</d:message>
+  <d:message xml:lang="ja">未選択状態を表す選択肢がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>If the <code>select</code> element represents a pull-down list
+    box control and the <code>required</code> attribute is specified,
+    there must be the placeholder label option.  That is, the first
+    element child of the <code>select</code> element must be an
+    <code>option</code> element whose value is the empty string.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>select</code> 要素がプルダウンリスト制御子を表していて
+    <code>required</code> 属性が指定されている時は、
+    場所取りラベル選択肢が必要です。すなわち、 <code>select</code>
+    要素の最初の子要素は値が空文字列の <code>option</code>
+    要素でなければなりません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="no significant content"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The element has no actual content</d:message>
@@ -2528,6 +2901,22 @@ p {
     modules="Whatpm::ContentChecker::HTML">
   <d:message xml:lang="en">No significant content is contained
   at the end of this element.</d:message>
+</d:item>
+
+<d:item name="&lt;option label value> not empty"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is not empty</d:message>
+  <d:message xml:lang="ja">この要素は空ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content of the <code>option</code> element with both
+    <code>label</code> and <code>value</code> attributes must be
+    empty.  No child elements or non-space characters are allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>option</code> 要素に <code>label</code> 属性と
+    <code>value</code> 属性の両方がある時は、この要素は空でなければいけません。
+    子要素や空白以外の文字は使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="ps element missing"
@@ -2673,6 +3062,11 @@ p {
     <code>head</code> element, the <code>scoped</code> attribute must
     be specified.</dd>
 
+    <dt>HTML <code>input</code> element</dt>
+
+    <dd>If the <code>type</code> is <code>button</code>, the
+    <code>value</code> attribute must be specified.</dd>
+
     <dt>HTML <code>embed</code> element</dt>
 
     <dd>An <code>embed</code> element with no <code>src</code>
@@ -2693,6 +3087,26 @@ p {
     <dd>Although it is not required, it is encouraged to specify the
     language of the document to the root <code>html</code> element
     using the <code>lang</code> attribute.</dd>
+
+    <dt>HTML <code>input</code> element</dt>
+
+    <dd>If the <code>pattern</code> attribute is specified, the
+    <code>title</code> attribute should also be specified to describe
+    the restriction.</dd>
+
+    <dt>HTML <code>optgroup</code> element</dt>
+
+    <dd>The <code>label</code> attribute is required.</dd>
+
+    <dt>HTML <code>textarea</code> element</dt>
+
+    <dd>If the <code>pattern</code> attribute is specified, the
+    <code>title</code> attribute should also be specified to describe
+    the restriction.</dd>
+
+    <dd>If the value of the <code>wrap</code> attribute is
+    <code>hard</code>, the <code>cols</code> attribute is
+    required.</dd>
 
     <dt>HTML <code>map</code> element</dt>
 
@@ -2722,6 +3136,15 @@ p {
     HTML element, the <code>lang</code> attribute must also be
     specified.  (You don't have to specify the <code>xml:lang</code>
     attribute.)</dd>
+
+    <dt>HTML <code>meter</code> element</dt>
+
+    <dd>The <code>value</code> attribute is required.</dd>
+
+    <dt>HTML <code>menuitem</code> element</dt>
+
+    <dd>Either <code>label</code> or <code>command</code> attribute
+    must be specified.</dd>
 
     <dt>HTML <code>param</code> element</dt>
 
@@ -2771,6 +3194,16 @@ p {
     <dd><code>head</code> 要素外の <code>style</code> 要素には
     <code>scoped</code> 属性を指定しなければいけません。</dd>
 
+    <dt>HTML <code>input</code> 要素</dt>
+
+    <dd><code>type</code> が <code>button</code> の時は
+    <code>value</code> 属性を指定しなければいけません</dd>
+
+    <dt>HTML <code>embed</code> 要素</dt>
+
+    <dd><code>embed</code> 要素は <code>src</code>
+    属性がなければ意味がありません。</dd>
+
     <dt>HTML <code>object</code> 要素</dt>
 
     <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、
@@ -2784,6 +3217,23 @@ p {
 
     <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を
     <code>lang</code> 属性で指定するのが良いとされています。</dd>
+
+    <dt>HTML <code>input</code> 要素</dt>
+
+    <dd><code>pattern</code> 属性があるときは、その制限内容を
+    <code>title</code> 属性で説明するべきです。</dd>
+
+    <dt>HTML <code>optgroup</code> 要素</dt>
+
+    <dd><code>label</code> 属性は必須です。</dd>
+
+    <dt>HTML <code>textarea</code> 要素</dt>
+
+    <dd><code>pattern</code> 属性があるときは、その制限内容を
+    <code>title</code> 属性で説明するべきです。</dd>
+
+    <dd><code>wrap</code> 属性の値が
+    <code>hard</code> の時は、 <code>cols</code> 属性は必須です。</dd>
 
     <dt>HTML <code>map</code> 要素</dt>
 
@@ -2812,6 +3262,15 @@ p {
     <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、
     <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>
     属性は指定子なくて構いません。)</dd>
+
+    <dt>HTML <code>meter</code> 要素</dt>
+
+    <dd><code>value</code> 属性は必須です。</dd>
+
+    <dt>HTML <code>menuitem</code> 要素</dt>
+
+    <dd><code>label</code> 属性か <code>command</code>
+    属性のどちらかを指定しなければいけません。</dd>
 
     <dt>HTML <code>param</code> 要素</dt>
     
@@ -2875,6 +3334,25 @@ p {
     <p>HTML <code>base</code> 要素は <code>href</code> 属性と
     <code>target</code> 属性の一方または両方が必要です。どちらもない
     <code>base</code> 要素は意味がありません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="attribute missing:keyparams|pqg"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Neither <code>keyparams</code> or
+  <code>pqg</code> attribute is specified</d:message>
+  <d:message xml:lang="ja"><code>keyparams</code> 属性も
+  <code>pqg</code> 属性も指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>If the <code>keytype</code> of the <code>keygen</code> element
+    is <code>dsa</code>, either <code>keyparams</code> or
+    <code>pqg</code> attribute must be specified.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>keygen</code> 要素の <code>keytype</code> が
+    <code>dsa</code> の時は、
+    <code>keyparams</code> と <code>pqg</code>
+    のどちらかの属性だけを指定しなければいけません。</p>
   </d:desc>
 </d:item>
 
@@ -2999,6 +3477,18 @@ p {
     attribute has no effect unless the <code>src</code> attribute is
     specified.</dd>
 
+    <dt>HTML <code>input</code> element</dt>
+
+    <dd>If the <code>type</code> is <code>number</code>, attributes
+    <code>maxlength</code> and <code>size</code> are obsolete.</dd>
+
+    <dt>HTML <code>button</code> element</dt>
+
+    <dd>Unless the <code>type</code> is <code>submit</code>,
+    attributes <code>formaction</code>, <code>formmethod</code>,
+    <code>formenctype</code>, <code>formnovalidate</code>, and
+    <code>formtarget</code> must not be specified.</dd>
+
     <dt>HTML <code>img</code> element</dt>
 
     <dd>The <code>start</code> attribute is not allowed unless the
@@ -3009,6 +3499,43 @@ p {
     <dd>The <code>typemustmatch</code> attribute is not allowed unless
     both <code>data</code> and <code>type</code> attributes are
     specified.</dd>
+
+    <dt>HTML <code>form</code> element</dt>
+
+    <dd>If the <code>lcs</code> or <code>utn</code> attribute is
+    specified, the <code>target</code> attribute is not allowed.</dd>
+
+    <dt>HTML <code>menu</code> element</dt>
+
+    <dd>The <code>label</code> attribute can only be used when the
+    parent is a <code>menu</code> element whose <code>type</code> is
+    <code>popup</code>.</dd>
+
+    <dt>HTML <code>menuitem</code> element</dt>
+
+    <dd>If the <code>command</code> attribute is specified, attributes
+    <code>type</code>, <code>label</code>, <code>icon</code>,
+    <code>disabled</code>, <code>checked</code>, and
+    <code>radiogroup</code> cannot be used.</dd>
+
+    <dd>The <code>checked</code> attribute cannot be used unless the
+    <code>type</code> is <code>checkbox</code> or
+    <code>radio</code>.</dd>
+
+    <dd>The <code>radiogroup</code> attribute cannot be used unless
+    the <code>type</code> is <code>radio</code>.</dd>
+
+    <dt>HTML <code>keygen</code> element</dt>
+
+    <dd>If the <code>keytype</code> is <code>dsa</code>, either the
+    <code>keyparams</code> or <code>pqg</code> attribute (but not
+    both) must be specified.</dd>
+
+    <dd>Otherwise, if the <code>keytype</code> is <code>ec</code>, the
+    <code>pgq</code> attribute is not allowed.</dd>
+
+    <dd>Otherwise, the <code>keyparams</code> and <code>pqg</code>
+    attributes are not allowed.</dd>
 
     </dl>
   </d:desc>
@@ -3080,10 +3607,60 @@ p {
     <dd><code>start</code> 属性は
     <code>dynsrc</code> 属性が指定されていないと使えません。</dd>
 
+    <dt>HTML <code>input</code> 要素</dt>
+
+    <dd><code>type</code> が
+    <code>number</code> の時の <code>maxlength</code> 属性と
+    <code>size</code> 属性は廃止されました。</dd>
+
+    <dt>HTML <code>button</code> 要素</dt>
+
+    <dd><code>type</code> が <code>submit</code> 以外の時は、
+    <code>formaction</code>, <code>formmethod</code>,
+    <code>formenctype</code>, <code>formnovalidate</code>,
+    <code>formtarget</code> 各属性は指定できません。</dd>
+
     <dt>HTML <code>object</code> 要素</dt>
 
     <dd><code>typemustmatch</code> 属性は
     <code>data</code> 属性と <code>type</code> 属性の両方が指定されていないと使えません。</dd>
+
+    <dt>HTML <code>form</code> 要素</dt>
+
+    <dd><code>lcs</code> 属性か <code>utn</code> 属性が指定されているなら、
+    <code>target</code> 属性は使えません。</dd>
+
+    <dt>HTML <code>menu</code> 要素</dt>
+
+    <dd><code>label</code> 属性は親が <code>menu</code> 
+    要素で <code>type</code> が <code>popup</code>
+    の時だけ使えます。</dd>
+
+    <dt>HTML <code>menuitem</code> 要素</dt>
+
+    <dd><code>command</code> 属性が指定されている時は、
+    <code>type</code>, <code>label</code>, <code>icon</code>,
+    <code>disabled</code>, <code>checked</code>,
+    <code>radiogroup</code> 各属性は使えません。</dd>
+
+    <dd><code>checked</code> 属性は
+    <code>type</code> が <code>checkbox</code> か
+    <code>radio</code> でなければ使えません。</dd>
+
+    <dd><code>radiogroup</code> 属性は
+    <code>type</code> が <code>radio</code> でなければ使えません。</dd>
+
+    <dt>HTML <code>keygen</code> 要素</dt>
+
+    <dd><code>keytype</code> が <code>dsa</code> の時は、
+    <code>keyparams</code> と <code>pqg</code>
+    のどちらかの属性だけを指定しなければいけません。</dd>
+
+    <dd><code>keytype</code> が <code>ec</code> の時は、
+    <code>pgq</code> 属性は使えません。</dd>
+
+    <dd>それ以外の時は、 <code>keyparams</code> 属性も <code>pqg</code>
+    属性も使えません。</dd>
 
     </dl>
   </d:desc>
@@ -3221,10 +3798,19 @@ p {
 <d:item name="_charset_ value"
     targets="attr"
     modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>value</code> attribute cannot be 
-  specified to an <code>input</code> element whose <code>type</code>
-  is <code>hidden</code> and <code>name</code> is
-  <code>_charset_</code>.</d:message> 
+  <d:message xml:lang="en">The <code>value</code> attribute is not allowed</d:message>
+  <d:message xml:lang="ja"><code>value</code> 属性は使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>If the <code>input</code> element whose <code>type</code>
+    is <code>hidden</code> has the <code>name</code> attribute
+    with the value <code>_charset_</code>, the <code>value</code>
+    attribute cannot be specified.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>input</code> 要素の <code>type</code> が <code>hidden</code>
+    で <code>name</code> 属性の値が <code>_charset_</code>
+    の場合、 <code>value</code> 属性は使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="duplicate anchor name"
@@ -3796,9 +4382,15 @@ p {
 </d:item>
 
 <d:item name="empty form name"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Form name is empty.</d:message>
-  <d:message xml:lang="ja">フォーム名が空です。</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The form name is empty</d:message>
+  <d:message xml:lang="ja">フォーム名が空文字列です</d:message>
+  <d:desc xml:lang="en">
+    <p>The name of the form cannot be the empty string.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>フォームの名前は空文字列にはできません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="enumerated:invalid"
@@ -3957,9 +4549,16 @@ p {
 </d:item>
 
 <d:item name="duplicate form name"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Form name <code><var>{value}</var></code> is already
-  used for another element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The form name is assigned with another element</d:message>
+  <d:message xml:lang="ja">このフォーム名は他の要素に割り当てられています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>name</code> attribute value of the <code>form</code>
+    element must be unique.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>form</code> 要素の <code>name</code> 属性の値は他の要素の名前と異なっていなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="duplicate http-equiv"
@@ -4060,10 +4659,20 @@ p {
 </d:item>
 
 <d:item name="empty anchor image alt"
-    modules="Whatpm::ContentChecker::HTML">
+    modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>alt</code> attribute value is 
-  empty.</d:message>
-  <!-- input type=image -->
+  empty</d:message>
+  <d:message xml:lang="ja"><code>alt</code> 属性値が空文字列です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>alt</code> attribute of the <code>input</code>
+    element whose <code>type</code> is <code>image</code> must have a
+    non-empty value.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>input</code> 要素の <code>type</code> 属性が
+    <code>image</code> の時、 <code>alt</code>
+    属性は空文字列以外の値でなければなりません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="empty area alt"
@@ -4121,6 +4730,10 @@ p {
 
     <dd>The map name cannot be empty.</dd>
 
+    <dt>The <code>dirname</code> attribute</dt>
+
+    <dd>The field name cannot be empty.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -4137,6 +4750,10 @@ p {
     <dt><code>map</code> 要素 <code>name</code> 属性</dt>
 
     <dd>画像マップ名は空文字列にはできません。</dd>
+
+    <dt><code>dirname</code> 属性</dt>
+
+    <dd>欄名は空文字列にはできません。</dd>
 
     </dl>
   </d:desc>
@@ -4645,6 +5262,22 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="max lt min"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>max</code> value is less than
+  the <code>min</code> value</d:message>
+  <d:message xml:lang="ja"><code>max</code> の値が <code>min</code>
+  の値よりも小さいです</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of the <code>max</code> attribute must be greater
+    than or equal to the value of the <code>min</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>max</code> 属性の値は <code>min</code>
+    属性の値以上でなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="memoryname:syntax error"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>memoryname</code> value must contain
@@ -4700,6 +5333,62 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="meter:low > high"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>low</code> value is
+  greater than the <code>high</code> value (must be: <code><var>{value}</var></code>)</d:message>
+  <d:message xml:lang="ja"><code>low</code> の値は
+  <code>high</code> の値より大きくなっています (<code><var>{value}</var></code>
+  でなければいけません)</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>high</code> value of the <code>meter</code> element
+    must be greater than or equal to the <code>low</code> value of the
+    element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>meter</code> 要素の <code>high</code> 属性値は
+    <code>low</code> 属性値以上でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="meter:min > max"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>min</code> value is
+  greater than the <code>max</code> value (must be: <code><var>{value}</var></code>)</d:message>
+  <d:message xml:lang="ja"><code>min</code> の値は
+  <code>max</code> の値より大きくなっています (<code><var>{value}</var></code>
+  でなければいけません)</d:message>
+  <d:desc xml:lang="en">
+    <p>The maximum value (<code>max</code> attribute value, if any, or
+    1.0) of the <code>meter</code> element must be greater than or equal
+    to the minimum value (<code>min</code> attribute value, if any, or
+    0.0) of the element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>meter</code> 要素の最大値 (<code>max</code> 属性値か、
+    なければ 1.0) は最小値 (<code>min</code> 属性値かなければ 0.0)
+    以上でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="meter:out of range"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code><var>{text}</var></code> value
+  is out of range (must be: <code><var>{value}</var></code>)</d:message>
+  <d:message xml:lang="ja"><code><var>{text}</var></code> が値域外です
+  (<code><var>{value}</var></code> でなければいけません)</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>value</code>, <code>low</code>, <code>high</code>,
+    and <code>optimum</code> values of the <code>meter</code> element
+    must be in the range of minimum and maximum values
+    (inclusive).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>meter</code> 要素の <code>value</code>, <code>low</code>, <code>high</code>,
+    <code>optimum</code> の値は、最小値以上最大値以下でなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="mismatched charset name"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The specified character encoding is
@@ -4743,6 +5432,18 @@ p {
     <p>次のいずれかの方法で表した大きさの値でなければいけません。
     (1) 非負整数 (2) 非負整数のパーセント値 (3) 非負整数の後に文字
     <code>*</code> (4) 文字 <code>*</code></p>
+  </d:desc>
+</d:item>
+
+<d:item name="newline in value"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value has a newline</d:message>
+  <d:message xml:lang="ja">値が改行を含んでいます</d:message>
+  <d:desc xml:lang="en">
+    <p>The value cannot contain any newline.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>値に改行を含むことはできません。</p>
   </d:desc>
 </d:item>
 
@@ -4799,6 +5500,21 @@ p {
   found.</d:message>
 </d:item>
 
+<d:item name="no referenced header cell"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is no <code>th</code> element with the specified ID</d:message>
+  <d:message xml:lang="ja">指定された ID の <code>th</code>
+  要素が見つかりません</d:message>
+  <d:desc xml:lang="en">
+    <p>The ID in the <code>headers</code> attribute must be the ID of
+    the <code>th</code> element in the same table.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>headers</code> 属性の ID は同じ表の中の <code>th</code>
+    要素の ID でなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="no referenced map"
     modules="Whatpm::ContentChecker">
   <d:message xml:lang="en">The element referneced by the <code>usemap</code>
@@ -4817,6 +5533,22 @@ p {
     modules="Whatpm::ContentChecker">
   <d:message xml:lang="en">There is no table header cell whose <code>id</code>
   is <code><var>{value}</var></code> in the same table.</d:message>
+</d:item>
+
+<d:item name="not th"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The referenced element is not a
+  <code>th</code> element</d:message>
+  <d:message xml:lang="ja">参照されているのは <code>th</code>
+  要素ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The element referenced by the ID in the <code>headers</code>
+    attribute must be a <code>th</code> element in the same table.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>headers</code> 属性の ID で参照されている要素は同じ表の
+    <code>th</code> 要素でなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="oltype:invalid"
@@ -4845,6 +5577,24 @@ p {
   </d:desc>
   <d:desc xml:lang="ja">
     <p>この精度文字列は構文的に正しくありません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="progress value out of range"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>value</code> is greater than
+  the <code>max</code> (must be: <code><var>{value}</var></code>)</d:message>
+  <d:message xml:lang="ja"><code>value</code> が <code>max</code>
+  より大きくなっています (<code><var>{value}</var></code>
+  でなければいけません)</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>value</code> attribute value of the
+    <code>progress</code> element must be less than or equal to the
+    value of the <code>max</code> attribute value.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>progress</code> 要素の <code>value</code> 
+    属性値は <code>max</code> 属性値以下でなければいけません。</p>
   </d:desc>
 </d:item>
 
@@ -4928,6 +5678,19 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="scolor:syntax error"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not a color number</d:message>
+  <d:message xml:lang="ja">この値は色番号ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value must be a hexadecimal color notation with six
+    digits.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>値は6桁の16進数記法の色でなければなりません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="script language"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>language</code> attribute is
@@ -4978,6 +5741,20 @@ p {
   <d:desc xml:lang="ja">
     <p><code>language</code> 属性値は <code>javascript</code>
     でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="self targeted"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>headers</code> attribute cannot
+  target the cell itself</d:message>
+  <d:message xml:lang="ja"><code>headers</code> 属性はそのこま自体を参照できません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>headers</code> attribute cannot contain the ID of the
+    cell, directly or indirectly.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>headers</code> 属性がそのこまの ID を直接または間接に含むことはできません。</p>
   </d:desc>
 </d:item>
 
@@ -5047,10 +5824,55 @@ p {
   attribute is not a template.</d:message>
 </d:item>
 
+<d:item name="value gt max"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>value</code> value is greater than
+  the <code>max</code> value</d:message>
+  <d:message xml:lang="ja"><code>value</code> の値が <code>max</code>
+  の値よりも大きいです</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of the <code>value</code> attribute must be less
+    than or equal to the value of the <code>max</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>value</code> 属性の値は <code>max</code>
+    属性の値以下でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="value lt min"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>value</code> value is less than
+  the <code>min</code> value</d:message>
+  <d:message xml:lang="ja"><code>value</code> の値が <code>min</code>
+  の値よりも小さいです</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of the <code>value</code> attribute must be greater
+    than or equal to the value of the <code>min</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>value</code> 属性の値は <code>min</code>
+    属性の値以上でなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="value too long"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">The <code>value</code> attribute value is longer
-  than the value of the <code>maxlength</code> attribute.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The default value is longer than the
+  <code>maxlength</code> value</d:message>
+  <d:message xml:lang="ja">既定値が
+  <code>maxlength</code> の値よりも長いです</d:message>
+  <d:desc xml:lang="en">
+    <p>The length of the default value (i.e. the <code>value</code>
+    attribute value of the <code>input</code> element or the element
+    content of the <code>textarea</code> element) cannot be greater
+    than the value of the <code>maxlength</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>既定値 (<code>input</code> 要素の <code>value</code> 属性値や
+    <code>textarea</code> 要素の内容) の長さが <code>maxlength</code>
+    属性値よりも大きくなってはいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="window name:empty"
@@ -5362,6 +6184,20 @@ p {
     modules="Whatpm::IMTChecker">
   <d:message xml:lang="en">An Internet Media Type whose intended usage
   is limited use, <code><var>{value}</var></code> is used.</d:message>
+</d:item>
+
+<d:item name="IMT:no param allowed"
+    modules="Web::HTML::Validator">
+  <d:desc xml:lang="en">A MIME type parameter is specified</d:desc>
+  <d:desc xml:lang="ja">MIME 型引数が使われています</d:desc>
+  <d:message xml:lang="en">
+    <p>The <code>accept</code> attribute of the <code>input</code>
+    element cannot contain any MIME type parameter.</p>
+  </d:message>
+  <d:message xml:lang="ja">
+    <p><code>input</code> 要素の <code>accept</code>
+    属性は MIME 型引数を含めません。</p>
+  </d:message>
 </d:item>
 
 <d:item name="IMT:not styling lang"
