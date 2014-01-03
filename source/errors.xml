@@ -705,6 +705,38 @@
   </d:desc>
 </d:item>
 
+<d:item name="charref="
+    modules="Web::HTML::Tokenizer">
+  <d:message xml:lang="en">There is a <code>&amp;<var>...</var>=</code>
+  sequence in an attribute value</d:message>
+  <d:message xml:lang="ja">文字列 <code>&amp;<var>...</var>=</code>
+  が属性値にあります</d:message>
+  <d:desc xml:lang="en">
+    <p>There is a substring <code>&amp;<var>...</var>=</code> in the
+    attribute value, which is not allowed at the moment.</p>
+
+    <p>This substring is interpreted as a <code>&amp;</code> character
+    followed by <var>...</var>, followed by a <code>=</code>
+    character.  However, it could be misinterpreted as a character
+    reference followed by a <code>=</code> character by some legacy
+    browser.  Therefore, the <code>&amp;</code> character should be
+    escaped as <code>&amp;amp;</code>.  If it is intended for a
+    character reference, the trailing <code>;</code> character must be
+    inserted before the <code>=</code> character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値の一部に <code>&amp;<var>...</var>=</code>
+    とありますが、これは現在認められていません。</p>
+
+    <p>この文字列は文字 <code>&amp;</code>、
+    <var>...</var>、文字 <code>=</code> と解釈されます。しかし一部の古いブラウザーは文字参照と文字
+    <code>=</code> と解釈してしまいます。ですから文字 <code>&amp;</code>
+    はエスケープして <code>&amp;amp;</code> とするべきです。あるいは文字参照を意図しているのであれば、
+    <code>=</code> の前に文字参照を閉じる <code>;</code>
+    を書かなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="dash in comment"
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">There is a <code>--</code> sequence
@@ -1289,6 +1321,40 @@ p {
   after the <code>html</code> is closed.</d:message>
 </d:item>
 
+<d:item name="HTML start tag in foreign"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The HTML start tag
+  <code>&lt;<var>{text}</var>></code> can't be used in SVG or MathML</d:message>
+  <d:message xml:lang="ja">HTML 開始タグ <code>&lt;<var>{text}</var>></code>
+  は SVG や MathML の中では使えません。</d:message>
+  <d:desc xml:lang="en">
+    <p>The start tag is usually used to start an HTML element (but is
+    interpreted as SVG or MathML element in <code>innerHTML</code> of
+    an SVG or MathML element).  It can't be used in the SVG or MathML
+    element.</p>
+
+    <p>A start tag with following tag names can only be used as an
+    HTML start tag: "b", "big", "blockquote", "body", "br", "center",
+    "code", "dd", "div", "dl", "dt", "em", "embed", "h1", "h2", "h3",
+    "h4", "h5", "h6", "head", "hr", "i", "img", "li", "listing",
+    "menu", "meta", "nobr", "ol", "p", "pre", "ruby", "s", "small",
+    "span", "strong", "strike", "sub", "sup", "table", "tt", "u",
+    "ul", and "var".</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この開始タグは通常 HTML 要素を開始するものとして使われます
+    (が SVG/MathML 要素の <code>innerHTML</code> でだけ、 SVG/MathML
+    要素と解釈されます)。これを SVG/MathML 要素として使ってはいけません。</p>
+
+    <p>次のタグ名の開始タグは、 HTML 要素の開始タグとしてだけ使えます:
+    "b", "big", "blockquote", "body", "br", "center", "code", "dd",
+    "div", "dl", "dt", "em", "embed", "h1", "h2", "h3", "h4", "h5",
+    "h6", "head", "hr", "i", "img", "li", "listing", "menu", "meta",
+    "nobr", "ol", "p", "pre", "ruby", "s", "small", "span", "strong",
+    "strike", "sub", "sup", "table", "tt", "u", "ul", "var"</p>
+  </d:desc>
+</d:item>
+
 <d:item name="image"
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">The <code>image</code> element is
@@ -1335,6 +1401,59 @@ p {
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">Element is not closed before the end of
   file.</d:message>
+</d:item>
+
+<d:item name="in cell"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The <code>&lt;<var>{value}</var>></code> tag
+  is used in table cell</d:message>
+  <d:message xml:lang="ja">タグ <code>&lt;<var>{value}</var>></code>
+  が表のこま内で使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>A start tag that is not allowed in table cells (<code>td</code>
+    or <code>th</code> elements) is used.</p>
+
+    <p>In <code>innerHTML</code> of a <code>td</code> or
+    <code>th</code> element, following start tags are not allowed:
+    <code>&lt;caption></code>, <code>&lt;col></code>,
+    <code>&lt;colgroup></code>, <code>&lt;tbody></code>,
+    <code>&lt;td></code>, <code>&lt;tfoot></code>,
+    <code>&lt;th></code>, <code>&lt;thead></code>, and
+    <code>&lt;tr></code>.</p>
+  </d:desc>
+  <d:desc xml:lang="en">
+    <p>表のこま (<code>td</code> 要素や
+    <code>th</code> 要素) 内では使えない開始タグがありました。</p>
+
+    <p><code>td</code> や
+    <code>th</code> の <code>innerHTML</code> では、次の開始タグは使えません:
+    <code>&lt;caption></code>, <code>&lt;col></code>,
+    <code>&lt;colgroup></code>, <code>&lt;tbody></code>,
+    <code>&lt;td></code>, <code>&lt;tfoot></code>,
+    <code>&lt;th></code>, <code>&lt;thead></code>,
+    <code>&lt;tr></code>。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="in colgroup"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">An elements or non-space character other
+  than a <code>col</code> element is used in the <code>colgroup</code>
+  element</d:message>
+  <d:message xml:lang="ja"><code>colgroup</code> 要素内に <code>col</code>
+  以外の要素や空白以外の文字があります</d:message>
+  <d:desc xml:lang="en">
+    <p>No element other than a <code>col</code> or
+    <code>template</code> element or non-space character is not
+    allowed in the <code>colgroup</code> element or in the
+    <code>template</code> element containing <code>col</code>
+    elements.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>col</code> と <code>template</code> 以外の要素や空白以外の文字は、
+    <code>colgroup</code> 要素や、 <code>col</code> 要素を含んでいる
+    <code>template</code> 要素の中では使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="in form:form"
@@ -1398,29 +1517,85 @@ p {
 </d:item>
 
 <d:item name="in noscript"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">The <code><var>{text}</var></code> element is not
-  allowed in a <code>noscript</code> element in the
-  <code>head</code> element.</d:message>
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">An unexpected start tag
+  <code>&lt;<var>{text}</var>></code> is used in the <code>noscript</code>
+  element</d:message>
+  <d:message xml:lang="ja">開始タグ <code>&lt;<var>{text}</var>></code>
+  が <code>noscript</code> 要素内にありました</d:message>
+  <d:desc xml:lang="en">
+    <p>The start tag is not allowed in the <code>noscript</code>
+    element.</p><!-- The |noscript| element is closed here. -->
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この開始タグは <code>noscript</code> 要素内では使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="in noscript:/"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">An end tag <code>&lt;/<var>{text}</var>></code>
-  appers before the <code>noscript</code> element is closed.</d:message>
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">An unexpected end tag
+  <code>&lt;/<var>{text}</var>></code> is used in the <code>noscript</code>
+  element</d:message>
+  <d:message xml:lang="ja">終了タグ <code>&lt;/<var>{text}</var>></code>
+  が <code>noscript</code> 要素内にありました</d:message>
+  <d:desc xml:lang="en">
+    <p>The end tag is not allowed in the <code>noscript</code>
+    element.</p><!-- The |noscript| element is closed here. -->
+
+    <dl class="switch">
+
+    <dt>The end tag <code>&lt;/br></code></dt>
+
+    <dd>The <code>br</code> element cannot be used in the
+    <code>noscript</code> element in the <code>head</code>
+    element.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この終了タグは <code>noscript</code> 要素内では使えません。</p>
+
+    <dl class="switch">
+
+    <dt>終了タグ <code>&lt;/br></code></dt>
+
+    <dd><code>br</code> 要素は <code>head</code> 要素内の
+    <code>noscript</code> 要素では使えません。</dd>
+
+    </dl>
+  </d:desc>
 </d:item>
 
 <d:item name="in noscript:#eof"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">A <code>noscript</code> element is not closed
-  before the end of file.</d:message>
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The tag <code>&lt;/noscript></code>
+  not found before the end-of-file</d:message>
+  <d:message xml:lang="ja">末端までに <code>&lt;/noscript></code>
+  がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>noscript</code> element must be closed explicitly by
+    an end tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>noscript</code> 要素は終了タグで明示的に閉じなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="in noscript:#text"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">Non‐white‐space characters are not allowed
-  in a <code>noscript</code> element in the <code>head</code>
-  element.</d:message>
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">A non-space character is found in the
+  <code>noscript</code> element</d:message>
+  <d:message xml:lang="ja"><code>noscript</code> 要素内に空白以外の文字がありました</d:message>
+  <d:desc xml:lang="en">
+    <p>Non-space characters cannot be used in the
+    <code>noscript</code> element in the <code>head</code>
+    element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>head</code> 要素内の <code>noscript</code>
+    要素に空白以外の文字は使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="in PCDATA:#eof"
@@ -1481,10 +1656,81 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="in table:form"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The tag <code>&lt;form></code> is used
+  in a table</d:message>
+  <d:message xml:lang="ja">タグ <code>&lt;form></code> が表内で使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>form</code> element cannot be used <em>directly</em>
+    within a <code>table</code>, <code>tbody</code>,
+    <code>thead</code>, <code>tfoot</code>, or <code>tr</code>
+    element.  The start tag is not ignored but it has complex
+    interactions with form controls and any other <code>form</code>
+    element.</p>
+
+    <p>If you want to associate form controls in table cells with the
+    <code>form</code> element, move the <code>form</code> outside of
+    the table and use the <code>form</code> attribute on form controls
+    if necessary.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>form</code> 要素は <code>table</code>, <code>tbody</code>,
+    <code>thead</code>, <code>tfoot</code>, <code>tr</code>
+    各要素の中で<em>直接</em>使うことはできません。
+    この開始タグは無視されませんが、フォーム制御子や他の
+    <code>form</code> 要素と複雑に相互作用することがあります。</p>
+
+    <p>表のこま内のフォーム制御子を <code>form</code>
+    要素と関連付けたい時は、 <code>form</code> を表の外側に移動して、
+    必要ならフォーム制御子の <code>form</code>
+    属性を使ってください。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="in table:form ignored"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The tag <code>&lt;form></code> is used
+  in a table</d:message>
+  <d:message xml:lang="ja">タグ <code>&lt;form></code> が表内で使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>form</code> element cannot be used <em>directly</em>
+    within a <code>table</code>, <code>tbody</code>,
+    <code>thead</code>, <code>tfoot</code>, or <code>tr</code>
+    element.  The start tag is ignored.</p>
+
+    <p>If you want to associate form controls in table cells with the
+    <code>form</code> element, move the <code>form</code> outside of
+    the table and use the <code>form</code> attribute on form controls
+    if necessary.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>form</code> 要素は <code>table</code>, <code>tbody</code>,
+    <code>thead</code>, <code>tfoot</code>, <code>tr</code>
+    各要素の中で<em>直接</em>使うことはできません。
+    この開始タグは無視されます。</p>
+
+    <p>表のこま内のフォーム制御子を <code>form</code>
+    要素と関連付けたい時は、 <code>form</code> を表の外側に移動して、
+    必要ならフォーム制御子の <code>form</code>
+    属性を使ってください。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="isindex"
-    modules="Whatpm::HTML::Parser">
+    modules="Web::HTML::Parser">
   <d:message xml:lang="en">The <code>isindex</code> element is
-  obsolete.</d:message>
+  used</d:message>
+  <d:message xml:lang="ja"><code>isindex</code> 要素が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>isindex</code> element is obsolete and it cannot be
+    used in the document.  The tag <code>&lt;isindex></code> is
+    expanded to a <code>form</code> element and its children.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>isindex</code> 要素は廃止されました。この要素は使えません。
+    <code>&lt;isindex></code> タグは <code>form</code> 要素と子孫に展開されます。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="missing start tag:tr"
@@ -1519,6 +1765,22 @@ p {
     <p>Only white space characters and comments are allowed
     before the <code>DOCTYPE</code>.  XML declaration is <em>not</em>
     allowed in HTML document.</p>
+  </d:desc>
+</d:item>
+
+<d:item name="no end tag at EOF"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The tag <code>&lt;<var>/{text}</var>></code>
+  not found before the end-of-file</d:message>
+  <d:message xml:lang="ja">末端までに <code>&lt;<var>/{text}</var>></code>
+  がありません</d:message>
+  <d:desc xml:lang="ja">
+    <p>Most of elements must be explicitly closed by its end tag, but
+    there is no such a tag before the end-of-file.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>ほとんどの要素は終了タグで明示的に閉じなければいけませんが、
+    ファイルの末尾までに終了タグがありませんでした。</p>
   </d:desc>
 </d:item>
 
@@ -1605,6 +1867,38 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="not closed before ancestor end tag"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The <code><var>{text}</var></code> element
+  is not closed before the <code>&lt;/<var>{value}</var>></code>
+  tag</d:message>
+  <d:message xml:lang="ja">この終了タグより前で
+  <code><var>{text}</var></code> 要素が閉じられていません</d:message>
+  <d:desc xml:lang="en">
+    <p>Most of elements must be explicitly closed by its end tag, but
+    there is no such a tag.  There <i>is</i> an end tag for ancestor
+    element, or one of <code>h<var>n</var></code> elements which is
+    different from the currently opened element.  The end tag closes
+    all descendant or mismatched <code>h<var>n</var></code>
+    element.</p>
+
+    <p>Ensure all elements whose end tag can't be omitted have end
+    tags, their start and end tag names are matching, and they are not
+    misnested.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>ほとんどの要素は終了タグで明示的に閉じなければいけませんが、
+    終了タグがありませんでした。しかし祖先の要素の終了タグか、
+    現在開いている要素とは違う <code>h<var>n</var></code> 要素の終了タグはありました。
+    それによって子孫や間違った <code>h<var>n</var></code> 
+    要素が閉じられます。</p>
+
+    <p>終了タグを省略できない要素がすべて終了タグを持つこと、
+    開始タグと終了タグのタグ名が一致していること、
+    タグの入れ子関係が正しいことを確認してください。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="not first start tag"
     class="parse-error"
     modules="Whatpm::HTML::Parser">
@@ -1678,6 +1972,39 @@ p {
       <dd>開始タグ <code>&lt;rt></code> は
       <code>ruby</code> 要素の中でだけ使えます。</dd>
     </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="stray end tag"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The tag <code>&lt;/<var>{value}</var>></code>
+  has no corresponding start tag</d:message>
+  <d:message xml:lang="ja">終了タグ <code>&lt;/<var>{value}</var>></code>
+  に対応する開始タグがありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The end tag has no corresponding start tag.  There must be a
+    start tag with the same tag name before the end tag.  The end tag
+    is ignored.</p>
+
+    <p>Note that void elements have no end tag, that is, following
+    elements cannot have end tags: <code>area</code>,
+    <code>base</code>, <code>br</code>, <code>col</code>,
+    <code>embed</code>, <code>hr</code>, <code>img</code>,
+    <code>input</code>, <code>keygen</code>, <code>link</code>,
+    <code>menuitem</code>, <code>meta</code>, <code>param</code>,
+    <code>source</code>, <code>track</code>, and <code>wbr</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この終了タグには対応する開始タグがありません。終了タグより前に同じタグ名の開始タグが必要です。
+    終了タグは無視されます。</p>
+
+    <p>なお void 要素は終了タグを持ちませんから、次の要素では終了タグを使えません:
+    <code>area</code>,
+    <code>base</code>, <code>br</code>, <code>col</code>,
+    <code>embed</code>, <code>hr</code>, <code>img</code>,
+    <code>input</code>, <code>keygen</code>, <code>link</code>,
+    <code>menuitem</code>, <code>meta</code>, <code>param</code>,
+    <code>source</code>, <code>track</code>, <code>wbr</code>。</p>
   </d:desc>
 </d:item>
 
@@ -2909,6 +3236,12 @@ p {
     <dd>These elements are obsolete.  Use the <code>iframe</code>
     element instead.</dd>
 
+    <dt><code>g:plusone</code> element</dt>
+
+    <dd>The <code>g:plusone</code> element is non-standard.  To embed
+    the Google +1 Button, use the <code>div</code> element with
+    <code>class="g-plusone"</code>.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -2966,6 +3299,12 @@ p {
 
     <dd>これらの要素は廃止されました。 <code>iframe</code>
     要素をお使いください。</dd>
+
+    <dt><code>g:plusone</code> 要素</dt>
+
+    <dd><code>g:plusone</code> 要素は非標準です。 Google +1
+    ボタンを埋め込むには <code>div</code> 要素を
+    <code>class="g-plusone"</code> つきで使ってください。</dd>
 
     </dl>
   </d:desc>
@@ -3048,7 +3387,7 @@ p {
 <d:item name="no significant content"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The element has no actual content</d:message>
-  <d:message xml:lang="ja">この要素の中身はほとんど空です</d:message>
+  <d:message xml:lang="ja">この要素の内容はほとんど空です</d:message>
   <d:desc xml:lang="en">
     <p>The element does not contain any content that can be considered
     as significant.</p>
@@ -3342,6 +3681,15 @@ p {
     <dd>If the <code>type</code> is <code>button</code>, the
     <code>value</code> attribute must be specified.</dd>
 
+    <dd>If the <code>pattern</code> attribute is specified, the
+    <code>title</code> attribute should also be specified to describe
+    the restriction.</dd>
+
+    <dt>HTML <code>button</code> element</dt>
+
+    <dd>If the <code>type</code> is <code>menu</code>, the
+    <code>menu</code> attribute must be specified.</dd>
+
     <dt>HTML <code>embed</code> element</dt>
 
     <dd>An <code>embed</code> element with no <code>src</code>
@@ -3362,12 +3710,6 @@ p {
     <dd>Although it is not required, it is encouraged to specify the
     language of the document to the root <code>html</code> element
     using the <code>lang</code> attribute.</dd>
-
-    <dt>HTML <code>input</code> element</dt>
-
-    <dd>If the <code>pattern</code> attribute is specified, the
-    <code>title</code> attribute should also be specified to describe
-    the restriction.</dd>
 
     <dt>HTML <code>optgroup</code> element</dt>
 
@@ -3478,7 +3820,15 @@ p {
     <dt>HTML <code>input</code> 要素</dt>
 
     <dd><code>type</code> が <code>button</code> の時は
-    <code>value</code> 属性を指定しなければいけません</dd>
+    <code>value</code> 属性を指定しなければいけません。</dd>
+
+    <dd><code>pattern</code> 属性があるときは、その制限内容を
+    <code>title</code> 属性で説明するべきです。</dd>
+
+    <dt>HTML <code>button</code> 要素</dt>
+
+    <dd><code>type</code> が <code>menu</code> の時は
+    <code>menu</code> 属性を指定しなければいけません。</dd>
 
     <dt>HTML <code>embed</code> 要素</dt>
 
@@ -3498,11 +3848,6 @@ p {
 
     <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を
     <code>lang</code> 属性で指定するのが良いとされています。</dd>
-
-    <dt>HTML <code>input</code> 要素</dt>
-
-    <dd><code>pattern</code> 属性があるときは、その制限内容を
-    <code>title</code> 属性で説明するべきです。</dd>
 
     <dt>HTML <code>optgroup</code> 要素</dt>
 
@@ -3774,7 +4119,10 @@ p {
     <dd>Unless the <code>type</code> is <code>submit</code>,
     attributes <code>formaction</code>, <code>formmethod</code>,
     <code>formenctype</code>, <code>formnovalidate</code>, and
-    <code>formtarget</code> must not be specified.</dd>
+    <code>formtarget</code> are not allowed.</dd>
+
+    <dd>Unless the <code>type</code> is <code>menu</code>, the
+    <code>menu</code> attribute is not allowed.</dd>
 
     <dt>HTML <code>img</code> element</dt>
 
@@ -3906,6 +4254,9 @@ p {
     <code>formaction</code>, <code>formmethod</code>,
     <code>formenctype</code>, <code>formnovalidate</code>,
     <code>formtarget</code> 各属性は指定できません。</dd>
+
+    <dd><code>type</code> が <code>menu</code> 以外の時は、
+    <code>menu</code> 属性は指定できません。</dd>
 
     <dt>HTML <code>object</code> 要素</dt>
 
@@ -5309,6 +5660,7 @@ p {
 </d:item>
 
 <d:item name="img border:0"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>border</code> attribute is obsolete</d:message>
   <d:message xml:lang="ja"><code>border</code> 属性は廃止されました</d:message>
@@ -5322,6 +5674,7 @@ p {
 </d:item>
 
 <d:item name="img border:nninteger"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>border</code> attribute is obsolete</d:message>
   <d:message xml:lang="ja"><code>border</code> 属性は廃止されました</d:message>
@@ -5944,13 +6297,14 @@ p {
   <d:message xml:lang="ja">参照されている要素が見つからないか、
   <code>menu</code> 要素ではありません</d:message>
   <d:desc xml:lang="en">
-    <p>The value of the <code>contextmenu</code> attribute must be the
-    <code>id</code> attribute value of a <code>menu</code>
-    element.</p>
+    <p>The value of the <code>contextmenu</code> or <code>menu</code>
+    attribute must be the <code>id</code> attribute value of a
+    <code>menu</code> element.</p>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p><code>contextmenu</code> 属性の値は <code>menu</code> 要素の
-    <code>id</code> 属性の値でなければいけません。</p>
+    <p><code>contextmenu</code> 属性または <code>menu</code> 属性の値は
+    <code>menu</code> 要素の <code>id</code>
+    属性の値でなければいけません。</p>
   </d:desc>
 </d:item>
 
@@ -6420,10 +6774,21 @@ p {
 </d:item>
 
 <d:item name="colspan creates column with no anchored cell"
-    modules="Whatpm::HTML::Table">
-  <d:message xml:lang="en">This <code>colspan</code> attribute
-  results in creating a table column that does not contain
-  any cell anchored to it.</d:message>
+    modules="Web::HTML::Table">
+  <d:message xml:lang="en">The element creates an empty column</d:message>
+  <d:message xml:lang="ja">この要素が空の列を作りました</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>colgroup</code> or <code>col</code> element, or its
+    <code>colspan</code> attribute, creates a table column, but the
+    column does not contain any cell (a <code>td</code> or
+    <code>th</code> element) anchored.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>colgroup</code> 要素や <code>col</code> 要素、あるいはその
+    <code>colspan</code> 属性が表の列を作りましたが、
+    どのこま (<code>td</code> 要素か <code>th</code> 要素)
+    もこの列には直接属していません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="column with no anchored cell"
@@ -10211,7 +10576,7 @@ Regexp::Parser::JavaScript's extension. -->
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Validation of event handler attributes
   is not supported</d:message>
-  <d:message xml:lang="ja">イベントハンドラー属性の妥当性検証は未対応です</d:message>
+  <d:message xml:lang="ja">イベントハンドラー属性の妥当性検証には対応していません</d:message>
   <d:desc xml:lang="en">
     <p>Conformance checking of the event handler content attributes is
     not (yet) supported.</p>
@@ -10221,56 +10586,6 @@ Regexp::Parser::JavaScript's extension. -->
   <d:desc xml:lang="ja">
     <p>イベントハンドラー内容属性の適合性検査には (まだ)
     対応していません。</p>
-
-    <p>適合か不適合かは<em>不明</em>です。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="media query"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Conformance checking for media query
-  is not supported; <em>it might or might not be conforming.</em></d:message>
-</d:item>
-
-<d:item name="addr-spec not supported"
-    modules="Whatpm::ContentChecker::Atom">
-  <d:message xml:lang="en">Conformance checking for an <code>addr-spec</code>
-  is not supported; <em>it might or might not be conforming.</em></d:message>
-</d:item>
-
-<d:item name="XML script lang"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">Validation of scripting language
-  <code><var>{text}</var></code> is not supported</d:message>
-  <d:message xml:lang="ja">スクリプト言語 <code><var>{text}</var></code>
-  の妥当性検証には対応していません</d:message>
-  <d:desc xml:lang="en">
-    <p>The conformance checker does not support the scripting language
-    in use.</p>
-
-    <p>Whether it is conforming or not is <em>unknown</em>.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>適合性検査器は使用されているスクリプト言語に対応していません。</p>
-
-    <p>適合か不適合かは<em>不明</em>です。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="XML style lang"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">Validation of styling language
-  <code><var>{text}</var></code> is not supported</d:message>
-  <d:message xml:lang="ja">スタイル言語 <code><var>{text}</var></code>
-  の妥当性検証には対応していません</d:message>
-  <d:desc xml:lang="en">
-    <p>The conformance checker does not support the styling language
-    in use.</p>
-
-    <p>Whether it is conforming or not is <em>unknown</em>.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>適合性検査器は使用されているスタイル言語に対応していません。</p>
 
     <p>適合か不適合かは<em>不明</em>です。</p>
   </d:desc>
