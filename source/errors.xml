@@ -6839,6 +6839,32 @@ p {
 
 </section>
 
+<section id="microdata-errors">
+<h2>Microdata error</h2>
+
+<d:item name="microdata:referenced by itemref"
+    modules="Web::HTML::Microdata">
+  <d:message xml:lang="en">The element is referenced twice for
+  a microdata item</d:message>
+  <d:message xml:lang="ja">この要素は特定のマイクロデータの項目に複数回使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>An element can be part of a microdata item only once.  The
+    element is a descendant of both the element with an
+    <code>itemscope</code> attribute and an element pointed by the
+    <code>itemref</code> attribute, or an element pointed by the
+    <code>itemref</code> attribute is a descendant of the element
+    pointed by the <code>itemref</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>一つの要素は一度だけマイクロデータの項目を構成することができます。
+    この要素は <code>itemscope</code> 属性のある要素の子孫かつ
+    <code>itemref</code> 属性により参照された要素の子孫であるか、
+    または <code>itemref</code> 属性が参照する要素が複数あり、そのうちの1つが別の要素の子孫となっています。</p>
+  </d:desc>
+</d:item>
+
+</section>
+
 <section id="element-errors">
 <h2>Element usage errors</h2>
 

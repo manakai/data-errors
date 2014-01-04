@@ -3012,6 +3012,16 @@
          "ja" : "<code><var>{text}</var></code> が値域外です\n  (<code><var>{value}</var></code> でなければいけません)"
       }
    },
+   "microdata:referenced by itemref" : {
+      "desc" : {
+         "en" : "\n    <p>An element can be part of a microdata item only once.  The\n    element is a descendant of both the element with an\n    <code>itemscope</code> attribute and an element pointed by the\n    <code>itemref</code> attribute, or an element pointed by the\n    <code>itemref</code> attribute is a descendant of the element\n    pointed by the <code>itemref</code> attribute.</p>\n  ",
+         "ja" : "\n    <p>一つの要素は一度だけマイクロデータの項目を構成することができます。\n    この要素は <code>itemscope</code> 属性のある要素の子孫かつ\n    <code>itemref</code> 属性により参照された要素の子孫であるか、\n    または <code>itemref</code> 属性が参照する要素が複数あり、そのうちの1つが別の要素の子孫となっています。</p>\n  "
+      },
+      "message" : {
+         "en" : "The element is referenced twice for\n  a microdata item",
+         "ja" : "この要素は特定のマイクロデータの項目に複数回使われています"
+      }
+   },
    "mismatched charset name" : {
       "desc" : {
          "en" : "\n    <p>The character encoding specified by the character encoding\n    declaration is not equal to the character encoding of the\n    document.</p>\n  ",
