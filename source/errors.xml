@@ -6840,7 +6840,183 @@ p {
 </section>
 
 <section id="microdata-errors">
-<h2>Microdata error</h2>
+<h2>Microdata errors</h2>
+
+<d:item name="microdata:enum:bad"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not an allowed value for the
+  <code><var>{text}</var></code> property</d:message>
+  <d:message xml:lang="ja">この値は特性 <code><var>{text}</var></code>
+  で認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The property only allows limited set of values and the
+    specified value is not one of them.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性は特定の値のいずれかしか指定できませんが、
+    指定されている値はそのいずれでもありません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:itemid not supported"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The vocabulary in use does not support
+  <code>itemid</code></d:message>
+  <d:message xml:lang="ja">この語彙は <code>itemid</code>
+  に対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>itemid</code> attribute cannot be specified unless
+    the vocabulary of the item type supports global identifiers.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>itemid</code> 属性を使えるのは、項目の型の語彙が大域識別子に対応しているときだけです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:itemprop:discouraged"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Use of this property is discouraged</d:message>
+  <d:message xml:lang="ja">この特性を使うことはおすすめできません</d:message>
+  <d:desc xml:lang="en">
+    <p>The property is discouraged.  It should not be used if
+    possible.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性は使わない方が良いとされています。できれば使わないべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:itemprop not defined"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The property is not defined for the item
+  type <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">この特性は項目の型
+  <code><var>{text}</var></code> に対して定義されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The property is not defined in the item type in use.  Please
+    check whether the property name is correct.  If you want to extend
+    the item type with a non-standard property, use an absolute URL as
+    the property name.</p>
+    <p>In general, an undefined property cannot be used.</p>
+    <p>For a schema.org item type, non-standard properties can be used
+    if necessary.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性は、属する項目の型に対して定義されていません。
+    正しい特性名か確認してください。非標準の特性により型を拡張したいときは、
+    特性名として絶対 URL を使ってください。</p>
+    <p>一般に定義されていない特性は使えません。</p>
+    <p>schema.org の項目の型については、必要があれば非標準の特性を使うこともできます。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:itemprop proprietary"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The property is non-standard</d:message>
+  <d:message xml:lang="ja">この特性は標準のものではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The property is a proprietary extension.  It might not be
+    supported interoperably.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性は独自拡張です。対応していない実装があるかもしれません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:itemvalue not text"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code><var>{text}</var></code> property
+  value is not a text</d:message>
+  <d:message xml:lang="ja">特性 <code><var>{text}</var></code>
+  の値がテキストではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The property value must be a text but it is an item (i.e. it
+    has an <code>itemscope</code> attribute).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性値はテキストでなければいけませんが、項目が指定されています
+    (<code>itemscope</code> 属性があります)。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:mixed vocab"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Vocabulary <code><var>{text}</var></code> 
+  and another vocabulary is mixed</d:message>
+  <d:message xml:lang="ja">語彙 <code><var>{text}</var></code> 
+  と他の語彙が混在しています</d:message>
+  <d:desc xml:lang="en">
+    <p>Vocabularies cannot be mixed up within an item.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>一つの項目で複数の語彙を混用することはできません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:nested item loop"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The item is recursively referenced</d:message>
+  <d:message xml:lang="ja">この項目は再帰的に参照されています</d:message>
+  <d:desc xml:lang="en">
+    <p>An item cannot be directly or indirectly contained as a
+    property value of the item.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>ある項目をその項目の特性値として直接的または間接的に含めることはできません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:no required itemprop"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code><var>{text}</var></code> property
+  is not specified</d:message>
+  <d:message xml:lang="ja">特性 <code><var>{text}</var></code>
+  が指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The property must be specified for an item.  The property is
+    not specified at all, or it <em>is</em> specified but there are
+    not enough number of property values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>項目に対してある特性を指定しなければいけませんが、
+    指定されていないか、最低必要な数に足りていません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:not item"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code><var>{text}</var></code> propery
+  value is not an item</d:message>
+  <d:message xml:lang="en"><code><var>{text}</var></code>
+  特性値が項目ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The item value of the property must be an item, but it is not.
+    In other words, the element must have an <code>itemscope</code>
+    attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性の値は項目でなければいけませんが、項目ではありません。
+    この要素には <code>itemscope</code> 属性がなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:not url prop element"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code><var>{text}</var></code> property
+  is not specified by a URL property element</d:message>
+  <d:message xml:lang="ja">特性 <code><var>{text}</var></code> 
+  が指定されているのは URL 特性要素ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>Since the value of the property is defined as a URL, it must be
+    specified by a URL property element such as <code>a</code>,
+    <code>video</code>, and <code>img</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性の値は URL ですから、 <code>a</code>,
+    <code>video</code>, <code>img</code> などの URL 
+    特性要素を使って指定しなければいけません。</p>
+  </d:desc>
+</d:item>
 
 <d:item name="microdata:referenced by itemref"
     modules="Web::HTML::Microdata">
@@ -6860,6 +7036,137 @@ p {
     この要素は <code>itemscope</code> 属性のある要素の子孫かつ
     <code>itemref</code> 属性により参照された要素の子孫であるか、
     または <code>itemref</code> 属性が参照する要素が複数あり、そのうちの1つが別の要素の子孫となっています。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:schemaorg:bad domain"
+    modules="Web::HTML::Validator">
+  <d:desc xml:lang="en">The property is not defined for item type
+  <code><var>{text}</var></code></d:desc>
+  <d:desc xml:lang="ja">この特性は項目の型
+  <code><var>{text}</var></code> に対して定義されていません</d:desc>
+  <d:desc xml:lang="en">
+    <p>The property is not defined for the types of the item of the
+    property.  The item cannot have a property whose domain is
+    different from the item type.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性は当該項目の型に対して定義されたものではありません。
+    項目の型と異なる定義域の特性を指定することはできません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:schemaorg:private"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The item type is a non-standard extension</d:message>
+  <d:message xml:lang="ja">この項目の型は非標準の拡張です</d:message>
+  <d:desc xml:lang="en">
+    <p>The item type is a non-standard extension of a standard
+    schema.org item type.  It might not be fully interoperable.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この項目の型は schema.org の標準の項目の型を独自に拡張したものです。
+    その意図するところは完全には伝わらないかもしれません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:schemaorg:itemprop private"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The property is a non-standard extension</d:message>
+  <d:message xml:lang="ja">この特性は非標準の拡張です</d:message>
+  <d:desc xml:lang="en">
+    <p>The property is a non-standard extension of a standard
+    schema.org property.  It might not be fully interoperable.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性は schema.org の標準の特性を独自に拡張したものです。
+    その意図するところは完全には伝わらないかもしれません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:too many itemprop"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There are too many <code><var>{value}</var></code>
+  properties for an item (Only <var>{text}</var> can be specified)</d:message>
+  <d:message xml:lang="ja">一つの項目に対して <code><var>{value}</var></code>
+  が多すぎます (<var>{text}</var> 個しか指定できません)</d:message>
+  <d:desc xml:lang="en">
+    <p>There are more than allowed number of a particular property for
+    an item.  In many cases where this error is reported, the property
+    can be specified only once.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>ある項目に対して特定の特性が認められている回数以上使われています。
+    このエラーが出る場合の多くは、当該特性が一度しか使えないことになっています。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:unexpected nested item type"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value (an item with type
+  <code><var>{value}</var></code>) is not an item of expected type
+  (<code><var>{text}</var></code>)</d:message>
+  <d:message xml:lang="en">値 (型が
+  <code><var>{value}</var></code> の項目) は期待される型
+  (<code><var>{text}</var></code>) の項目ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The property value must be an item with one of some item types
+    defined for the property, but it is an item with different
+    types.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この特性値は特定の型の項目でなければいけませんが、
+    別の型の項目が指定されています。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:unknown type"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Value type <code><var>{text}</var></code>
+  is not supported</d:message>
+  <d:message xml:lang="ja">値の型 <code><var>{text}</var></code>
+  には対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>The item value must be a text in the specified format,
+    but the conformance checker does not support the format.</p>
+
+    <p>The conformance checker skips the validation of the value.
+    Whether it is conforming or not is unknown.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>項目の値は特定の書式のテキストでなければいけませんが、
+    適合性検査器はこの書式に対応していません。</p>
+    <p>適合性検査器はこの値の妥当性検証を飛ばします。
+    適合しているかどうかは不明です。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:unused itemprop"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The property is not referenced from any item</d:message>
+  <d:message xml:lang="ja">この特性はどの項目からも参照されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>An element with the <code>itemprop</code> attribute must be
+    part of one or more items in the document.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>itemprop</code> 属性のある要素は文書中の項目の一部でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="microdata:vevent:dtend and duration"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Both <code>dtend</code> and
+  <code>duration</code> properties are specified</d:message>
+  <d:message xml:lang="ja"><code>dtend</code> と <code>duration</code>
+  の両方が指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>For a vEvent item, at most one of <code>dtend</code> and
+    <code>duration</code> properties can be specified.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>vEvent 項目に指定できるのは <code>dtend</code> と
+    <code>duration</code> のどちらか一方の特性だけです。</p>
   </d:desc>
 </d:item>
 

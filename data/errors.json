@@ -3012,6 +3012,115 @@
          "ja" : "<code><var>{text}</var></code> が値域外です\n  (<code><var>{value}</var></code> でなければいけません)"
       }
    },
+   "microdata:enum:bad" : {
+      "desc" : {
+         "en" : "\n    <p>The property only allows limited set of values and the\n    specified value is not one of them.</p>\n  ",
+         "ja" : "\n    <p>この特性は特定の値のいずれかしか指定できませんが、\n    指定されている値はそのいずれでもありません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is not an allowed value for the\n  <code><var>{text}</var></code> property",
+         "ja" : "この値は特性 <code><var>{text}</var></code>\n  で認められていません"
+      }
+   },
+   "microdata:itemid not supported" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>itemid</code> attribute cannot be specified unless\n    the vocabulary of the item type supports global identifiers.</p>\n  ",
+         "ja" : "\n    <p><code>itemid</code> 属性を使えるのは、項目の型の語彙が大域識別子に対応しているときだけです。</p>\n  "
+      },
+      "message" : {
+         "en" : "The vocabulary in use does not support\n  <code>itemid</code>",
+         "ja" : "この語彙は <code>itemid</code>\n  に対応していません"
+      }
+   },
+   "microdata:itemprop not defined" : {
+      "desc" : {
+         "en" : "\n    <p>The property is not defined in the item type in use.  Please\n    check whether the property name is correct.  If you want to extend\n    the item type with a non-standard property, use an absolute URL as\n    the property name.</p>\n    <p>In general, an undefined property cannot be used.</p>\n    <p>For a schema.org item type, non-standard properties can be used\n    if necessary.</p>\n  ",
+         "ja" : "\n    <p>この特性は、属する項目の型に対して定義されていません。\n    正しい特性名か確認してください。非標準の特性により型を拡張したいときは、\n    特性名として絶対 URL を使ってください。</p>\n    <p>一般に定義されていない特性は使えません。</p>\n    <p>schema.org の項目の型については、必要があれば非標準の特性を使うこともできます。</p>\n  "
+      },
+      "message" : {
+         "en" : "The property is not defined for the item\n  type <code><var>{text}</var></code>",
+         "ja" : "この特性は項目の型\n  <code><var>{text}</var></code> に対して定義されていません"
+      }
+   },
+   "microdata:itemprop proprietary" : {
+      "desc" : {
+         "en" : "\n    <p>The property is a proprietary extension.  It might not be\n    supported interoperably.</p>\n  ",
+         "ja" : "\n    <p>この特性は独自拡張です。対応していない実装があるかもしれません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The property is non-standard",
+         "ja" : "この特性は標準のものではありません"
+      }
+   },
+   "microdata:itemprop:discouraged" : {
+      "desc" : {
+         "en" : "\n    <p>The property is discouraged.  It should not be used if\n    possible.</p>\n  ",
+         "ja" : "\n    <p>この特性は使わない方が良いとされています。できれば使わないべきです。</p>\n  "
+      },
+      "message" : {
+         "en" : "Use of this property is discouraged",
+         "ja" : "この特性を使うことはおすすめできません"
+      }
+   },
+   "microdata:itemvalue not text" : {
+      "desc" : {
+         "en" : "\n    <p>The property value must be a text but it is an item (i.e. it\n    has an <code>itemscope</code> attribute).</p>\n  ",
+         "ja" : "\n    <p>この特性値はテキストでなければいけませんが、項目が指定されています\n    (<code>itemscope</code> 属性があります)。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code><var>{text}</var></code> property\n  value is not a text",
+         "ja" : "特性 <code><var>{text}</var></code>\n  の値がテキストではありません"
+      }
+   },
+   "microdata:mixed vocab" : {
+      "desc" : {
+         "en" : "\n    <p>Vocabularies cannot be mixed up within an item.</p>\n  ",
+         "ja" : "\n    <p>一つの項目で複数の語彙を混用することはできません。</p>\n  "
+      },
+      "message" : {
+         "en" : "Vocabulary <code><var>{text}</var></code> \n  and another vocabulary is mixed",
+         "ja" : "語彙 <code><var>{text}</var></code> \n  と他の語彙が混在しています"
+      }
+   },
+   "microdata:nested item loop" : {
+      "desc" : {
+         "en" : "\n    <p>An item cannot be directly or indirectly contained as a\n    property value of the item.</p>\n  ",
+         "ja" : "\n    <p>ある項目をその項目の特性値として直接的または間接的に含めることはできません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The item is recursively referenced",
+         "ja" : "この項目は再帰的に参照されています"
+      }
+   },
+   "microdata:no required itemprop" : {
+      "desc" : {
+         "en" : "\n    <p>The property must be specified for an item.  The property is\n    not specified at all, or it <em>is</em> specified but there are\n    not enough number of property values.</p>\n  ",
+         "ja" : "\n    <p>項目に対してある特性を指定しなければいけませんが、\n    指定されていないか、最低必要な数に足りていません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code><var>{text}</var></code> property\n  is not specified",
+         "ja" : "特性 <code><var>{text}</var></code>\n  が指定されていません"
+      }
+   },
+   "microdata:not item" : {
+      "desc" : {
+         "en" : "\n    <p>The item value of the property must be an item, but it is not.\n    In other words, the element must have an <code>itemscope</code>\n    attribute.</p>\n  ",
+         "ja" : "\n    <p>この特性の値は項目でなければいけませんが、項目ではありません。\n    この要素には <code>itemscope</code> 属性がなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "<code><var>{text}</var></code>\n  特性値が項目ではありません"
+      }
+   },
+   "microdata:not url prop element" : {
+      "desc" : {
+         "en" : "\n    <p>Since the value of the property is defined as a URL, it must be\n    specified by a URL property element such as <code>a</code>,\n    <code>video</code>, and <code>img</code>.</p>\n  ",
+         "ja" : "\n    <p>この特性の値は URL ですから、 <code>a</code>,\n    <code>video</code>, <code>img</code> などの URL \n    特性要素を使って指定しなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code><var>{text}</var></code> property\n  is not specified by a URL property element",
+         "ja" : "特性 <code><var>{text}</var></code> \n  が指定されているのは URL 特性要素ではありません"
+      }
+   },
    "microdata:referenced by itemref" : {
       "desc" : {
          "en" : "\n    <p>An element can be part of a microdata item only once.  The\n    element is a descendant of both the element with an\n    <code>itemscope</code> attribute and an element pointed by the\n    <code>itemref</code> attribute, or an element pointed by the\n    <code>itemref</code> attribute is a descendant of the element\n    pointed by the <code>itemref</code> attribute.</p>\n  ",
@@ -3020,6 +3129,81 @@
       "message" : {
          "en" : "The element is referenced twice for\n  a microdata item",
          "ja" : "この要素は特定のマイクロデータの項目に複数回使われています"
+      }
+   },
+   "microdata:schemaorg:bad domain" : {
+      "desc" : {
+         "en" : "\n    <p>The property is not defined for the types of the item of the\n    property.  The item cannot have a property whose domain is\n    different from the item type.</p>\n  ",
+         "ja" : "\n    <p>この特性は当該項目の型に対して定義されたものではありません。\n    項目の型と異なる定義域の特性を指定することはできません。</p>\n  "
+      }
+   },
+   "microdata:schemaorg:itemprop private" : {
+      "desc" : {
+         "en" : "\n    <p>The property is a non-standard extension of a standard\n    schema.org property.  It might not be fully interoperable.</p>\n  ",
+         "ja" : "\n    <p>この特性は schema.org の標準の特性を独自に拡張したものです。\n    その意図するところは完全には伝わらないかもしれません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The property is a non-standard extension",
+         "ja" : "この特性は非標準の拡張です"
+      }
+   },
+   "microdata:schemaorg:private" : {
+      "desc" : {
+         "en" : "\n    <p>The item type is a non-standard extension of a standard\n    schema.org item type.  It might not be fully interoperable.</p>\n  ",
+         "ja" : "\n    <p>この項目の型は schema.org の標準の項目の型を独自に拡張したものです。\n    その意図するところは完全には伝わらないかもしれません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The item type is a non-standard extension",
+         "ja" : "この項目の型は非標準の拡張です"
+      }
+   },
+   "microdata:too many itemprop" : {
+      "desc" : {
+         "en" : "\n    <p>There are more than allowed number of a particular property for\n    an item.  In many cases where this error is reported, the property\n    can be specified only once.</p>\n  ",
+         "ja" : "\n    <p>ある項目に対して特定の特性が認められている回数以上使われています。\n    このエラーが出る場合の多くは、当該特性が一度しか使えないことになっています。</p>\n  "
+      },
+      "message" : {
+         "en" : "There are too many <code><var>{value}</var></code>\n  properties for an item (Only <var>{text}</var> can be specified)",
+         "ja" : "一つの項目に対して <code><var>{value}</var></code>\n  が多すぎます (<var>{text}</var> 個しか指定できません)"
+      }
+   },
+   "microdata:unexpected nested item type" : {
+      "desc" : {
+         "en" : "\n    <p>The property value must be an item with one of some item types\n    defined for the property, but it is an item with different\n    types.</p>\n  ",
+         "ja" : "\n    <p>この特性値は特定の型の項目でなければいけませんが、\n    別の型の項目が指定されています。</p>\n  "
+      },
+      "message" : {
+         "en" : "値 (型が\n  <code><var>{value}</var></code> の項目) は期待される型\n  (<code><var>{text}</var></code>) の項目ではありません"
+      }
+   },
+   "microdata:unknown type" : {
+      "desc" : {
+         "en" : "\n    <p>The item value must be a text in the specified format,\n    but the conformance checker does not support the format.</p>\n\n    <p>The conformance checker skips the validation of the value.\n    Whether it is conforming or not is unknown.</p>\n  ",
+         "ja" : "\n    <p>項目の値は特定の書式のテキストでなければいけませんが、\n    適合性検査器はこの書式に対応していません。</p>\n    <p>適合性検査器はこの値の妥当性検証を飛ばします。\n    適合しているかどうかは不明です。</p>\n  "
+      },
+      "message" : {
+         "en" : "Value type <code><var>{text}</var></code>\n  is not supported",
+         "ja" : "値の型 <code><var>{text}</var></code>\n  には対応していません"
+      }
+   },
+   "microdata:unused itemprop" : {
+      "desc" : {
+         "en" : "\n    <p>An element with the <code>itemprop</code> attribute must be\n    part of one or more items in the document.</p>\n  ",
+         "ja" : "\n    <p><code>itemprop</code> 属性のある要素は文書中の項目の一部でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The property is not referenced from any item",
+         "ja" : "この特性はどの項目からも参照されていません"
+      }
+   },
+   "microdata:vevent:dtend and duration" : {
+      "desc" : {
+         "en" : "\n    <p>For a vEvent item, at most one of <code>dtend</code> and\n    <code>duration</code> properties can be specified.</p>\n  ",
+         "ja" : "\n    <p>vEvent 項目に指定できるのは <code>dtend</code> と\n    <code>duration</code> のどちらか一方の特性だけです。</p>\n  "
+      },
+      "message" : {
+         "en" : "Both <code>dtend</code> and\n  <code>duration</code> properties are specified",
+         "ja" : "<code>dtend</code> と <code>duration</code>\n  の両方が指定されています"
       }
    },
    "mismatched charset name" : {
