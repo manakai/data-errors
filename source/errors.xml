@@ -3666,9 +3666,16 @@ p {
 
     <dd>The <code>href</code> attribute must be specified.</dd>
 
+    <dd>Either <code>rel</code> or <code>itemprop</code> attribute
+    must be specified.  In the <code>body</code> element, an
+    <code>itemprop</code> attribute must be specified.</dd>
+
     <dt>HTML <code>meta</code> element</dt>
 
     <dd>The <code>content</code> attribute must be specified.</dd>
+
+    <dd>In the <code>body</code> element, an <code>itemprop</code>
+    attribute must be specified.</dd>
 
     <dt>HTML <code>style</code> element</dt>
 
@@ -3693,9 +3700,14 @@ p {
     <dt>HTML <code>embed</code> element</dt>
 
     <dd>An <code>embed</code> element with no <code>src</code>
-    attribute has no effect.</dd>
+    attribute has no effect.  If the <code>itemprop</code> attribute
+    is specified, a <code>src</code> attribute must also be
+    specified.</dd>
 
     <dt>HTML <code>object</code> element</dt>
+
+    <dd>If the <code>itemprop</code> attribute is specified, a
+    <code>data</code> attribute must also be specified.</dd>
 
     <dd>If both <code>data</code> and <code>type</code> attributes are
     specified, it might be a good practice to also specify the
@@ -3725,6 +3737,11 @@ p {
     <code>hard</code>, the <code>cols</code> attribute is
     required.</dd>
 
+    <dt>HTML <code>a</code> element</dt>
+
+    <dd>If the <code>itemprop</code> attribute is specified, an
+    <code>href</code> attribute must also be specified.</dd>
+
     <dt>HTML <code>map</code> element</dt>
 
     <dd>The <code>name</code> attribute is required.</dd>
@@ -3736,6 +3753,9 @@ p {
 
     <dd>If the <code>href</code> attribute is specified, the
     <code>alt</code> attribute is required.</dd>
+
+    <dd>If the <code>itemprop</code> attribute is specified, an
+    <code>href</code> attribute must also be specified.</dd>
 
     <dt>HTML <code>bdo</code> element</dt>
 
@@ -3762,6 +3782,11 @@ p {
 
     <dd>Either <code>label</code> or <code>command</code> attribute
     must be specified.</dd>
+
+    <dt>HTML <code>iframe</code> element</dt>
+
+    <dd>If the <code>itemprop</code> attribute is specified, a
+    <code>src</code> attribute must also be specified.</dd>
 
     <dt>HTML <code>param</code> element</dt>
 
@@ -3808,9 +3833,16 @@ p {
 
     <dd><code>href</code> 属性を指定しなければいけません。</dd>
 
+    <dd><code>rel</code> 属性か <code>itemprop</code>
+    属性を指定しなければいけません。 <code>body</code>
+    要素内では <code>itemprop</code> 属性を指定しなければいけません。</dd>
+
     <dt>HTML <code>meta</code> 要素</dt>
 
     <dd><code>content</code> 属性を指定しなければいけません。</dd>
+
+    <dd><code>body</code>
+    要素内では <code>itemprop</code> 属性を指定しなければいけません。</dd>
 
     <dt>HTML <code>style</code> 要素</dt>
 
@@ -3833,9 +3865,12 @@ p {
     <dt>HTML <code>embed</code> 要素</dt>
 
     <dd><code>embed</code> 要素は <code>src</code>
-    属性がなければ意味がありません。</dd>
+    属性がなければ意味がありません。 <code>itemprop</code>
+    属性がある時は <code>src</code> 属性も必須です。</dd>
 
     <dt>HTML <code>object</code> 要素</dt>
+
+    <dd><code>itemprop</code> 属性がある時は <code>data</code> 属性も必須です。</dd>
 
     <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、
     意図した内容しかレンダリングされないように
@@ -3861,6 +3896,11 @@ p {
     <dd><code>wrap</code> 属性の値が
     <code>hard</code> の時は、 <code>cols</code> 属性は必須です。</dd>
 
+    <dt>HTML <code>a</code> 要素</dt>
+
+    <dd><code>itemprop</code> 属性が指定されている時は
+    <code>href</code> 属性も必須です。</dd>
+
     <dt>HTML <code>map</code> 要素</dt>
 
     <dd><code>name</code> 属性は必須です。</dd>
@@ -3873,6 +3913,9 @@ p {
 
     <dd><code>href</code> 属性が指定されている場合
     <code>alt</code> 属性は必須です。</dd>
+
+    <dd><code>itemprop</code> 属性が指定されている場合
+    <code>href</code> 属性は必須です。</dd>
 
     <dt>HTML <code>bdo</code> 要素</dt>
 
@@ -3897,6 +3940,11 @@ p {
 
     <dd><code>label</code> 属性か <code>command</code>
     属性のどちらかを指定しなければいけません。</dd>
+
+    <dt>HTML <code>iframe</code> 要素</dt>
+
+    <dd><code>itemprop</code> 属性が指定されている場合
+    <code>src</code> 属性は必須です。</dd>
 
     <dt>HTML <code>param</code> 要素</dt>
     
@@ -4092,6 +4140,9 @@ p {
 
     <dt>HTML <code>link</code> element</dt>
 
+    <dd>Only one of <code>rel</code> and <code>itemprop</code>
+    attributes can be specified for an element.</dd>
+
     <dd>The <code>sizes</code> attribute cannot be specified unless
     the <code>rel</code> attribute has the <code>icon</code> link
     type.</dd>
@@ -4221,6 +4272,9 @@ p {
     属性は使えません。</dd>
 
     <dt>HTML <code>link</code> 要素</dt>
+
+    <dd><code>rel</code> 属性と <code>itemprop</code> 
+    属性はどちらか一方だけ指定できます。</dd>
 
     <dd><code>sizes</code> 属性を使う時は <code>rel</code> 属性にリンク型
     <code>icon</code> が含まれていなければいけません。</dd>
