@@ -52,6 +52,7 @@ The short string describing the level or severity of the error.  It is
 a byte string from one of followings:
 
   m      Violation to a MUST-level requirement.
+  mh     Same as "m" but this error should be hidden by default.
   s      Violation to a SHOULD-level requirement.
   w      Warning.  E.g. a violation to non-normative advice.
   i      Information.

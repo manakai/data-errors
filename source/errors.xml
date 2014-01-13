@@ -2794,18 +2794,20 @@ p {
 
 <d:item name="element not allowed:figure table caption"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code>caption</code> is redundant with the
-  <code>figcaption</code></d:message>
-  <d:message xml:lang="ja"><code>caption</code> が <code>figcaption</code>
-  と重複しています</d:message>
+  <d:message xml:lang="en">The <code>caption</code> element is used in
+  a <code>figure</code> element</d:message>
+  <d:message xml:lang="ja"><code>caption</code> 要素が <code>figure</code>
+  要素内で使われています</d:message>
   <d:desc xml:lang="en">
-    <p>If the table is contained in the <code>figure</code> element
-    with the <code>figcaption</code> element, the <code>caption</code>
-    element of the table should be omitted.</p>
+    <p>If the table is contained in the <code>figure</code> element,
+    the <code>caption</code> element of the table should be omitted
+    and the <code>figcaption</code> element should be used to add
+    a caption.</p>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p>表が <code>figure</code> 要素に含まれていて <code>figcaption</code>
-    要素がある時は、表の <code>caption</code> 要素は省略するべきです。</p>
+    <p>表が <code>figure</code> 要素に含まれているときは、
+    表の <code>caption</code> 要素ではなく <code>figcaption</code>
+    要素によって見出しをつけるべきです。</p>
   </d:desc>
 </d:item>
 
@@ -3965,6 +3967,90 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="attribute missing:alt"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">No alternative text (e.g. <code>alt</code>
+  attribute) is specified</d:message>
+  <d:message xml:lang="ja">代替テキスト (<code>alt</code> 属性など)
+  がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>An <code>img</code> element must have the alternative text in
+    many cases.</p>
+
+    <dl class="switch">
+
+    <dt>If the image is key part of the content and its cannot be
+    represented in text</dt>
+
+    <dd>Put the <code>img</code> element in a <code>figure</code>
+    element with a <code>figcaption</code> element child, or put the
+    description of the image into the <code>title</code> attribute of
+    the <code>img</code> element.</dd>
+
+    <dt>If the markup generator does not know what the image is
+    (e.g. it is a WYSIWYG editor or it is a <abbr
+    title="User-generated contents">UGC</abbr> application and the
+    user does not provide text alternative)</dt>
+
+    <dd>Set the <code>generator-unable-to-provide-required-alt</code>
+    attribute of the <code>img</code> element to the empty
+    string.</dd>
+
+    <dt>If it is part of a private document whose recipient is known
+    to be able to view images</dt>
+
+    <dd>Ignore the error.</dd>
+
+    <dt>If the image is redundant with the surrounding text</dt>
+    <dt>If the image is purely decorative</dt>
+
+    <dd>Set the <code>alt</code> attribute of the <code>img</code>
+    element to the empty string.</dd>
+
+    <dt>Otherwise</dt>
+
+    <dd>Provide the alternative text using the <code>alt</code>
+    attribute of the <code>img</code> element.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>多くの場合 <code>img</code> 要素には代替テキストが必要です。</p>
+
+    <dl class="switch">
+
+    <dt>画像が主たる内容であって、テキストで表現できない場合</dt>
+
+    <dd><code>img</code> 要素を <code>figcaption</code> 子要素を持つ
+    <code>figure</code> 要素に入れるか、 <code>img</code> 
+    要素の <code>title</code> 属性に画像の説明を入れてください。</dd>
+
+    <dt>画像が何であるかマーク付け生成器が知らない場合
+    (WYSIWYG エディターや <abbr
+    title="ユーザー生成コンテンツ">UGC</abbr> アプリケーションで利用者がテキストを指定しなかった場合など)</dt>
+
+    <dd><code>img</code> 要素の
+    <code>generator-unable-to-provide-required-alt</code>
+    属性を空文字列に設定してください。</dd>
+
+    <dt>私的な文書であって読む人が画像を表示できるとわかっている場合</dt>
+
+    <dd>このエラーは無視して構いません。</dd>
+
+    <dt>画像が周りのテキストの内容を繰り返しているだけの場合</dt>
+    <dt>画像が純粋に装飾目的の場合</dt>
+
+    <dd><code>img</code> 要素の <code>alt</code> 
+    属性を空文字列に設定してください。</dd>
+
+    <dt>それ以外の場合</dt>
+
+    <dd><code>img</code> 要素の <code>alt</code> 属性に代替テキストを設定してください。</dd>
+
+    </dl>
+  </d:desc>
+</d:item>
+
 <d:item name="attribute missing:code|object"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Neither <code>code</code> or <code>object</code>
@@ -4432,6 +4518,15 @@ p {
     attribute should be replaced by the <code>id</code>
     attribute.</dd>
 
+    <dt>The <code>img</code> element, the
+    <code>generator-unable-to-provide-required-alt</code>
+    attribute</dt>
+
+    <dd>This attribute is special.  It can be used if there is no way
+    to provide the alternative text to the image, but still the
+    attribute is non-conforming and should not be used wherever
+    possible.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="en">
@@ -4482,6 +4577,13 @@ p {
     <code>vspace</code> 各属性はスタイルシートに置き換えるべきです。
     <code>name</code> 属性は
     <code>id</code> 属性に置き換えるべきです。</dd>
+
+    <dt><code>img</code> 要素
+    <code>generator-unable-to-provide-required-alt</code>
+    属性</dt>
+
+    <dd>この属性は特殊で、画像の代替テキストをどうしても指定できないときに使えますが、
+    不適合であり可能なら避けるべきものです。</dd>
 
     </dl>
   </d:desc>
@@ -5809,6 +5911,12 @@ p {
     <dd>The value must be
     <code>http://www.w3.org/1999/xhtml</code>.</dd>
 
+    <dt>HTML <code>img</code> element, the
+    <code>generator-unable-to-provide-required-alt</code>
+    attribute</dt>
+
+    <dd>The value must be the empty string.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -5825,6 +5933,12 @@ p {
 
     <dd>属性値は <code>http://www.w3.org/1999/xhtml</code>
     でなければいけません。</dd>
+
+    <dt>HTML <code>img</code> 要素
+    <code>generator-unable-to-provide-required-alt</code>
+    属性</dt>
+
+    <dd>属性値は空文字列でなければいけません。</dd>
 
     </dl>
   </d:desc>
@@ -7229,24 +7343,39 @@ p {
 <section id="element-errors">
 <h2>Element usage errors</h2>
 
+<d:item name="duplicate dl name"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is another <code>dt</code> element
+  with same text</d:message>
+  <d:message xml:lang="ja">同じ内容の <code>dt</code> 要素が他にもありました</d:message>
+  <d:desc xml:lang="en">
+    <p>In a <code>dl</code> element, there should not be multiple
+    <code>dt</code> elements for same name.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>dl</code> 要素内に同じ名前を表す <code>dt</code>
+    要素が複数あるべきではありません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="script:external data block"
     modules="Web::HTML::Validator">
-  <d:desc xml:lang="en">The <code>script</code> element with the
-  <code>src</code> attribute is used for a non-scripting language</d:desc>
-  <d:desc xml:lang="ja"><code>src</code> 属性のある
-  <code>script</code> 要素がスクリプト言語以外に使われています</d:desc>
-  <d:message xml:lang="en">
+  <d:message xml:lang="en">The <code>script</code> element with the
+  <code>src</code> attribute is used for a non-scripting language</d:message>
+  <d:message xml:lang="ja"><code>src</code> 属性のある
+  <code>script</code> 要素がスクリプト言語以外に使われています</d:message>
+  <d:desc xml:lang="en">
     <p>If the <code>script</code> element is used to embed the data
     block, the <code>src</code> attribute cannot be used.  If the
     <code>src</code> attribute is specified, the <code>type</code>
     attribute identifies a scripting language.</p>
-  </d:message>
-  <d:message xml:lang="ja">
+  </d:desc>
+  <d:desc xml:lang="ja">
     <p><code>script</code> 要素をデータブロックの埋め込みに使う時には
     <code>src</code> 属性は使えません。 <code>src</code>
     属性が指定されている時には <code>type</code>
     属性はスクリプト言語の MIME 型でなければいけません。</p>
-  </d:message>
+  </d:desc>
 </d:item>
 
 <d:item name="last resort"

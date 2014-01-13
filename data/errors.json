@@ -635,6 +635,16 @@
          "ja" : "属性 <code><var>{text}</var></code>\n  が指定されていません"
       }
    },
+   "attribute missing:alt" : {
+      "desc" : {
+         "en" : "\n    <p>An <code>img</code> element must have the alternative text in\n    many cases.</p>\n\n    <dl class=\"switch\">\n\n    <dt>If the image is key part of the content and its cannot be\n    represented in text</dt>\n\n    <dd>Put the <code>img</code> element in a <code>figure</code>\n    element with a <code>figcaption</code> element child, or put the\n    description of the image into the <code>title</code> attribute of\n    the <code>img</code> element.</dd>\n\n    <dt>If the markup generator does not know what the image is\n    (e.g. it is a WYSIWYG editor or it is a <abbr title=\"User-generated contents\">UGC</abbr> application and the\n    user does not provide text alternative)</dt>\n\n    <dd>Set the <code>generator-unable-to-provide-required-alt</code>\n    attribute of the <code>img</code> element to the empty\n    string.</dd>\n\n    <dt>If it is part of a private document whose recipient is known\n    to be able to view images</dt>\n\n    <dd>Ignore the error.</dd>\n\n    <dt>If the image is redundant with the surrounding text</dt>\n    <dt>If the image is purely decorative</dt>\n\n    <dd>Set the <code>alt</code> attribute of the <code>img</code>\n    element to the empty string.</dd>\n\n    <dt>Otherwise</dt>\n\n    <dd>Provide the alternative text using the <code>alt</code>\n    attribute of the <code>img</code> element.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>多くの場合 <code>img</code> 要素には代替テキストが必要です。</p>\n\n    <dl class=\"switch\">\n\n    <dt>画像が主たる内容であって、テキストで表現できない場合</dt>\n\n    <dd><code>img</code> 要素を <code>figcaption</code> 子要素を持つ\n    <code>figure</code> 要素に入れるか、 <code>img</code> \n    要素の <code>title</code> 属性に画像の説明を入れてください。</dd>\n\n    <dt>画像が何であるかマーク付け生成器が知らない場合\n    (WYSIWYG エディターや <abbr title=\"ユーザー生成コンテンツ\">UGC</abbr> アプリケーションで利用者がテキストを指定しなかった場合など)</dt>\n\n    <dd><code>img</code> 要素の\n    <code>generator-unable-to-provide-required-alt</code>\n    属性を空文字列に設定してください。</dd>\n\n    <dt>私的な文書であって読む人が画像を表示できるとわかっている場合</dt>\n\n    <dd>このエラーは無視して構いません。</dd>\n\n    <dt>画像が周りのテキストの内容を繰り返しているだけの場合</dt>\n    <dt>画像が純粋に装飾目的の場合</dt>\n\n    <dd><code>img</code> 要素の <code>alt</code> \n    属性を空文字列に設定してください。</dd>\n\n    <dt>それ以外の場合</dt>\n\n    <dd><code>img</code> 要素の <code>alt</code> 属性に代替テキストを設定してください。</dd>\n\n    </dl>\n  "
+      },
+      "message" : {
+         "en" : "No alternative text (e.g. <code>alt</code>\n  attribute) is specified",
+         "ja" : "代替テキスト (<code>alt</code> 属性など)\n  がありません"
+      }
+   },
    "attribute missing:code|object" : {
       "desc" : {
          "en" : "\n    <p>The <code>applet</code> element must have either or both of\n    <code>code</code> and <code>object</code> attributes.</p>\n  ",
@@ -723,7 +733,7 @@
    },
    "attribute not defined" : {
       "desc" : {
-         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>property</code> 属性</dt>\n\n    <dd>OGP を使っているなら、このエラーは無視してください。</dd>\n\n    <dt>HTML <code>prefix</code> 属性</dt>\n\n    <dd>削除して問題ありません。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    <dt><code>xmlns:<var>*</var></code> 属性<!-- in no namespace --></dt>\n\n    <dd>HTML では名前空間属性は使えません。\n    効果はないので削除して問題ありません。</dd>\n\n    <dt><code>embed</code> 要素</dt>\n\n    <dd><code>align</code>, <code>border</code>, <code>hspace</code>,\n    <code>vspace</code> 各属性はスタイルシートに置き換えるべきです。\n    <code>name</code> 属性は\n    <code>id</code> 属性に置き換えるべきです。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>この属性は要素に対して定義されている属性の一つではありません。\n    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>align</code>, <code>alink</code>,\n    <code>allowtransparency</code>, <code>background</code>,\n    <code>bgcolor</code>, <code>border</code>,\n    <code>cellpadding</code>, <code>cellspacing</code>,\n    <code>compact</code>, <code>frameborder</code>,\n    <code>hspace</code>, <code>link</code>, <code>nowrap</code>,\n    <code>text</code>, <code>valign</code>, <code>vlink</code>,\n    <code>vspace</code> 属性</dt>\n\n    <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>\n\n    <dt>HTML <code>property</code> 属性</dt>\n\n    <dd>OGP を使っているなら、このエラーは無視してください。</dd>\n\n    <dt>HTML <code>prefix</code> 属性</dt>\n\n    <dd>削除して問題ありません。</dd>\n\n    <dt>HTML <code>head</code> 要素 <code>profile</code> 属性</dt>\n\n    <dd><code>profile</code> は廃止されました。これは最早不要です。</dd>\n\n    <dt>HTML <code>a</code> 要素、 <code>link</code> 要素\n    <code>rev</code> 属性</dt>\n\n    <dd><code>rev</code> 属性は廃止されました。\n    <code>rel</code> 属性と適当なリンク型を使ってください。例えば、\n    <code>rev=made</code> ではなく <code>rel=author</code>\n    を使ってください。</dd>\n\n    <dt><code>xmlns:<var>*</var></code> 属性<!-- in no namespace --></dt>\n\n    <dd>HTML では名前空間属性は使えません。\n    効果はないので削除して問題ありません。</dd>\n\n    <dt><code>embed</code> 要素</dt>\n\n    <dd><code>align</code>, <code>border</code>, <code>hspace</code>,\n    <code>vspace</code> 各属性はスタイルシートに置き換えるべきです。\n    <code>name</code> 属性は\n    <code>id</code> 属性に置き換えるべきです。</dd>\n\n    <dt><code>img</code> 要素\n    <code>generator-unable-to-provide-required-alt</code>\n    属性</dt>\n\n    <dd>この属性は特殊で、画像の代替テキストをどうしても指定できないときに使えますが、\n    不適合であり可能なら避けるべきものです。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute is not allowed",
@@ -1444,6 +1454,16 @@
          "ja" : "同じ種類の既定のトラックが他にもあります"
       }
    },
+   "duplicate dl name" : {
+      "desc" : {
+         "en" : "\n    <p>In a <code>dl</code> element, there should not be multiple\n    <code>dt</code> elements for same name.</p>\n  ",
+         "ja" : "\n    <p><code>dl</code> 要素内に同じ名前を表す <code>dt</code>\n    要素が複数あるべきではありません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is another <code>dt</code> element\n  with same text",
+         "ja" : "同じ内容の <code>dt</code> 要素が他にもありました"
+      }
+   },
    "duplicate doctype" : {
       "desc" : {
          "en" : "\n    <p>There can be at most one document type node in a document.</p>\n  ",
@@ -1659,12 +1679,12 @@
    },
    "element not allowed:figure table caption" : {
       "desc" : {
-         "en" : "\n    <p>If the table is contained in the <code>figure</code> element\n    with the <code>figcaption</code> element, the <code>caption</code>\n    element of the table should be omitted.</p>\n  ",
-         "ja" : "\n    <p>表が <code>figure</code> 要素に含まれていて <code>figcaption</code>\n    要素がある時は、表の <code>caption</code> 要素は省略するべきです。</p>\n  "
+         "en" : "\n    <p>If the table is contained in the <code>figure</code> element,\n    the <code>caption</code> element of the table should be omitted\n    and the <code>figcaption</code> element should be used to add\n    a caption.</p>\n  ",
+         "ja" : "\n    <p>表が <code>figure</code> 要素に含まれているときは、\n    表の <code>caption</code> 要素ではなく <code>figcaption</code>\n    要素によって見出しをつけるべきです。</p>\n  "
       },
       "message" : {
-         "en" : "The <code>caption</code> is redundant with the\n  <code>figcaption</code>",
-         "ja" : "<code>caption</code> が <code>figcaption</code>\n  と重複しています"
+         "en" : "The <code>caption</code> element is used in\n  a <code>figure</code> element",
+         "ja" : "<code>caption</code> 要素が <code>figure</code>\n  要素内で使われています"
       }
    },
    "element not allowed:flow" : {
@@ -2455,8 +2475,8 @@
    },
    "invalid attribute value" : {
       "desc" : {
-         "en" : "\n    <p>The attribute value is invalid.</p>\n \n    <dl class=\"switch\">\n\n    <dt>The <code>xml:space</code> attribute</dt>\n\n    <dd>The value must be either <code>default</code> or\n    <code>preserve</code>.</dd>\n\n    <dt>HTML elements, the <code>xmlns</code> attribute in no\n    namespace</dt>\n\n    <dd>The value must be\n    <code>http://www.w3.org/1999/xhtml</code>.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この属性値は非妥当です。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>xml:space</code> 属性</dt>\n\n    <dd>属性値は <code>default</code> か <code>preserve</code>\n    でなければいけません。</dd>\n\n    <dt>HTML 要素の名前空間に属さない <code>xmlns</code> 属性</dt>\n\n    <dd>属性値は <code>http://www.w3.org/1999/xhtml</code>\n    でなければいけません。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The attribute value is invalid.</p>\n \n    <dl class=\"switch\">\n\n    <dt>The <code>xml:space</code> attribute</dt>\n\n    <dd>The value must be either <code>default</code> or\n    <code>preserve</code>.</dd>\n\n    <dt>HTML elements, the <code>xmlns</code> attribute in no\n    namespace</dt>\n\n    <dd>The value must be\n    <code>http://www.w3.org/1999/xhtml</code>.</dd>\n\n    <dt>HTML <code>img</code> element, the\n    <code>generator-unable-to-provide-required-alt</code>\n    attribute</dt>\n\n    <dd>The value must be the empty string.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性値は非妥当です。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>xml:space</code> 属性</dt>\n\n    <dd>属性値は <code>default</code> か <code>preserve</code>\n    でなければいけません。</dd>\n\n    <dt>HTML 要素の名前空間に属さない <code>xmlns</code> 属性</dt>\n\n    <dd>属性値は <code>http://www.w3.org/1999/xhtml</code>\n    でなければいけません。</dd>\n\n    <dt>HTML <code>img</code> 要素\n    <code>generator-unable-to-provide-required-alt</code>\n    属性</dt>\n\n    <dd>属性値は空文字列でなければいけません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute value is invalid",
@@ -4005,12 +4025,12 @@
    },
    "script:external data block" : {
       "desc" : {
-         "en" : "The <code>script</code> element with the\n  <code>src</code> attribute is used for a non-scripting language",
-         "ja" : "<code>src</code> 属性のある\n  <code>script</code> 要素がスクリプト言語以外に使われています"
-      },
-      "message" : {
          "en" : "\n    <p>If the <code>script</code> element is used to embed the data\n    block, the <code>src</code> attribute cannot be used.  If the\n    <code>src</code> attribute is specified, the <code>type</code>\n    attribute identifies a scripting language.</p>\n  ",
          "ja" : "\n    <p><code>script</code> 要素をデータブロックの埋め込みに使う時には\n    <code>src</code> 属性は使えません。 <code>src</code>\n    属性が指定されている時には <code>type</code>\n    属性はスクリプト言語の MIME 型でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>script</code> element with the\n  <code>src</code> attribute is used for a non-scripting language",
+         "ja" : "<code>src</code> 属性のある\n  <code>script</code> 要素がスクリプト言語以外に使われています"
       }
    },
    "script:inline doc:invalid" : {
