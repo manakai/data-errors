@@ -1770,9 +1770,9 @@ p {
 
 <d:item name="no end tag at EOF"
     modules="Web::HTML::Parser">
-  <d:message xml:lang="en">The tag <code>&lt;<var>/{text}</var>></code>
+  <d:message xml:lang="en">The tag <code>&lt;/<var>{text}</var>></code>
   not found before the end-of-file</d:message>
-  <d:message xml:lang="ja">末端までに <code>&lt;<var>/{text}</var>></code>
+  <d:message xml:lang="ja">末端までに <code>&lt;/<var>{text}</var>></code>
   がありません</d:message>
   <d:desc xml:lang="ja">
     <p>Most of elements must be explicitly closed by its end tag, but
@@ -2499,17 +2499,27 @@ p {
 
 <d:item name="element missing:hn"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">There must be an <code>h<var>n</var></code>
+  <d:message xml:lang="en">There is no <code>h<var>n</var></code>
   element descendant</d:message>
-  <d:message xml:lang="ja"><code>h<var>n</var></code>
+  <d:message xml:lang="ja">子孫 <code>h<var>n</var></code>
   要素がありません</d:message>
   <d:desc xml:lang="en">
-    <p>The <code>hgroup</code> element must contain one or more
-    <code>h<var>n</var></code> elements.</p>
+    <p>An <code>hgroup</code> element is a group of headings.  It must
+    contain one or more <code>h<var>n</var></code> element
+    children.</p>
+
+    <p>A <code>header</code> element usually contains a heading of the
+    section (i.e. an <code>h<var>n</var></code> or <code>hgroup</code>
+    element), although this is not required.</p>
   </d:desc>
   <d:desc xml:lang="en">
-    <p><code>hgroup</code> 要素は <code>h<var>n</var></code>
-    要素をいくつか含んでいなければいけません。</p>
+    <p><code>hgroup</code> 要素は見出しをまとめたものです。
+    <code>h<var>n</var></code>
+    要素が子供として必要です。</p>
+
+    <p><code>header</code> 要素は普通章見出し
+    (<code>h<var>n</var></code> 要素や <code>hgroup</code>
+    要素) を含めるものです。 (必須ではありません。)</p>
   </d:desc>
 </d:item>
 
@@ -3652,6 +3662,9 @@ p {
     <dd>In many cases, the <code>alt</code> attribute is
     required.</dd>
 
+    <dd>If the element has the <code>math</code> role, the
+    <code>aria-describedby</code> attribute should be specified.</dd>
+
     <dt>HTML <code>source</code> or <code>bgsound</code> element</dt>
 
     <dd>The <code>src</code> attribute is required.</dd>
@@ -3802,9 +3815,33 @@ p {
 
     <dt>HTML <code>title</code> attribute</dt>
 
-    <dd>If the element has the <code>draggable</code> or
+    <dd>If the element has a <code>draggable</code> or
     <code>dropzone</code> attribute, the <code>title</code> attribute
     should contain the description.</dd>
+
+    <dt>ARIA <code>aria-valuenow</code> attribute</dt>
+
+    <dd>If the element has an <code>aria-valuetext</code> attribute,
+    the <code>aria-valuenow</code> attribute sohuld also be
+    specified.</dd>
+
+    <dd>If the element has the <code>progressbar</code> role and the
+    value is not indeterminate, the <code>aria-valuenow</code>
+    attribute should be specified.  In addition,
+    <code>aria-valuemin</code> and <code>aria-valuemax</code>
+    attributes should be specified, too.</dd>
+
+    <dt>ARIA <code>aria-label</code> attribute</dt>
+
+    <dd>If there are multiple elements with <code>role=toolbar</code>
+    in an element with role <code>application</code>, they must have
+    the <code>aria-label</code> attribute.</dd>
+
+    <dt>ARIA <code>aria-labelledby</code> attribute</dt>
+
+    <dd>If an element has role <code>document</code> or
+    <code>application</code>, the <code>aria-labelledby</code>
+    attribute should be specified to associate the label.</dd>
 
     </dl>
   </d:desc>
@@ -3819,6 +3856,9 @@ p {
     <dd><code>src</code> 属性は必須です。</dd>
 
     <dd>多くの場合 <code>alt</code> 属性は必須です。</dd>
+
+    <dd>要素が役割 <code>math</code> を持つ時は
+    <code>aria-describedby</code> 属性を指定するべきです。</dd>
 
     <dt>HTML <code>source</code> 要素、 <code>bgsound</code> 要素</dt>
 
@@ -3963,6 +4003,27 @@ p {
     <code>dropzone</code> 属性が指定されている時は、 <code>title</code>
     属性に説明を入れるべきです。</dd>
 
+    <dt>ARIA <code>aria-valuenow</code> 属性</dt>
+
+    <dd><code>aria-valuetext</code> 属性が指定されている時は、
+    <code>aria-valuenow</code> 属性も指定するべきです。</dd>
+
+    <dd>要素が役割 <code>progressbar</code> を持ち、値が未決定でない時は、
+    <code>aria-valuenow</code> 属性を指定するべきです。加えて、
+    <code>aria-valuemin</code> 属性と <code>aria-valuemax</code>
+    属性も指定するべきです。</dd>
+
+    <dt>ARIA <code>aria-label</code> 属性</dt>
+
+    <dd>役割 <code>application</code> の要素の中に
+    役割が <code>toolbar</code> の要素が複数ある時は、
+    <code>aria-label</code> 属性が必要です。</dd>
+
+    <dt>ARIA <code>aria-labelledby</code> 属性</dt>
+
+    <dd>役割が <code>document</code> や <code>application</code>
+    の要素には <code>aria-labelledby</code> 属性で名札を指定するべきです。</dd>
+
     </dl>
   </d:desc>
 </d:item>
@@ -4048,6 +4109,24 @@ p {
     <dd><code>img</code> 要素の <code>alt</code> 属性に代替テキストを設定してください。</dd>
 
     </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="attribute missing:aria-label*"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Neither <code>aria-label</code> or
+  <code>aria-labelledby</code> attribute is specified</d:message>
+  <d:message xml:lang="ja"><code>aria-label</code> 属性も
+  <code>aria-labelledby</code> 属性も指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>If an element has the role <code>dialog</code>, an
+    <code>aria-label</code> attribute or an
+    <code>aria-labelledby</code> attribute should be specified.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>要素が役割 <code>dialog</code> を持つ時は、
+    <code>aria-label</code> 属性か <code>aria-labelledby</code>
+    属性を指定するべきです。</p>
   </d:desc>
 </d:item>
 
@@ -4185,11 +4264,11 @@ p {
     <dd>Following attributes cannot be used unless there is the
     <code>href</code> attribute: <code>target</code>,
     <code>ping</code>, <code>rel</code>, <code>hreflang</code>,
-    <code>type</code>, <code>ilet</code>, <code>iswf</code>,
-    <code>irst</code>, <code>ib</code>, <code>ifb</code>,
-    <code>ijam</code>, <code>email</code>, <code>telbook</code>,
-    <code>kana</code>, <code>memoryname</code>, <code>lcs</code>,
-    <code>loop</code>, <code>soundstart</code>, and
+    <code>type</code>, <code>ista</code>, <code>ilet</code>,
+    <code>iswf</code>, <code>irst</code>, <code>ib</code>,
+    <code>ifb</code>, <code>ijam</code>, <code>email</code>,
+    <code>telbook</code>, <code>kana</code>, <code>memoryname</code>,
+    <code>lcs</code>, <code>loop</code>, <code>soundstart</code>, and
     <code>volume</code>.</dd>
 
     <dd>Following attributes cannot be used if there is the
@@ -4586,6 +4665,40 @@ p {
     不適合であり可能なら避けるべきものです。</dd>
 
     </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="autoplay"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The automatic playback is enabled</d:message>
+  <d:message xml:lang="ja">自動再生が有効になっています</d:message>
+  <d:desc xml:lang="en">
+    <p>It is encouraged to consider not using the automatic playback
+    behavior as it can confuse the user.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>自動再生すると利用者が混乱するおそれがあるので、
+    避けることを検討するとよいでしょう。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="autoplay:preload"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>preload</code> attribute
+  is specified although the automatic playback is enabled</d:message>
+  <d:message xml:lang="ja">自動再生が有効になってるのに
+  <code>preload</code> 属性が指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>If both <code>preload</code> and <code>autoplay</code>
+    attributes are specified, the <code>preload</code> attribute is
+    ignored.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>preload</code> 属性と <code>autoplay</code>
+    属性の両方が指定されていると、 <code>preload</code>
+    属性が無視されます。</p>
   </d:desc>
 </d:item>
 
@@ -6897,6 +7010,18 @@ p {
     <code>string:</code>, or a keyword beginning with
     <code>file:</code>.</dd>
 
+    <dt>ARIA <code>aria-dropeffect</code> attribute</dt>
+
+    <dd>The word can be one of <code>copy</code>, <code>move</code>,
+    <code>link</code>, <code>execute</code>, <code>popup</code>, or
+    <code>none</code>.</dd>
+
+    <dt>ARIA <code>aria-relevant</code> attribute</dt>
+
+    <dd>The word can be one of <code>additions</code>,
+    <code>removals</code>, <code>text</code>, or
+    <code>all</code>.</dd>
+
     </dl>
   </d:desc>
 </d:item>
@@ -7209,10 +7334,10 @@ p {
 
 <d:item name="microdata:schemaorg:bad domain"
     modules="Web::HTML::Validator">
-  <d:desc xml:lang="en">The property is not defined for item type
-  <code><var>{text}</var></code></d:desc>
-  <d:desc xml:lang="ja">この特性は項目の型
-  <code><var>{text}</var></code> に対して定義されていません</d:desc>
+  <d:message xml:lang="en">The property is not defined for item type
+  <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">この特性は項目の型
+  <code><var>{text}</var></code> に対して定義されていません</d:message>
   <d:desc xml:lang="en">
     <p>The property is not defined for the types of the item of the
     property.  The item cannot have a property whose domain is
@@ -7512,6 +7637,607 @@ p {
     この文書がブラウザーに直接解釈されることを想定しておらず、
     著者のスクリプトや専用のクライアントソフトウェアにより利用されるものなら、
     この警告は無視して構いません。</p>
+  </d:desc>
+</d:item>
+
+</section>
+
+<section id="aria-errors">
+<h2>ARIA Errors</h2>
+
+<d:item name="aria:activedescendant:not owned"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The referenced element is not a descendant</d:message>
+  <d:message xml:lang="ja">参照されている要素は子孫ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The element referenced by the
+    <code>aria-activedescendant</code> attribute should be a
+    descendant or an element owned by the element through the
+    <code>aria-owns</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-activedescendnat</code> 属性で参照される要素は子孫か、
+    <code>aria-owns</code> 属性を通じて所有している要素であるべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:attr not allowed for element"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute is not allowed for the
+  element</d:message>
+  <d:message xml:lang="ja">この属性はこの要素で認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute is implied by the definition of the element.
+    It cannot be explicitly specified.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この属性は要素の定義により自動的に決まりますので、
+    明示的に指定してはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:attr not allowed for role"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute is not allowed for the roles
+  of the element (<code>role="<var>{text}</var>"</code>)</d:message>
+  <d:message xml:lang="ja">この属性は要素の役割 
+  (<code>role="<var>{text}</var>"</code>) で認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute is only allowed for certain roles, but the
+    element has none of them.  Therefore the attribute cannot be
+    specified for the element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この属性は特定の役割にのみ指定することができますが、
+    この要素にはそのいずれの役割も設定されていません。
+    ですからこの要素にこの属性は指定できません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:bad role"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Role <code><var>{value}</var></code>
+  is not allowed</d:message>
+  <d:message xml:lang="ja">役割 <code><var>{value}</var></code>
+  は認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute must only contain non-abstract
+    roles.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>role</code> 属性は抽象役割でない役割だけを含んでいなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:checked:mixed but radio"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en"><code>aria-checked=mixed</code> is specified
+  for <code>role=radio</code> or <code>radio=menuitemradio</code></d:message>
+  <d:message xml:lang="en"><code>aria-checked=mixed</code> が
+  <code>role=radio</code> や <code>radio=menuitemradio</code>
+  と併用されています</d:message>
+  <d:desc xml:lang="en">
+    <p>If the role of the element is <code>radio</code> or
+    <code>menuitemradio</code>, the <code>aria-checked</code>
+    attribute value <code>mixed</code> cannot be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>要素の役割が <code>radio</code> や
+    <code>menuitemradio</code> の時は <code>aria-checked</code> 属性値
+    <code>mixed</code> は使えません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:grid:multiple sorts"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There are multiple headers with the
+  <code>aria-sort</code> attribute</d:message>
+  <d:message xml:lang="ja"><code>aria-sort</code> 属性が指定された見出しこまが複数あります</d:message>
+  <d:desc xml:lang="en">
+    <p>In a grid, there should not be more than one headers which has
+    the <code>aria-sort</code> attribute unless its value is
+    <code>none</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>グリッド内には <code>aria-sort</code> 属性値が <code>none</code>
+    以外の見出しのこまが複数あるべきではありません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:img presentation:non empty alt"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">A presentational image has non-empty
+  <code>alt</code> attribute</d:message>
+  <d:message xml:lang="ja"><code>role=presentation</code> の画像の
+  <code>alt</code> 属性値が空ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>alt</code> attribute of an HTML <code>img</code>
+    element whose <code>role</code> is <code>presentation</code>
+    must be the empty string.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>HTML <code>img</code> 要素の <code>role</code> が
+    <code>presentation</code> の時は <code>alt</code>
+    属性値が空でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:label"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>aria-label</code> attribute is
+  used</d:message>
+  <d:message xml:lang="ja"><code>aria-label</code> 属性が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>Rather than the <code>aria-label</code> attribute, HTML
+    <code>title</code> attribute, SVG <code>title</code> element, or
+    ARIA <code>aria-labelled-by</code> attribute should be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-label</code> 属性よりも HTML
+    <code>title</code> 属性や SVG <code>title</code> 要素、
+    ARIA <code>aria-labelled-by</code> 属性を使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:labelledby:definition label not dfn"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The referenced element is not a <code>dfn</code>
+  element</d:message>
+  <d:message xml:lang="ja">参照されているのは <code>dfn</code>
+  要素ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>If an element has the role <code>definition</code>, the element
+    referenced by the <code>aria-labelledby</code> attribute should be
+    an HTML <code>dfn</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>役割 <code>definition</code> を持つ要素から 
+    <code>aria-labelledby</code> 属性で参照されるのは HTML
+    <code>dfn</code> 要素でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:live:assertive"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>aria-live</code> attribute
+  value is <code>assertive</code></d:message>
+  <d:message xml:lang="ja"><code>aria-live</code> 属性値が
+  <code>assertive</code> です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>aria-live</code> attribute value
+    <code>assertive</code> should be avoided.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-live</code> 属性値
+    <code>assertive</code> は避けるべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:multiple role elements"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There are multiple elements with role
+  <code><var>{text}</var></code> for this element</d:message>
+  <d:message xml:lang="ja">この要素について役割
+  <code><var>{text}</var></code> の要素が複数あります</d:message>
+  <d:desc xml:lang="en">
+    <p>In an element with role <code>document</code> or
+    <code>application</code>, there must not be more than one elements
+    with role <code>banner</code>, <code>contentinfo</code>, or
+    <code>main</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>役割が <code>document</code> や <code>application</code>
+    の要素の中に役割が <code>banner</code>, <code>contentinfo</code>,
+    <code>main</code> の要素が複数あってはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:not preferred markup:css"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">CSS properties are
+  preferred to <code>role=<var>{value}</var></code></d:message>
+  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
+  よりも CSS を使うのが適切です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute with the value should only be
+    used when it cannot be represented by CSS properties.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この <code>role</code> 属性の値は、 CSS
+    表現できない時に限って使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:not preferred markup:html-attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code><var>{text}</var></code> attribute
+  is preferred</d:message>
+  <d:message xml:lang="en"><code><var>{text}</var></code> 属性の方が適切です</d:message>
+  <d:message xml:lang="en">
+    <p>The ARIA attribute should only be used when its semantics
+    cannot be represented in native HTML attribute.</p>
+  </d:message>
+  <d:message xml:lang="ja">
+    <p>ARIA 属性は、その意味を HTML の本来の属性で表せない時だけ使うべきです。</p>
+  </d:message>
+</d:item>
+
+<d:item name="aria:not preferred markup:html-element"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code><var>{text}</var></code> element
+  is preferred to <code>role=<var>{value}</var></code></d:message>
+  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
+  よりも <code><var>{text}</var></code> 要素が適切です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute with the value should only be
+    used when it cannot be represented by an HTML element with similar
+    semantics.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この <code>role</code> 属性の値は、同じような意味の HTML
+    要素で表現できない時に限って使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:not preferred markup:input"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>&lt;input type=<var>{text}</var>></code>
+  element is preferred to <code>role=<var>{value}</var></code></d:message>
+  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
+  よりも <code>&lt;input type=<var>{text}</var>></code>
+  要素が適切です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute with the value should only be
+    used when it cannot be represented by an HTML <code>input</code>
+    element with similar semantics.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この <code>role</code> 属性の値は、同じような意味の HTML
+    <code>input</code> 要素で表現できない時に限って使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:not preferred markup:math"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>math</code>
+  element is preferred to <code>role=<var>{value}</var></code></d:message>
+  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
+  よりも <code>math</code> 要素が適切です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute with the value should only be
+    used when it cannot be represented by a MathML
+    <code>math</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この <code>role</code> 属性の値は、 MathML <code>math</code>
+    要素で表現できない時に限って使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:not preferred markup:textbox"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>&lt;input type=text></code> or
+  <code>textarea</code>
+  element is preferred to <code>role=<var>{value}</var></code></d:message>
+  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
+  よりも <code>&lt;input type=text></code> や <code>textarea</code>
+  要素が適切です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute with the value should only be
+    used when it cannot be represented by an HTML
+    <code>&lt;input type=text></code> or <code>textarea</code>
+    element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この <code>role</code> 属性の値は、 HTML
+    <code>&lt;input type=text></code> 要素や <code>textarea</code>
+    要素で表現できない時に限って使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:not preferred markup:th"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>&lt;th <var>{text}</var>></code>
+  element is preferred to <code>role=<var>{value}</var></code></d:message>
+  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
+  よりも <code>&lt;th scope=<var>{text}</var>></code>
+  要素が適切です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute with the value should only be
+    used when it cannot be represented by an HTML <code>th</code>
+    element with a <code>scope</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この <code>role</code> 属性の値は、 HTML
+    <code>th</code> 要素と <code>scope</code> 
+    属性で表現できない時に限って使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:not preferred markup:title"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>title=""</code> attribute
+  is preferred to <code>role=<var>{value}</var></code></d:message>
+  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
+  よりも <code>title</code> 属性が適切です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute with the value should only be
+    used when it cannot be represented by an HTML <code>title</code>
+    attribute or an SVG <code>title</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この <code>role</code> 属性の値は、 HTML
+    <code>title</code> 属性や SVG <code>title</code>
+    要素で表現できない時に限って使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:owns"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>aria-owns</code> attribute
+  is used</d:message>
+  <d:message xml:lang="ja"><code>aria-owns</code> 属性が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>aria-owns</code> attribute should be only used when
+    it is difficult to represent the widget using DOM hierarchy.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-owns</code> 属性はウィジェットが DOM
+    の階層で表現できないときに限って使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:owns:descendant is refed"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">A descendant element is referenced</d:message>
+  <d:message xml:lang="ja">子孫要素が参照されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>aria-owns</code> attribute cannot contain the unique
+    identifier (ID) of a descendant element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-owns</code> 属性は子孫要素の固有識別子 (ID)
+    を含めてはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:owns:duplicate idref"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The ID is referenced in another element's 
+  <code>aria-owns</code> attribute</d:message>
+  <d:message xml:lang="ja">この ID は他の要素の <code>aria-owns</code>
+  属性で参照されています</d:message>
+  <d:desc xml:lang="en">
+    <p>In the <code>aria-owns</code> attribute, an element that is
+    referenced in another element's <code>aria-owns</code> attribute
+    cannot be contained.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-owns</code> 属性内では他の要素の <code>aria-owns</code>
+    属性で参照されている要素を含めてはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:posinset:> setsize"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en"><code>aria-posinset</code> is not less
+  than or equal to <code>aria-setsize</code></d:message>
+  <d:message xml:lang="en"><code>aria-posinset</code> が
+  <code>aria-setsize</code> 以下ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The number value of the <code>aria-posinset</code> attribute
+    must be less than or equal to the number value of the
+    <code>aria-setsize</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-posinset</code> 属性の数値が
+    <code>aria-setsize</code> 属性の数値以下でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:posinset:no setsize"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>aria-setsize</code>
+  attribute is not specified</d:message>
+  <d:message xml:lang="en"><code>aria-setsize</code> 
+  属性が指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>If an <code>aria-posinset</code> attribute is specified,
+    the <code>aria-setsize</code> attribute should also be specified.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-posinset</code> 属性が指定されている時は、
+    <code>aria-setsize</code> 属性も指定するべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:redundant:html-attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute is redundant with
+  the <code><var>{text}</var></code> attribute</d:message>
+  <d:message xml:lang="en"><code><var>{text}</var></code> 属性と冗長です</d:message>
+  <d:message xml:lang="en">
+    <p>The ARIA attribute should only be used when its semantics
+    cannot be represented in native HTML attribute.</p>
+  </d:message>
+  <d:message xml:lang="ja">
+    <p>ARIA 属性は、その意味を HTML の本来の属性で表せない時だけ使うべきです。</p>
+  </d:message>
+</d:item>
+
+<d:item name="aria:region:no heading label"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The region has no heading associated
+  as a label</d:message>
+  <d:message xml:lang="ja">この範囲には名札として関連付けられた見出しがありません</d:message>
+  <d:desc xml:lang="en">
+    <p>If an element has a role <code>region</code>, it should have
+    the <code>aria-labelledby</code> attribute referencing a
+    heading.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>役割 <code>region</code> の要素には、見出しを参照する
+    <code>aria-labelledby</code> 属性を指定するべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:role:conflict with semantics"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The role conflicts with the element's
+  semantics (<code>role="<var>{text}</var>"</code>)</d:message>
+  <d:message xml:lang="ja">この役割は要素の意味
+  (<code>role="<var>{text}</var>"</code>) と矛盾します</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute cannot be used to override the
+    strong native semantics of the element.  Use an appropriate
+    element instead.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>role</code> 属性は要素の強いネイティブな意味を上書きできません。
+    適切な要素を使ってください。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:role:default role"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">This role is implied by the element</d:message>
+  <d:message xml:lang="ja">この役割は要素によって自動的に決まります</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>role</code> attribute cannot contain a role which is
+    implied by the default implied ARIA semantics of the element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>role</code> 属性に要素の既定の暗示的 ARIA
+    意味によって自動的に設定される役割を含めてはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:role:not required context"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">An element with role
+  <code><var>{value}</var></code> is used without context element
+  of role that is one of <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">役割が<code><var>{text}</var></code>
+  のいずれかの要素の中以外で役割が <code><var>{value}</var></code> 
+  の要素が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>According to the definition of the role specified in the
+    <code>role</code> attribute, the element must be contained in or
+    referenced through <code>aria-owns</code> by an element with one
+    of some roles.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>role</code> 属性に指定された役割の定義によれば、
+    特定の役割の要素に含まれているか、 <code>aria-owns</code>
+    で参照されていなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:role:no required owned element"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">An element with role 
+  <code><var>{value}</var></code> is used without descendant element
+  of role that is one of <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">役割が
+  <code><var>{text}</var></code> のいずれかの要素を子孫とせずに役割
+  <code><var>{value}</var></code> の要素が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>According to the definition of the role specified in the
+    <code>role</code> attribute, the element must contain or
+    <code>aria-owns</code> an element with one of some roles.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>role</code> 属性に指定された役割の定義によれば、
+    特定の役割の要素を含んでいるか、 <code>aria-owns</code>
+    で指定されていなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:tabpanel:no tab"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The tab panel has no associated tab</d:message>
+  <d:message xml:lang="ja">このタブパネルには関連付けられたタブがありません</d:message>
+  <d:desc xml:lang="en">
+    <p>If an element has the role <code>tabpanel</code>, it should
+    have the associated element with the role <code>tab</code>, using
+    the <code>aria-controls</code> attribute of the element with role
+    <code>tab</code> or the <code>aria-labelledby</code> attribute of
+    the element with role <code>tabpanel</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>役割 <code>tabpanel</code> の要素には役割 <code>tab</code>
+    の要素を関連付けなければいけません。関連付けには役割
+    <code>tab</code> の要素に <code>aria-controls</code> 属性を指定するか、
+    役割 <code>tabpanel</code> の要素に <code>aria-labelledby</code>
+    属性を指定してください。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:valuemax lt valuemin"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en"><code>aria-valuemax</code> is not greater
+  than or equal to <code>aria-valuemin</code></d:message>
+  <d:message xml:lang="ja"><code>aria-valuemax</code> が
+  <code>aria-valuemin</code> 以上ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The number value of the <code>aria-valuemax</code> attribute
+    should be greater than or equal to the number value of the
+    <code>aria-valuemin</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-valuemax</code> 属性の数値は
+    <code>aria-valuemin</code> 属性の数値以上であるべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:valuemax lt valuenow"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en"><code>aria-valuemax</code> is not greater
+  than or equal to <code>aria-valuenow</code></d:message>
+  <d:message xml:lang="ja"><code>aria-valuemax</code> が
+  <code>aria-valuenow</code> 以上ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The number value of the <code>aria-valuemax</code> attribute
+    should be greater than or equal to the number value of the
+    <code>aria-valuenow</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-valuemax</code> 属性の数値は
+    <code>aria-valuenow</code> 属性の数値以上であるべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:valuenow lt valuemin"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en"><code>aria-valuenow</code> is not greater
+  than or equal to <code>aria-valuemin</code></d:message>
+  <d:message xml:lang="ja"><code>aria-valuenow</code> が
+  <code>aria-valuemin</code> 以上ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The number value of the <code>aria-valuenow</code> attribute
+    should be greater than or equal to the number value of the
+    <code>aria-valuemin</code> attribute.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-valuenow</code> 属性の数値は
+    <code>aria-valuemin</code> 属性の数値以上であるべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="aria:valuetext"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>aria-valuetext</code> attribute
+  is specified</d:message>
+  <d:message xml:lang="ja"><code>aria-valuetext</code>
+  属性が指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>aria-valuetext</code> attribute should only be
+    specified when the value cannot be represented as a number.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>aria-valuetext</code> 属性は値を数値として表現できないときだけ指定するべきです。</p>
   </d:desc>
 </d:item>
 
