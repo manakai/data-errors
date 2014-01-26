@@ -4113,6 +4113,7 @@ p {
 </d:item>
 
 <d:item name="attribute missing:aria-label*"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Neither <code>aria-label</code> or
   <code>aria-labelledby</code> attribute is specified</d:message>
@@ -7770,14 +7771,17 @@ p {
   used</d:message>
   <d:message xml:lang="ja"><code>aria-label</code> 属性が使われています</d:message>
   <d:desc xml:lang="en">
-    <p>Rather than the <code>aria-label</code> attribute, HTML
-    <code>title</code> attribute, SVG <code>title</code> element, or
-    ARIA <code>aria-labelled-by</code> attribute should be used.</p>
+    <p>Rather than the <code>aria-label</code> attribute, the label
+    should be placed near the element as normal.  If the label is
+    advisory, it should be put into HTML <code>title</code> attribute,
+    SVG <code>title</code> element.  Alternatively, the ARIA
+    <code>aria-labelled-by</code> attribute can also be used.</p>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p><code>aria-label</code> 属性よりも HTML
-    <code>title</code> 属性や SVG <code>title</code> 要素、
-    ARIA <code>aria-labelled-by</code> 属性を使うべきです。</p>
+    <p><code>aria-label</code> 属性よりも普通に要素の近くにラベルを配置するべきです。
+    ラベルがヒントに過ぎない時は、 HTML
+    <code>title</code> 属性や SVG <code>title</code> 要素に入れるべきです。
+    あるいは ARIA <code>aria-labelled-by</code> 属性を使うこともできます。</p>
   </d:desc>
 </d:item>
 
@@ -8051,6 +8055,20 @@ p {
     <p><code>aria-posinset</code> 属性が指定されている時は、
     <code>aria-setsize</code> 属性も指定するべきです。</p>
   </d:desc>
+</d:item>
+
+<d:item name="aria:redundant role"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The role is redundant with the element's
+  native semantics</d:message>
+  <d:message xml:lang="en">この役割は要素自体の意味と冗長です</d:message>
+  <d:message xml:lang="en">
+    <p>The role should be explicitly specified only when its semantics
+    cannot be represented in native HTML elements and attributes.</p>
+  </d:message>
+  <d:message xml:lang="ja">
+    <p>ARIA 属性は、その意味を HTML の本来の要素や属性で表せない時だけ使うべきです。</p>
+  </d:message>
 </d:item>
 
 <d:item name="aria:redundant:html-attr"

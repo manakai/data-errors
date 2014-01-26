@@ -666,8 +666,8 @@
    },
    "aria:label" : {
       "desc" : {
-         "en" : "\n    <p>Rather than the <code>aria-label</code> attribute, HTML\n    <code>title</code> attribute, SVG <code>title</code> element, or\n    ARIA <code>aria-labelled-by</code> attribute should be used.</p>\n  ",
-         "ja" : "\n    <p><code>aria-label</code> 属性よりも HTML\n    <code>title</code> 属性や SVG <code>title</code> 要素、\n    ARIA <code>aria-labelled-by</code> 属性を使うべきです。</p>\n  "
+         "en" : "\n    <p>Rather than the <code>aria-label</code> attribute, the label\n    should be placed near the element as normal.  If the label is\n    advisory, it should be put into HTML <code>title</code> attribute,\n    SVG <code>title</code> element.  Alternatively, the ARIA\n    <code>aria-labelled-by</code> attribute can also be used.</p>\n  ",
+         "ja" : "\n    <p><code>aria-label</code> 属性よりも普通に要素の近くにラベルを配置するべきです。\n    ラベルがヒントに過ぎない時は、 HTML\n    <code>title</code> 属性や SVG <code>title</code> 要素に入れるべきです。\n    あるいは ARIA <code>aria-labelled-by</code> 属性を使うこともできます。</p>\n  "
       },
       "message" : {
          "en" : "The <code>aria-label</code> attribute is\n  used",
@@ -826,6 +826,12 @@
       },
       "message" : {
          "en" : "<code>aria-setsize</code> \n  属性が指定されていません"
+      }
+   },
+   "aria:redundant role" : {
+      "message" : {
+         "en" : "\n    <p>The role should be explicitly specified only when its semantics\n    cannot be represented in native HTML elements and attributes.</p>\n  ",
+         "ja" : "\n    <p>ARIA 属性は、その意味を HTML の本来の要素や属性で表せない時だけ使うべきです。</p>\n  "
       }
    },
    "aria:redundant:html-attr" : {
@@ -998,6 +1004,9 @@
       "message" : {
          "en" : "Neither <code>aria-label</code> or\n  <code>aria-labelledby</code> attribute is specified",
          "ja" : "<code>aria-label</code> 属性も\n  <code>aria-labelledby</code> 属性も指定されていません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "attribute missing:code|object" : {
