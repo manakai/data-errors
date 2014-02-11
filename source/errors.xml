@@ -1075,7 +1075,7 @@ p {
 </section>
 
 <section id="xml-errors">
-<h2>XML Errors</h2>
+<h2>XML well-formedness errors</h2>
 
 <d:item name="entity not declared"
     modules="Whatpm::WebVTT::Parser">
@@ -1133,6 +1133,98 @@ p {
       <code>&amp;lrm;</code>, <code>&amp;rlm;</code>,
       <code>&amp;nbsp;</code> だけです。</dd>
     </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="external entref"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">An external entity is referenced
+  but ignored</d:message>
+  <d:message xml:lang="ja">外部実体が参照されていますが、無視します</d:message>
+  <d:desc xml:lang="en">
+    <p>The entity reference is a reference to an external entity.
+    Since the processors is configure not to expand external entities
+    (default) or since the processor can't fetch the external entity,
+    the entity reference cannot be expanded and is ignored.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この実体参照は外部実体を参照しています。 XML 処理器が外部実体を展開しないように設定されている
+    (既定値) か、外部実体を取得できなかったので、
+    この実体参照は展開されず、無視されます。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="WFC:No External Entity References"
+    modules="Web::HTML::Tokenizer">
+  <d:message xml:lang="en">An external entity is referenced in
+  an attribute value</d:message>
+  <d:message xml:lang="ja">属性値内で外部実体が参照されています</d:message>
+  <d:desc xml:lang="en">
+    <p>An entity reference in an attribute value cannot reference an
+    external entity.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性値内の実体参照が外部実体を参照しています。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ref outside of root element"
+    modules="Web::HTML::Tokenizer">
+  <d:message xml:lang="en">An general entity reference is used outside
+  of the root element</d:message>
+  <d:message xml:lang="ja">根要素外で一般実体参照が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>General entity references are only allowed in attribute values
+    and in element contents.  It cannot be used outside of the root
+    element's start and end tags.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>一般実体参照は、属性値や要素の内容の中でのみ使えます。
+    根要素の開始タグと終了タグの外側では使えません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="second root element"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">There is a start tag after the end tag
+  of the root element</d:message>
+  <d:message xml:lang="ja">根要素の終了タグの後に開始タグがあります</d:message>
+  <d:desc xml:lang="en">
+    <p>There must be only one child element in the document.  There
+    cannot be any start or end tag after the end tag of the root
+    element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>文書の子要素は1つだけしかあってはいけません。
+    根要素の終了タグの後に開始タグや終了タグがあってはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="text outside of root element"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">There is a non-space character outside
+  of the root element</d:message>
+  <d:message xml:lang="ja">根要素の外側に空白でない文字があります</d:message>
+  <d:desc xml:lang="en">
+    <p>Non-space characters must be in the root element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>空白以外の文字は根要素外では使えません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="unparsed entity"
+    modules="Web::HTML::Tokenizer">
+<!-- WFC:Parsed Entity -->
+  <d:message xml:lang="en">An unparsed entity is referenced by
+  an entity reference</d:message>
+  <d:message xml:lang="ja">実体参照が非解析対象実体を参照しています</d:message>
+  <d:desc xml:lang="en">
+    <p>An unparsed entity cannot be referenced by an entity
+    reference.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>非解析対象実体を実体参照から参照することはできません。</p>
   </d:desc>
 </d:item>
 
@@ -1395,6 +1487,30 @@ p {
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">The <code>button</code> element cannot be
   nested.</d:message>
+</d:item>
+
+<d:item name="in caption"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The <code>&lt;<var>{text}</var>></code> tag
+  is not allowed in a <code>caption</code></d:message>
+  <d:message xml:lang="ja">タグ <code>&lt;<var>{text}</var>></code>
+  は <code>caption</code> 内では使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>In a <code>caption</code> element's <code>innerHTML</code>,
+    start tags <code>&lt;caption></code>, <code>&lt;col></code>,
+    <code>&lt;colgroup></code>, <code>&lt;tbody></code>,
+    <code>&lt;td></code>, <code>&lt;tfoot></code>,
+    <code>&lt;th></code>, <code>&lt;thead></code>, and
+    <code>&lt;tr></code> are not allowed and are ignored.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>caption</code> 要素の <code>innerHTML</code> では開始タグ
+    <code>&lt;caption></code>, <code>&lt;col></code>,
+    <code>&lt;colgroup></code>, <code>&lt;tbody></code>,
+    <code>&lt;td></code>, <code>&lt;tfoot></code>,
+    <code>&lt;th></code>, <code>&lt;thead></code>,
+    <code>&lt;tr></code> は使うことができず、無視されます。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="in CDATA:#eof"
@@ -1937,6 +2053,23 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="obs DOCTYPE"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">The DOCTYPE has public and/or system
+  identifiers</d:message>
+  <d:message xml:lang="ja">DOCTYPE に公開識別子やシステム識別子があります</d:message>
+  <d:desc xml:lang="en">
+    <p>The simplest DOCTYPE syntax <code>&lt;!DOCTYPE html></code>
+    should be used.  Use of <code>PUBLIC</code> or <code>SYSTEM</code>
+    identifiers, which was encouraged in 90s, is discouraged.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>DOCTYPE は <code>&lt;!DOCTYPE html></code> とだけあれば十分です。
+    90年代には <code>PUBLIC</code> や <code>SYSTEM</code>
+    を書くのが流行りましたが、今は不要です。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="start tag not allowed"
     class="parse-error"
     modules="Whatpm::HTML::Parser Whatpm::WebVTT::Parser
@@ -1976,7 +2109,7 @@ p {
 </d:item>
 
 <d:item name="stray end tag"
-    modules="Web::HTML::Parser">
+    modules="Web::HTML::Parser Web::XML::Parser">
   <d:message xml:lang="en">The tag <code>&lt;/<var>{value}</var>></code>
   has no corresponding start tag</d:message>
   <d:message xml:lang="ja">終了タグ <code>&lt;/<var>{value}</var>></code>
@@ -2249,6 +2382,26 @@ p {
     <code>noframes</code> 要素の中に入れなければいけません。</dd>
 
     </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="character not allowed:a heading"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">A non-space character is used in a
+  <code>summary</code> with a heading content</d:message>
+  <d:message xml:lang="ja">見出しが含まれる <code>summary</code>
+  内に空白以外の文字があります</d:message>
+  <d:desc xml:lang="en">
+    <p>The content of a <code>summary</code> element must be either
+    phrasing content or a heading content.  If a
+    <code>h<var>n</var></code> element is used in the element, no
+    other element or non-space text can be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>summary</code> 要素の内容は語句内容か、
+    見出し内容1つでなければいけません。 <code>summary</code>
+    要素の中に <code>h<var>n</var></code> 要素がある時は、
+    それ以外の要素や空白でない文字を含めてはいけません。</p>
   </d:desc>
 </d:item>
 
@@ -2712,6 +2865,25 @@ p {
     <code>frameset</code> 要素の子供としてのみ使えます。</dd>
 
     </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="element not allowed:a heading"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">More than a heading content element is used
+  in a <code>summary</code></d:message>
+  <d:message xml:lang="ja"><code>summary</code> 内に見出し内容要素1つ以外の要素があります</d:message>
+  <d:desc xml:lang="en">
+    <p>The content of a <code>summary</code> element must be either
+    phrasing content or a heading content.  If a
+    <code>h<var>n</var></code> element is used in the element, no
+    other element or non-space text can be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>summary</code> 要素の内容は語句内容か、
+    見出し内容1つでなければいけません。 <code>summary</code>
+    要素の中に <code>h<var>n</var></code> 要素がある時は、
+    それ以外の要素や空白でない文字を含めてはいけません。</p>
   </d:desc>
 </d:item>
 
@@ -3497,8 +3669,8 @@ p {
 
 <d:item name="root text"
     modules="Web::HTML::Validator">
-  <d:desc xml:lang="en">The document cannot contain texts directly</d:desc>
-  <d:desc xml:lang="ja">文書に直接テキストを含めることはできません</d:desc>
+  <d:message xml:lang="en">The document cannot contain texts directly</d:message>
+  <d:message xml:lang="ja">文書に直接テキストを含めることはできません</d:message>
   <d:desc xml:lang="en">
     <p>The document node cannot contain the text node as the
     child.</p>
@@ -3516,19 +3688,19 @@ p {
 
 <d:item name="script:inline doc:invalid"
     modules="Web::HTML::Validator">
-  <d:desc xml:lang="en">The inline documentation is invalid</d:desc>
-  <d:desc xml:lang="ja">外部スクリプトの説明が構文的に正しくありません</d:desc>
-  <d:message xml:lang="en">
+  <d:message xml:lang="en">The inline documentation is invalid</d:message>
+  <d:message xml:lang="ja">外部スクリプトの説明が構文的に正しくありません</d:message>
+  <d:desc xml:lang="en">
     <p>If the <code>script</code> element has the <code>src</code>
     attribute, the content of the element is the inline documentation
     for the external script.  It must be zero or more JavaScript
     comments and/or spaces.</p>
-  </d:message>
-  <d:message xml:lang="ja">
+  </d:desc>
+  <d:desc xml:lang="ja">
     <p><code>script</code> 要素に <code>src</code> 属性がある時は、
     要素の内容は外部スクリプトの説明となります。 JavaScript
     コメントと空白文字だけしか使えません。</p>
-  </d:message>
+  </d:desc>
 </d:item>
 
 <d:item name="script:nested &lt;script>"
@@ -3550,8 +3722,8 @@ p {
 
 <d:item name="unclosed cdo"
     modules="Web::HTML::Validator">
-  <d:desc xml:lang="en"><code>--></code> not found</d:desc>
-  <d:desc xml:lang="ja"><code>--></code> が見つかりません</d:desc>
+  <d:message xml:lang="en"><code>--></code> not found</d:message>
+  <d:message xml:lang="ja"><code>--></code> が見つかりません</d:message>
   <d:desc xml:lang="en">
     <p>In the <code>style</code> or <code>script</code> element, any
     substring <code>&lt;!--</code> must be closed by corresponding
@@ -3685,6 +3857,10 @@ p {
     must be specified.  In the <code>body</code> element, an
     <code>itemprop</code> attribute must be specified.</dd>
 
+    <dd>If the element is applied to the entire document, move the
+    element within the <code>head</code> element, not in the
+    <code>body</code> element.</dd>
+
     <dt>HTML <code>meta</code> element</dt>
 
     <dd>The <code>content</code> attribute must be specified.</dd>
@@ -3692,11 +3868,19 @@ p {
     <dd>In the <code>body</code> element, an <code>itemprop</code>
     attribute must be specified.</dd>
 
+    <dd>If the element is applied to the entire document, move the
+    element within the <code>head</code> element, not in the
+    <code>body</code> element.</dd>
+
     <dt>HTML <code>style</code> element</dt>
 
     <dd>For the <code>style</code> element outside of the
     <code>head</code> element, the <code>scoped</code> attribute must
     be specified.</dd>
+
+    <dd>If the element is applied to the entire document, move the
+    element within the <code>head</code> element, not in the
+    <code>body</code> element.</dd>
 
     <dt>HTML <code>input</code> element</dt>
 
@@ -3879,6 +4063,9 @@ p {
     属性を指定しなければいけません。 <code>body</code>
     要素内では <code>itemprop</code> 属性を指定しなければいけません。</dd>
 
+    <dd>要素を文書全体に適用したい時は、 <code>body</code> 要素内ではなく
+    <code>head</code> 要素内に入れてください。</dd>
+
     <dt>HTML <code>meta</code> 要素</dt>
 
     <dd><code>content</code> 属性を指定しなければいけません。</dd>
@@ -3886,10 +4073,16 @@ p {
     <dd><code>body</code>
     要素内では <code>itemprop</code> 属性を指定しなければいけません。</dd>
 
+    <dd>要素を文書全体に適用したい時は、 <code>body</code> 要素内ではなく
+    <code>head</code> 要素内に入れてください。</dd>
+
     <dt>HTML <code>style</code> 要素</dt>
 
     <dd><code>head</code> 要素外の <code>style</code> 要素には
     <code>scoped</code> 属性を指定しなければいけません。</dd>
+
+    <dd>要素を文書全体に適用したい時は、 <code>body</code> 要素内ではなく
+    <code>head</code> 要素内に入れてください。</dd>
 
     <dt>HTML <code>input</code> 要素</dt>
 
@@ -5359,6 +5552,9 @@ p {
       <code>Expires</code>, <code>Pragma</code>, or
       <code>Cache-Control</code>, use real HTTP headers.</p>
 
+      <p><code>X-UA-Compatible</code> is harmful.  Remove the element
+      entirely.</p>
+
     </dd>
 
     </dl>
@@ -5382,6 +5578,8 @@ p {
 
       <p><code>Expires</code>, <code>Pragma</code>,
       <code>Cache-Control</code> は HTTP ヘッダーで指定するべきです。</p>
+
+      <p><code>X-UA-Compatible</code> は有害です。要素ごと削除してください。</p>
 
     </dd>
 
@@ -6430,21 +6628,41 @@ p {
 
 <d:item name="nninteger:syntax error"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The attribute value is not a non-negative
+  <d:message xml:lang="en">The value is not a non-negative
   integer</d:message>
-  <d:message xml:lang="ja">属性値は非負整数ではありません</d:message>
+  <d:message xml:lang="ja">非負整数ではありません</d:message>
   <d:desc xml:lang="en">
     <p>The attribute value must be a non-negative integer.</p>
 
     <p>Decimal marks, signs, and thousands separators are not allowed.
     Leading and trailing white spaces, as well as units, are not
     allowed.</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>width</code> and <code>height</code> attributes</dt>
+
+    <!-- <table width=100%> -->
+    <dd>These attributes cannot be used to specify the rendered
+    dimension of the element.  Use CSS instead.</dd>
+
+    </dl>
   </d:desc>
   <d:desc xml:lang="ja">
     <p>属性値は非負整数でなければいけません。</p>
 
     <p>小数点、符号、桁区切りのコンマは使えません。
     前後に空白や単位をつけてもいけません。</p>
+
+    <dl class="switch">
+
+    <dt>HTML <code>width</code> 属性、 <code>height</code> 属性</dt>
+
+    <!-- <table width=100%> -->
+    <dd>両属性は要素をレンダリングする大きさの指定には使えません。
+    表示上の大きさは CSS で指定してください。</p>
+
+    </dl>
   </d:desc>
 </d:item>
 
@@ -7135,6 +7353,19 @@ p {
 
 <section id="microdata-errors">
 <h2>Microdata errors</h2>
+
+<d:item name="empty itemprop"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The attribute value is empty</d:message>
+  <d:message xml:lang="ja">属性値が空です</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>itemprop</code> attribute must contain one or more
+    property names.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>itemprop</code> 属性には特性名が含まれていなければいけません。</p>
+  </d:desc>
+</d:item>
 
 <d:item name="microdata:enum:bad"
     modules="Web::HTML::Validator">
@@ -11875,7 +12106,7 @@ Regexp::Parser::JavaScript's extension. -->
 <section id="license">
 <h2>License of This Document</h2>
 
-<p>Copyright <time>2007</time>-<time>2013</time> <a
+<p>Copyright <time>2007</time>-<time>2014</time> <a
 href="http://suika.suikawiki.org/~wakaba/who?" rel="author"
 xml:lang="ja">Wakaba</a> <code class="mail">&lt;<a
 href="mailto:wakaba@suikawiki.org">wakaba@suikawiki.org</a>></code>.</p>

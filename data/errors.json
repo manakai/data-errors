@@ -428,6 +428,16 @@
          "en" : "Modifier <code>(?<var>{text}</var>)</code>\n  <em>in</em> a regular expression has no effect."
       }
    },
+   "WFC:No External Entity References" : {
+      "desc" : {
+         "en" : "\n    <p>An entity reference in an attribute value cannot reference an\n    external entity.</p>\n  ",
+         "ja" : "\n    <p>属性値内の実体参照が外部実体を参照しています。</p>\n  "
+      },
+      "message" : {
+         "en" : "An external entity is referenced in\n  an attribute value",
+         "ja" : "属性値内で外部実体が参照されています"
+      }
+   },
    "XML 1.0 NCName:syntax error" : {
       "message" : {
          "en" : "The specified value is not a legal XML Namespaces\n  1.0 <code>NCName</code>."
@@ -978,8 +988,8 @@
    },
    "attribute missing" : {
       "desc" : {
-         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>In many cases, the <code>alt</code> attribute is\n    required.</dd>\n\n    <dd>If the element has the <code>math</code> role, the\n    <code>aria-describedby</code> attribute should be specified.</dd>\n\n    <dt>HTML <code>source</code> or <code>bgsound</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dt>HTML <code>track</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>If the <code>kind</code> attribute is <code>subtitles</code>\n    (which is the default), the <code>srclang</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>href</code> attribute must be specified.</dd>\n\n    <dd>Either <code>rel</code> or <code>itemprop</code> attribute\n    must be specified.  In the <code>body</code> element, an\n    <code>itemprop</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>The <code>content</code> attribute must be specified.</dd>\n\n    <dd>In the <code>body</code> element, an <code>itemprop</code>\n    attribute must be specified.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>For the <code>style</code> element outside of the\n    <code>head</code> element, the <code>scoped</code> attribute must\n    be specified.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>button</code>, the\n    <code>value</code> attribute must be specified.</dd>\n\n    <dd>If the <code>pattern</code> attribute is specified, the\n    <code>title</code> attribute should also be specified to describe\n    the restriction.</dd>\n\n    <dt>HTML <code>button</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>menu</code>, the\n    <code>menu</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>embed</code> element</dt>\n\n    <dd>An <code>embed</code> element with no <code>src</code>\n    attribute has no effect.  If the <code>itemprop</code> attribute\n    is specified, a <code>src</code> attribute must also be\n    specified.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>If the <code>itemprop</code> attribute is specified, a\n    <code>data</code> attribute must also be specified.</dd>\n\n    <dd>If both <code>data</code> and <code>type</code> attributes are\n    specified, it might be a good practice to also specify the\n    <code>typemustmatch</code> attribute to ensure that the expected\n    content is rendered.</dd>\n\n    <dd>If the <code>classid</code> attribute is specified, the\n    <code>codetype</code> attribute should also be specified.</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>optgroup</code> element</dt>\n\n    <dd>The <code>label</code> attribute is required.</dd>\n\n    <dt>HTML <code>textarea</code> element</dt>\n\n    <dd>If the <code>pattern</code> attribute is specified, the\n    <code>title</code> attribute should also be specified to describe\n    the restriction.</dd>\n\n    <dd>If the value of the <code>wrap</code> attribute is\n    <code>hard</code>, the <code>cols</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>a</code> element</dt>\n\n    <dd>If the <code>itemprop</code> attribute is specified, an\n    <code>href</code> attribute must also be specified.</dd>\n\n    <dt>HTML <code>map</code> element</dt>\n\n    <dd>The <code>name</code> attribute is required.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dd>If the <code>href</code> attribute is specified, the\n    <code>alt</code> attribute is required.</dd>\n\n    <dd>If the <code>itemprop</code> attribute is specified, an\n    <code>href</code> attribute must also be specified.</dd>\n\n    <dt>HTML <code>bdo</code> element</dt>\n\n    <dd>The <code>dir</code> attribute is required.</dd>\n\n    <dt>HTML <code>b</code> or <code>i</code> element</dt>\n\n    <dd>It might be a good idea to specify the <code>class</code>\n    attribute for these elements such that their purpose can be\n    clarified and that it can be used as a hook for styling.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    <dt>HTML <code>meter</code> element</dt>\n\n    <dd>The <code>value</code> attribute is required.</dd>\n\n    <dt>HTML <code>menuitem</code> element</dt>\n\n    <dd>Either <code>label</code> or <code>command</code> attribute\n    must be specified.</dd>\n\n    <dt>HTML <code>iframe</code> element</dt>\n\n    <dd>If the <code>itemprop</code> attribute is specified, a\n    <code>src</code> attribute must also be specified.</dd>\n\n    <dt>HTML <code>param</code> element</dt>\n\n    <dd>Attributes <code>name</code> and <code>value</code> must be\n    specified.</dd>\n\n    <dt>HTML <code>applet</code> element</dt>\n\n    <dd>Attributes <code>width</code> and <code>height</code> must be\n    specified.</dd>\n\n    <dt>HTML <code>title</code> attribute</dt>\n\n    <dd>If the element has a <code>draggable</code> or\n    <code>dropzone</code> attribute, the <code>title</code> attribute\n    should contain the description.</dd>\n\n    <dt>ARIA <code>aria-valuenow</code> attribute</dt>\n\n    <dd>If the element has an <code>aria-valuetext</code> attribute,\n    the <code>aria-valuenow</code> attribute sohuld also be\n    specified.</dd>\n\n    <dd>If the element has the <code>progressbar</code> role and the\n    value is not indeterminate, the <code>aria-valuenow</code>\n    attribute should be specified.  In addition,\n    <code>aria-valuemin</code> and <code>aria-valuemax</code>\n    attributes should be specified, too.</dd>\n\n    <dt>ARIA <code>aria-label</code> attribute</dt>\n\n    <dd>If there are multiple elements with <code>role=toolbar</code>\n    in an element with role <code>application</code>, they must have\n    the <code>aria-label</code> attribute.</dd>\n\n    <dt>ARIA <code>aria-labelledby</code> attribute</dt>\n\n    <dd>If an element has role <code>document</code> or\n    <code>application</code>, the <code>aria-labelledby</code>\n    attribute should be specified to associate the label.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd>多くの場合 <code>alt</code> 属性は必須です。</dd>\n\n    <dd>要素が役割 <code>math</code> を持つ時は\n    <code>aria-describedby</code> 属性を指定するべきです。</dd>\n\n    <dt>HTML <code>source</code> 要素、 <code>bgsound</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>track</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd><code>kind</code> 属性が <code>subtitles</code> (既定値) なら、\n    <code>srclang</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>href</code> 属性を指定しなければいけません。</dd>\n\n    <dd><code>rel</code> 属性か <code>itemprop</code>\n    属性を指定しなければいけません。 <code>body</code>\n    要素内では <code>itemprop</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>content</code> 属性を指定しなければいけません。</dd>\n\n    <dd><code>body</code>\n    要素内では <code>itemprop</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>head</code> 要素外の <code>style</code> 要素には\n    <code>scoped</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>input</code> 要素</dt>\n\n    <dd><code>type</code> が <code>button</code> の時は\n    <code>value</code> 属性を指定しなければいけません。</dd>\n\n    <dd><code>pattern</code> 属性があるときは、その制限内容を\n    <code>title</code> 属性で説明するべきです。</dd>\n\n    <dt>HTML <code>button</code> 要素</dt>\n\n    <dd><code>type</code> が <code>menu</code> の時は\n    <code>menu</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>embed</code> 要素</dt>\n\n    <dd><code>embed</code> 要素は <code>src</code>\n    属性がなければ意味がありません。 <code>itemprop</code>\n    属性がある時は <code>src</code> 属性も必須です。</dd>\n\n    <dt>HTML <code>object</code> 要素</dt>\n\n    <dd><code>itemprop</code> 属性がある時は <code>data</code> 属性も必須です。</dd>\n\n    <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、\n    意図した内容しかレンダリングされないように\n    <code>typemustmatch</code> 属性も指定したほうがいいかもしれません。</dd>\n\n    <dd><code>classid</code> 属性が指定されている時は、\n    <code>codetype</code> 属性も指定するべきです。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>optgroup</code> 要素</dt>\n\n    <dd><code>label</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>textarea</code> 要素</dt>\n\n    <dd><code>pattern</code> 属性があるときは、その制限内容を\n    <code>title</code> 属性で説明するべきです。</dd>\n\n    <dd><code>wrap</code> 属性の値が\n    <code>hard</code> の時は、 <code>cols</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>a</code> 要素</dt>\n\n    <dd><code>itemprop</code> 属性が指定されている時は\n    <code>href</code> 属性も必須です。</dd>\n\n    <dt>HTML <code>map</code> 要素</dt>\n\n    <dd><code>name</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dd><code>href</code> 属性が指定されている場合\n    <code>alt</code> 属性は必須です。</dd>\n\n    <dd><code>itemprop</code> 属性が指定されている場合\n    <code>href</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>bdo</code> 要素</dt>\n\n    <dd><code>dir</code> 属性が必要です。</dd>\n\n    <dt>HTML <code>b</code> 要素、<code>i</code> 要素</dt>\n\n    <dd><code>class</code> を指定しておくと用途が明確になり、\n    スタイルを指定するときにも便利かもしれません。</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    <dt>HTML <code>meter</code> 要素</dt>\n\n    <dd><code>value</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>menuitem</code> 要素</dt>\n\n    <dd><code>label</code> 属性か <code>command</code>\n    属性のどちらかを指定しなければいけません。</dd>\n\n    <dt>HTML <code>iframe</code> 要素</dt>\n\n    <dd><code>itemprop</code> 属性が指定されている場合\n    <code>src</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>param</code> 要素</dt>\n    \n    <dd><code>name</code> 属性と <code>height</code>\n    属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>applet</code> 要素</dt>\n\n    <dd><code>width</code> 属性と <code>height</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>title</code> 属性</dt>\n\n    <dd><code>draggable</code> 属性や\n    <code>dropzone</code> 属性が指定されている時は、 <code>title</code>\n    属性に説明を入れるべきです。</dd>\n\n    <dt>ARIA <code>aria-valuenow</code> 属性</dt>\n\n    <dd><code>aria-valuetext</code> 属性が指定されている時は、\n    <code>aria-valuenow</code> 属性も指定するべきです。</dd>\n\n    <dd>要素が役割 <code>progressbar</code> を持ち、値が未決定でない時は、\n    <code>aria-valuenow</code> 属性を指定するべきです。加えて、\n    <code>aria-valuemin</code> 属性と <code>aria-valuemax</code>\n    属性も指定するべきです。</dd>\n\n    <dt>ARIA <code>aria-label</code> 属性</dt>\n\n    <dd>役割 <code>application</code> の要素の中に\n    役割が <code>toolbar</code> の要素が複数ある時は、\n    <code>aria-label</code> 属性が必要です。</dd>\n\n    <dt>ARIA <code>aria-labelledby</code> 属性</dt>\n\n    <dd>役割が <code>document</code> や <code>application</code>\n    の要素には <code>aria-labelledby</code> 属性で名札を指定するべきです。</dd>\n\n    </dl>\n  "
+         "en" : "\n\n    <p>An attribute is not specified for the element.  You may want to\n    specify the element such that user agents can provide its full\n    functionality with regard to the element for the user.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>In many cases, the <code>alt</code> attribute is\n    required.</dd>\n\n    <dd>If the element has the <code>math</code> role, the\n    <code>aria-describedby</code> attribute should be specified.</dd>\n\n    <dt>HTML <code>source</code> or <code>bgsound</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dt>HTML <code>track</code> element</dt>\n\n    <dd>The <code>src</code> attribute is required.</dd>\n\n    <dd>If the <code>kind</code> attribute is <code>subtitles</code>\n    (which is the default), the <code>srclang</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>The <code>href</code> attribute must be specified.</dd>\n\n    <dd>Either <code>rel</code> or <code>itemprop</code> attribute\n    must be specified.  In the <code>body</code> element, an\n    <code>itemprop</code> attribute must be specified.</dd>\n\n    <dd>If the element is applied to the entire document, move the\n    element within the <code>head</code> element, not in the\n    <code>body</code> element.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>The <code>content</code> attribute must be specified.</dd>\n\n    <dd>In the <code>body</code> element, an <code>itemprop</code>\n    attribute must be specified.</dd>\n\n    <dd>If the element is applied to the entire document, move the\n    element within the <code>head</code> element, not in the\n    <code>body</code> element.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>For the <code>style</code> element outside of the\n    <code>head</code> element, the <code>scoped</code> attribute must\n    be specified.</dd>\n\n    <dd>If the element is applied to the entire document, move the\n    element within the <code>head</code> element, not in the\n    <code>body</code> element.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>button</code>, the\n    <code>value</code> attribute must be specified.</dd>\n\n    <dd>If the <code>pattern</code> attribute is specified, the\n    <code>title</code> attribute should also be specified to describe\n    the restriction.</dd>\n\n    <dt>HTML <code>button</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>menu</code>, the\n    <code>menu</code> attribute must be specified.</dd>\n\n    <dt>HTML <code>embed</code> element</dt>\n\n    <dd>An <code>embed</code> element with no <code>src</code>\n    attribute has no effect.  If the <code>itemprop</code> attribute\n    is specified, a <code>src</code> attribute must also be\n    specified.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>If the <code>itemprop</code> attribute is specified, a\n    <code>data</code> attribute must also be specified.</dd>\n\n    <dd>If both <code>data</code> and <code>type</code> attributes are\n    specified, it might be a good practice to also specify the\n    <code>typemustmatch</code> attribute to ensure that the expected\n    content is rendered.</dd>\n\n    <dd>If the <code>classid</code> attribute is specified, the\n    <code>codetype</code> attribute should also be specified.</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>Although it is not required, it is encouraged to specify the\n    language of the document to the root <code>html</code> element\n    using the <code>lang</code> attribute.</dd>\n\n    <dt>HTML <code>optgroup</code> element</dt>\n\n    <dd>The <code>label</code> attribute is required.</dd>\n\n    <dt>HTML <code>textarea</code> element</dt>\n\n    <dd>If the <code>pattern</code> attribute is specified, the\n    <code>title</code> attribute should also be specified to describe\n    the restriction.</dd>\n\n    <dd>If the value of the <code>wrap</code> attribute is\n    <code>hard</code>, the <code>cols</code> attribute is\n    required.</dd>\n\n    <dt>HTML <code>a</code> element</dt>\n\n    <dd>If the <code>itemprop</code> attribute is specified, an\n    <code>href</code> attribute must also be specified.</dd>\n\n    <dt>HTML <code>map</code> element</dt>\n\n    <dd>The <code>name</code> attribute is required.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute must be specified unless the\n    <code>shape</code> attribute value is <code>default</code>.</dd>\n\n    <dd>If the <code>href</code> attribute is specified, the\n    <code>alt</code> attribute is required.</dd>\n\n    <dd>If the <code>itemprop</code> attribute is specified, an\n    <code>href</code> attribute must also be specified.</dd>\n\n    <dt>HTML <code>bdo</code> element</dt>\n\n    <dd>The <code>dir</code> attribute is required.</dd>\n\n    <dt>HTML <code>b</code> or <code>i</code> element</dt>\n\n    <dd>It might be a good idea to specify the <code>class</code>\n    attribute for these elements such that their purpose can be\n    clarified and that it can be used as a hook for styling.</dd>\n\n    <dt>HTML <code>lang</code> attribute</dt>\n\n    <dd>If the <code>xml:lang</code> attribute is specified for an\n    HTML element, the <code>lang</code> attribute must also be\n    specified.  (You don't have to specify the <code>xml:lang</code>\n    attribute.)</dd>\n\n    <dt>HTML <code>meter</code> element</dt>\n\n    <dd>The <code>value</code> attribute is required.</dd>\n\n    <dt>HTML <code>menuitem</code> element</dt>\n\n    <dd>Either <code>label</code> or <code>command</code> attribute\n    must be specified.</dd>\n\n    <dt>HTML <code>iframe</code> element</dt>\n\n    <dd>If the <code>itemprop</code> attribute is specified, a\n    <code>src</code> attribute must also be specified.</dd>\n\n    <dt>HTML <code>param</code> element</dt>\n\n    <dd>Attributes <code>name</code> and <code>value</code> must be\n    specified.</dd>\n\n    <dt>HTML <code>applet</code> element</dt>\n\n    <dd>Attributes <code>width</code> and <code>height</code> must be\n    specified.</dd>\n\n    <dt>HTML <code>title</code> attribute</dt>\n\n    <dd>If the element has a <code>draggable</code> or\n    <code>dropzone</code> attribute, the <code>title</code> attribute\n    should contain the description.</dd>\n\n    <dt>ARIA <code>aria-valuenow</code> attribute</dt>\n\n    <dd>If the element has an <code>aria-valuetext</code> attribute,\n    the <code>aria-valuenow</code> attribute sohuld also be\n    specified.</dd>\n\n    <dd>If the element has the <code>progressbar</code> role and the\n    value is not indeterminate, the <code>aria-valuenow</code>\n    attribute should be specified.  In addition,\n    <code>aria-valuemin</code> and <code>aria-valuemax</code>\n    attributes should be specified, too.</dd>\n\n    <dt>ARIA <code>aria-label</code> attribute</dt>\n\n    <dd>If there are multiple elements with <code>role=toolbar</code>\n    in an element with role <code>application</code>, they must have\n    the <code>aria-label</code> attribute.</dd>\n\n    <dt>ARIA <code>aria-labelledby</code> attribute</dt>\n\n    <dd>If an element has role <code>document</code> or\n    <code>application</code>, the <code>aria-labelledby</code>\n    attribute should be specified to associate the label.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>要素の属性が指定されていません。\n    利用者エージェントがこの要素の機能を完全な形で提供するためには属性を指定しないといけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd>多くの場合 <code>alt</code> 属性は必須です。</dd>\n\n    <dd>要素が役割 <code>math</code> を持つ時は\n    <code>aria-describedby</code> 属性を指定するべきです。</dd>\n\n    <dt>HTML <code>source</code> 要素、 <code>bgsound</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>track</code> 要素</dt>\n\n    <dd><code>src</code> 属性は必須です。</dd>\n\n    <dd><code>kind</code> 属性が <code>subtitles</code> (既定値) なら、\n    <code>srclang</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>href</code> 属性を指定しなければいけません。</dd>\n\n    <dd><code>rel</code> 属性か <code>itemprop</code>\n    属性を指定しなければいけません。 <code>body</code>\n    要素内では <code>itemprop</code> 属性を指定しなければいけません。</dd>\n\n    <dd>要素を文書全体に適用したい時は、 <code>body</code> 要素内ではなく\n    <code>head</code> 要素内に入れてください。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>content</code> 属性を指定しなければいけません。</dd>\n\n    <dd><code>body</code>\n    要素内では <code>itemprop</code> 属性を指定しなければいけません。</dd>\n\n    <dd>要素を文書全体に適用したい時は、 <code>body</code> 要素内ではなく\n    <code>head</code> 要素内に入れてください。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>head</code> 要素外の <code>style</code> 要素には\n    <code>scoped</code> 属性を指定しなければいけません。</dd>\n\n    <dd>要素を文書全体に適用したい時は、 <code>body</code> 要素内ではなく\n    <code>head</code> 要素内に入れてください。</dd>\n\n    <dt>HTML <code>input</code> 要素</dt>\n\n    <dd><code>type</code> が <code>button</code> の時は\n    <code>value</code> 属性を指定しなければいけません。</dd>\n\n    <dd><code>pattern</code> 属性があるときは、その制限内容を\n    <code>title</code> 属性で説明するべきです。</dd>\n\n    <dt>HTML <code>button</code> 要素</dt>\n\n    <dd><code>type</code> が <code>menu</code> の時は\n    <code>menu</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>embed</code> 要素</dt>\n\n    <dd><code>embed</code> 要素は <code>src</code>\n    属性がなければ意味がありません。 <code>itemprop</code>\n    属性がある時は <code>src</code> 属性も必須です。</dd>\n\n    <dt>HTML <code>object</code> 要素</dt>\n\n    <dd><code>itemprop</code> 属性がある時は <code>data</code> 属性も必須です。</dd>\n\n    <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、\n    意図した内容しかレンダリングされないように\n    <code>typemustmatch</code> 属性も指定したほうがいいかもしれません。</dd>\n\n    <dd><code>classid</code> 属性が指定されている時は、\n    <code>codetype</code> 属性も指定するべきです。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd>必須ではありませんが、根要素 <code>html</code> には文書の言語を\n    <code>lang</code> 属性で指定するのが良いとされています。</dd>\n\n    <dt>HTML <code>optgroup</code> 要素</dt>\n\n    <dd><code>label</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>textarea</code> 要素</dt>\n\n    <dd><code>pattern</code> 属性があるときは、その制限内容を\n    <code>title</code> 属性で説明するべきです。</dd>\n\n    <dd><code>wrap</code> 属性の値が\n    <code>hard</code> の時は、 <code>cols</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>a</code> 要素</dt>\n\n    <dd><code>itemprop</code> 属性が指定されている時は\n    <code>href</code> 属性も必須です。</dd>\n\n    <dt>HTML <code>map</code> 要素</dt>\n\n    <dd><code>name</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性を指定しなければなりません。\n    (ただし <code>shape</code> 属性値が <code>default</code>\n    の場合を除きます。)</dd>\n\n    <dd><code>href</code> 属性が指定されている場合\n    <code>alt</code> 属性は必須です。</dd>\n\n    <dd><code>itemprop</code> 属性が指定されている場合\n    <code>href</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>bdo</code> 要素</dt>\n\n    <dd><code>dir</code> 属性が必要です。</dd>\n\n    <dt>HTML <code>b</code> 要素、<code>i</code> 要素</dt>\n\n    <dd><code>class</code> を指定しておくと用途が明確になり、\n    スタイルを指定するときにも便利かもしれません。</dd>\n\n    <dt>HTML <code>lang</code> 属性</dt>\n\n    <dd>HTML 要素に <code>xml:lang</code> 属性が指定されている時は、\n    <code>lang</code> 属性も指定しなければなりません。 (<code>xml:lang</code>\n    属性は指定子なくて構いません。)</dd>\n\n    <dt>HTML <code>meter</code> 要素</dt>\n\n    <dd><code>value</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>menuitem</code> 要素</dt>\n\n    <dd><code>label</code> 属性か <code>command</code>\n    属性のどちらかを指定しなければいけません。</dd>\n\n    <dt>HTML <code>iframe</code> 要素</dt>\n\n    <dd><code>itemprop</code> 属性が指定されている場合\n    <code>src</code> 属性は必須です。</dd>\n\n    <dt>HTML <code>param</code> 要素</dt>\n    \n    <dd><code>name</code> 属性と <code>height</code>\n    属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>applet</code> 要素</dt>\n\n    <dd><code>width</code> 属性と <code>height</code> 属性を指定しなければいけません。</dd>\n\n    <dt>HTML <code>title</code> 属性</dt>\n\n    <dd><code>draggable</code> 属性や\n    <code>dropzone</code> 属性が指定されている時は、 <code>title</code>\n    属性に説明を入れるべきです。</dd>\n\n    <dt>ARIA <code>aria-valuenow</code> 属性</dt>\n\n    <dd><code>aria-valuetext</code> 属性が指定されている時は、\n    <code>aria-valuenow</code> 属性も指定するべきです。</dd>\n\n    <dd>要素が役割 <code>progressbar</code> を持ち、値が未決定でない時は、\n    <code>aria-valuenow</code> 属性を指定するべきです。加えて、\n    <code>aria-valuemin</code> 属性と <code>aria-valuemax</code>\n    属性も指定するべきです。</dd>\n\n    <dt>ARIA <code>aria-label</code> 属性</dt>\n\n    <dd>役割 <code>application</code> の要素の中に\n    役割が <code>toolbar</code> の要素が複数ある時は、\n    <code>aria-label</code> 属性が必要です。</dd>\n\n    <dt>ARIA <code>aria-labelledby</code> 属性</dt>\n\n    <dd>役割が <code>document</code> や <code>application</code>\n    の要素には <code>aria-labelledby</code> 属性で名札を指定するべきです。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "Attribute <code><var>{text}</var></code>\n  is not specified",
@@ -1343,6 +1353,16 @@
       "message" : {
          "en" : "Non-space characters are not allowed here",
          "ja" : "空白以外の文字はここでは認められていません"
+      }
+   },
+   "character not allowed:a heading" : {
+      "desc" : {
+         "en" : "\n    <p>The content of a <code>summary</code> element must be either\n    phrasing content or a heading content.  If a\n    <code>h<var>n</var></code> element is used in the element, no\n    other element or non-space text can be used.</p>\n  ",
+         "ja" : "\n    <p><code>summary</code> 要素の内容は語句内容か、\n    見出し内容1つでなければいけません。 <code>summary</code>\n    要素の中に <code>h<var>n</var></code> 要素がある時は、\n    それ以外の要素や空白でない文字を含めてはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "A non-space character is used in a\n  <code>summary</code> with a heading content",
+         "ja" : "見出しが含まれる <code>summary</code>\n  内に空白以外の文字があります"
       }
    },
    "character not allowed:atom|PersonConstruct" : {
@@ -1997,6 +2017,16 @@
          "ja" : "この要素はここでは認められていません"
       }
    },
+   "element not allowed:a heading" : {
+      "desc" : {
+         "en" : "\n    <p>The content of a <code>summary</code> element must be either\n    phrasing content or a heading content.  If a\n    <code>h<var>n</var></code> element is used in the element, no\n    other element or non-space text can be used.</p>\n  ",
+         "ja" : "\n    <p><code>summary</code> 要素の内容は語句内容か、\n    見出し内容1つでなければいけません。 <code>summary</code>\n    要素の中に <code>h<var>n</var></code> 要素がある時は、\n    それ以外の要素や空白でない文字を含めてはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "More than a heading content element is used\n  in a <code>summary</code>",
+         "ja" : "<code>summary</code> 内に見出し内容要素1つ以外の要素があります"
+      }
+   },
    "element not allowed:area" : {
       "desc" : {
          "en" : "\n    <p>The <code>area</code> element can only used as a descendant\n    of the <code>map</code> element.</p>\n  ",
@@ -2315,6 +2345,16 @@
          "ja" : "フォーム名が空文字列です"
       }
    },
+   "empty itemprop" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>itemprop</code> attribute must contain one or more\n    property names.</p>\n  ",
+         "ja" : "\n    <p><code>itemprop</code> 属性には特性名が含まれていなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The attribute value is empty",
+         "ja" : "属性値が空です"
+      }
+   },
    "empty start tag" : {
       "message" : {
          "en" : "\n    <p>In HTML, XML, and WebVTT, empty start tag, i.e. start\n    tag with no tag name, is not allowed.</p>\n    <p>To represent a start tag, you have to specify the\n    tag name explicitly.</p>\n    <p>To represent a string with the <code>&lt;</code> character,\n    you have to use the character reference: <code>&amp;lt;</code>.</p>\n  ",
@@ -2358,8 +2398,8 @@
    },
    "enumerated:invalid" : {
       "desc" : {
-         "en" : "\n    <p>The attribute only accepts limited set of values.  The\n    specified value is not one of them.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>meta</code> element, the <code>http-equiv</code>\n    attribute</dt>\n\n    <dd>\n\n      <p><code>Content-Style-Type</code> and\n      <code>Content-Script-Type</code> are not useful.  You can remove\n      the element entirely without breaking anything at all.</p>\n\n      <p><code>Keywords</code> is not allowed.  Maybe you intended the\n      <code>name</code> attribute rather than the\n      <code>http-equiv</code> attribute.</p>\n\n      <p>Instead of <code>meta</code> element with\n      <code>Expires</code>, <code>Pragma</code>, or\n      <code>Cache-Control</code>, use real HTTP headers.</p>\n\n    </dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この属性に使える値は限られています。指定された値は認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>meta</code> 要素 <code>http-equiv</code> 属性</dt>\n\n    <dd>\n\n      <p><code>Content-Style-Type</code> と\n      <code>Content-Script-Type</code> は意味がありません。\n      要素を削除してしまっても影響はありません。</p>\n\n      <p><code>Keywords</code> は認められていません。\n      <code>http-equiv</code> 属性ではなく\n      <code>name</code> 属性のつもりではないでしょうか。</p>\n\n      <p><code>Expires</code>, <code>Pragma</code>,\n      <code>Cache-Control</code> は HTTP ヘッダーで指定するべきです。</p>\n\n    </dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The attribute only accepts limited set of values.  The\n    specified value is not one of them.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>meta</code> element, the <code>http-equiv</code>\n    attribute</dt>\n\n    <dd>\n\n      <p><code>Content-Style-Type</code> and\n      <code>Content-Script-Type</code> are not useful.  You can remove\n      the element entirely without breaking anything at all.</p>\n\n      <p><code>Keywords</code> is not allowed.  Maybe you intended the\n      <code>name</code> attribute rather than the\n      <code>http-equiv</code> attribute.</p>\n\n      <p>Instead of <code>meta</code> element with\n      <code>Expires</code>, <code>Pragma</code>, or\n      <code>Cache-Control</code>, use real HTTP headers.</p>\n\n      <p><code>X-UA-Compatible</code> is harmful.  Remove the element\n      entirely.</p>\n\n    </dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性に使える値は限られています。指定された値は認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>meta</code> 要素 <code>http-equiv</code> 属性</dt>\n\n    <dd>\n\n      <p><code>Content-Style-Type</code> と\n      <code>Content-Script-Type</code> は意味がありません。\n      要素を削除してしまっても影響はありません。</p>\n\n      <p><code>Keywords</code> は認められていません。\n      <code>http-equiv</code> 属性ではなく\n      <code>name</code> 属性のつもりではないでしょうか。</p>\n\n      <p><code>Expires</code>, <code>Pragma</code>,\n      <code>Cache-Control</code> は HTTP ヘッダーで指定するべきです。</p>\n\n      <p><code>X-UA-Compatible</code> は有害です。要素ごと削除してください。</p>\n\n    </dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute value is not allowed",
@@ -2400,6 +2440,16 @@
    "exception not defined" : {
       "message" : {
          "en" : "Exception <code><var>{text}</var></code> is\n  not defined in the fragment."
+      }
+   },
+   "external entref" : {
+      "desc" : {
+         "en" : "\n    <p>The entity reference is a reference to an external entity.\n    Since the processors is configure not to expand external entities\n    (default) or since the processor can't fetch the external entity,\n    the entity reference cannot be expanded and is ignored.</p>\n  ",
+         "ja" : "\n    <p>この実体参照は外部実体を参照しています。 XML 処理器が外部実体を展開しないように設定されている\n    (既定値) か、外部実体を取得できなかったので、\n    この実体参照は展開されず、無視されます。</p>\n  "
+      },
+      "message" : {
+         "en" : "An external entity is referenced\n  but ignored",
+         "ja" : "外部実体が参照されていますが、無視します"
       }
    },
    "fallback-char-error" : {
@@ -2673,6 +2723,16 @@
    "in button:button" : {
       "message" : {
          "en" : "The <code>button</code> element cannot be\n  nested."
+      }
+   },
+   "in caption" : {
+      "desc" : {
+         "en" : "\n    <p>In a <code>caption</code> element's <code>innerHTML</code>,\n    start tags <code>&lt;caption&gt;</code>, <code>&lt;col&gt;</code>,\n    <code>&lt;colgroup&gt;</code>, <code>&lt;tbody&gt;</code>,\n    <code>&lt;td&gt;</code>, <code>&lt;tfoot&gt;</code>,\n    <code>&lt;th&gt;</code>, <code>&lt;thead&gt;</code>, and\n    <code>&lt;tr&gt;</code> are not allowed and are ignored.</p>\n  ",
+         "ja" : "\n    <p><code>caption</code> 要素の <code>innerHTML</code> では開始タグ\n    <code>&lt;caption&gt;</code>, <code>&lt;col&gt;</code>,\n    <code>&lt;colgroup&gt;</code>, <code>&lt;tbody&gt;</code>,\n    <code>&lt;td&gt;</code>, <code>&lt;tfoot&gt;</code>,\n    <code>&lt;th&gt;</code>, <code>&lt;thead&gt;</code>,\n    <code>&lt;tr&gt;</code> は使うことができず、無視されます。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>&lt;<var>{text}</var>&gt;</code> tag\n  is not allowed in a <code>caption</code>",
+         "ja" : "タグ <code>&lt;<var>{text}</var>&gt;</code>\n  は <code>caption</code> 内では使えません"
       }
    },
    "in cell" : {
@@ -3728,12 +3788,12 @@
    },
    "nninteger:syntax error" : {
       "desc" : {
-         "en" : "\n    <p>The attribute value must be a non-negative integer.</p>\n\n    <p>Decimal marks, signs, and thousands separators are not allowed.\n    Leading and trailing white spaces, as well as units, are not\n    allowed.</p>\n  ",
-         "ja" : "\n    <p>属性値は非負整数でなければいけません。</p>\n\n    <p>小数点、符号、桁区切りのコンマは使えません。\n    前後に空白や単位をつけてもいけません。</p>\n  "
+         "en" : "\n    <p>The attribute value must be a non-negative integer.</p>\n\n    <p>Decimal marks, signs, and thousands separators are not allowed.\n    Leading and trailing white spaces, as well as units, are not\n    allowed.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>width</code> and <code>height</code> attributes</dt>\n\n    <!-- <table width=100%> -->\n    <dd>These attributes cannot be used to specify the rendered\n    dimension of the element.  Use CSS instead.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>属性値は非負整数でなければいけません。</p>\n\n    <p>小数点、符号、桁区切りのコンマは使えません。\n    前後に空白や単位をつけてもいけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>width</code> 属性、 <code>height</code> 属性</dt>\n\n    <!-- <table width=100%> -->\n    <dd>両属性は要素をレンダリングする大きさの指定には使えません。\n    表示上の大きさは CSS で指定してください。\n\n    </dd></dl>\n  "
       },
       "message" : {
-         "en" : "The attribute value is not a non-negative\n  integer",
-         "ja" : "属性値は非負整数ではありません"
+         "en" : "The value is not a non-negative\n  integer",
+         "ja" : "非負整数ではありません"
       }
    },
    "nninteger:zero" : {
@@ -4231,6 +4291,16 @@
          "ja" : "名前空間属性の接頭辞が <code>xmlns</code>\n  ではありません"
       }
    },
+   "obs DOCTYPE" : {
+      "desc" : {
+         "en" : "\n    <p>The simplest DOCTYPE syntax <code>&lt;!DOCTYPE html&gt;</code>\n    should be used.  Use of <code>PUBLIC</code> or <code>SYSTEM</code>\n    identifiers, which was encouraged in 90s, is discouraged.</p>\n  ",
+         "ja" : "\n    <p>DOCTYPE は <code>&lt;!DOCTYPE html&gt;</code> とだけあれば十分です。\n    90年代には <code>PUBLIC</code> や <code>SYSTEM</code>\n    を書くのが流行りましたが、今は不要です。</p>\n  "
+      },
+      "message" : {
+         "en" : "The DOCTYPE has public and/or system\n  identifiers",
+         "ja" : "DOCTYPE に公開識別子やシステム識別子があります"
+      }
+   },
    "oltype:invalid" : {
       "desc" : {
          "en" : "\n    <p>The value of the <code>type</code> attribute of the\n    <code>ol</code> element must be one of following values:\n    <code>1</code>, <code>A</code>, <code>a</code>, <code>I</code>, or\n    <code>i</code>.</p>\n  ",
@@ -4293,6 +4363,16 @@
          "en" : "この要素より前に <code><var>{text}</var></code>\n  要素がありません"
       }
    },
+   "ref outside of root element" : {
+      "desc" : {
+         "en" : "\n    <p>General entity references are only allowed in attribute values\n    and in element contents.  It cannot be used outside of the root\n    element's start and end tags.</p>\n  ",
+         "ja" : "\n    <p>一般実体参照は、属性値や要素の内容の中でのみ使えます。\n    根要素の開始タグと終了タグの外側では使えません。</p>\n  "
+      },
+      "message" : {
+         "en" : "An general entity reference is used outside\n  of the root element",
+         "ja" : "根要素外で一般実体参照が使われています"
+      }
+   },
    "referenced attr not defined" : {
       "message" : {
          "en" : "Attribute <code><var>{value}</var></code> is\n  not defined in the interface specified for the attribute to which\n  extended attribute <code><var>{text}</var></code> is set."
@@ -4335,6 +4415,10 @@
       "desc" : {
          "en" : "\n    <p>The document node cannot contain the text node as the\n    child.</p>\n  ",
          "ja" : "\n    <p>文書節点はテキスト節点を子供として含めることができません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The document cannot contain texts directly",
+         "ja" : "文書に直接テキストを含めることはできません"
       }
    },
    "row with no anchored cell" : {
@@ -4429,12 +4513,12 @@
    },
    "script:inline doc:invalid" : {
       "desc" : {
-         "en" : "The inline documentation is invalid",
-         "ja" : "外部スクリプトの説明が構文的に正しくありません"
-      },
-      "message" : {
          "en" : "\n    <p>If the <code>script</code> element has the <code>src</code>\n    attribute, the content of the element is the inline documentation\n    for the external script.  It must be zero or more JavaScript\n    comments and/or spaces.</p>\n  ",
          "ja" : "\n    <p><code>script</code> 要素に <code>src</code> 属性がある時は、\n    要素の内容は外部スクリプトの説明となります。 JavaScript\n    コメントと空白文字だけしか使えません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The inline documentation is invalid",
+         "ja" : "外部スクリプトの説明が構文的に正しくありません"
       }
    },
    "script:nested <script>" : {
@@ -4450,6 +4534,16 @@
    "second node element" : {
       "message" : {
          "en" : "There is another element, such that\n  this element is not allowed."
+      }
+   },
+   "second root element" : {
+      "desc" : {
+         "en" : "\n    <p>There must be only one child element in the document.  There\n    cannot be any start or end tag after the end tag of the root\n    element.</p>\n  ",
+         "ja" : "\n    <p>文書の子要素は1つだけしかあってはいけません。\n    根要素の終了タグの後に開始タグや終了タグがあってはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is a start tag after the end tag\n  of the root element",
+         "ja" : "根要素の終了タグの後に開始タグがあります"
       }
    },
    "selectors:id:empty" : {
@@ -5066,6 +5160,16 @@
          "en" : "The node referenced by the <code>template</code>\n  attribute is not a template."
       }
    },
+   "text outside of root element" : {
+      "desc" : {
+         "en" : "\n    <p>Non-space characters must be in the root element.</p>\n  ",
+         "ja" : "\n    <p>空白以外の文字は根要素外では使えません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is a non-space character outside\n  of the root element",
+         "ja" : "根要素の外側に空白でない文字があります"
+      }
+   },
    "text:bad char" : {
       "desc" : {
          "en" : "\n    <p>Since the character used is a control character, noncharacter\n    code point, surrogate code point, or non-Unicode character, it is\n    not allowed in the document.</p>\n  ",
@@ -5115,6 +5219,10 @@
       "desc" : {
          "en" : "\n    <p>In the <code>style</code> or <code>script</code> element, any\n    substring <code>&lt;!--</code> must be closed by corresponding\n    substring <code>--&gt;</code>.</p>\n  ",
          "ja" : "\n    <p><code>style</code> 要素や <code>script</code> 要素の中では\n    <code>&lt;!--</code> には対応する <code>--&gt;</code>\n    がなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "<code>--&gt;</code> not found",
+         "ja" : "<code>--&gt;</code> が見つかりません"
       }
    },
    "unclosed comment" : {
@@ -5241,6 +5349,16 @@
       "message" : {
          "en" : "Element <code><var>{text}</var></code> is not\n  opened.",
          "ja" : "要素 <code><var>{text}</var></code> \n  は開いていません。"
+      }
+   },
+   "unparsed entity" : {
+      "desc" : {
+         "en" : "\n    <p>An unparsed entity cannot be referenced by an entity\n    reference.</p>\n  ",
+         "ja" : "\n    <p>非解析対象実体を実体参照から参照することはできません。</p>\n  "
+      },
+      "message" : {
+         "en" : "An unparsed entity is referenced by\n  an entity reference",
+         "ja" : "実体参照が非解析対象実体を参照しています"
       }
    },
    "unqualified attr" : {

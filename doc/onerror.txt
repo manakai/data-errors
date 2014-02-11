@@ -64,6 +64,24 @@ should be handled as if it were |u|.
 
 This name/value pair is always provided.
 
+* |di|
+
+The ID of the source in which the error is detected.
+
+If the value is not specified or |undef|, then the source is the
+"current" input.  Values of |line| and |column| are considered as
+relative to the input to the parser or processor.
+
+If the value is -1, then the source is some input fragment with no (or
+unknown) associated ID.  Values of |line| and |column| might not be
+very useful as the exact position could not be determined
+automatically.
+
+If the value is a non-negative Perl number, it is the ID of the
+source, assigned by or specified to the parser or processor by some
+means.  Values of |line| and |column| are considered as relative to
+the source with the given ID.
+
 * |line|
 
 The line number at which the error is detected.  The value is a Perl
