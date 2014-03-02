@@ -323,10 +323,17 @@
 <h2>Characters</h2>
 
 <d:item name="NULL"
-    modules="Whatpm::HTML::Parser">
-  <!-- HTML5 Parse Error -->
-  <d:message xml:lang="en">The <code class="charname">NULL</code> character
-  is not allowed.</d:message>
+    modules="Web::HTML::Tokenizer Web::HTML::Parser">
+  <d:message xml:lang="en">There is a <code class="charname">NULL</code> character</d:message>
+  <d:message xml:lang="ja"><code class="charname">NULL</code> 文字があります</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>U+0000</code> <code class="charname">NULL</code>
+    character must not be used in a document.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>U+0000</code> <code class="charname">NULL</code> 
+    文字を使ってはいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="control char"
@@ -755,24 +762,34 @@
 </d:item>
 
 <d:item name="duplicate attribute"
-    modules="Whatpm::HTML::Parser Temma::Parser">
-  <d:message xml:lang="en">No two attributes can share the same name
-  <code><var>{text}</var></code>.</d:message>
-  <d:message xml:lang="ja">2つの属性が同じ名前 
-  <code><var>{text}</var></code> を使うことはできません。</d:message>
+    modules="Web::HTML::Tokenizer Temma::Parser">
+  <d:message xml:lang="en">There are multiple attributes with name
+  <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">属性 <code><var>{text}</var></code>
+  が複数あります</d:message>
   <d:desc xml:lang="en">
     <p>There are more than one attributes with the same name in a tag.</p>
 
-    <p>The <code>motion</code> attribute of the <code>img</code>
-    element is obsolete.  Use <code>img</code> element with animation
-    GIF instead.</p>
+    <dl class="switch">
+
+    <dt>HTML <code>img</code> element, the <code>motion</code>
+    attribute</dt>
+
+    <dd>This attribute is obsolete.  Use animation GIF instead.</dd>
+
+    </dl>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p>同じ名前の属性を複数同じタグに指定することはできません。</p>
+    <p>同じ名前の属性を複数個同じタグに指定することはできません。</p>
 
-    <p><code>img</code> 要素の <code>motion</code> 属性は廃止されています。
-    代わりに <code>img</code> 要素とアニメーション GIF 
-    をお使いください。</p>
+    <dl class="switch">
+
+    <dt>HTML <code>img</code> 要素 <code>motion</code> 属性</dt>
+
+    <dd>この属性は廃止されました。代わりにアニメーション GIF
+    を使ってください。</dd>
+
+    </dl>
   </d:desc>
 </d:item>
 
@@ -925,6 +942,31 @@
   <code>;</code> character.</d:message>
 </d:item>
 
+<d:item name="no space before attr name"
+    modules="Web::HTML::Tokenizer Web::XML::Parser">
+  <d:message xml:lang="en">There is no space before an attribute</d:message>
+  <d:message xml:lang="ja">属性の前に空白がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>There must be one or more white space characters between
+    attributes and before the first attribute.</p>
+
+    <p>Character <code>U+000C</code> cannot be used as a space before
+    an attribute in an HTML document.</p>
+
+    <p>Characters <code>U+0085</code> and <code>U+202B</code> cannot
+    be used as a space before an attribute in an HTML or XML 1.0
+    document.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>属性の間や最初の属性の前には空白文字が1つ以上必要です。</p>
+
+    <p>文字 <code>U+000C</code> を XML 文書の属性の前の空白として使うことはできません。</p>
+
+    <p>文字 <code>U+0085</code> や文字 <code>U+202B</code>
+    を HTML や XML 1.0 の文書の属性の前の空白として使うことはできません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="no space before DOCTYPE name"
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">After the string <code>&lt;!DOCTYPE</code>, there
@@ -1074,8 +1116,131 @@ p {
 
 </section>
 
-<section id="xml-errors">
-<h2>XML well-formedness errors</h2>
+<section id="xml-syntax-errors">
+<h2>XML syntax errors</h2>
+
+<d:item name="bogus XML declaration"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">There is a bogus string in the XML or text
+  declaration</d:message>
+  <d:message xml:lang="ja">XML 宣言かテキスト宣言の中に正しくない文字列が含まれています</d:message>
+  <d:desc xml:lang="en">
+    <p>An XML declaration must only contain <code>version</code>,
+    <code>encoding</code>, and <code>standalone</code>
+    pseudo-attributes, in this order, in appropriate syntax.</p>
+
+    <p>A text declaration must only contain <code>version</code> and
+    <code>encoding</code> pseudo-attributes in this order, in
+    appropriate syntax.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>XML 宣言は擬似属性 <code>version</code>, <code>encoding</code>,
+    <code>standalone</code> をこの順序で正しい構文でのみ含めることができます。</p>
+
+    <p>テキスト宣言は擬似属性 <code>version</code>, <code>encoding</code>
+    をこの順序で正しい構文でのみ含めることができます。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="second root element"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">There is a start tag after the end tag
+  of the root element</d:message>
+  <d:message xml:lang="ja">根要素の終了タグの後に開始タグがあります</d:message>
+  <d:desc xml:lang="en">
+    <p>There must be only one child element in the document.  There
+    cannot be any start or end tag after the end tag of the root
+    element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>文書の子要素は1つだけしかあってはいけません。
+    根要素の終了タグの後に開始タグや終了タグがあってはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="text outside of root element"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">There is a non-space character outside
+  of the root element</d:message>
+  <d:message xml:lang="ja">根要素の外側に空白でない文字があります</d:message>
+  <d:desc xml:lang="en">
+    <p>Non-space characters must be in the root element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>空白以外の文字は根要素外では使えません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="XML encoding:syntax error"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">The value is not a syntactically valid
+  encoding label</d:message>
+  <d:message xml:lang="ja">この値は構文的に正しい符号化の名札ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of the <code>encoding</code> pseudo-attribute in an
+    XML or text declaration must be a string consist of one or more
+    ASCII letters, digits, <code>.</code>, <code>_</code>, and
+    <code>-</code>.  The first character must be an ASCII letter.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>XML 宣言やテキスト宣言の <code>encoding</code> 擬似属性の値は
+    ASCII のアルファベット、数字、 <code>.</code>、 <code>_</code>、
+    <code>-</code> のみから構成される文字列でなければいけません。
+    最初の文字は ASCII のアルファベットでなけれればいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="XML standalone:syntax error"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">The value is neither <code>yes</code> nor
+  <code>no</code></d:message>
+  <d:message xml:lang="ja">この値は <code>yes</code> でも
+  <code>no</code> でもありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of the <code>standalone</code> pseudo-attribute in an
+    XML declaration must be either <code>yes</code> or <code>no</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>XML 宣言の <code>encoding</code> 擬似属性の値は
+    <code>yes</code> か <code>no</code> でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="XML version:syntax error"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">The value is not an XML version</d:message>
+  <d:message xml:lang="ja">この値は XML の版ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of the <code>version</code> pseudo-attribute in the
+    XML or text declaration must be a string <code>1.</code> followed
+    by one or more digits.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>XML 宣言やテキスト宣言の <code>version</code> 擬似属性の値は
+    <code>1.</code> の後に数字が1桁以上続く文字列でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+</section>
+
+<section id="xml-entity-errors">
+<h2>XML entity errors</h2>
+
+<d:item name="bare pero"
+    modules="Web::HTML::Tokenizer">
+  <d:message xml:lang="en">The <code>%</code> character is not followed
+  by a parameter entity name</d:message>
+  <d:message xml:lang="ja">文字 <code>%</code> の後に引数実体名がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>After the <code>%</code> character, there must be a name of the
+    parameter entity to be referenced, followed by a <code>;</code>
+    character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>文字 <code>%</code> の後には参照する引数実体の名前と文字
+    <code>;</code> が必要です。</p>
+  </d:desc>
+</d:item>
 
 <d:item name="entity not declared"
     modules="Whatpm::WebVTT::Parser">
@@ -1168,6 +1333,47 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="WFC:No Recursion"
+    modules="Web::HTML::Tokenizer Web::XML::Parser">
+  <d:message xml:lang="en">The entity reference points an open entity</d:message>
+  <d:message xml:lang="ja">この実体参照は開いている実体を参照しています</d:message>
+  <d:desc xml:lang="en">
+    <p>An entity reference cannot be used to recursively reference a
+    currently open entity.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>実体参照を使って現在開いている実体を再帰的に参照してはいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="pe not declared"
+    modules="Web::HTML::Tokenizer">
+  <d:message xml:lang="en">The parameter entity is not declared</d:message>
+  <d:message xml:lang="ja">この引数実体は宣言されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>A parameter entity must referece a parameter entity declared by
+    an entity declaration.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>引数実体は、実体宣言によって宣言された引数実体を参照しなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="stop processing"
+    modules="Web::HTML::Tokenizer Web::XML::Parser">
+  <d:message xml:lang="en">Processing of markup declarations has been
+  stopped</d:message>
+  <d:message xml:lang="ja">マーク付け宣言の処理が停止されました</d:message>
+  <d:desc xml:lang="en">
+    <p>As there is an error in DTD, or an external entity can't be
+    retrieved, processing of markup declarations has been stopped.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>DTD 中に誤りがあったため、あるいは取得できない外部実体があったため、
+    マーク付け宣言の処理は停止されました。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="ref outside of root element"
     modules="Web::HTML::Tokenizer">
   <d:message xml:lang="en">An general entity reference is used outside
@@ -1181,35 +1387,6 @@ p {
   <d:desc xml:lang="ja">
     <p>一般実体参照は、属性値や要素の内容の中でのみ使えます。
     根要素の開始タグと終了タグの外側では使えません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="second root element"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">There is a start tag after the end tag
-  of the root element</d:message>
-  <d:message xml:lang="ja">根要素の終了タグの後に開始タグがあります</d:message>
-  <d:desc xml:lang="en">
-    <p>There must be only one child element in the document.  There
-    cannot be any start or end tag after the end tag of the root
-    element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>文書の子要素は1つだけしかあってはいけません。
-    根要素の終了タグの後に開始タグや終了タグがあってはいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="text outside of root element"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">There is a non-space character outside
-  of the root element</d:message>
-  <d:message xml:lang="ja">根要素の外側に空白でない文字があります</d:message>
-  <d:desc xml:lang="en">
-    <p>Non-space characters must be in the root element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>空白以外の文字は根要素外では使えません。</p>
   </d:desc>
 </d:item>
 
@@ -3050,9 +3227,9 @@ p {
 
 <d:item name="element not allowed:flow style"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code>style</code> element cannot be used
-  after other flow content</d:message>
-  <d:message xml:lang="ja"><code>style</code> 要素は他のフロー内容の後に来てはいけません</d:message>
+  <d:message xml:lang="en">There is a <code>style</code> element after
+  other flow content</d:message>
+  <d:message xml:lang="ja">他のフロー内容の後に <code>style</code> 要素があります</d:message>
   <d:desc xml:lang="en">
     <p>The HTML <code>style</code> element is flow content, but can
     only be used before any other flow content.</p>
@@ -4358,6 +4535,21 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="attribute missing:encoding"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">No <code>encoding</code> pseudo-attribute
+  is specified</d:message>
+  <d:message xml:lang="ja"><code>encoding</code> 擬似属性がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>A <code>encoding</code> pseudo-attribute must be specified in
+    the text declaration.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>テキスト宣言には <code>encoding</code>
+    擬似属性を指定しなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="attribute missing:href|target"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Neither <code>href</code> or
@@ -4441,6 +4633,21 @@ p {
   <d:message xml:lang="en">For a <code>meta</code> element, exactly one of
   <code>name</code>, <code>http-equiv</code>, and <code>charset</code>
   attributes must be specified.</d:message>
+</d:item>
+
+<d:item name="attribute missing:version"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">No <code>version</code> pseudo-attribute
+  is specified</d:message>
+  <d:message xml:lang="ja"><code>version</code> 擬似属性がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>A <code>version</code> pseudo-attribute must be specified as
+    the first pseudo-attribute of the XML declaration.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>XML 宣言の最初の擬似属性として <code>version</code>
+    擬似属性を指定しなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="attribute not allowed"
@@ -4729,6 +4936,22 @@ p {
   <d:desc xml:lang="ja">
     <p><code>img</code> 要素の <code>ismap</code> 属性が使えるのは
     <code>a</code> 要素内でだけです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="attribute not allowed:standalone"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">A <code>standalone</code> pseudo-attribute is
+  specified in a text declaration</d:message>
+  <d:message xml:lang="ja">テキスト宣言に <code>standalone</code>
+  擬似属性が指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>standalone</code> pseudo-attribute is only allowed
+    in an XML declaration, not in a text declaration.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>standalone</code> 擬似属性は XML 宣言でのみ使うことができ、
+    テキスト宣言では使えません。</p>
   </d:desc>
 </d:item>
 
@@ -6660,7 +6883,7 @@ p {
 
     <!-- <table width=100%> -->
     <dd>両属性は要素をレンダリングする大きさの指定には使えません。
-    表示上の大きさは CSS で指定してください。</p>
+    表示上の大きさは CSS で指定してください。</dd>
 
     </dl>
   </d:desc>
@@ -7997,6 +8220,7 @@ p {
 </d:item>
 
 <d:item name="aria:label"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>aria-label</code> attribute is
   used</d:message>
@@ -8086,20 +8310,22 @@ p {
 </d:item>
 
 <d:item name="aria:not preferred markup:html-attr"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code><var>{text}</var></code> attribute
   is preferred</d:message>
   <d:message xml:lang="en"><code><var>{text}</var></code> 属性の方が適切です</d:message>
-  <d:message xml:lang="en">
+  <d:desc xml:lang="en">
     <p>The ARIA attribute should only be used when its semantics
     cannot be represented in native HTML attribute.</p>
-  </d:message>
-  <d:message xml:lang="ja">
+  </d:desc>
+  <d:desc xml:lang="ja">
     <p>ARIA 属性は、その意味を HTML の本来の属性で表せない時だけ使うべきです。</p>
-  </d:message>
+  </d:desc>
 </d:item>
 
 <d:item name="aria:not preferred markup:html-element"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code><var>{text}</var></code> element
   is preferred to <code>role=<var>{value}</var></code></d:message>
@@ -8210,6 +8436,7 @@ p {
 </d:item>
 
 <d:item name="aria:owns"
+    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The <code>aria-owns</code> attribute
   is used</d:message>
@@ -9306,9 +9533,9 @@ p {
 
 <d:item name="selectors:pseudo-element:ident:not supported"
     modules="CSS::SelectorsParser">
-  <d:message xml:lang="en">Pseudo-element <code>:<var>{value}</var></code>
+  <d:message xml:lang="en">Pseudo-element <code>::<var>{value}</var></code>
   is not supported.</d:message>
-  <d:message xml:lang="ja">擬似要素 <code>:<var>{value}</var></code>
+  <d:message xml:lang="ja">擬似要素 <code>::<var>{value}</var></code>
   には対応していません。</d:message>
   <d:desc xml:lang="en"> 
     <p>The specified pseudo-element is not supported by the user
@@ -9329,9 +9556,9 @@ p {
 
 <d:item name="selectors:pseudo-element:ident:unknown"
     modules="CSS::SelectorsParser">
-  <d:message xml:lang="en">Pseudo-element <code>:<var>{value}</var></code>
+  <d:message xml:lang="en">Pseudo-element <code>::<var>{value}</var></code>
   is not known to the parser.</d:message>
-  <d:message xml:lang="ja">擬似要素 <code>:<var>{value}</var></code>
+  <d:message xml:lang="ja">擬似要素 <code>::<var>{value}</var></code>
   を構文解析器は知りません。</d:message>
   <d:desc xml:lang="en"> 
     <p>The specified pseudo-element is not supported by the parser.</p>
@@ -10050,6 +10277,24 @@ p {
 </d:item>
 
 </section><!-- #webvtt-errors -->
+
+<section id="js-errors">
+<h2>JavaScript Errors</h2>
+
+<d:item name="js:parse error"
+    modules="Web::JS::Checker">
+  <d:message xml:lang="en">JavaScript parse error: <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">JavaScript 構文解析エラー: <code><var>{text}</var></code></d:message>
+  <d:desc xml:lang="en">
+    <p>An error is detected during the parsing of the JavaScript code
+    fragment.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>JavaScript のコード片の構文解析中にエラーが検出されました。</p>
+  </d:desc>
+</d:item>
+
+</section>
 
 <section id="cache-manifest-errors">
 <h2>Cache Manifest Errors</h2>

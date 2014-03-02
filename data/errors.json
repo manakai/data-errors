@@ -187,8 +187,13 @@
       }
    },
    "NULL" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>U+0000</code> <code class=\"charname\">NULL</code>\n    character must not be used in a document.</p>\n  ",
+         "ja" : "\n    <p><code>U+0000</code> <code class=\"charname\">NULL</code> \n    文字を使ってはいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The <code class=\"charname\">NULL</code> character\n  is not allowed."
+         "en" : "There is a <code class=\"charname\">NULL</code> character",
+         "ja" : "<code class=\"charname\">NULL</code> 文字があります"
       }
    },
    "Nested quantifiers" : {
@@ -438,9 +443,49 @@
          "ja" : "属性値内で外部実体が参照されています"
       }
    },
+   "WFC:No Recursion" : {
+      "desc" : {
+         "en" : "\n    <p>An entity reference cannot be used to recursively reference a\n    currently open entity.</p>\n  ",
+         "ja" : "\n    <p>実体参照を使って現在開いている実体を再帰的に参照してはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The entity reference points an open entity",
+         "ja" : "この実体参照は開いている実体を参照しています"
+      }
+   },
    "XML 1.0 NCName:syntax error" : {
       "message" : {
          "en" : "The specified value is not a legal XML Namespaces\n  1.0 <code>NCName</code>."
+      }
+   },
+   "XML encoding:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>encoding</code> pseudo-attribute in an\n    XML or text declaration must be a string consist of one or more\n    ASCII letters, digits, <code>.</code>, <code>_</code>, and\n    <code>-</code>.  The first character must be an ASCII letter.</p>\n  ",
+         "ja" : "\n    <p>XML 宣言やテキスト宣言の <code>encoding</code> 擬似属性の値は\n    ASCII のアルファベット、数字、 <code>.</code>、 <code>_</code>、\n    <code>-</code> のみから構成される文字列でなければいけません。\n    最初の文字は ASCII のアルファベットでなけれればいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is not a syntactically valid\n  encoding label",
+         "ja" : "この値は構文的に正しい符号化の名札ではありません"
+      }
+   },
+   "XML standalone:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>standalone</code> pseudo-attribute in an\n    XML declaration must be either <code>yes</code> or <code>no</code>.</p>\n  ",
+         "ja" : "\n    <p>XML 宣言の <code>encoding</code> 擬似属性の値は\n    <code>yes</code> か <code>no</code> でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is neither <code>yes</code> nor\n  <code>no</code>",
+         "ja" : "この値は <code>yes</code> でも\n  <code>no</code> でもありません"
+      }
+   },
+   "XML version:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The value of the <code>version</code> pseudo-attribute in the\n    XML or text declaration must be a string <code>1.</code> followed\n    by one or more digits.</p>\n  ",
+         "ja" : "\n    <p>XML 宣言やテキスト宣言の <code>version</code> 擬似属性の値は\n    <code>1.</code> の後に数字が1桁以上続く文字列でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is not an XML version",
+         "ja" : "この値は XML の版ではありません"
       }
    },
    "XSLT-compat" : {
@@ -682,6 +727,9 @@
       "message" : {
          "en" : "The <code>aria-label</code> attribute is\n  used",
          "ja" : "<code>aria-label</code> 属性が使われています"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "aria:labelledby:definition label not dfn" : {
@@ -725,9 +773,15 @@
       }
    },
    "aria:not preferred markup:html-attr" : {
-      "message" : {
+      "desc" : {
          "en" : "\n    <p>The ARIA attribute should only be used when its semantics\n    cannot be represented in native HTML attribute.</p>\n  ",
          "ja" : "\n    <p>ARIA 属性は、その意味を HTML の本来の属性で表せない時だけ使うべきです。</p>\n  "
+      },
+      "message" : {
+         "en" : "<code><var>{text}</var></code> 属性の方が適切です"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "aria:not preferred markup:html-element" : {
@@ -738,6 +792,9 @@
       "message" : {
          "en" : "The <code><var>{text}</var></code> element\n  is preferred to <code>role=<var>{value}</var></code>",
          "ja" : "<code>role=<var>{value}</var></code>\n  よりも <code><var>{text}</var></code> 要素が適切です"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "aria:not preferred markup:input" : {
@@ -798,6 +855,9 @@
       "message" : {
          "en" : "The <code>aria-owns</code> attribute\n  is used",
          "ja" : "<code>aria-owns</code> 属性が使われています"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "aria:owns:descendant is refed" : {
@@ -1039,6 +1099,16 @@
          "ja" : "<code>data</code> 属性も <code>type</code>\n  属性も指定されていません"
       }
    },
+   "attribute missing:encoding" : {
+      "desc" : {
+         "en" : "\n    <p>A <code>encoding</code> pseudo-attribute must be specified in\n    the text declaration.</p>\n  ",
+         "ja" : "\n    <p>テキスト宣言には <code>encoding</code>\n    擬似属性を指定しなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "No <code>encoding</code> pseudo-attribute\n  is specified",
+         "ja" : "<code>encoding</code> 擬似属性がありません"
+      }
+   },
    "attribute missing:href|target" : {
       "desc" : {
          "en" : "\n    <p>The HTML <code>base</code> element must have either or both of\n    <code>href</code> and <code>target</code> attributes.  The\n    <code>base</code> element with no attribute has no effect.</p>\n  ",
@@ -1079,6 +1149,16 @@
          "en" : "For a <code>meta</code> element, exactly one of\n  <code>name</code>, <code>http-equiv</code>, and <code>charset</code>\n  attributes must be specified."
       }
    },
+   "attribute missing:version" : {
+      "desc" : {
+         "en" : "\n    <p>A <code>version</code> pseudo-attribute must be specified as\n    the first pseudo-attribute of the XML declaration.</p>\n  ",
+         "ja" : "\n    <p>XML 宣言の最初の擬似属性として <code>version</code>\n    擬似属性を指定しなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "No <code>version</code> pseudo-attribute\n  is specified",
+         "ja" : "<code>version</code> 擬似属性がありません"
+      }
+   },
    "attribute not allowed" : {
       "desc" : {
          "en" : "\n    <p>The attribute is not allowed to be specified in this context.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> element</dt>\n\n    <dd>Following attributes cannot be used unless there is the\n    <code>href</code> attribute: <code>target</code>,\n    <code>ping</code>, <code>rel</code>, <code>hreflang</code>,\n    <code>type</code>, <code>ista</code>, <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>email</code>,\n    <code>telbook</code>, <code>kana</code>, <code>memoryname</code>,\n    <code>lcs</code>, <code>loop</code>, <code>soundstart</code>, and\n    <code>volume</code>.</dd>\n\n    <dd>Following attributes cannot be used if there is the\n    <code>target</code> attribute: <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>lcs</code>, and\n    <code>utn</code>.</dd>\n\n    <dd>The <code>viblength</code> attribute cannot be used unless\n    there is the <code>vibration</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute cannot be used if the\n    <code>shape</code> attribute is <code>default</code>.</dd>\n\n    <dd>Attributes <code>target</code>, <code>ping</code>,\n    <code>rel</code>, <code>hreflang</code>, <code>type</code>, and\n    <code>alt</code> are not allowed when the <code>href</code>\n    attribute is not specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, and <code>charset</code> attributes can be\n    specified.</dd>\n\n    <dd>If you are using OGP and the <code>property</code> attribute\n    is also specified, the error for the <code>content</code>\n    attribute may be ignored.</dd>\n\n    <dd>If there is the <code>charset</code> attribute, the\n    <code>content</code> attribute must not be specified.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>Only one of <code>rel</code> and <code>itemprop</code>\n    attributes can be specified for an element.</dd>\n\n    <dd>The <code>sizes</code> attribute cannot be specified unless\n    the <code>rel</code> attribute has the <code>icon</code> link\n    type.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>The <code>scoped</code> attribute is not allowed for the\n    <code>style</code> element in the <code>head</code> element.</dd>\n\n    <dt>HTML <code>script</code> element</dt>\n\n    <dd>Attributes <code>defer</code>, <code>async</code>, and\n    <code>charset</code> are not allowed unless the <code>src</code>\n    attribute is specified.  Likewise, the <code>crossorigin</code>\n    attribute has no effect unless the <code>src</code> attribute is\n    specified.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>number</code>, attributes\n    <code>maxlength</code> and <code>size</code> are obsolete.</dd>\n\n    <dt>HTML <code>button</code> element</dt>\n\n    <dd>Unless the <code>type</code> is <code>submit</code>,\n    attributes <code>formaction</code>, <code>formmethod</code>,\n    <code>formenctype</code>, <code>formnovalidate</code>, and\n    <code>formtarget</code> are not allowed.</dd>\n\n    <dd>Unless the <code>type</code> is <code>menu</code>, the\n    <code>menu</code> attribute is not allowed.</dd>\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>start</code> attribute is not allowed unless the\n    <code>dynsrc</code> attribute is specified.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>The <code>typemustmatch</code> attribute is not allowed unless\n    both <code>data</code> and <code>type</code> attributes are\n    specified.</dd>\n\n    <dt>HTML <code>form</code> element</dt>\n\n    <dd>If the <code>lcs</code> or <code>utn</code> attribute is\n    specified, the <code>target</code> attribute is not allowed.</dd>\n\n    <dt>HTML <code>menu</code> element</dt>\n\n    <dd>The <code>label</code> attribute can only be used when the\n    parent is a <code>menu</code> element whose <code>type</code> is\n    <code>popup</code>.</dd>\n\n    <dt>HTML <code>menuitem</code> element</dt>\n\n    <dd>If the <code>command</code> attribute is specified, attributes\n    <code>type</code>, <code>label</code>, <code>icon</code>,\n    <code>disabled</code>, <code>checked</code>, and\n    <code>radiogroup</code> cannot be used.</dd>\n\n    <dd>The <code>checked</code> attribute cannot be used unless the\n    <code>type</code> is <code>checkbox</code> or\n    <code>radio</code>.</dd>\n\n    <dd>The <code>radiogroup</code> attribute cannot be used unless\n    the <code>type</code> is <code>radio</code>.</dd>\n\n    <dt>HTML <code>keygen</code> element</dt>\n\n    <dd>If the <code>keytype</code> is <code>dsa</code>, either the\n    <code>keyparams</code> or <code>pqg</code> attribute (but not\n    both) must be specified.</dd>\n\n    <dd>Otherwise, if the <code>keytype</code> is <code>ec</code>, the\n    <code>pgq</code> attribute is not allowed.</dd>\n\n    <dd>Otherwise, the <code>keyparams</code> and <code>pqg</code>\n    attributes are not allowed.</dd>\n\n    </dl>\n  ",
@@ -1103,6 +1183,16 @@
       },
       "targets" : {
          "attr" : 1
+      }
+   },
+   "attribute not allowed:standalone" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>standalone</code> pseudo-attribute is only allowed\n    in an XML declaration, not in a text declaration.</p>\n  ",
+         "ja" : "\n    <p><code>standalone</code> 擬似属性は XML 宣言でのみ使うことができ、\n    テキスト宣言では使えません。</p>\n  "
+      },
+      "message" : {
+         "en" : "A <code>standalone</code> pseudo-attribute is\n  specified in a text declaration",
+         "ja" : "テキスト宣言に <code>standalone</code>\n  擬似属性が指定されています"
       }
    },
    "attribute not defined" : {
@@ -1203,6 +1293,16 @@
          "en" : "The decimal representation of the code position\n  of a character must be specified after <code>&amp;#</code>."
       }
    },
+   "bare pero" : {
+      "desc" : {
+         "en" : "\n    <p>After the <code>%</code> character, there must be a name of the\n    parameter entity to be referenced, followed by a <code>;</code>\n    character.</p>\n  ",
+         "ja" : "\n    <p>文字 <code>%</code> の後には参照する引数実体の名前と文字\n    <code>;</code> が必要です。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>%</code> character is not followed\n  by a parameter entity name",
+         "ja" : "文字 <code>%</code> の後に引数実体名がありません"
+      }
+   },
    "bare stago" : {
       "desc" : {
          "en" : "\n    <p>A <code>&lt;</code> (<code class=\"char\">U+003C</code> <code class=\"charname\">LESS-THAN SIGN</code>) character which is not\n    part of any markup appears in the input stream.</p>\n\n    <p>The <code>&lt;</code> character as a data character must\n    be escaped as:\n    </p>\n    <pre class=\"html example\">\n<code>&amp;lt;</code></pre>\n  ",
@@ -1284,6 +1384,16 @@
    "block not closed" : {
       "message" : {
          "en" : "Block is not closed before the end of\n  file."
+      }
+   },
+   "bogus XML declaration" : {
+      "desc" : {
+         "en" : "\n    <p>An XML declaration must only contain <code>version</code>,\n    <code>encoding</code>, and <code>standalone</code>\n    pseudo-attributes, in this order, in appropriate syntax.</p>\n\n    <p>A text declaration must only contain <code>version</code> and\n    <code>encoding</code> pseudo-attributes in this order, in\n    appropriate syntax.</p>\n  ",
+         "ja" : "\n    <p>XML 宣言は擬似属性 <code>version</code>, <code>encoding</code>,\n    <code>standalone</code> をこの順序で正しい構文でのみ含めることができます。</p>\n\n    <p>テキスト宣言は擬似属性 <code>version</code>, <code>encoding</code>\n    をこの順序で正しい構文でのみ含めることができます。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is a bogus string in the XML or text\n  declaration",
+         "ja" : "XML 宣言かテキスト宣言の中に正しくない文字列が含まれています"
       }
    },
    "bogus comment" : {
@@ -1831,12 +1941,12 @@
    },
    "duplicate attribute" : {
       "desc" : {
-         "en" : "\n    <p>There are more than one attributes with the same name in a tag.</p>\n\n    <p>The <code>motion</code> attribute of the <code>img</code>\n    element is obsolete.  Use <code>img</code> element with animation\n    GIF instead.</p>\n  ",
-         "ja" : "\n    <p>同じ名前の属性を複数同じタグに指定することはできません。</p>\n\n    <p><code>img</code> 要素の <code>motion</code> 属性は廃止されています。\n    代わりに <code>img</code> 要素とアニメーション GIF \n    をお使いください。</p>\n  "
+         "en" : "\n    <p>There are more than one attributes with the same name in a tag.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> element, the <code>motion</code>\n    attribute</dt>\n\n    <dd>This attribute is obsolete.  Use animation GIF instead.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>同じ名前の属性を複数個同じタグに指定することはできません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>img</code> 要素 <code>motion</code> 属性</dt>\n\n    <dd>この属性は廃止されました。代わりにアニメーション GIF\n    を使ってください。</dd>\n\n    </dl>\n  "
       },
       "message" : {
-         "en" : "No two attributes can share the same name\n  <code><var>{text}</var></code>.",
-         "ja" : "2つの属性が同じ名前 \n  <code><var>{text}</var></code> を使うことはできません。"
+         "en" : "There are multiple attributes with name\n  <code><var>{text}</var></code>",
+         "ja" : "属性 <code><var>{text}</var></code>\n  が複数あります"
       }
    },
    "duplicate autofocus" : {
@@ -2122,8 +2232,8 @@
          "ja" : "\n    <p>HTML <code>style</code> 要素はフロー内容ですが、\n    他のフロー内容より前でだけ使えます。</p>\n\n    <p>この <code>style</code> が特定の要素だけではなく、\n    文書全体に対して適用されるべきものなら、\n    <code>head</code> 要素内に入れなければいけません。</p>\n  "
       },
       "message" : {
-         "en" : "The <code>style</code> element cannot be used\n  after other flow content",
-         "ja" : "<code>style</code> 要素は他のフロー内容の後に来てはいけません"
+         "en" : "There is a <code>style</code> element after\n  other flow content",
+         "ja" : "他のフロー内容の後に <code>style</code> 要素があります"
       }
    },
    "element not allowed:head noscript" : {
@@ -2954,6 +3064,16 @@
       "message" : {
          "en" : "The <code>isindex</code> element is\n  used",
          "ja" : "<code>isindex</code> 要素が使われています"
+      }
+   },
+   "js:parse error" : {
+      "desc" : {
+         "en" : "\n    <p>An error is detected during the parsing of the JavaScript code\n    fragment.</p>\n  ",
+         "ja" : "\n    <p>JavaScript のコード片の構文解析中にエラーが検出されました。</p>\n  "
+      },
+      "message" : {
+         "en" : "JavaScript parse error: <code><var>{text}</var></code>",
+         "ja" : "JavaScript 構文解析エラー: <code><var>{text}</var></code>"
       }
    },
    "lang selector not closed" : {
@@ -3789,7 +3909,7 @@
    "nninteger:syntax error" : {
       "desc" : {
          "en" : "\n    <p>The attribute value must be a non-negative integer.</p>\n\n    <p>Decimal marks, signs, and thousands separators are not allowed.\n    Leading and trailing white spaces, as well as units, are not\n    allowed.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>width</code> and <code>height</code> attributes</dt>\n\n    <!-- <table width=100%> -->\n    <dd>These attributes cannot be used to specify the rendered\n    dimension of the element.  Use CSS instead.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>属性値は非負整数でなければいけません。</p>\n\n    <p>小数点、符号、桁区切りのコンマは使えません。\n    前後に空白や単位をつけてもいけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>width</code> 属性、 <code>height</code> 属性</dt>\n\n    <!-- <table width=100%> -->\n    <dd>両属性は要素をレンダリングする大きさの指定には使えません。\n    表示上の大きさは CSS で指定してください。\n\n    </dd></dl>\n  "
+         "ja" : "\n    <p>属性値は非負整数でなければいけません。</p>\n\n    <p>小数点、符号、桁区切りのコンマは使えません。\n    前後に空白や単位をつけてもいけません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>width</code> 属性、 <code>height</code> 属性</dt>\n\n    <!-- <table width=100%> -->\n    <dd>両属性は要素をレンダリングする大きさの指定には使えません。\n    表示上の大きさは CSS で指定してください。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The value is not a non-negative\n  integer",
@@ -4108,6 +4228,16 @@
          "en" : "After the string <code>&lt;!DOCTYPE</code>, there\n  must be at least a white space character before the document type\n  name."
       }
    },
+   "no space before attr name" : {
+      "desc" : {
+         "en" : "\n    <p>There must be one or more white space characters between\n    attributes and before the first attribute.</p>\n\n    <p>Character <code>U+000C</code> cannot be used as a space before\n    an attribute in an HTML document.</p>\n\n    <p>Characters <code>U+0085</code> and <code>U+202B</code> cannot\n    be used as a space before an attribute in an HTML or XML 1.0\n    document.</p>\n  ",
+         "ja" : "\n    <p>属性の間や最初の属性の前には空白文字が1つ以上必要です。</p>\n\n    <p>文字 <code>U+000C</code> を XML 文書の属性の前の空白として使うことはできません。</p>\n\n    <p>文字 <code>U+0085</code> や文字 <code>U+202B</code>\n    を HTML や XML 1.0 の文書の属性の前の空白として使うことはできません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is no space before an attribute",
+         "ja" : "属性の前に空白がありません"
+      }
+   },
    "no space between attributes" : {
       "message" : {
          "en" : "Attributes must be separeted by at least a\n  white space character."
@@ -4314,6 +4444,16 @@
    "parse type other" : {
       "message" : {
          "en" : "An invalid value is specified to \n  the <code>parseType</code> attribute."
+      }
+   },
+   "pe not declared" : {
+      "desc" : {
+         "en" : "\n    <p>A parameter entity must referece a parameter entity declared by\n    an entity declaration.</p>\n  ",
+         "ja" : "\n    <p>引数実体は、実体宣言によって宣言された引数実体を参照しなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The parameter entity is not declared",
+         "ja" : "この引数実体は宣言されていません"
       }
    },
    "pio" : {
@@ -4630,8 +4770,8 @@
          "ja" : "\n    <p>指定された擬似要素に利用者エージェントが対応していません。</p>\n    <p>利用者エージェントが当該擬似クラスを実装していません。\n    選択子自体は実際には適合しているかもしれませんが、\n    未実装のため「無視」されるため、適合するかどうかは不明です。</p>\n  "
       },
       "message" : {
-         "en" : "Pseudo-element <code>:<var>{value}</var></code>\n  is not supported.",
-         "ja" : "擬似要素 <code>:<var>{value}</var></code>\n  には対応していません。"
+         "en" : "Pseudo-element <code>::<var>{value}</var></code>\n  is not supported.",
+         "ja" : "擬似要素 <code>::<var>{value}</var></code>\n  には対応していません。"
       }
    },
    "selectors:pseudo-element:ident:unknown" : {
@@ -4640,8 +4780,8 @@
          "ja" : "\n    <p>指定された擬似要素に構文解析器が対応していません。</p>\n    <p>指定された擬似要素が新しすぎてまだ構文解析器が対応していないか、\n    その擬似要素は関数記法 (<code>:<var>class</var>(<var>args</var>)</code>)\n    しか持っていないか、\n    あるいは単純にその擬似要素は存在しないのかもしれません。</p>\n    <p>いずれにせよ、\n    その擬似要素は構文解析器が実装している選択子仕様に照らして不適合です。</p>\n  "
       },
       "message" : {
-         "en" : "Pseudo-element <code>:<var>{value}</var></code>\n  is not known to the parser.",
-         "ja" : "擬似要素 <code>:<var>{value}</var></code>\n  を構文解析器は知りません。"
+         "en" : "Pseudo-element <code>::<var>{value}</var></code>\n  is not known to the parser.",
+         "ja" : "擬似要素 <code>::<var>{value}</var></code>\n  を構文解析器は知りません。"
       }
    },
    "selectors:pseudo-element:one colon" : {
@@ -4808,6 +4948,16 @@
       "message" : {
          "en" : "The element is in earlier draft stage and\n  it not stable yet",
          "ja" : "この要素は仕様案の初期段階にあり、\n  まだ安定していません"
+      }
+   },
+   "stop processing" : {
+      "desc" : {
+         "en" : "\n    <p>As there is an error in DTD, or an external entity can't be\n    retrieved, processing of markup declarations has been stopped.</p>\n  ",
+         "ja" : "\n    <p>DTD 中に誤りがあったため、あるいは取得できない外部実体があったため、\n    マーク付け宣言の処理は停止されました。</p>\n  "
+      },
+      "message" : {
+         "en" : "Processing of markup declarations has been\n  stopped",
+         "ja" : "マーク付け宣言の処理が停止されました"
       }
    },
    "stray end tag" : {
