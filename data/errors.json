@@ -3082,9 +3082,13 @@
       }
    },
    "langtag:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>Use of the language tag is deprecated, possibly in favor of\n    other language tag.</p>\n  ",
+         "ja" : "\n    <p>この言語タグの使用は非推奨とされています。\n    他により好ましい言語タグがあるかもしれません。</p>\n  "
+      },
       "message" : {
          "en" : "Use of language tag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->.",
-         "ja" : "言語タグ\n  <code><var>{value}</var></code> は非推奨です。"
+         "ja" : "言語タグ\n  <code><var>{value}</var></code> は非推奨です"
       }
    },
    "langtag:extension:duplication" : {
@@ -3092,13 +3096,68 @@
          "en" : "\n    <p>同じ言語タグ中に同じ1文字部分タグで始まる拡張が複数含まれています。\n    同じ種類の言語タグの拡張は、1つの言語タグの中で1回だけしか使えません。</p>\n  "
       },
       "message" : {
-         "en" : "There is another extension subtag\n  <code><var>{value}</var></code> in the same language tag.",
-         "ja" : "拡張部分タグ <code><var>{value}</var></code>\n  はこの言語タグ中で既に使われています。"
+         "en" : "There is another extension subtag\n  <code><var>{value}</var></code> in the same language tag",
+         "ja" : "拡張部分タグ <code><var>{value}</var></code>\n  はこの言語タグ中で既に使われています"
       }
    },
    "langtag:extension:order" : {
+      "desc" : {
+         "en" : "\n    <p>Language tag extensions should be ordered in ASCII order.</p>\n  ",
+         "ja" : "\n    <p>言語タグ拡張は ASCII 順で並べるべきです。</p>\n  "
+      },
       "message" : {
-         "en" : "Extension subtag <code><var>{value}</var></code>\n  is placed after subtag <code><var>{text}</var></code>."
+         "en" : "Extension subtag <code><var>{value}</var></code>\n  is placed after subtag <code><var>{text}</var></code>",
+         "ja" : "拡張部分タグ <code><var>{value}</var></code>\n  が <code><var>{text}</var></code> より後にあります"
+      }
+   },
+   "langtag:extension:t:case" : {
+      "desc" : {
+         "en" : "\n    <p>A <code>t</code>-extension subtag contains one or more uppercase\n    letters.  Although language tags are ASCII case-insensitive, the\n    canonical form for <code>t</code>-extension is defined as the \n    lowercase form.</p>\n  ",
+         "ja" : "\n    <p><code>t</code> 拡張の部分タグに大文字が含まれています。\n    言語タグは ASCII の大文字と小文字を区別しませんが、\n    <code>t</code> 拡張の正準形は小文字とされています。</p>\n  "
+      },
+      "message" : {
+         "en" : "The extension subtag is not in lowercase",
+         "ja" : "拡張部分タグが小文字ではありません"
+      }
+   },
+   "langtag:extension:t:field:duplication" : {
+      "desc" : {
+         "en" : "\n    <p>A field cannot be used twice in the <code>t</code> extension\n    component of a language tag.</p>\n  ",
+         "ja" : "\n    <p>同じ欄を一つの言語タグの <code>t</code> 拡張の部分で二度使うことはできません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is another field <code><var>{value}</var></code>\n  in the <code>t</code> extension in the language tag",
+         "ja" : "欄 <code><var>{value}</var></code>\n  は同じ言語タグの <code>t</code> 拡張で既に指定されています"
+      }
+   },
+   "langtag:extension:t:field:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>The field must be one of allowed ones.</p>\n  ",
+         "ja" : "\n    <p>欄は認められているもののいずれかでなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The field is not valid",
+         "ja" : "この欄は妥当ではありません"
+      }
+   },
+   "langtag:extension:t:field:value:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>The field value must be one of allowed values.</p>\n  ",
+         "ja" : "\n    <p>欄の値は認められているもののいずれかでなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is not valid for the field\n  <code><var>{text}</var></code>",
+         "ja" : "これは欄 <code><var>{text}</var></code>\n  の妥当な値ではありません"
+      }
+   },
+   "langtag:extension:t:irregular" : {
+      "desc" : {
+         "en" : "\n    <p>A language tag of the <code>irregular</code> category\n    (i.e. <code>en-GB-oed</code>,\n    <code>sgn-be-FR</code>,\n    <code>sgn-be-NL</code>, or\n    <code>sgn-ch-DE</code>)\n    cannot be\n    used in the <code>t</code> extension of the language tag.</p>\n  ",
+         "ja" : "\n    <p><code>irregular</code> に属する言語タグ\n    (<code>en-GB-oed</code>,\n    <code>sgn-be-FR</code>,\n    <code>sgn-be-NL</code>,\n    <code>sgn-ch-DE</code>)\n    は <code>t</code> 拡張では使えません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The language tag cannot be used in <code>t</code>\n  extension",
+         "ja" : "この言語タグは <code>t</code> 拡張では使えません"
       }
    },
    "langtag:extension:u:attr:duplication" : {
@@ -3106,8 +3165,8 @@
          "en" : "\n    <p>同じ言語タグ中に同じ属性が複数含まれています。言語タグの\n    <code>u</code> 拡張の属性は、\n    1つの言語タグの中でそれぞれ1回だけしか使えません。</p>\n  "
       },
       "message" : {
-         "en" : "There is another attribute\n  <code><var>{value}</var></code> in the same language tag\n  extension.",
-         "ja" : "属性 <code><var>{value}</var></code>\n  はこの言語タグ拡張部分タグ中で既に使われています。"
+         "en" : "There is another attribute\n  <code><var>{value}</var></code> in the same language tag\n  extension",
+         "ja" : "属性 <code><var>{value}</var></code>\n  はこの言語タグ拡張部分タグ中で既に使われています"
       }
    },
    "langtag:extension:u:attr:invalid" : {
@@ -3116,8 +3175,8 @@
          "ja" : "\n    <p>現時点で <code>u</code> 拡張の属性は1つも定義されていません。</p>\n  "
       },
       "message" : {
-         "en" : "Attribute <code><var>{value}</var></code>\n  is not defined.",
-         "ja" : "属性 <code><var>{value}</var></code>\n  は定義されていません。"
+         "en" : "Attribute <code><var>{value}</var></code>\n  is not defined",
+         "ja" : "属性 <code><var>{value}</var></code>\n  は定義されていません"
       }
    },
    "langtag:extension:u:attr:order" : {
@@ -3126,8 +3185,8 @@
          "ja" : "\n    <p>属性が複数ある時は、アルファベット順に並べるのが正準形です。</p>\n  "
       },
       "message" : {
-         "en" : "Attribute <code><var>{value}</var></code>\n  should be placed <em>after</em> <code><var>{text}</var></code>.",
-         "ja" : "属性 <code><var>{value}</var></code>\n  は <code><var>{text}</var></code> \n  よりも<em>後</em>に来るべきです。"
+         "en" : "Attribute <code><var>{value}</var></code>\n  is placed before <code><var>{text}</var></code>.",
+         "ja" : "属性 <code><var>{value}</var></code>\n  が <code><var>{text}</var></code> の前にあります"
       }
    },
    "langtag:extension:u:case" : {
@@ -3136,8 +3195,8 @@
          "ja" : "\n    <p><code>u</code> 拡張の部分タグに大文字が含まれています。\n    言語タグは ASCII の大文字と小文字を区別しませんが、\n    <code>u</code> 拡張の正準形は小文字とされています。</p>\n  "
       },
       "message" : {
-         "en" : "Extension subtag <code><var>{value}</var></code> is\n  not in the preferred form, i.e. lowercase.",
-         "ja" : "拡張部分タグ <code><var>{value}</var></code> \n  は小文字表記が好ましいとされています。"
+         "en" : "The extension subtag is not in lowercase",
+         "ja" : "拡張部分タグが小文字ではありません"
       }
    },
    "langtag:extension:u:key:duplication" : {
@@ -3145,8 +3204,8 @@
          "en" : "\n    <p>同じ言語タグ中に同じキーが複数含まれています。言語タグの\n    <code>u</code> 拡張のキーは、\n    1つの言語タグの中でそれぞれ1回だけしか使えません。</p>\n  "
       },
       "message" : {
-         "en" : "There is another key\n  <code><var>{value}</var></code> in the same language tag\n  extension.",
-         "ja" : "キー <code><var>{value}</var></code>\n  はこの言語タグ拡張部分タグ中で既に使われています。"
+         "en" : "There is another key\n  <code><var>{value}</var></code> in the same language tag\n  extension",
+         "ja" : "キー <code><var>{value}</var></code>\n  はこの言語タグ拡張中で既に使われています"
       }
    },
    "langtag:extension:u:key:invalid" : {
@@ -3155,8 +3214,8 @@
          "ja" : "\n    <p>指定されたキーは適合性検査器が使っている言語タグ・データベースの構築の時点で定義されていません。</p>\n    <p>定義されていないキーを言語タグで使うことはできません。</p>\n  "
       },
       "message" : {
-         "en" : "Key <code><var>{value}</var></code>\n  is not defined.",
-         "ja" : "キー <code><var>{value}</var></code>\n  は定義されていません。"
+         "en" : "Key <code><var>{value}</var></code>\n  is not defined",
+         "ja" : "キー <code><var>{value}</var></code>\n  は定義されていません"
       }
    },
    "langtag:extension:u:key:order" : {
@@ -3165,8 +3224,28 @@
          "ja" : "\n    <p>キーが複数ある時は、アルファベット順に並べるのが正準形です。</p>\n  "
       },
       "message" : {
-         "en" : "Key <code><var>{value}</var></code>\n  should be placed <em>after</em> <code><var>{text}</var></code>.",
-         "ja" : "キー <code><var>{value}</var></code>\n  は <code><var>{text}</var></code> \n  よりも<em>後</em>に来るべきです。"
+         "en" : "Key <code><var>{value}</var></code>\n  is placed before <code><var>{text}</var></code>",
+         "ja" : "キー <code><var>{value}</var></code>\n  が <code><var>{text}</var></code>  よりも前にあります"
+      }
+   },
+   "langtag:extension:u:type:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>The type in the <code>U</code> extension of the language tag\n    is deprecated.</p>\n  ",
+         "ja" : "\n    <p>言語タグの <code>U</code> 拡張のこの型は非推奨です。</p>\n  "
+      },
+      "message" : {
+         "en" : "The type\n  is deprecated<!-- in favor of {value} (or undef) -->",
+         "ja" : "この型は非推奨です"
+      }
+   },
+   "langtag:extension:u:type:duplication" : {
+      "desc" : {
+         "en" : "\n    <p>For a key in the <code>U</code> extension of the language tag,\n    the same type can only be specified once.</p>\n  ",
+         "ja" : "\n    <p>言語タグの <code>U</code> 拡張のキーに対して同じ型は一度だけしか指定できません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The same type for key <code><var>{text}</var></code>\n  is specified twice",
+         "ja" : "キー <code><var>{text}</var></code>\n  に同じ型が複数回指定されています"
       }
    },
    "langtag:extension:u:type:invalid" : {
@@ -3175,8 +3254,8 @@
          "ja" : "\n    <p>指定された型は適合性検査器が使っている言語タグ・データベースの構築の時点で定義されていません。</p>\n    <p>定義されていない型を言語タグで使うことはできません。</p>\n  "
       },
       "message" : {
-         "en" : "Type <code><var>{value}</var></code>\n  is not defined for key <code><var>{text}</var></code>.",
-         "ja" : "型 <code><var>{value}</var></code>\n  はキー <code><var>{text}</var></code> \n  に対して定義されていません。"
+         "en" : "Type <code><var>{value}</var></code>\n  is not defined for key <code><var>{text}</var></code>",
+         "ja" : "型 <code><var>{value}</var></code>\n  はキー <code><var>{text}</var></code> \n  に対して定義されていません"
       }
    },
    "langtag:extension:u:type:missing" : {
@@ -3185,8 +3264,8 @@
          "ja" : "\n    <p>言語タグの <code>u</code> 拡張のキーには対応する型 (値)\n    を指定する必要があります。 (ただしキーによっては既定の型\n    <code>true</code> を省略できることもあります。)</p>\n  "
       },
       "message" : {
-         "en" : "Type for key <code><var>{text}</var></code>\n  is not specified.",
-         "ja" : "キー <code><var>{text}</var></code>\n  の型が指定されていません。"
+         "en" : "Type for key <code><var>{text}</var></code>\n  is not specified",
+         "ja" : "キー <code><var>{text}</var></code>\n  の型が指定されていません"
       }
    },
    "langtag:extension:u:type:nosemantics" : {
@@ -3200,18 +3279,33 @@
       }
    },
    "langtag:extension:unknown" : {
+      "desc" : {
+         "en" : "\n    <p>The language tag extension must be registered.</p>\n  ",
+         "ja" : "\n    <p>言語タグ拡張は登録されていなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Extension <code><var>{value}</var></code> is not\n  defined when the conformance checker is written."
+         "en" : "Extension <code><var>{value}</var></code> is not\n  registered",
+         "ja" : "拡張 <code><var>{value}</var></code>\n  は登録されていません"
       }
    },
    "langtag:extlang:case" : {
+      "desc" : {
+         "en" : "\n    <p>Although it is not required, it is considered as a good\n    practice to represent the extension language subtags by lowercase letters.</p>\n  ",
+         "ja" : "\n    <p>必須ではありませんが、拡張部分タグは小文字で書くのが良いとされています。</p>\n  "
+      },
       "message" : {
-         "en" : "Extended language subtag\n  <code><var>{value}</var></code> is not in the preferred form, i.e. in \n  lowercase."
+         "en" : "The extended language subtag is not in lowercase",
+         "ja" : "拡張言語タグが小文字ではありません"
       }
    },
    "langtag:extlang:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>Use of the extended language subtag is deprecated, possibly in\n    favor of other language or extended language subtag.</p>\n  ",
+         "ja" : "\n    <p>この拡張言語部分タグの使用は非推奨とされています。\n    他により好ましい言語部分タグや拡張言語部分タグがあるかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Use of extended language subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text}\n  language subtag (might be undef) -->."
+         "en" : "Extended language subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text}\n  language subtag (might be undef) -->",
+         "ja" : "拡張言語部分タグ <code><var>{value}</var></code> \n  は非推奨です"
       }
    },
    "langtag:extlang:invalid" : {
@@ -3220,38 +3314,68 @@
          "ja" : "\n    <p>拡張言語部分タグには IANA に登録された文字列しか使えません。\n    指定された文字列は適合性検査器の言語タグ・データベースの構築の時点で\n    IANA に登録されていませんでした。</p>\n    <p>また、拡張言語部分タグの2つ目と3つ目は現在使われていません。\n    拡張言語部分タグは1つの言語タグの中で1つだけ指定できます。</p>\n  "
       },
       "message" : {
-         "en" : "Extended language subtag \n  <code><var>{value}</var></code> is not registered.",
-         "ja" : "拡張言語部分タグ\n  <code><var>{value}</var></code> は登録されていません。"
+         "en" : "Extended language subtag \n  <code><var>{value}</var></code> is not registered",
+         "ja" : "拡張言語部分タグ\n  <code><var>{value}</var></code> は登録されていません"
       }
    },
    "langtag:extlang:preferred" : {
+      "desc" : {
+         "en" : "\n    <p>The primary and extended language subtags should be replaced by\n    another single primary language subtag.  Use of extended language\n    subtags is not recommended in general.</p>\n  ",
+         "ja" : "\n    <p>一次言語タグと拡張言語部分タグを他の一次言語部分タグで置き換えるべきです。\n    一般に拡張言語タグを使うことは推奨されていません。</p>\n  "
+      },
       "message" : {
-         "en" : "The language subtag and the extended language\n  subtag <code><var>{value}</var></code> should be replaced by the\n  language subtag <code><var>{text}</var></code>.  Use of extended\n  language subtags is not recommended in general."
+         "en" : "Language subtag <code><var>{text}</var></code>\n  is preferred to language subtags <code><var>{value}</var></code>",
+         "ja" : "言語部分タグ <code><var>{value}</var></code>\n  よりも言語部分タグ <code><var>{text}</var></code>\n  が好ましいです"
       }
    },
    "langtag:extlang:prefix" : {
+      "desc" : {
+         "en" : "\n    <p>The extended language subtag must be used with another primary\n    language subtag.</p>\n  ",
+         "ja" : "\n    <p>この拡張言語部分タグは他の一次言語部分タグと組み合わせて使わなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Extended language subtag\n  <code><var>{text}</var></code> is not allowed in the combination with this\n  language (and extended language) subtag(s).  It must be used\n  with <code><var>{value}</var></code>."
+         "en" : "The extended language subtag cannot be used\n  with the primary language subtag (Expected:\n  <code><var>{text}</var></code>)",
+         "ja" : "この拡張言語部分タグは一次言語部分タグと組み合わせることができません\n  (<code><var>{text}</var></code> が適切)"
       }
    },
    "langtag:grandfathered:case" : {
+      "desc" : {
+         "en" : "\n    <p>Although it is not required, it is desired to represent the\n    region subtag in uppercase, the script subtag in titlecase, and\n    all other components in lowercase.</p>\n  ",
+         "ja" : "\n    <p>必須ではないのですが、地域部分タグは大文字、\n    用字形部分タグは先頭のみ大文字、それ以外はすべて小文字で表すのが好ましいとされています。</p>\n  "
+      },
       "message" : {
-         "en" : "Language tag <code><var>{value}</var></code> is\n  not in the preferred case combination."
+         "en" : "The language tag is not in the canonical case",
+         "ja" : "この言語タグは正準形の大文字と小文字の使い分けになっていません"
       }
    },
    "langtag:grandfathered:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>Use of the language tag is deprecated, possibly in favor of\n    other language tag.</p>\n  ",
+         "ja" : "\n    <p>この言語タグの使用は非推奨とされています。\n    他により好ましい言語タグがあるかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Use of language tag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->."
+         "en" : "Language tag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->",
+         "ja" : "言語タグ <code><var>{value}</var></code>\n  は非推奨です"
       }
    },
    "langtag:grandfathered:i-default" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>i-default</code> language tag is prepared for the\n    special purpose.  It should not be used unless no other\n    appropriate value (or missing of the value) is available.</p>\n  ",
+         "ja" : "\n    <p>言語タグ <code>i-default</code> は特別なものですから、\n    他に適切な値がない (値を省略もできない) 場合を除き、\n    使うべきではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "Language tag <code><var>i-default</var></code> \n  should not be used unless it is really necessary for some \n  reason."
+         "en" : "Language tag <code>i-default</code> \n  is used",
+         "ja" : "言語タグ <code>i-default</code>\n  が使われています"
       }
    },
    "langtag:grandfathered:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>The language tag <em>does</em> conform to the\n    <code>grandfathered</code> syntax of RFC 4646 but it is not a\n    registered grandfathered language tag.  Although the tag might be\n    valid in RFC 3066 age, it is no longer valid in RFC 4646 and not\n    even well-formed in RFC 5646.</p>\n  ",
+         "ja" : "\n    <p>この言語タグは RFC 4646 の <code>grandfathered</code>\n    生成規則に一致はしているのですが、登録された言語タグではありません。\n    RFC 3066 の時代には正しい言語タグだった場合もありますが、\n    RFC 4646 に照らして妥当ではなく、 RFC 5646 においては整形式ですらありません。</p>\n  "
+      },
       "message" : {
-         "en" : "Language tag <code><var>{value}</var></code> is\n  not a combination of RFC 4646 subtags and is not a registered grandfathered\n  tag."
+         "en" : "The language tag is not registered",
+         "ja" : "この言語タグは登録されていません"
       }
    },
    "langtag:illegal" : {
@@ -3260,8 +3384,8 @@
          "ja" : "\n    <p>一次言語部分タグ (狭義の言語を表す部分) \n    は2文字か3文字の基本ラテン文字 (<code>a</code>〜<code>z</code>) \n    の列である必要があります。 IANA に登録されていない言語を表したいなら \n    <code>x-</code> をはじめにつける必要があります。</p>\n    <p>その他の部分タグは1文字から8文字の英数字\n    (<code>0</code>〜<code>9</code>,\n    <code>a</code>〜<code>z</code>) でなければなりません。</p>\n    <p>RFC 1766 言語タグ構文 (廃止済み) では数字は使えませんでした。</p>\n  "
       },
       "message" : {
-         "en" : "Subtag <code><var>{value}</var></code> is \n  syntactically invalid.",
-         "ja" : "部分タグ <code><var>{value}</var></code> \n  は構文的に正しくありません。"
+         "en" : "The subtag is syntactically illegal",
+         "ja" : "この部分タグは構文的に正しくありません"
       }
    },
    "langtag:language:case" : {
@@ -3270,51 +3394,88 @@
          "ja" : "\n    <p>指定された一次言語部分タグには大文字が含まれていました。\n    言語タグでは ASCII の大文字と小文字を区別しませんが、\n    言語部分タグでは常に小文字を使うのがよいとされています。</p>\n  "
       },
       "message" : {
-         "en" : "It is a good practice to represent ISO 639\n  language code <code><var>{value}</var></code> in lowercase.",
-         "ja" : "ISO 639 言語符号 <code><var>{value}</var></code>\n  は小文字で表すのが良いとされています。"
+         "en" : "The primary language subtag is not in lowercase",
+         "ja" : "言語部分タグが小文字ではありません"
       }
    },
    "langtag:language:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>Use of the language subtag is deprecated, possibly in favor of\n    other language subtag.</p>\n  ",
+         "ja" : "\n    <p>この言語部分タグの使用は非推奨とされています。\n    他により好ましい言語部分タグがあるかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Use of language subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->."
+         "en" : "Primary language subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->",
+         "ja" : "一次言語部分タグ <code><var>{value}</var></code>\n  は非推奨です"
       }
    },
    "langtag:language:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>The language subtag must be one of registered values.</p>\n  ",
+         "ja" : "\n    <p>言語部分タグは登録されたもののいずれかでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Language subtag <code><var>{value}</var></code>\n  is not registered.",
-         "ja" : "言語部分タグ <code><var>{value}</var></code>\n  は登録されていません。"
+         "en" : "Language subtag <code><var>{value}</var></code>\n  is not registered",
+         "ja" : "言語部分タグ <code><var>{value}</var></code>\n  は登録されていません"
       }
    },
    "langtag:language:mis" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>mis</code> language tag is prepared for the\n    special purpose.  It should not be used unless no other\n    appropriate value (or missing of the value) is available.</p>\n  ",
+         "ja" : "\n    <p>言語タグ <code>is</code> は特別なものですから、\n    他に適切な値がない (値を省略もできない) 場合を除き、\n    使うべきではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "Langauge subtag <code>mis</code> should not be\n  used."
+         "en" : "Language tag <code>mis</code> \n  is used",
+         "ja" : "言語タグ <code>mis</code>\n  が使われています"
       }
    },
    "langtag:language:mul" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>mul</code> language tag is prepared for the\n    special purpose.  It should not be used unless no other\n    appropriate value (or combination of values) is available.</p>\n  ",
+         "ja" : "\n    <p>言語タグ <code>mul</code> は特別なものですから、\n    他に適切な値 (の組み合わせ) がない場合を除き、\n    使うべきではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "Langauge subtag <code>mul</code> should not be\n  used unless it is really necessary."
+         "en" : "Language tag <code>mul</code> \n  is used",
+         "ja" : "言語タグ <code>mul</code>\n  が使われています"
       }
    },
    "langtag:language:nosemantics" : {
+      "desc" : {
+         "en" : "\n    <p>Semantics of the language tag is not defined.  It is reserved\n    for future extension and should not be used.</p>\n  ",
+         "ja" : "\n    <p>この言語タグの意味は定義されていません。将来の拡張のために予約されているので使うべきではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "No semantics is defined for language subtag\n  <code><var>{value}</var></code>.",
-         "ja" : "言語部分タグ <code><var>{value}</var></code>\n  は定義されていません。"
+         "en" : "No semantics is defined for language subtag\n  <code><var>{value}</var></code>",
+         "ja" : "言語部分タグ <code><var>{value}</var></code>\n  は定義されていません"
       }
    },
    "langtag:language:private" : {
+      "desc" : {
+         "en" : "\n    <p>A private use language code is used, whose semantics might not\n    be conveyed.</p>\n  ",
+         "ja" : "\n    <p>私用の言語符号が使われています。その意味は正しく伝わらないかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Language subtag <code><var>{value}</var></code>\n  is a private use code.",
-         "ja" : "言語部分タグ <code><var>{value}</var></code>\n  は私用の符号です。"
+         "en" : "Language subtag <code><var>{value}</var></code>\n  is a private use code",
+         "ja" : "言語部分タグ <code><var>{value}</var></code>\n  は私用の符号です"
       }
    },
    "langtag:language:syntax" : {
+      "desc" : {
+         "en" : "\n    <p>The language subtag must be specified by two basic\n    latin letters.</p>\n  ",
+         "ja" : "\n    <p>言語部分タグは基本ラテン文字2つで表さなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The language subtag <code><var>{value}</var></code>\n  is syntactically invalid.  Language subtag must contain one or more\n  basic latin characters."
+         "en" : "The language is syntactically invalid",
+         "ja" : "この言語は構文的に正しくありません"
       }
    },
    "langtag:language:und" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>und</code> language tag is prepared for the\n    special purpose.  It should not be used unless no other\n    appropriate value (or missing of the value) is available.</p>\n  ",
+         "ja" : "\n    <p>言語タグ <code>und</code> は特別なものですから、\n    他に適切な値がない (値を省略もできない) 場合を除き、\n    使うべきではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "Langauge tag <code>und</code> should not be\n  used unless it is really necessary."
+         "en" : "Language tag <code>und</code> \n  is used",
+         "ja" : "言語タグ <code>und</code>\n  が使われています"
       }
    },
    "langtag:notregistered" : {
@@ -3323,120 +3484,218 @@
          "ja" : "\n    <p>指定された言語タグは IANA に登録されていません。\n    未登録の言語タグを使うことは禁止されていませんが、\n    相互運用性に問題があるかもしれません。</p>\n  "
       },
       "message" : {
-         "en" : "Language tag\n  <code><var>{value}</var></code> is not registered.",
-         "ja" : "言語タグ\n  <code><var>{value}</var></code> は登録されていません。"
+         "en" : "Language tag\n  <code><var>{value}</var></code> is not registered",
+         "ja" : "言語タグ\n  <code><var>{value}</var></code> は登録されていません"
       }
    },
    "langtag:private" : {
+      "desc" : {
+         "en" : "\n    <p>Private use tags should be avoided wherever possible to\n    facilitate interoperability.</p>\n  ",
+         "ja" : "\n    <p>相互運用性のために私用タグはできる限り避けるべきです。</p>\n  "
+      },
       "message" : {
-         "en" : "Private use language tag \n  <code><var>{value}</var></code> should be avoided where \n  possible.",
-         "ja" : "私用言語タグ <code><var>{value}</var></code>\n  はできれば避けるべきです。"
+         "en" : "A private use tag is used",
+         "ja" : "私用タグが使われています"
       }
    },
    "langtag:privateuse" : {
+      "desc" : {
+         "en" : "\n    <p>Private use subtags should be avoided wherever possible to\n    facilitate interoperability.</p>\n  ",
+         "ja" : "\n    <p>相互運用性のために私用部分タグはできる限り避けるべきです。</p>\n  "
+      },
       "message" : {
-         "en" : "Private use subtag <code><var>{value}</var></code>\n  is used."
+         "en" : "A private use subtag is used",
+         "ja" : "私用部分タグが使われています"
       }
    },
    "langtag:privateuse:case" : {
+      "desc" : {
+         "en" : "\n    <p>Although it is not required, it is desired to represent the\n    region subtag in uppercase, the script subtag in titlecase, and\n    all other components in lowercase.</p>\n  ",
+         "ja" : "\n    <p>必須ではないのですが、地域部分タグは大文字、\n    用字形部分タグは先頭のみ大文字、それ以外はすべて小文字で表すのが好ましいとされています。</p>\n  "
+      },
       "message" : {
-         "en" : "Subtag <code><var>{value}</var></code> is not \n  represented in the preferred case format."
+         "en" : "The language tag is not in the canonical case",
+         "ja" : "この言語タグは正準形の大文字と小文字の使い分けになっていません"
       }
    },
    "langtag:privateuse:syntax" : {
+      "desc" : {
+         "en" : "\n    <p>The private use subtag of a language tag must be consist of one\n    or more subtags consist of basic latin letters and digits whose\n    length is in the range 1 to 8, inclusive, prefixed by\n    <code>x-</code>.</p>\n  ",
+         "ja" : "\n    <p>言語タグの私用部分タグは、 <code>x-</code> の後に基本ラテン文字と数字\n    1〜8文字で構成される部分タグ1つ以上が続く形でなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Private use subtag <code><var>{value}</var></code>\n  is syntactically invalid."
+         "en" : "The private use subtag\n  is syntactically invalid",
+         "ja" : "この私用部分タグは構文的に正しくありません"
       }
    },
    "langtag:redundant:case" : {
+      "desc" : {
+         "en" : "\n    <p>Although it is not required, it is desired to represent the\n    region subtag in uppercase, the script subtag in titlecase, and\n    all other components in lowercase.</p>\n  ",
+         "ja" : "\n    <p>必須ではないのですが、地域部分タグは大文字、\n    用字形部分タグは先頭のみ大文字、それ以外はすべて小文字で表すのが好ましいとされています。</p>\n  "
+      },
       "message" : {
-         "en" : "Language tag <code><var>{value}</var></code> is\n  not in the preferred case combination."
+         "en" : "The language tag is not in the canonical case",
+         "ja" : "この言語タグは正準形の大文字と小文字の使い分けになっていません"
       }
    },
    "langtag:redundant:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>Use of the language tag is deprecated, possibly in favor of\n    other language tag.</p>\n  ",
+         "ja" : "\n    <p>この言語タグの使用は非推奨とされています。\n    他により好ましい言語タグがあるかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Use of language tag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->."
+         "en" : "Language tag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->",
+         "ja" : "言語タグ <code><var>{value}</var></code>\n  は非推奨です"
       }
    },
    "langtag:region:case" : {
+      "desc" : {
+         "en" : "\n    <p>Although it is not required, it is considered as a good\n    practice to represent the region subtag by uppercase letters.</p>\n  ",
+         "ja" : "\n    <p>必須ではありませんが、地域部分タグは大文字で書くのが良いとされています。</p>\n  "
+      },
       "message" : {
-         "en" : "It is a good practice to represent ISO 3166\n  country code <code><var>{value}</var></code> in uppercase."
+         "en" : "The region subtag is not in uppercase",
+         "ja" : "地域部分タグが大文字ではありません"
       }
    },
    "langtag:region:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>Use of the region subtag is deprecated, possibly in favor of\n    other region subtag.</p>\n  ",
+         "ja" : "\n    <p>この地域部分タグの使用は非推奨とされています。\n    他により好ましい地域部分タグがあるかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Use of region subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->.",
-         "ja" : "地域部分タグ\n  <code><var>{value}</var></code> は非推奨です。"
+         "en" : "Region subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->",
+         "ja" : "地域部分タグ <code><var>{value}</var></code>\n  は非推奨です"
       }
    },
    "langtag:region:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>The region subtag must be one of registered values.</p>\n  ",
+         "ja" : "\n    <p>地域部分タグは登録されたもののいずれかでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Region subtag <code><var>{value}</var></code>\n  is not registered."
+         "en" : "Region subtag <code><var>{value}</var></code>\n  is not registered",
+         "ja" : "地域部分タグ <code><var>{value}</var></code>\n  は登録されていません"
       }
    },
    "langtag:region:nosemantics" : {
+      "desc" : {
+         "en" : "\n    <p>Semantics of the region subtag is not defined.  It is reserved\n    for future extension and should not be used.</p>\n  ",
+         "ja" : "\n    <p>この地域部分タグの意味は定義されていません。将来の拡張のために予約されているので使うべきではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "No semantics is defined for region subtag\n  <code><var>{value}</var></code>."
+         "en" : "No semantics is defined for region subtag\n  <code><var>{value}</var></code>",
+         "ja" : "地域部分タグ <code><var>{value}</var></code>\n  の意味は定義されていません"
       }
    },
    "langtag:region:private" : {
+      "desc" : {
+         "en" : "\n    <p>The region subtag must be one of registered values.</p>\n  ",
+         "ja" : "\n    <p>地域部分タグは登録されたもののいずれかでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Private use country code\n  <code><var>{value}</var></code> should be avoided where\n  possible."
+         "en" : "Region subtag <code><var>{value}</var></code>\n  is not registered",
+         "ja" : "地域部分タグ <code><var>{value}</var></code>\n  は登録されていません"
       }
    },
    "langtag:script:case" : {
+      "desc" : {
+         "en" : "\n    <p>Although it is not required, it is considered as a good\n    practice to represent the script subtag by titlecase.</p>\n  ",
+         "ja" : "\n    <p>必須ではありませんが、用字形部分タグは先頭のみ大文字で、\n    他は小文字で書くのが良いとされています。</p>\n  "
+      },
       "message" : {
-         "en" : "Script subtag <code><var>{value}</var></code> is \n  not in the preferred form, i.e. titlecase."
+         "en" : "The script subtag is not in titlecase",
+         "ja" : "用字形部分タグが先頭のみ大文字になっていません"
       }
    },
    "langtag:script:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>Use of the script subtag is deprecated, possibly in favor of\n    other script subtag.</p>\n  ",
+         "ja" : "\n    <p>この用字形部分タグの使用は非推奨とされています。\n    他により好ましい用字形部分タグがあるかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Use of script subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->."
+         "en" : "Script subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->",
+         "ja" : "用字形部分タグ <code><var>{value}</var></code>\n  は非推奨です"
       }
    },
    "langtag:script:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>The script subtag must be one of registered values.</p>\n  ",
+         "ja" : "\n    <p>用字形部分タグは登録されたもののいずれかでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Script subtag <code><var>{value}</var></code>\n  is not registered."
+         "en" : "Script subtag <code><var>{value}</var></code>\n  is not registered",
+         "ja" : "用字形部分タグ <code><var>{value}</var></code>\n  は登録されていません"
       }
    },
    "langtag:script:private" : {
+      "desc" : {
+         "en" : "\n    <p>A private use script code is used, whose semantics might not\n    be conveyed.</p>\n  ",
+         "ja" : "\n    <p>私用の用字形符号が使われています。その意味は正しく伝わらないかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Script subtag <code><var>{value}</var></code>\n  is a private use code."
+         "en" : "Script subtag <code><var>{value}</var></code>\n  is a private use code",
+         "ja" : "用字形部分タグ <code><var>{value}</var></code>\n  は私用の符号です"
       }
    },
    "langtag:script:suppress" : {
+      "desc" : {
+         "en" : "\n    <p>The script subtag should be suppressed by the language subtag\n    as it is considered as the default script for the language.</p>\n  ",
+         "ja" : "\n    <p>この用字形部分タグは言語部分タグの言語の既定の用字形であり、\n    省略するべきです。</p>\n  "
+      },
       "message" : {
-         "en" : "Script subtag <code><var>{value}</var></code>\n  should be suppressed when the language subtag is\n  <code><var>{text}</var></code>."
+         "en" : "The script subtag \n  is redundant with language subtag <code><var>{text}</var></code>",
+         "ja" : "用字形部分タグは言語部分タグ\n  <code><var>{text}</var></code> と冗長です"
       }
    },
    "langtag:variant:case" : {
       "desc" : {
-         "en" : "\n    <p>A variant subtag contains one or more uppercase letters.\n    Although language tags are ASCII case-insensitive, the preferred\n    form for variant subtags is defined as the lowercase form.</p>\n  ",
-         "ja" : "\n    <p>異体部分タグに大文字が含まれています。言語タグは ASCII\n    の大文字と小文字を区別しませんが、\n    異体部分タグについては小文字が好ましいとされています。</p>\n  "
+         "en" : "\n    <p>Although it is not required, it is considered as a good\n    practice to represent the variant subtag by lowercase letters.</p>\n  ",
+         "ja" : "\n    <p>必須ではありませんが、異体部分タグは小文字で書くのが良いとされています。</p>\n  "
       },
       "message" : {
-         "en" : "Variant subtag <code><var>{value}</var></code> is\n  not in the preferred form, i.e. lowercase.",
-         "ja" : "異体部分タグ <code><var>{value}</var></code> \n  は小文字表記が好ましいとされています。"
+         "en" : "The variant subtag is not in lowercase",
+         "ja" : "異体部分タグが小文字ではありません"
       }
    },
    "langtag:variant:combination" : {
+      "desc" : {
+         "en" : "\n    <p>Certain combinations of variant subtags cannot be used in the\n    same language tag.</p>\n  ",
+         "ja" : "\n    <p>遺体部分タグは組み合わせによっては同じ言語タグに含められません。</p>\n  "
+      },
       "message" : {
-         "en" : "Variant subtag <code><var>{text}</var></code> might\n  not be meaningful when it is used in combination with\n  <code><var>{value}</var></code>."
+         "en" : "Variant subtag <code><var>{text}</var></code> might\n  not be meaningful when it is used in combination with\n  <code><var>{value}</var></code>",
+         "ja" : "遺体部分タグ <code><var>{text}</var></code> \n  は <code><var>{value}</var></code> と組み合わせると意味がないかもしれません"
       }
    },
    "langtag:variant:deprecated" : {
+      "desc" : {
+         "en" : "\n    <p>Use of the variant subtag is deprecated, possibly in favor of\n    other variant subtag.</p>\n  ",
+         "ja" : "\n    <p>この異体部分タグの使用は非推奨とされています。\n    他により好ましい異体部分タグがあるかもしれません。</p>\n  "
+      },
       "message" : {
-         "en" : "Use of variant subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->."
+         "en" : "Variant subtag\n  <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might\n  be undef) -->",
+         "ja" : "異体部分タグ <code><var>{value}</var></code>\n  は非推奨です"
       }
    },
    "langtag:variant:duplication" : {
+      "desc" : {
+         "en" : "\n    <p>The same variant subtag cannot be used more than once in a\n    language tag.</p>\n  ",
+         "ja" : "\n    <p>同じ遺体部分タグを1つの言語タグの中で複数回使ってはいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Variant subtag <code><var>{value}</var></code>\n  is specified twice in the same language tag."
+         "en" : "The variant subtag\n  is specified twice in the same language tag",
+         "ja" : "この遺体部分タグは同じ言語タグ中で複数回指定されています"
       }
    },
    "langtag:variant:invalid" : {
+      "desc" : {
+         "en" : "\n    <p>The variant subtag must be one of registered values.</p>\n  ",
+         "ja" : "\n    <p>異体部分タグは登録されたもののいずれかでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Variant subtag <code><var>{value}</var></code>\n  is not registered."
+         "en" : "Variant subtag <code><var>{value}</var></code>\n  is not registered",
+         "ja" : "異体部分タグ <code><var>{value}</var></code>\n  は登録されていません"
       }
    },
    "langtag:variant:order" : {
@@ -3445,13 +3704,18 @@
          "ja" : "\n    <p>異体部分タグが複数ある時は、最も重要なものが先に来るべきです。\n    重要度を決められない時は、アルファベット順に並べるべきです。</p>\n  "
       },
       "message" : {
-         "en" : "Variant subtag <code><var>{value}</var></code>\n  should be placed <em>after</em> <code><var>{text}</var></code>.",
-         "ja" : "異体部分タグ <code><var>{value}</var></code>\n  は <code><var>{text}</var></code> \n  よりも<em>後</em>に来るべきです。"
+         "en" : "Variant subtag <code><var>{value}</var></code>\n  found before <code><var>{text}</var></code>",
+         "ja" : "異体部分タグ <code><var>{value}</var></code>\n  が <code><var>{text}</var></code> \n  よりも前にあります"
       }
    },
    "langtag:variant:prefix" : {
+      "desc" : {
+         "en" : "\n    <p>The variant subtag must be used in combination with the\n    specific sequence of subtags.</p>\n  ",
+         "ja" : "\n    <p>この遺体部分タグは特定の部分タグ列と併用しなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "Variant subtag <code><var>{value}</var></code>\n  cannot be used in this context.  It must be preceded by \n  <code><var>{text}</var></code>"
+         "en" : "Variant subtag <code><var>{value}</var></code>\n  is not used with <code><var>{text}</var></code>",
+         "ja" : "遺体部分タグ <code><var>{value}</var></code>\n  が <code><var>{text}</var></code> と併用されていません"
       }
    },
    "last resort" : {

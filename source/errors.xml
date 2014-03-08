@@ -11096,15 +11096,15 @@ Regexp::Parser::JavaScript's extension. -->
 <h2>Language Tag Errors</h2>
 
 <d:item name="langtag:extension:duplication"
-    modules="Whatpm::LangTag::Parser">
+    modules="Web::LangTag">
   <d:message xml:lang="en">There is another extension subtag
-  <code><var>{value}</var></code> in the same language tag.</d:message>
+  <code><var>{value}</var></code> in the same language tag</d:message>
   <d:message xml:lang="ja">拡張部分タグ <code><var>{value}</var></code>
-  はこの言語タグ中で既に使われています。</d:message>
+  はこの言語タグ中で既に使われています</d:message>
   <d:desc xml:lang="en">
-    <p>There are two extension subtags with the same singleton in
-    the language tag.  A language tag extension can be used only
-    once in a language tag.</p>
+    <p>There are two extension subtags sharing the same singleton in
+    the language tag.  A language tag extension can be used only once
+    in a language tag.</p>
   </d:desc>
   <d:desc xml:lang="en">
     <p>同じ言語タグ中に同じ1文字部分タグで始まる拡張が複数含まれています。
@@ -11115,51 +11115,101 @@ Regexp::Parser::JavaScript's extension. -->
 <d:item name="langtag:extension:order"
     modules="Whatpm::LangTag::Checker">
   <d:message xml:lang="en">Extension subtag <code><var>{value}</var></code>
-  is placed after subtag <code><var>{text}</var></code>.</d:message>
+  is placed after subtag <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">拡張部分タグ <code><var>{value}</var></code>
+  が <code><var>{text}</var></code> より後にあります</d:message>
+  <d:desc xml:lang="en">
+    <p>Language tag extensions should be ordered in ASCII order.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグ拡張は ASCII 順で並べるべきです。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:extension:unknown"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Extension <code><var>{value}</var></code> is not
-  defined when the conformance checker is written.</d:message>
+  registered</d:message>
+  <d:message xml:lang="ja">拡張 <code><var>{value}</var></code>
+  は登録されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The language tag extension must be registered.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグ拡張は登録されていなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:extlang:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Extended language subtag
-  <code><var>{value}</var></code> is not in the preferred form, i.e. in 
-  lowercase.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The extended language subtag is not in lowercase</d:message>
+  <d:message xml:lang="ja">拡張言語タグが小文字ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>Although it is not required, it is considered as a good
+    practice to represent the extension language subtags by lowercase letters.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>必須ではありませんが、拡張部分タグは小文字で書くのが良いとされています。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:extlang:deprecated"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Use of extended language subtag
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Extended language subtag
   <code><var>{value}</var></code> is deprecated<!-- in favor of {text}
-  language subtag (might be undef) -->.</d:message>
+  language subtag (might be undef) --></d:message>
+  <d:message xml:lang="ja">拡張言語部分タグ <code><var>{value}</var></code> 
+  は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the extended language subtag is deprecated, possibly in
+    favor of other language or extended language subtag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この拡張言語部分タグの使用は非推奨とされています。
+    他により好ましい言語部分タグや拡張言語部分タグがあるかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:extlang:prefix"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Extended language subtag
-  <code><var>{text}</var></code> is not allowed in the combination with this
-  language (and extended language) subtag(s).  It must be used
-  with <code><var>{value}</var></code>.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The extended language subtag cannot be used
+  with the primary language subtag (Expected:
+  <code><var>{text}</var></code>)</d:message>
+  <d:message xml:lang="ja">この拡張言語部分タグは一次言語部分タグと組み合わせることができません
+  (<code><var>{text}</var></code> が適切)</d:message>
+  <d:desc xml:lang="en">
+    <p>The extended language subtag must be used with another primary
+    language subtag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この拡張言語部分タグは他の一次言語部分タグと組み合わせて使わなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:extlang:preferred"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">The language subtag and the extended language
-  subtag <code><var>{value}</var></code> should be replaced by the
-  language subtag <code><var>{text}</var></code>.  Use of extended
-  language subtags is not recommended in general.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Language subtag <code><var>{text}</var></code>
+  is preferred to language subtags <code><var>{value}</var></code></d:message>
+  <d:message xml:lang="ja">言語部分タグ <code><var>{value}</var></code>
+  よりも言語部分タグ <code><var>{text}</var></code>
+  が好ましいです</d:message>
+  <d:desc xml:lang="en">
+    <p>The primary and extended language subtags should be replaced by
+    another single primary language subtag.  Use of extended language
+    subtags is not recommended in general.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>一次言語タグと拡張言語部分タグを他の一次言語部分タグで置き換えるべきです。
+    一般に拡張言語タグを使うことは推奨されていません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:extlang:invalid"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Extended language subtag 
-  <code><var>{value}</var></code> is not registered.</d:message>
+  <code><var>{value}</var></code> is not registered</d:message>
   <d:message xml:lang="ja">拡張言語部分タグ
-  <code><var>{value}</var></code> は登録されていません。</d:message>
+  <code><var>{value}</var></code> は登録されていません</d:message>
   <d:desc xml:lang="en">
     <p>As the extended language subtag, only IANA-registered 
     strings can be used.  The specified extended language subtag
@@ -11180,38 +11230,78 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:grandfathered:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Language tag <code><var>{value}</var></code> is
-  not in the preferred case combination.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The language tag is not in the canonical case</d:message>
+  <d:message xml:lang="ja">この言語タグは正準形の大文字と小文字の使い分けになっていません</d:message>
+  <d:desc xml:lang="en">
+    <p>Although it is not required, it is desired to represent the
+    region subtag in uppercase, the script subtag in titlecase, and
+    all other components in lowercase.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>必須ではないのですが、地域部分タグは大文字、
+    用字形部分タグは先頭のみ大文字、それ以外はすべて小文字で表すのが好ましいとされています。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:grandfathered:deprecated"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Use of language tag
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Language tag
   <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might
-  be undef) -->.</d:message>
+  be undef) --></d:message>
+  <d:message xml:lang="ja">言語タグ <code><var>{value}</var></code>
+  は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the language tag is deprecated, possibly in favor of
+    other language tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この言語タグの使用は非推奨とされています。
+    他により好ましい言語タグがあるかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:grandfathered:i-default"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Language tag <code><var>i-default</var></code> 
-  should not be used unless it is really necessary for some 
-  reason.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Language tag <code>i-default</code> 
+  is used</d:message>
+  <d:message xml:lang="ja">言語タグ <code>i-default</code>
+  が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>i-default</code> language tag is prepared for the
+    special purpose.  It should not be used unless no other
+    appropriate value (or missing of the value) is available.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグ <code>i-default</code> は特別なものですから、
+    他に適切な値がない (値を省略もできない) 場合を除き、
+    使うべきではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:grandfathered:invalid"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Language tag <code><var>{value}</var></code> is
-  not a combination of RFC 4646 subtags and is not a registered grandfathered
-  tag.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The language tag is not registered</d:message>
+  <d:message xml:lang="ja">この言語タグは登録されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The language tag <em>does</em> conform to the
+    <code>grandfathered</code> syntax of RFC 4646 but it is not a
+    registered grandfathered language tag.  Although the tag might be
+    valid in RFC 3066 age, it is no longer valid in RFC 4646 and not
+    even well-formed in RFC 5646.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この言語タグは RFC 4646 の <code>grandfathered</code>
+    生成規則に一致はしているのですが、登録された言語タグではありません。
+    RFC 3066 の時代には正しい言語タグだった場合もありますが、
+    RFC 4646 に照らして妥当ではなく、 RFC 5646 においては整形式ですらありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:illegal"
-    modules="Whatpm::LangTag::Parser Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Subtag <code><var>{value}</var></code> is 
-  syntactically invalid.</d:message>
-  <d:message xml:lang="ja">部分タグ <code><var>{value}</var></code> 
-  は構文的に正しくありません。</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The subtag is syntactically illegal</d:message>
+  <d:message xml:lang="ja">この部分タグは構文的に正しくありません</d:message>
   <d:desc xml:lang="en">
     <p>Primary language subtag, which represents the language (in
     narrower sense), has to be a string of two or three basic
@@ -11237,20 +11327,28 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:deprecated"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Use of language tag
   <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might
   be undef) -->.</d:message>
   <d:message xml:lang="ja">言語タグ
-  <code><var>{value}</var></code> は非推奨です。</d:message>
+  <code><var>{value}</var></code> は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the language tag is deprecated, possibly in favor of
+    other language tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この言語タグの使用は非推奨とされています。
+    他により好ましい言語タグがあるかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:notregistered"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Language tag
-  <code><var>{value}</var></code> is not registered.</d:message>
+  <code><var>{value}</var></code> is not registered</d:message>
   <d:message xml:lang="ja">言語タグ
-  <code><var>{value}</var></code> は登録されていません。</d:message>
+  <code><var>{value}</var></code> は登録されていません</d:message>
   <d:desc xml:lang="en">
     <p>The specified language tag is not registered to IANA.
     Although it is allowed to use an unregistered language
@@ -11264,11 +11362,9 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:language:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">It is a good practice to represent ISO 639
-  language code <code><var>{value}</var></code> in lowercase.</d:message>
-  <d:message xml:lang="ja">ISO 639 言語符号 <code><var>{value}</var></code>
-  は小文字で表すのが良いとされています。</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The primary language subtag is not in lowercase</d:message>
+  <d:message xml:lang="ja">言語部分タグが小文字ではありません</d:message>
   <d:desc xml:lang="en">
     <p>The specified primary language subtag contains a uppercase
     letter.  Although language tags are ASCII case-insensitive,
@@ -11282,218 +11378,453 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:language:deprecated"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Use of language subtag
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Primary language subtag
   <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might
-  be undef) -->.</d:message>
+  be undef) --></d:message>
+  <d:message xml:lang="ja">一次言語部分タグ <code><var>{value}</var></code>
+  は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the language subtag is deprecated, possibly in favor of
+    other language subtag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この言語部分タグの使用は非推奨とされています。
+    他により好ましい言語部分タグがあるかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:language:invalid"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Language subtag <code><var>{value}</var></code>
-  is not registered.</d:message>
+  is not registered</d:message>
   <d:message xml:lang="ja">言語部分タグ <code><var>{value}</var></code>
-  は登録されていません。</d:message>
+  は登録されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The language subtag must be one of registered values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語部分タグは登録されたもののいずれかでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:language:mis"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Langauge subtag <code>mis</code> should not be
-  used.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Language tag <code>mis</code> 
+  is used</d:message>
+  <d:message xml:lang="ja">言語タグ <code>mis</code>
+  が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>mis</code> language tag is prepared for the
+    special purpose.  It should not be used unless no other
+    appropriate value (or missing of the value) is available.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグ <code>is</code> は特別なものですから、
+    他に適切な値がない (値を省略もできない) 場合を除き、
+    使うべきではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:language:mul"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Langauge subtag <code>mul</code> should not be
-  used unless it is really necessary.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Language tag <code>mul</code> 
+  is used</d:message>
+  <d:message xml:lang="ja">言語タグ <code>mul</code>
+  が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>mul</code> language tag is prepared for the
+    special purpose.  It should not be used unless no other
+    appropriate value (or combination of values) is available.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグ <code>mul</code> は特別なものですから、
+    他に適切な値 (の組み合わせ) がない場合を除き、
+    使うべきではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:language:nosemantics"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">No semantics is defined for language subtag
-  <code><var>{value}</var></code>.</d:message>
+  <code><var>{value}</var></code></d:message>
   <d:message xml:lang="ja">言語部分タグ <code><var>{value}</var></code>
-  は定義されていません。</d:message>
+  は定義されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>Semantics of the language tag is not defined.  It is reserved
+    for future extension and should not be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この言語タグの意味は定義されていません。将来の拡張のために予約されているので使うべきではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:language:private"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Language subtag <code><var>{value}</var></code>
-  is a private use code.</d:message>
+  is a private use code</d:message>
   <d:message xml:lang="ja">言語部分タグ <code><var>{value}</var></code>
-  は私用の符号です。</d:message>
+  は私用の符号です</d:message>
+  <d:desc xml:lang="en">
+    <p>A private use language code is used, whose semantics might not
+    be conveyed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>私用の言語符号が使われています。その意味は正しく伝わらないかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:language:syntax"
-    modules="Whatpm::LangTag::Parser">
-  <d:message xml:lang="en">The language subtag <code><var>{value}</var></code>
-  is syntactically invalid.  Language subtag must contain one or more
-  basic latin characters.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The language is syntactically invalid</d:message>
+  <d:message xml:lang="ja">この言語は構文的に正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The language subtag must be specified by two basic
+    latin letters.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語部分タグは基本ラテン文字2つで表さなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:language:und"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Langauge tag <code>und</code> should not be
-  used unless it is really necessary.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Language tag <code>und</code> 
+  is used</d:message>
+  <d:message xml:lang="ja">言語タグ <code>und</code>
+  が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>und</code> language tag is prepared for the
+    special purpose.  It should not be used unless no other
+    appropriate value (or missing of the value) is available.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグ <code>und</code> は特別なものですから、
+    他に適切な値がない (値を省略もできない) 場合を除き、
+    使うべきではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:private"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Private use language tag 
-  <code><var>{value}</var></code> should be avoided where 
-  possible.</d:message>
-  <d:message xml:lang="ja">私用言語タグ <code><var>{value}</var></code>
-  はできれば避けるべきです。</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">A private use tag is used</d:message>
+  <d:message xml:lang="ja">私用タグが使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>Private use tags should be avoided wherever possible to
+    facilitate interoperability.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>相互運用性のために私用タグはできる限り避けるべきです。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:privateuse"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Private use subtag <code><var>{value}</var></code>
-  is used.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">A private use subtag is used</d:message>
+  <d:message xml:lang="ja">私用部分タグが使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>Private use subtags should be avoided wherever possible to
+    facilitate interoperability.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>相互運用性のために私用部分タグはできる限り避けるべきです。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:privateuse:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Subtag <code><var>{value}</var></code> is not 
-  represented in the preferred case format.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The language tag is not in the canonical case</d:message>
+  <d:message xml:lang="ja">この言語タグは正準形の大文字と小文字の使い分けになっていません</d:message>
+  <d:desc xml:lang="en">
+    <p>Although it is not required, it is desired to represent the
+    region subtag in uppercase, the script subtag in titlecase, and
+    all other components in lowercase.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>必須ではないのですが、地域部分タグは大文字、
+    用字形部分タグは先頭のみ大文字、それ以外はすべて小文字で表すのが好ましいとされています。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:privateuse:syntax"
-    modules="Whatpm::LangTag::Parser">
-  <d:message xml:lang="en">Private use subtag <code><var>{value}</var></code>
-  is syntactically invalid.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The private use subtag
+  is syntactically invalid</d:message>
+  <d:message xml:lang="ja">この私用部分タグは構文的に正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The private use subtag of a language tag must be consist of one
+    or more subtags consist of basic latin letters and digits whose
+    length is in the range 1 to 8, inclusive, prefixed by
+    <code>x-</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグの私用部分タグは、 <code>x-</code> の後に基本ラテン文字と数字
+    1&#x301C;8文字で構成される部分タグ1つ以上が続く形でなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:redundant:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Language tag <code><var>{value}</var></code> is
-  not in the preferred case combination.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The language tag is not in the canonical case</d:message>
+  <d:message xml:lang="ja">この言語タグは正準形の大文字と小文字の使い分けになっていません</d:message>
+  <d:desc xml:lang="en">
+    <p>Although it is not required, it is desired to represent the
+    region subtag in uppercase, the script subtag in titlecase, and
+    all other components in lowercase.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>必須ではないのですが、地域部分タグは大文字、
+    用字形部分タグは先頭のみ大文字、それ以外はすべて小文字で表すのが好ましいとされています。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:redundant:deprecated"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Use of language tag
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Language tag
   <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might
-  be undef) -->.</d:message>
+  be undef) --></d:message>
+  <d:message xml:lang="ja">言語タグ <code><var>{value}</var></code>
+  は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the language tag is deprecated, possibly in favor of
+    other language tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この言語タグの使用は非推奨とされています。
+    他により好ましい言語タグがあるかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:region:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">It is a good practice to represent ISO 3166
-  country code <code><var>{value}</var></code> in uppercase.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The region subtag is not in uppercase</d:message>
+  <d:message xml:lang="ja">地域部分タグが大文字ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>Although it is not required, it is considered as a good
+    practice to represent the region subtag by uppercase letters.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>必須ではありませんが、地域部分タグは大文字で書くのが良いとされています。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:region:deprecated"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Use of region subtag
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Region subtag
   <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might
-  be undef) -->.</d:message>
-  <d:message xml:lang="ja">地域部分タグ
-  <code><var>{value}</var></code> は非推奨です。</d:message>
+  be undef) --></d:message>
+  <d:message xml:lang="ja">地域部分タグ <code><var>{value}</var></code>
+  は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the region subtag is deprecated, possibly in favor of
+    other region subtag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この地域部分タグの使用は非推奨とされています。
+    他により好ましい地域部分タグがあるかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:region:nosemantics"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">No semantics is defined for region subtag
-  <code><var>{value}</var></code>.</d:message>
+  <code><var>{value}</var></code></d:message>
+  <d:message xml:lang="ja">地域部分タグ <code><var>{value}</var></code>
+  の意味は定義されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>Semantics of the region subtag is not defined.  It is reserved
+    for future extension and should not be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この地域部分タグの意味は定義されていません。将来の拡張のために予約されているので使うべきではありません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:region:invalid"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Region subtag <code><var>{value}</var></code>
-  is not registered.</d:message>
+  is not registered</d:message>
+  <d:message xml:lang="ja">地域部分タグ <code><var>{value}</var></code>
+  は登録されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The region subtag must be one of registered values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>地域部分タグは登録されたもののいずれかでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:region:private"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Private use country code
-  <code><var>{value}</var></code> should be avoided where
-  possible.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Region subtag <code><var>{value}</var></code>
+  is not registered</d:message>
+  <d:message xml:lang="ja">地域部分タグ <code><var>{value}</var></code>
+  は登録されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The region subtag must be one of registered values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>地域部分タグは登録されたもののいずれかでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:script:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Script subtag <code><var>{value}</var></code> is 
-  not in the preferred form, i.e. titlecase.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The script subtag is not in titlecase</d:message>
+  <d:message xml:lang="ja">用字形部分タグが先頭のみ大文字になっていません</d:message>
+  <d:desc xml:lang="en">
+    <p>Although it is not required, it is considered as a good
+    practice to represent the script subtag by titlecase.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>必須ではありませんが、用字形部分タグは先頭のみ大文字で、
+    他は小文字で書くのが良いとされています。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:script:deprecated"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Use of script subtag
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Script subtag
   <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might
-  be undef) -->.</d:message>
+  be undef) --></d:message>
+  <d:message xml:lang="ja">用字形部分タグ <code><var>{value}</var></code>
+  は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the script subtag is deprecated, possibly in favor of
+    other script subtag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この用字形部分タグの使用は非推奨とされています。
+    他により好ましい用字形部分タグがあるかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:script:invalid"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Script subtag <code><var>{value}</var></code>
-  is not registered.</d:message>
+  is not registered</d:message>
+  <d:message xml:lang="ja">用字形部分タグ <code><var>{value}</var></code>
+  は登録されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The script subtag must be one of registered values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>用字形部分タグは登録されたもののいずれかでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:script:private"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Script subtag <code><var>{value}</var></code>
-  is a private use code.</d:message>
+  is a private use code</d:message>
+  <d:message xml:lang="ja">用字形部分タグ <code><var>{value}</var></code>
+  は私用の符号です</d:message>
+  <d:desc xml:lang="en">
+    <p>A private use script code is used, whose semantics might not
+    be conveyed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>私用の用字形符号が使われています。その意味は正しく伝わらないかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:script:suppress"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Script subtag <code><var>{value}</var></code>
-  should be suppressed when the language subtag is
-  <code><var>{text}</var></code>.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The script subtag 
+  is redundant with language subtag <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">用字形部分タグは言語部分タグ
+  <code><var>{text}</var></code> と冗長です</d:message>
+  <d:desc xml:lang="en">
+    <p>The script subtag should be suppressed by the language subtag
+    as it is considered as the default script for the language.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この用字形部分タグは言語部分タグの言語の既定の用字形であり、
+    省略するべきです。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:variant:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Variant subtag <code><var>{value}</var></code> is
-  not in the preferred form, i.e. lowercase.</d:message>
-  <d:message xml:lang="ja">異体部分タグ <code><var>{value}</var></code> 
-  は小文字表記が好ましいとされています。</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The variant subtag is not in lowercase</d:message>
+  <d:message xml:lang="ja">異体部分タグが小文字ではありません</d:message>
   <d:desc xml:lang="en">
-    <p>A variant subtag contains one or more uppercase letters.
-    Although language tags are ASCII case-insensitive, the preferred
-    form for variant subtags is defined as the lowercase form.</p>
+    <p>Although it is not required, it is considered as a good
+    practice to represent the variant subtag by lowercase letters.</p>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p>異体部分タグに大文字が含まれています。言語タグは ASCII
-    の大文字と小文字を区別しませんが、
-    異体部分タグについては小文字が好ましいとされています。</p>
+    <p>必須ではありませんが、異体部分タグは小文字で書くのが良いとされています。</p>
   </d:desc>
 </d:item>
 
 <d:item name="langtag:variant:combination"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Variant subtag <code><var>{text}</var></code> might
   not be meaningful when it is used in combination with
-  <code><var>{value}</var></code>.</d:message>
+  <code><var>{value}</var></code></d:message>
+  <d:message xml:lang="ja">遺体部分タグ <code><var>{text}</var></code> 
+  は <code><var>{value}</var></code> と組み合わせると意味がないかもしれません</d:message>
+  <d:desc xml:lang="en">
+    <p>Certain combinations of variant subtags cannot be used in the
+    same language tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>遺体部分タグは組み合わせによっては同じ言語タグに含められません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:variant:deprecated"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Use of variant subtag
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Variant subtag
   <code><var>{value}</var></code> is deprecated<!-- in favor of {text} (might
-  be undef) -->.</d:message>
+  be undef) --></d:message>
+  <d:message xml:lang="ja">異体部分タグ <code><var>{value}</var></code>
+  は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the variant subtag is deprecated, possibly in favor of
+    other variant subtag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この異体部分タグの使用は非推奨とされています。
+    他により好ましい異体部分タグがあるかもしれません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:variant:duplication"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Variant subtag <code><var>{value}</var></code>
-  is specified twice in the same language tag.</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The variant subtag
+  is specified twice in the same language tag</d:message>
+  <d:message xml:lang="ja">この遺体部分タグは同じ言語タグ中で複数回指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The same variant subtag cannot be used more than once in a
+    language tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>同じ遺体部分タグを1つの言語タグの中で複数回使ってはいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:variant:invalid"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Variant subtag <code><var>{value}</var></code>
-  is not registered.</d:message>
+  is not registered</d:message>
+  <d:message xml:lang="ja">異体部分タグ <code><var>{value}</var></code>
+  は登録されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The variant subtag must be one of registered values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>異体部分タグは登録されたもののいずれかでなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="langtag:variant:order"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Variant subtag <code><var>{value}</var></code>
-  should be placed <em>after</em> <code><var>{text}</var></code>.</d:message>
+  found before <code><var>{text}</var></code></d:message>
   <d:message xml:lang="ja">異体部分タグ <code><var>{value}</var></code>
-  は <code><var>{text}</var></code> 
-  よりも<em>後</em>に来るべきです。</d:message>
+  が <code><var>{text}</var></code> 
+  よりも前にあります</d:message>
   <d:desc xml:lang="en">
     <p>When there are multiple variant subtags, the most significant
     one should be placed first.  If the significance cannot be 
@@ -11507,18 +11838,41 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:variant:prefix"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Variant subtag <code><var>{value}</var></code>
-  cannot be used in this context.  It must be preceded by 
-  <code><var>{text}</var></code></d:message>
+  is not used with <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">遺体部分タグ <code><var>{value}</var></code>
+  が <code><var>{text}</var></code> と併用されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The variant subtag must be used in combination with the
+    specific sequence of subtags.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この遺体部分タグは特定の部分タグ列と併用しなければいけません。</p>
+  </d:desc>
 </d:item>
 
+<d:item name="langtag:extension:t:field:duplication"
+    modules="Web::LangTaq">
+  <d:message xml:lang="en">There is another field <code><var>{value}</var></code>
+  in the <code>t</code> extension in the language tag</d:message>
+  <d:message xml:lang="ja">欄 <code><var>{value}</var></code>
+  は同じ言語タグの <code>t</code> 拡張で既に指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>A field cannot be used twice in the <code>t</code> extension
+    component of a language tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>同じ欄を一つの言語タグの <code>t</code> 拡張の部分で二度使うことはできません。</p>
+  </d:desc>
+</d:item>
+
+<!-- Extension "U" -->
+
 <d:item name="langtag:extension:u:case"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Extension subtag <code><var>{value}</var></code> is
-  not in the preferred form, i.e. lowercase.</d:message>
-  <d:message xml:lang="ja">拡張部分タグ <code><var>{value}</var></code> 
-  は小文字表記が好ましいとされています。</d:message>
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The extension subtag is not in lowercase</d:message>
+  <d:message xml:lang="ja">拡張部分タグが小文字ではありません</d:message>
   <d:desc xml:lang="en">
     <p>A <code>u</code>-extension subtag contains one or more uppercase
     letters.  Although language tags are ASCII case-insensitive, the
@@ -11533,12 +11887,12 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:extension:u:attr:duplication"
-    modules="Whatpm::LangTag::Parser">
+    modules="Web::LangTag">
   <d:message xml:lang="en">There is another attribute
   <code><var>{value}</var></code> in the same language tag
-  extension.</d:message>
+  extension</d:message>
   <d:message xml:lang="ja">属性 <code><var>{value}</var></code>
-  はこの言語タグ拡張部分タグ中で既に使われています。</d:message>
+  はこの言語タグ拡張部分タグ中で既に使われています</d:message>
   <d:desc xml:lang="en">
     <p>There are two attributes with same values in the
     <code>u</code>-extension subtag of the language tag.
@@ -11553,12 +11907,11 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:extension:u:attr:order"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Attribute <code><var>{value}</var></code>
-  should be placed <em>after</em> <code><var>{text}</var></code>.</d:message>
+  is placed before <code><var>{text}</var></code>.</d:message>
   <d:message xml:lang="ja">属性 <code><var>{value}</var></code>
-  は <code><var>{text}</var></code> 
-  よりも<em>後</em>に来るべきです。</d:message>
+  が <code><var>{text}</var></code> の前にあります</d:message>
   <d:desc xml:lang="en">
     <p>When there are multiple attributes, the canonical form is sorted
     in alphabetical order.</p>
@@ -11569,11 +11922,11 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:extension:u:attr:invalid"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Attribute <code><var>{value}</var></code>
-  is not defined.</d:message>
+  is not defined</d:message>
   <d:message xml:lang="ja">属性 <code><var>{value}</var></code>
-  は定義されていません。</d:message>
+  は定義されていません</d:message>
   <d:desc xml:lang="en">
     <p>At the time of writing no attribute for the <code>u</code>-extension
     is defined.</p>
@@ -11584,12 +11937,12 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:extension:u:key:duplication"
-    modules="Whatpm::LangTag::Parser">
+    modules="Web::LangTag">
   <d:message xml:lang="en">There is another key
   <code><var>{value}</var></code> in the same language tag
-  extension.</d:message>
+  extension</d:message>
   <d:message xml:lang="ja">キー <code><var>{value}</var></code>
-  はこの言語タグ拡張部分タグ中で既に使われています。</d:message>
+  はこの言語タグ拡張中で既に使われています</d:message>
   <d:desc xml:lang="en">
     <p>There are two keys with same values in the <code>u</code>-extension
     subtag of the language tag.  A key can be used only once in a language
@@ -11603,12 +11956,11 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:extension:u:key:order"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Key <code><var>{value}</var></code>
-  should be placed <em>after</em> <code><var>{text}</var></code>.</d:message>
+  is placed before <code><var>{text}</var></code></d:message>
   <d:message xml:lang="ja">キー <code><var>{value}</var></code>
-  は <code><var>{text}</var></code> 
-  よりも<em>後</em>に来るべきです。</d:message>
+  が <code><var>{text}</var></code>  よりも前にあります</d:message>
   <d:desc xml:lang="en">
     <p>When there are multiple keys, the canonical form is sorted
     in alphabetical order.</p>
@@ -11619,11 +11971,11 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:extension:u:key:invalid"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Key <code><var>{value}</var></code>
-  is not defined.</d:message>
+  is not defined</d:message>
   <d:message xml:lang="ja">キー <code><var>{value}</var></code>
-  は定義されていません。</d:message>
+  は定義されていません</d:message>
   <d:desc xml:lang="en">
     <p>At the time of construction of the language tag database used
     by the conformance checker, the specified key is not defined.</p>
@@ -11635,12 +11987,41 @@ Regexp::Parser::JavaScript's extension. -->
   </d:desc>
 </d:item>
 
-<d:item name="langtag:extension:u:type:missing"
-    modules="Whatpm::LangTag::Checker">
-  <d:message xml:lang="en">Type for key <code><var>{text}</var></code>
-  is not specified.</d:message>
+<d:item name="langtag:extension:u:type:deprecated"
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The type
+  is deprecated<!-- in favor of {value} (or undef) --></d:message>
+  <d:message xml:lang="ja">この型は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>The type in the <code>U</code> extension of the language tag
+    is deprecated.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグの <code>U</code> 拡張のこの型は非推奨です。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="langtag:extension:u:type:duplication"
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The same type for key <code><var>{text}</var></code>
+  is specified twice</d:message>
   <d:message xml:lang="ja">キー <code><var>{text}</var></code>
-  の型が指定されていません。</d:message>
+  に同じ型が複数回指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>For a key in the <code>U</code> extension of the language tag,
+    the same type can only be specified once.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>言語タグの <code>U</code> 拡張のキーに対して同じ型は一度だけしか指定できません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="langtag:extension:u:type:missing"
+    modules="Web::LangTag">
+  <d:message xml:lang="en">Type for key <code><var>{text}</var></code>
+  is not specified</d:message>
+  <d:message xml:lang="ja">キー <code><var>{text}</var></code>
+  の型が指定されていません</d:message>
   <d:desc xml:lang="en">
     <p>For a key in the <code>u</code>-extension of the language tag,
     a corresponding type (or value) has to be specified, unless
@@ -11655,12 +12036,12 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:extension:u:type:invalid"
-    modules="Whatpm::LangTag::Checker">
+    modules="Web::LangTag">
   <d:message xml:lang="en">Type <code><var>{value}</var></code>
-  is not defined for key <code><var>{text}</var></code>.</d:message>
+  is not defined for key <code><var>{text}</var></code></d:message>
   <d:message xml:lang="ja">型 <code><var>{value}</var></code>
   はキー <code><var>{text}</var></code> 
-  に対して定義されていません。</d:message>
+  に対して定義されていません</d:message>
   <d:desc xml:lang="en">
     <p>At the time of construction of the language tag database used
     by the conformance checker, the specified type is not defined.</p>
@@ -11703,6 +12084,75 @@ Regexp::Parser::JavaScript's extension. -->
       符号位置は4桁から6桁の十六進数で、 0000 から 10FFFF
       までの範囲 (両端を含みます。) である必要があります。</li>
     </ul>
+  </d:desc>
+</d:item>
+
+<!-- Extension "T" -->
+
+<d:item name="langtag:extension:t:case"
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The extension subtag is not in lowercase</d:message>
+  <d:message xml:lang="ja">拡張部分タグが小文字ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>A <code>t</code>-extension subtag contains one or more uppercase
+    letters.  Although language tags are ASCII case-insensitive, the
+    canonical form for <code>t</code>-extension is defined as the 
+    lowercase form.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>t</code> 拡張の部分タグに大文字が含まれています。
+    言語タグは ASCII の大文字と小文字を区別しませんが、
+    <code>t</code> 拡張の正準形は小文字とされています。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="langtag:extension:t:field:invalid"
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The field is not valid</d:message>
+  <d:message xml:lang="ja">この欄は妥当ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The field must be one of allowed ones.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>欄は認められているもののいずれかでなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="langtag:extension:t:field:value:invalid"
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The value is not valid for the field
+  <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">これは欄 <code><var>{text}</var></code>
+  の妥当な値ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The field value must be one of allowed values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>欄の値は認められているもののいずれかでなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="langtag:extension:t:irregular"
+    modules="Web::LangTag">
+  <d:message xml:lang="en">The language tag cannot be used in <code>t</code>
+  extension</d:message>
+  <d:message xml:lang="ja">この言語タグは <code>t</code> 拡張では使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>A language tag of the <code>irregular</code> category
+    (i.e. <code>en-GB-oed</code>,
+    <code>sgn-be-FR</code>,
+    <code>sgn-be-NL</code>, or
+    <code>sgn-ch-DE</code>)
+    cannot be
+    used in the <code>t</code> extension of the language tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>irregular</code> に属する言語タグ
+    (<code>en-GB-oed</code>,
+    <code>sgn-be-FR</code>,
+    <code>sgn-be-NL</code>,
+    <code>sgn-ch-DE</code>)
+    は <code>t</code> 拡張では使えません。</p>
   </d:desc>
 </d:item>
 
