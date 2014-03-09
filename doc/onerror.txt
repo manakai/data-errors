@@ -98,3 +98,12 @@ If |column| is provided, |line| is also provided.
 
 A part or substring of the input data in which the error is detected.
 It is a character string.
+
+* |preferred|
+
+If |type| indicates that the language or protocol construct in use is
+discouraged in favor of another consturct, the |preferred| value, if
+specified, represents the preferred way.  The value is a "preferred"
+object
+<https://github.com/manakai/data-web-defs/blob/master/doc/data-types.txt>
+(converted to Perl data structure).

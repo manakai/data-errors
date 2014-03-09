@@ -3547,6 +3547,40 @@ p {
 
     <dl class="switch">
 
+    <dt><code>g:plusone</code> element</dt>
+
+    <dd>The <code>g:plusone</code> element is non-standard.  To embed
+    the Google +1 Button, use the <code>div</code> element with
+    <code>class="g-plusone"</code>.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この要素は言語の一部ではありません。
+    既に廃止された古い要素かもしれませんし、
+    編集上の誤りかもしれません。</p>
+
+    <dl class="switch">
+
+    <dt><code>g:plusone</code> 要素</dt>
+
+    <dd><code>g:plusone</code> 要素は非標準です。 Google +1
+    ボタンを埋め込むには <code>div</code> 要素を
+    <code>class="g-plusone"</code> つきで使ってください。</dd>
+
+    </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="element:obsolete"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">This element is obsolete</d:message>
+  <d:message xml:lang="ja">この要素は廃止されました</d:message>
+  <d:desc xml:lang="en">
+    <p>The element is obsolete.  It can no longer be used.</p>
+
+    <dl class="switch">
+
     <dt>HTML <code>center</code>, <code>marquee</code>,
     <code>blink</code>, <code>strike</code>, <code>big</code>,
     <code>font</code>, <code>tt</code>, and <code>nobr</code>
@@ -3597,18 +3631,10 @@ p {
     <dd>These elements are obsolete.  Use the <code>iframe</code>
     element instead.</dd>
 
-    <dt><code>g:plusone</code> element</dt>
-
-    <dd>The <code>g:plusone</code> element is non-standard.  To embed
-    the Google +1 Button, use the <code>div</code> element with
-    <code>class="g-plusone"</code>.</dd>
-
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p>この要素は言語の一部ではありません。
-    既に廃止された古い要素かもしれませんし、
-    編集上の誤りかもしれません。</p>
+    <p>この要素は廃止されたので使うことはできません。</p>
 
     <dl class="switch">
 
@@ -3660,12 +3686,6 @@ p {
 
     <dd>これらの要素は廃止されました。 <code>iframe</code>
     要素をお使いください。</dd>
-
-    <dt><code>g:plusone</code> 要素</dt>
-
-    <dd><code>g:plusone</code> 要素は非標準です。 Google +1
-    ボタンを埋め込むには <code>div</code> 要素を
-    <code>class="g-plusone"</code> つきで使ってください。</dd>
 
     </dl>
   </d:desc>
@@ -4967,6 +4987,38 @@ p {
 
     <dl class="switch">
 
+    <dt><code>xmlns:<var>*</var></code> attribute<!-- in no namespace --></dt>
+
+    <dd>Namespace attributes are not allowed in HTML.  Since they have
+    no effect, it's safe to delete them entirely.</dd>
+
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="en">
+    <p>この属性は要素に対して定義されている属性の一つではありません。
+    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>
+
+    <dl class="switch">
+
+    <dt><code>xmlns:<var>*</var></code> 属性<!-- in no namespace --></dt>
+
+    <dd>HTML では名前空間属性は使えません。
+    効果はないので削除して問題ありません。</dd>
+
+    </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="attr:obsolete"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">This attribute is obsolete</d:message>
+  <d:message xml:lang="ja">この属性は廃止されました</d:message>
+  <d:desc xml:lang="en">
+    <p>The attribute is obsolete.  It can no longer be used.</p>
+
+    <dl class="switch">
+
     <dt>HTML <code>align</code>, <code>alink</code>,
     <code>allowtransparency</code>, <code>background</code>,
     <code>bgcolor</code>, <code>border</code>,
@@ -5014,20 +5066,10 @@ p {
     attribute should be replaced by the <code>id</code>
     attribute.</dd>
 
-    <dt>The <code>img</code> element, the
-    <code>generator-unable-to-provide-required-alt</code>
-    attribute</dt>
-
-    <dd>This attribute is special.  It can be used if there is no way
-    to provide the alternative text to the image, but still the
-    attribute is non-conforming and should not be used wherever
-    possible.</dd>
-
     </dl>
   </d:desc>
   <d:desc xml:lang="en">
-    <p>この属性は要素に対して定義されている属性の一つではありません。
-    廃止された属性かもしれませんし、ただ単に書き間違えたのかもしれません。</p>
+    <p>この属性は廃止されたのでもう使えません。</p>
 
     <dl class="switch">
 
@@ -5073,13 +5115,6 @@ p {
     <code>vspace</code> 各属性はスタイルシートに置き換えるべきです。
     <code>name</code> 属性は
     <code>id</code> 属性に置き換えるべきです。</dd>
-
-    <dt><code>img</code> 要素
-    <code>generator-unable-to-provide-required-alt</code>
-    属性</dt>
-
-    <dd>この属性は特殊で、画像の代替テキストをどうしても指定できないときに使えますが、
-    不適合であり可能なら避けるべきものです。</dd>
 
     </dl>
   </d:desc>
@@ -6375,6 +6410,49 @@ p {
   </d:desc>
   <d:desc xml:lang="ja">
     <p><code>img</code> 要素の <code>border</code> 属性は廃止されました。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="img:longnameattr"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>generator-unable-to-provide-required-alt</code>
+  attribute is used</d:message>
+  <d:message xml:lang="ja"><code>generator-unable-to-provide-required-alt</code>
+  属性が指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>generator-unable-to-provide-required-alt</code>
+    attribute of the <code>img</code> element is special.  It can be
+    used if there is no way to provide the alternative text to the
+    image, but still the attribute is non-conforming and should not be
+    used whenever possible.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>img</code> 要素の
+    <code>generator-unable-to-provide-required-alt</code>
+    属性は特殊で、画像の代替テキストをどうしても指定できないときに使えますが、
+    不適合であり、可能なら避けるべきものです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="img:longnameattr:has alt"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Both <code>alt</code> and
+  <code>generator-unable-to-provide-required-alt</code>
+  attributes are specified</d:message>
+  <d:message xml:lang="ja"><code>alt</code> 属性と
+  <code>generator-unable-to-provide-required-alt</code>
+  属性が両方指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>generator-unable-to-provide-required-alt</code>
+    attribute cannot be used when an <code>alt</code> attribute
+    is specified to the <code>img</code> element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>img</code> 要素の
+    <code>generator-unable-to-provide-required-alt</code>
+    属性は、 <code>alt</code> 属性が指定されている時には使えません。</p>
   </d:desc>
 </d:item>
 
