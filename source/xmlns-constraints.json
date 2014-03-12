@@ -1,0 +1,1 @@
+[{"name":"Namespace constraint: Reserved Prefixes and Namespace Names","type":"nsc","id":"xmlReserved"},{"name":"Namespace constraint: Prefix Declared","type":"nsc","id":"nsc-NSDeclared"},{"name":"Namespace constraint: No Prefix Undeclaring","type":"nsc","id":"nsc-NoPrefixUndecl"},{"name":"Namespace constraint: Attributes Unique","type":"nsc","id":"nsc-AttrsUnique"}]

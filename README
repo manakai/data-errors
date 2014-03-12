@@ -7,8 +7,14 @@ used by various modules of the manakai project.
 * Files
 
 doc/onerror.txt    Description for the "onerror" handler.
+doc/data-types.txt Description for the data types used in JSON data files.
+
 data/errors.json   JSON file containing errors and their descriptions.
-doc/errors.txt     Description for the |data/errors.json|.
+doc/errors.txt     Description for the |data/errors.json| file.
+
+data/xml.json      JSON file containing XML document constraints.
+doc/xml.txt        Description for the |data/xml.json| file.
+
 source/errors.xml  Original XML file from which |errors.json| is generated.
 
 * Development
@@ -20,7 +26,7 @@ Travis CI: <https://travis-ci.org/manakai/data-errors>.
 
 * History
 
-This repository derived from: WebHACC Description of Errors
+This repository partially derived from: WebHACC Description of Errors
 <http://suika.suikawiki.org/gate/2007/html/error-description>
 <http://suika.suikawiki.org/gate/git/wi/webhacc.git/history/HEAD:/error-description-source.xml>,
 L<Whatpm::LangTag> documentation
@@ -34,7 +40,6 @@ Wakaba <wakaba@suikawiki.org>.
 
 * License
 
-Copyright 2007-2014 Wakaba <wakaba@suikawiki.org>.
-
-This document is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+You are granted a license to use, reproduce and create derivative
+works of these files.  See also documents under the "doc/" directory,
+which might contain additional information.

@@ -45,3 +45,10 @@ following name/value pairs:
       attr   The error is about the attribute (not only attribute value).
 
 Language tags are BCP 47 language tags, normalized in lowercase.
+
+* License
+
+Copyright 2007-2014 Wakaba <wakaba@suikawiki.org>.
+
+This document is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.

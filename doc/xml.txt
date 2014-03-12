@@ -1,0 +1,55 @@
+data/xml.json
+~~~~~~~~~~~~~
+
+The file contains list of well-formed, validity, and namespace
+constaraints as specified in XML and XML Namespaces specifications.
+
+Current version of the file only contains "constraints" in XML
+specifications.  It does not contain all requirements for the XML
+documents.  Future version of the file might be extended to contain
+more requirements from the specification.
+
+The file does not contain requirements in earlier editions of XML
+specifications that are no longer part of the latest edition.
+
+* Structure
+
+The file contains a JSON object where names are unique IDs for
+constraints and values are descriptions of constraints.
+
+Each constraint value is a JSON object with following name/value
+pairs:
+
+  id [id-in-spec]
+
+    The identifier in the specification identified by the |spec|
+    value.
+
+  name [string]
+
+    The human-readable short name of the constraint, as shown in the
+    specification, without prefix such as "Well-formedness
+    constraint".
+
+  type [string]
+
+    Type of the constraint, which is one of followings:
+
+      nsc  A namespace constraint
+      vc   A validity constraint
+      wfc  A well-formedness constraint
+
+  spec [spec]
+
+    The specification in which the constraint is defined.
+
+* Sources
+
+Extensible Markup Language (XML) 1.0 <http://www.w3.org/TR/xml/>.
+
+Namespaces in XML 1.0 <http://www.w3.org/TR/xml-names/>.
+
+List of constraints are extracted from specifications by the following
+JavaScript code:
+
+JSON.stringify (Array.prototype.filter.apply (document.querySelectorAll('b'), [function (c) { return c.textContent.match (/constraint:/) }]).map (function (n) { return {name: n.textContent.replace (/^(?:Well-formedness|Validity)\s*constraint:\s*/, ''), type: n.textContent.match (/Well-formed/) ? 'wfc' : n.textContent.match (/Validity/) ? 'vc' : n.textContent.match (/Namespace/) ? 'nsc' : '', id: n.parentNode.id} }))

@@ -26,8 +26,13 @@ pmbp-install: pmbp-upgrade
 
 PERL = ./perl
 
-all-data: source/errors.xml
+all-data: data/errors.json data/xml.json
+
+data/errors.json: source/errors.xml bin/generate.pl
 	$(PERL) bin/generate.pl
+
+data/xml.json: source/xml-constraints.json source/xmlns-constraints.json bin/xml.pl
+	$(PERL) bin/xml.pl > $@
 
 ## ------ Tests ------
 

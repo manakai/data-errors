@@ -1,0 +1,254 @@
+{
+   "CleanAttrVals" : {
+      "id" : "CleanAttrVals",
+      "name" : "No \u003C in Attribute Values",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "EDUnique" : {
+      "id" : "EDUnique",
+      "name" : "Unique Element Type Declaration",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "ExtSubset" : {
+      "id" : "ExtSubset",
+      "name" : "External Subset",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "FixedAttr" : {
+      "id" : "FixedAttr",
+      "name" : "Fixed Attribute Default",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "GIMatch" : {
+      "id" : "GIMatch",
+      "name" : "Element Type Match",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "NoDuplicateTokens" : {
+      "id" : "NoDuplicateTokens",
+      "name" : "No Duplicate Tokens",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "NoExternalRefs" : {
+      "id" : "NoExternalRefs",
+      "name" : "No External Entity References",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "NoNotationEmpty" : {
+      "id" : "NoNotationEmpty",
+      "name" : "No Notation on Empty Element",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "OneNotationPer" : {
+      "id" : "OneNotationPer",
+      "name" : "One Notation Per Element Type",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "PE-between-Decls" : {
+      "id" : "PE-between-Decls",
+      "name" : "PE Between Declarations",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "RequiredAttr" : {
+      "id" : "RequiredAttr",
+      "name" : "Required Attribute",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "UniqueNotationName" : {
+      "id" : "UniqueNotationName",
+      "name" : "Unique Notation Name",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "ValueType" : {
+      "id" : "ValueType",
+      "name" : "Attribute Value Type",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "condsec-nesting" : {
+      "id" : "condsec-nesting",
+      "name" : "Proper Conditional Section/PE Nesting",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "defattrvalid" : {
+      "id" : "defattrvalid",
+      "name" : "Attribute Default Value Syntactically Correct",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "elementvalid" : {
+      "id" : "elementvalid",
+      "name" : "Element Valid",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "entname" : {
+      "id" : "entname",
+      "name" : "Entity Name",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "enum" : {
+      "id" : "enum",
+      "name" : "Enumeration",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "id" : {
+      "id" : "id",
+      "name" : "ID",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "id-default" : {
+      "id" : "id-default",
+      "name" : "ID Attribute Default",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "idref" : {
+      "id" : "idref",
+      "name" : "IDREF",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "indtd" : {
+      "id" : "indtd",
+      "name" : "In DTD",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "nmtok" : {
+      "id" : "nmtok",
+      "name" : "Name Token",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "norecursion" : {
+      "id" : "norecursion",
+      "name" : "No Recursion",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "not-declared" : {
+      "id" : "not-declared",
+      "name" : "Notation Declared",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "notatn" : {
+      "id" : "notatn",
+      "name" : "Notation Attributes",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "nsc-AttrsUnique" : {
+      "id" : "nsc-AttrsUnique",
+      "name" : "Namespace constraint: Attributes Unique",
+      "spec" : "XMLNS",
+      "type" : "nsc"
+   },
+   "nsc-NSDeclared" : {
+      "id" : "nsc-NSDeclared",
+      "name" : "Namespace constraint: Prefix Declared",
+      "spec" : "XMLNS",
+      "type" : "nsc"
+   },
+   "nsc-NoPrefixUndecl" : {
+      "id" : "nsc-NoPrefixUndecl",
+      "name" : "Namespace constraint: No Prefix Undeclaring",
+      "spec" : "XMLNS",
+      "type" : "nsc"
+   },
+   "one-id-per-el" : {
+      "id" : "one-id-per-el",
+      "name" : "One ID per Element Type",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "textent" : {
+      "id" : "textent",
+      "name" : "Parsed Entity",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "uniqattspec" : {
+      "id" : "uniqattspec",
+      "name" : "Unique Att Spec",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "vc-MixedChildrenUnique" : {
+      "id" : "vc-MixedChildrenUnique",
+      "name" : "No Duplicate Types",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "vc-PEinGroup" : {
+      "id" : "vc-PEinGroup",
+      "name" : "Proper Group/PE Nesting",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "vc-PEinMarkupDecl" : {
+      "id" : "vc-PEinMarkupDecl",
+      "name" : "Proper Declaration/PE Nesting",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "vc-check-rmd" : {
+      "id" : "vc-check-rmd",
+      "name" : "Standalone Document Declaration",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "vc-entdeclared" : {
+      "id" : "vc-entdeclared",
+      "name" : "Entity Declared",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "vc-roottype" : {
+      "id" : "vc-roottype",
+      "name" : "Root Element Type",
+      "spec" : "XML",
+      "type" : "vc"
+   },
+   "wf-Legalchar" : {
+      "id" : "wf-Legalchar",
+      "name" : "Legal Character",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "wf-entdeclared" : {
+      "id" : "wf-entdeclared",
+      "name" : "Entity Declared",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "wfc-PEinInternalSubset" : {
+      "id" : "wfc-PEinInternalSubset",
+      "name" : "PEs in Internal Subset",
+      "spec" : "XML",
+      "type" : "wfc"
+   },
+   "xmlReserved" : {
+      "id" : "xmlReserved",
+      "name" : "Namespace constraint: Reserved Prefixes and Namespace Names",
+      "spec" : "XMLNS",
+      "type" : "nsc"
+   }
+}
