@@ -68,8 +68,13 @@
       }
    },
    "IMT:composite" : {
+      "desc" : {
+         "en" : "\n    <p>A composite MIME type (<code>message/<var>*</var></code> and\n    <code>multipart/<var>*</var></code>) cannot be embedded in an Atom\n    element.</p>\n  ",
+         "ja" : "\n    <p>合成 MIME 型 (<code>message/<var>*</var></code> and\n    <code>multipart/<var>*</var></code>) を Atom 要素内に埋め込むことはできません。</p>\n  "
+      },
       "message" : {
-         "en" : "The specified media type is a composite\n  type, which is not allowed in this context."
+         "en" : "The MIME type is a composite type",
+         "ja" : "この MIME 型は合成型です"
       }
    },
    "IMT:limited use subtype" : {
@@ -639,6 +644,16 @@
          "ja" : "アンカー名を空文字列にはできません"
       }
    },
+   "app:draft:bad value" : {
+      "desc" : {
+         "en" : "\n    <p>The content of an AtomPub <code>app:draft</code> element must\n    be either <code>yes</code> or <code>no</code>.</p>\n  ",
+         "ja" : "\n    <p>AtomPub <code>app:draft</code> 要素の内容は\n    <code>yes</code> か <code>no</code> でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is not <code>yes</code> or\n  <code>no</code>",
+         "ja" : "値が <code>yes</code> でも <code>no</code>\n  でもありません"
+      }
+   },
    "argument after variadic" : {
       "message" : {
          "en" : "An argument is specified after an argument\n  with <code>Variadic</code> extended attribute is seen."
@@ -1173,12 +1188,25 @@
    },
    "attribute not allowed" : {
       "desc" : {
-         "en" : "\n    <p>The attribute is not allowed to be specified in this context.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> element</dt>\n\n    <dd>Following attributes cannot be used unless there is the\n    <code>href</code> attribute: <code>target</code>,\n    <code>ping</code>, <code>rel</code>, <code>hreflang</code>,\n    <code>type</code>, <code>ista</code>, <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>email</code>,\n    <code>telbook</code>, <code>kana</code>, <code>memoryname</code>,\n    <code>lcs</code>, <code>loop</code>, <code>soundstart</code>, and\n    <code>volume</code>.</dd>\n\n    <dd>Following attributes cannot be used if there is the\n    <code>target</code> attribute: <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>lcs</code>, and\n    <code>utn</code>.</dd>\n\n    <dd>The <code>viblength</code> attribute cannot be used unless\n    there is the <code>vibration</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute cannot be used if the\n    <code>shape</code> attribute is <code>default</code>.</dd>\n\n    <dd>Attributes <code>target</code>, <code>ping</code>,\n    <code>rel</code>, <code>hreflang</code>, <code>type</code>, and\n    <code>alt</code> are not allowed when the <code>href</code>\n    attribute is not specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, and <code>charset</code> attributes can be\n    specified.</dd>\n\n    <dd>If you are using OGP and the <code>property</code> attribute\n    is also specified, the error for the <code>content</code>\n    attribute may be ignored.</dd>\n\n    <dd>If there is the <code>charset</code> attribute, the\n    <code>content</code> attribute must not be specified.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>Only one of <code>rel</code> and <code>itemprop</code>\n    attributes can be specified for an element.</dd>\n\n    <dd>The <code>sizes</code> attribute cannot be specified unless\n    the <code>rel</code> attribute has the <code>icon</code> link\n    type.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>The <code>scoped</code> attribute is not allowed for the\n    <code>style</code> element in the <code>head</code> element.</dd>\n\n    <dt>HTML <code>script</code> element</dt>\n\n    <dd>Attributes <code>defer</code>, <code>async</code>, and\n    <code>charset</code> are not allowed unless the <code>src</code>\n    attribute is specified.  Likewise, the <code>crossorigin</code>\n    attribute has no effect unless the <code>src</code> attribute is\n    specified.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>number</code>, attributes\n    <code>maxlength</code> and <code>size</code> are obsolete.</dd>\n\n    <dt>HTML <code>button</code> element</dt>\n\n    <dd>Unless the <code>type</code> is <code>submit</code>,\n    attributes <code>formaction</code>, <code>formmethod</code>,\n    <code>formenctype</code>, <code>formnovalidate</code>, and\n    <code>formtarget</code> are not allowed.</dd>\n\n    <dd>Unless the <code>type</code> is <code>menu</code>, the\n    <code>menu</code> attribute is not allowed.</dd>\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>start</code> attribute is not allowed unless the\n    <code>dynsrc</code> attribute is specified.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>The <code>typemustmatch</code> attribute is not allowed unless\n    both <code>data</code> and <code>type</code> attributes are\n    specified.</dd>\n\n    <dt>HTML <code>form</code> element</dt>\n\n    <dd>If the <code>lcs</code> or <code>utn</code> attribute is\n    specified, the <code>target</code> attribute is not allowed.</dd>\n\n    <dt>HTML <code>menu</code> element</dt>\n\n    <dd>The <code>label</code> attribute can only be used when the\n    parent is a <code>menu</code> element whose <code>type</code> is\n    <code>popup</code>.</dd>\n\n    <dt>HTML <code>menuitem</code> element</dt>\n\n    <dd>If the <code>command</code> attribute is specified, attributes\n    <code>type</code>, <code>label</code>, <code>icon</code>,\n    <code>disabled</code>, <code>checked</code>, and\n    <code>radiogroup</code> cannot be used.</dd>\n\n    <dd>The <code>checked</code> attribute cannot be used unless the\n    <code>type</code> is <code>checkbox</code> or\n    <code>radio</code>.</dd>\n\n    <dd>The <code>radiogroup</code> attribute cannot be used unless\n    the <code>type</code> is <code>radio</code>.</dd>\n\n    <dt>HTML <code>keygen</code> element</dt>\n\n    <dd>If the <code>keytype</code> is <code>dsa</code>, either the\n    <code>keyparams</code> or <code>pqg</code> attribute (but not\n    both) must be specified.</dd>\n\n    <dd>Otherwise, if the <code>keytype</code> is <code>ec</code>, the\n    <code>pgq</code> attribute is not allowed.</dd>\n\n    <dd>Otherwise, the <code>keyparams</code> and <code>pqg</code>\n    attributes are not allowed.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この属性はこの文脈で使うことが認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> 要素</dt>\n\n    <dd>次に示す属性は<code>href</code> 属性がないと使えません:\n    <code>target</code>, <code>ping</code>, <code>rel</code>,\n    <code>hreflang</code>, <code>type</code>, <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>email</code>,\n    <code>telbook</code>, <code>kana</code>, <code>memoryname</code>,\n    <code>lcs</code>, <code>loop</code>, <code>soundstart</code>,\n    <code>volume</code>。</dd>\n\n    <dd>次に示す属性は <code>target</code> 属性があると使えません:\n    <code>ilet</code>, <code>iswf</code>, <code>irst</code>,\n    <code>ib</code>, <code>ifb</code>, <code>ijam</code>,\n    <code>lcs</code>, <code>utn</code>。</dd>\n\n    <dd><code>viblength</code> 属性は\n    <code>vibration</code> 属性がないと使えません。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性は <code>shape</code> 属性が\n    <code>default</code> の時使えません。</dd>\n\n    <dd><code>target</code>, <code>ping</code>,\n    <code>rel</code>, <code>hreflang</code>, <code>type</code>,\n    <code>alt</code> 各属性は <code>href</code>\n    属性が指定されていないと使えません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, <code>charset</code>\n    のどれか1つの属性だけ指定できます。</dd>\n\n    <dd>OGP を使っていて <code>property</code> 属性も指定されていれば、\n    <code>content</code> 属性のエラーは無視して構いません。</dd>\n\n    <dd><code>charset</code> 属性があるときは <code>content</code>\n    属性は使えません。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>rel</code> 属性と <code>itemprop</code> \n    属性はどちらか一方だけ指定できます。</dd>\n\n    <dd><code>sizes</code> 属性を使う時は <code>rel</code> 属性にリンク型\n    <code>icon</code> が含まれていなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>scoped</code> 属性は <code>head</code> 要素内の\n    <code>style</code> 要素では使えません。</dd>\n\n    <dt>HTML <code>script</code> 要素</dt>\n\n    <dd><code>defer</code>, <code>async</code>,\n    <code>charset</code> 各属性は <code>src</code>\n    属性がないと指定してはいけません。同様に <code>crossorigin</code>\n    属性は <code>src</code> 属性がないと意味がありません。</dd>\n\n    <dt>HTML <code>img</code> 要素</dt>\n\n    <dd><code>start</code> 属性は\n    <code>dynsrc</code> 属性が指定されていないと使えません。</dd>\n\n    <dt>HTML <code>input</code> 要素</dt>\n\n    <dd><code>type</code> が\n    <code>number</code> の時の <code>maxlength</code> 属性と\n    <code>size</code> 属性は廃止されました。</dd>\n\n    <dt>HTML <code>button</code> 要素</dt>\n\n    <dd><code>type</code> が <code>submit</code> 以外の時は、\n    <code>formaction</code>, <code>formmethod</code>,\n    <code>formenctype</code>, <code>formnovalidate</code>,\n    <code>formtarget</code> 各属性は指定できません。</dd>\n\n    <dd><code>type</code> が <code>menu</code> 以外の時は、\n    <code>menu</code> 属性は指定できません。</dd>\n\n    <dt>HTML <code>object</code> 要素</dt>\n\n    <dd><code>typemustmatch</code> 属性は\n    <code>data</code> 属性と <code>type</code> 属性の両方が指定されていないと使えません。</dd>\n\n    <dt>HTML <code>form</code> 要素</dt>\n\n    <dd><code>lcs</code> 属性か <code>utn</code> 属性が指定されているなら、\n    <code>target</code> 属性は使えません。</dd>\n\n    <dt>HTML <code>menu</code> 要素</dt>\n\n    <dd><code>label</code> 属性は親が <code>menu</code> \n    要素で <code>type</code> が <code>popup</code>\n    の時だけ使えます。</dd>\n\n    <dt>HTML <code>menuitem</code> 要素</dt>\n\n    <dd><code>command</code> 属性が指定されている時は、\n    <code>type</code>, <code>label</code>, <code>icon</code>,\n    <code>disabled</code>, <code>checked</code>,\n    <code>radiogroup</code> 各属性は使えません。</dd>\n\n    <dd><code>checked</code> 属性は\n    <code>type</code> が <code>checkbox</code> か\n    <code>radio</code> でなければ使えません。</dd>\n\n    <dd><code>radiogroup</code> 属性は\n    <code>type</code> が <code>radio</code> でなければ使えません。</dd>\n\n    <dt>HTML <code>keygen</code> 要素</dt>\n\n    <dd><code>keytype</code> が <code>dsa</code> の時は、\n    <code>keyparams</code> と <code>pqg</code>\n    のどちらかの属性だけを指定しなければいけません。</dd>\n\n    <dd><code>keytype</code> が <code>ec</code> の時は、\n    <code>pgq</code> 属性は使えません。</dd>\n\n    <dd>それ以外の時は、 <code>keyparams</code> 属性も <code>pqg</code>\n    属性も使えません。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The attribute is not allowed to be specified in this context.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> element</dt>\n\n    <dd>Following attributes cannot be used unless there is the\n    <code>href</code> attribute: <code>target</code>,\n    <code>ping</code>, <code>rel</code>, <code>hreflang</code>,\n    <code>type</code>, <code>ista</code>, <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>email</code>,\n    <code>telbook</code>, <code>kana</code>, <code>memoryname</code>,\n    <code>lcs</code>, <code>loop</code>, <code>soundstart</code>, and\n    <code>volume</code>.</dd>\n\n    <dd>Following attributes cannot be used if there is the\n    <code>target</code> attribute: <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>lcs</code>, and\n    <code>utn</code>.</dd>\n\n    <dd>The <code>viblength</code> attribute cannot be used unless\n    there is the <code>vibration</code> attribute.</dd>\n\n    <dt>HTML <code>area</code> element</dt>\n\n    <dd>The <code>coords</code> attribute cannot be used if the\n    <code>shape</code> attribute is <code>default</code>.</dd>\n\n    <dd>Attributes <code>target</code>, <code>ping</code>,\n    <code>rel</code>, <code>hreflang</code>, <code>type</code>, and\n    <code>alt</code> are not allowed when the <code>href</code>\n    attribute is not specified.</dd>\n\n    <dt>HTML <code>meta</code> element</dt>\n\n    <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, and <code>charset</code> attributes can be\n    specified.</dd>\n\n    <dd>If you are using OGP and the <code>property</code> attribute\n    is also specified, the error for the <code>content</code>\n    attribute may be ignored.</dd>\n\n    <dd>If there is the <code>charset</code> attribute, the\n    <code>content</code> attribute must not be specified.</dd>\n\n    <dt>HTML <code>link</code> element</dt>\n\n    <dd>Only one of <code>rel</code> and <code>itemprop</code>\n    attributes can be specified for an element.</dd>\n\n    <dd>The <code>sizes</code> attribute cannot be specified unless\n    the <code>rel</code> attribute has the <code>icon</code> link\n    type.</dd>\n\n    <dt>HTML <code>style</code> element</dt>\n\n    <dd>The <code>scoped</code> attribute is not allowed for the\n    <code>style</code> element in the <code>head</code> element.</dd>\n\n    <dt>HTML <code>script</code> element</dt>\n\n    <dd>Attributes <code>defer</code>, <code>async</code>, and\n    <code>charset</code> are not allowed unless the <code>src</code>\n    attribute is specified.  Likewise, the <code>crossorigin</code>\n    attribute has no effect unless the <code>src</code> attribute is\n    specified.</dd>\n\n    <dt>HTML <code>input</code> element</dt>\n\n    <dd>If the <code>type</code> is <code>number</code>, attributes\n    <code>maxlength</code> and <code>size</code> are obsolete.</dd>\n\n    <dt>HTML <code>button</code> element</dt>\n\n    <dd>Unless the <code>type</code> is <code>submit</code>,\n    attributes <code>formaction</code>, <code>formmethod</code>,\n    <code>formenctype</code>, <code>formnovalidate</code>, and\n    <code>formtarget</code> are not allowed.</dd>\n\n    <dd>Unless the <code>type</code> is <code>menu</code>, the\n    <code>menu</code> attribute is not allowed.</dd>\n\n    <dt>HTML <code>img</code> element</dt>\n\n    <dd>The <code>start</code> attribute is not allowed unless the\n    <code>dynsrc</code> attribute is specified.</dd>\n\n    <dt>HTML <code>object</code> element</dt>\n\n    <dd>The <code>typemustmatch</code> attribute is not allowed unless\n    both <code>data</code> and <code>type</code> attributes are\n    specified.</dd>\n\n    <dt>HTML <code>form</code> element</dt>\n\n    <dd>If the <code>lcs</code> or <code>utn</code> attribute is\n    specified, the <code>target</code> attribute is not allowed.</dd>\n\n    <dt>HTML <code>menu</code> element</dt>\n\n    <dd>The <code>label</code> attribute can only be used when the\n    parent is a <code>menu</code> element whose <code>type</code> is\n    <code>popup</code>.</dd>\n\n    <dt>HTML <code>menuitem</code> element</dt>\n\n    <dd>If the <code>command</code> attribute is specified, attributes\n    <code>type</code>, <code>label</code>, <code>icon</code>,\n    <code>disabled</code>, <code>checked</code>, and\n    <code>radiogroup</code> cannot be used.</dd>\n\n    <dd>The <code>checked</code> attribute cannot be used unless the\n    <code>type</code> is <code>checkbox</code> or\n    <code>radio</code>.</dd>\n\n    <dd>The <code>radiogroup</code> attribute cannot be used unless\n    the <code>type</code> is <code>radio</code>.</dd>\n\n    <dt>HTML <code>keygen</code> element</dt>\n\n    <dd>If the <code>keytype</code> is <code>dsa</code>, either the\n    <code>keyparams</code> or <code>pqg</code> attribute (but not\n    both) must be specified.</dd>\n\n    <dd>Otherwise, if the <code>keytype</code> is <code>ec</code>, the\n    <code>pgq</code> attribute is not allowed.</dd>\n\n    <dd>Otherwise, the <code>keyparams</code> and <code>pqg</code>\n    attributes are not allowed.</dd>\n\n    <dt>AtomPub <code>app:categories</code> element</dt>\n\n    <dd>If an <code>href</code> attribute is specified, none of\n    <code>fixed</code> and <code>scheme</code> attributes can be\n    specified.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性はこの文脈で使うことが認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>a</code> 要素</dt>\n\n    <dd>次に示す属性は<code>href</code> 属性がないと使えません:\n    <code>target</code>, <code>ping</code>, <code>rel</code>,\n    <code>hreflang</code>, <code>type</code>, <code>ilet</code>,\n    <code>iswf</code>, <code>irst</code>, <code>ib</code>,\n    <code>ifb</code>, <code>ijam</code>, <code>email</code>,\n    <code>telbook</code>, <code>kana</code>, <code>memoryname</code>,\n    <code>lcs</code>, <code>loop</code>, <code>soundstart</code>,\n    <code>volume</code>。</dd>\n\n    <dd>次に示す属性は <code>target</code> 属性があると使えません:\n    <code>ilet</code>, <code>iswf</code>, <code>irst</code>,\n    <code>ib</code>, <code>ifb</code>, <code>ijam</code>,\n    <code>lcs</code>, <code>utn</code>。</dd>\n\n    <dd><code>viblength</code> 属性は\n    <code>vibration</code> 属性がないと使えません。</dd>\n\n    <dt>HTML <code>area</code> 要素</dt>\n\n    <dd><code>coords</code> 属性は <code>shape</code> 属性が\n    <code>default</code> の時使えません。</dd>\n\n    <dd><code>target</code>, <code>ping</code>,\n    <code>rel</code>, <code>hreflang</code>, <code>type</code>,\n    <code>alt</code> 各属性は <code>href</code>\n    属性が指定されていないと使えません。</dd>\n\n    <dt>HTML <code>meta</code> 要素</dt>\n\n    <dd><code>name</code>, <code>http-equiv</code>,\n    <code>itemprop</code>, <code>charset</code>\n    のどれか1つの属性だけ指定できます。</dd>\n\n    <dd>OGP を使っていて <code>property</code> 属性も指定されていれば、\n    <code>content</code> 属性のエラーは無視して構いません。</dd>\n\n    <dd><code>charset</code> 属性があるときは <code>content</code>\n    属性は使えません。</dd>\n\n    <dt>HTML <code>link</code> 要素</dt>\n\n    <dd><code>rel</code> 属性と <code>itemprop</code> \n    属性はどちらか一方だけ指定できます。</dd>\n\n    <dd><code>sizes</code> 属性を使う時は <code>rel</code> 属性にリンク型\n    <code>icon</code> が含まれていなければいけません。</dd>\n\n    <dt>HTML <code>style</code> 要素</dt>\n\n    <dd><code>scoped</code> 属性は <code>head</code> 要素内の\n    <code>style</code> 要素では使えません。</dd>\n\n    <dt>HTML <code>script</code> 要素</dt>\n\n    <dd><code>defer</code>, <code>async</code>,\n    <code>charset</code> 各属性は <code>src</code>\n    属性がないと指定してはいけません。同様に <code>crossorigin</code>\n    属性は <code>src</code> 属性がないと意味がありません。</dd>\n\n    <dt>HTML <code>img</code> 要素</dt>\n\n    <dd><code>start</code> 属性は\n    <code>dynsrc</code> 属性が指定されていないと使えません。</dd>\n\n    <dt>HTML <code>input</code> 要素</dt>\n\n    <dd><code>type</code> が\n    <code>number</code> の時の <code>maxlength</code> 属性と\n    <code>size</code> 属性は廃止されました。</dd>\n\n    <dt>HTML <code>button</code> 要素</dt>\n\n    <dd><code>type</code> が <code>submit</code> 以外の時は、\n    <code>formaction</code>, <code>formmethod</code>,\n    <code>formenctype</code>, <code>formnovalidate</code>,\n    <code>formtarget</code> 各属性は指定できません。</dd>\n\n    <dd><code>type</code> が <code>menu</code> 以外の時は、\n    <code>menu</code> 属性は指定できません。</dd>\n\n    <dt>HTML <code>object</code> 要素</dt>\n\n    <dd><code>typemustmatch</code> 属性は\n    <code>data</code> 属性と <code>type</code> 属性の両方が指定されていないと使えません。</dd>\n\n    <dt>HTML <code>form</code> 要素</dt>\n\n    <dd><code>lcs</code> 属性か <code>utn</code> 属性が指定されているなら、\n    <code>target</code> 属性は使えません。</dd>\n\n    <dt>HTML <code>menu</code> 要素</dt>\n\n    <dd><code>label</code> 属性は親が <code>menu</code> \n    要素で <code>type</code> が <code>popup</code>\n    の時だけ使えます。</dd>\n\n    <dt>HTML <code>menuitem</code> 要素</dt>\n\n    <dd><code>command</code> 属性が指定されている時は、\n    <code>type</code>, <code>label</code>, <code>icon</code>,\n    <code>disabled</code>, <code>checked</code>,\n    <code>radiogroup</code> 各属性は使えません。</dd>\n\n    <dd><code>checked</code> 属性は\n    <code>type</code> が <code>checkbox</code> か\n    <code>radio</code> でなければ使えません。</dd>\n\n    <dd><code>radiogroup</code> 属性は\n    <code>type</code> が <code>radio</code> でなければ使えません。</dd>\n\n    <dt>HTML <code>keygen</code> 要素</dt>\n\n    <dd><code>keytype</code> が <code>dsa</code> の時は、\n    <code>keyparams</code> と <code>pqg</code>\n    のどちらかの属性だけを指定しなければいけません。</dd>\n\n    <dd><code>keytype</code> が <code>ec</code> の時は、\n    <code>pgq</code> 属性は使えません。</dd>\n\n    <dd>それ以外の時は、 <code>keyparams</code> 属性も <code>pqg</code>\n    属性も使えません。</dd>\n\n    <dt>AtomPub <code>app:categories</code> 要素</dt>\n\n    <dd><code>href</code> 属性があるときは\n    <code>fixed</code> 属性や <code>scheme</code>\n    属性を指定できません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute is not allowed here",
          "ja" : "この属性はここでは使えません"
+      },
+      "targets" : {
+         "attr" : 1
+      }
+   },
+   "attribute not allowed:dialog tabindex" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>tabindex</code> attribute cannot be specified for\n    an HTML <code>dialog</code> element as it is redudant or\n    conflcts with the element's emantics.</p>\n  ",
+         "ja" : "\n    <p>HTML <code>dialog</code> 要素の <code>tabindex</code> \n    属性は、冗長であるか要素の意味で矛盾してしまうので、\n    指定できません。</p>\n  "
+      },
+      "message" : {
+         "en" : "A <code>tabindex</code> attribute is specified\n  for a <code>dialog</code> element",
+         "ja" : "<code>dialog</code> 要素に\n  <code>tabindex</code> 属性が指定されています"
       },
       "targets" : {
          "attr" : 1
@@ -1493,8 +1521,13 @@
       }
    },
    "character not allowed:atom|TextConstruct" : {
+      "desc" : {
+         "en" : "\n    <p>In an Atom Text construct or <code>content</code> element whose\n    <code>type</code> is <code>xhtml</code> or an XML MIME type, text\n    other than space characters is not allowed.</p>\n  ",
+         "ja" : "\n    <p>Atom Text 構造要素や <code>content</code> 要素の\n    <code>type</code> 属性値が <code>xhtml</code> や XML MIME\n    型の時は空白文字以外のテキストは使えません。</p>\n  "
+      },
       "message" : {
-         "en" : "Non‐white‐space characters are not allowed in\n  Text construct."
+         "en" : "Text other than spaces is not allowed",
+         "ja" : "空白以外のテキストは使えません"
       }
    },
    "character not allowed:colgroup" : {
@@ -1509,8 +1542,8 @@
    },
    "character not allowed:empty" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the parent element is empty such that text\n    other than inter-element white space is not allowed.</p>\n  ",
-         "ja" : "\n    <p>親要素の内容モデルは空なので、要素間空白以外のテキストは認められていません。</p>\n  "
+         "en" : "\n    <p>The content model of the parent element is empty such that text\n    other than inter-element white space is not allowed.</p>\n\n    <p>In an Atom <code>content</code> element with a <code>src</code>\n    attribute, no character is allowed.</p>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルは空なので、要素間空白以外のテキストは認められていません。</p>\n\n    <p>Atom <code>content</code> 要素は <code>src</code> \n    属性があると要素内に文字を含めてはいけません。</p>\n  "
       },
       "message" : {
          "en" : "The parent is an empty element such that\n  text other than spaces is not allowed",
@@ -1609,27 +1642,52 @@
    },
    "child element missing" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the element requires a specific kind of\n    element, but it is not found.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dl</code> element</dt>\n\n    <dd>The last element child must be the <code>dd</code>\n    element.</dd>\n\n    <dt>HTML <code>details</code> element</dt>\n\n    <dd>There must be a <code>summary</code> element as the first\n    child.</dd>\n\n    <dt>HTML <code>head</code> element</dt>\n\n    <dd>There must be a <code>title</code> element child (unless it is\n    in an <code>iframe</code> <code>srcdoc</code> attribute, or it is\n    in an e-mail message).</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>There must be <code>head</code> and <code>body</code> element\n    children.</dd>\n\n    <dt>HTML <code>video</code> or <code>audio</code> element</dt>\n\n    <dd>Unless there is the <code>src</code> attribute or one or more\n    <code>source</code> element children, the element has no\n    effect.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この要素の内容モデルで要求されている子要素が見つかりません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dl</code> 要素</dt>\n\n    <dd>最後の子要素は <code>dd</code> 要素でなければいけません。</dd>\n\n    <dt>HTML <code>details</code> 要素</dt>\n\n    <dd>最初の子要素は <code>summary</code> 要素でなければいけません。</dd>\n\n    <dt>HTML <code>head</code> 要素</dt>\n\n    <dd><code>title</code> 要素が子供として必要です\n    (<code>iframe</code> <code>srcdoc</code> 属性内や電子メールメッセージ内を除きます)。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd><code>head</code> 要素や <code>body</code> 要素が子供として必要です。</dd>\n\n    <dt>HTML <code>video</code> 要素、<code>audio</code> 要素</dt>\n\n    <dd><code>src</code> 属性か、1つ以上の\n    <code>source</code> 子要素かどちらかがないとこの要素の意味がありません。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The content model of the element requires a specific kind of\n    element, but it is not found.</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dl</code> element</dt>\n\n    <dd>The last element child must be the <code>dd</code>\n    element.</dd>\n\n    <dt>HTML <code>details</code> element</dt>\n\n    <dd>There must be a <code>summary</code> element as the first\n    child.</dd>\n\n    <dt>HTML <code>head</code> element</dt>\n\n    <dd>There must be a <code>title</code> element child (unless it is\n    in an <code>iframe</code> <code>srcdoc</code> attribute, or it is\n    in an e-mail message).</dd>\n\n    <dt>HTML <code>html</code> element</dt>\n\n    <dd>There must be <code>head</code> and <code>body</code> element\n    children.</dd>\n\n    <dt>HTML <code>video</code> or <code>audio</code> element</dt>\n\n    <dd>Unless there is the <code>src</code> attribute or one or more\n    <code>source</code> element children, the element has no\n    effect.</dd>\n\n    <dt>In Atom Text construct element whose <code>type</code> is\n    <code>xhtml</code></dt>\n\n    <dd>There must be an HTML <code>div</code> element.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この要素の内容モデルで要求されている子要素が見つかりません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>dl</code> 要素</dt>\n\n    <dd>最後の子要素は <code>dd</code> 要素でなければいけません。</dd>\n\n    <dt>HTML <code>details</code> 要素</dt>\n\n    <dd>最初の子要素は <code>summary</code> 要素でなければいけません。</dd>\n\n    <dt>HTML <code>head</code> 要素</dt>\n\n    <dd><code>title</code> 要素が子供として必要です\n    (<code>iframe</code> <code>srcdoc</code> 属性内や電子メールメッセージ内を除きます)。</dd>\n\n    <dt>HTML <code>html</code> 要素</dt>\n\n    <dd><code>head</code> 要素や <code>body</code> 要素が子供として必要です。</dd>\n\n    <dt>HTML <code>video</code> 要素、<code>audio</code> 要素</dt>\n\n    <dd><code>src</code> 属性か、1つ以上の\n    <code>source</code> 子要素かどちらかがないとこの要素の意味がありません。</dd>\n\n    <dt>Atom Text 構造要素で <code>type</code> が\n    <code>xhtml</code> のもの</dt>\n\n    <dd>HTML <code>div</code> 要素が必要です。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "There is no <code><var>{text}</var></code>\n  element child",
          "ja" : "子要素 <code><var>{text}</var></code>\n  が見つかりません"
       }
    },
-   "child element missing:atom" : {
+   "child element missing:app" : {
+      "desc" : {
+         "en" : "\n    <p>The element must contain a child element with the specified\n    local name in the AtomPub namespace\n    (<code>http://www.w3.org/2007/app</code>).</p>\n  ",
+         "ja" : "\n    <p>この要素は子要素として  Atompub 名前空間\n    (<code>http://www.w3.org/2007/app</code>)\n    の特定の局所名の要素が必要です。</p>\n  "
+      },
       "message" : {
-         "en" : "There must be an element\n  <code><var>{text}</var></code> in the Atom namespace as a child of this\n  element."
+         "en" : "There is no child AtomPub\n  <code><var>{text}</var></code> element",
+         "ja" : "AtomPub\n  <code><var>{text}</var></code> 要素が子要素としてありません"
+      }
+   },
+   "child element missing:atom" : {
+      "desc" : {
+         "en" : "\n    <p>The element must contain a child element with the specified\n    local name in the Atom namespace\n    (<code>http://www.w3.org/2005/Atom</code>).</p>\n  ",
+         "ja" : "\n    <p>この要素は子要素として  Atom 名前空間\n    (<code>http://www.w3.org/2005/Atom</code>) の特定の局所名の要素が必要です。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is no child Atom\n  <code><var>{text}</var></code> element",
+         "ja" : "Atom\n  <code><var>{text}</var></code> 要素が子要素としてありません"
       }
    },
    "child element missing:atom:link:alternate" : {
+      "desc" : {
+         "en" : "\n    <p>An <code>atom:entry</code> or <code>atom:feed</code> element\n    must contain an Atom <code>link</code> element whose\n    <code>rel</code> attribute value is <code>alternate</code>.</p>\n  ",
+         "ja" : "\n    <p><code>atom:entry</code> 要素や <code>atom:feed</code>\n    要素の子要素として Atom\n    <code>link</code> 要素で <code>rel</code> 属性値が\n    <code>alternate</code> であるものが必要です。</p>\n  "
+      },
       "message" : {
-         "en" : "There must be an Atom <code>link</code> element\n  whose <code>rel</code> attribute is set to <code>alternate</code> as a\n  child of this element."
+         "en" : "There is no child\n  <code>&lt;atom:link rel=alternate&gt;</code> element",
+         "ja" : "子要素 <code>&lt;atom:link rel=alternate&gt;</code>\n  がありません"
       }
    },
    "child element missing:atom:link:self" : {
+      "desc" : {
+         "en" : "\n    <p>An <code>atom:feed</code> element should contain an Atom\n    <code>link</code> element whose <code>rel</code> attribute value\n    is <code>self</code>.</p>\n  ",
+         "ja" : "\n    <p><code>atom:feed</code> 要素の子要素として Atom\n    <code>link</code> 要素で <code>rel</code> 属性値が\n    <code>should</code> であるものが含まれているべきです。</p>\n  "
+      },
       "message" : {
-         "en" : "There should be an Atom <code>link</code> element\n  whose <code>rel</code> attribute is set to <code>self</code> as a\n  child of this element."
+         "en" : "There is no child\n  <code>&lt;atom:link rel=self&gt;</code> element",
+         "ja" : "子要素 <code>&lt;atom:link rel=self&gt;</code>\n  がありません"
       }
    },
    "child element missing:frame|frameset" : {
@@ -2111,6 +2169,16 @@
          "en" : "The specified value is not a valid value\n  for the attribute <code>e4x</code>."
       }
    },
+   "element after entry" : {
+      "desc" : {
+         "en" : "\n    <p>In an Atom <code>feed</code> element, <code>atom:entry</code>\n    elements must be inserted after any other element.</p>\n  ",
+         "ja" : "\n    <p>Atom <code>feed</code> 要素中で <code>atom:entry</code>\n    要素は他の要素の後になければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is an <code>atom:entry</code> element\n  before this element",
+         "ja" : "この要素の前に <code>atom:entry</code>\n  要素がありました"
+      }
+   },
    "element missing" : {
       "desc" : {
          "en" : "\n    <p>指定された要素名の子要素がなければなりませんが、\n    この要素の子供に見つかりませんでした。</p>\n\n    <dl class=\"switch\">\n      <dt>WebVTT の <code>ruby</code></dt>\n\n      <dd>WebVTT キューの文章で <code>ruby</code> 内の\n      <code>rt</code> 以外のオブジェクトが続いた後には\n      <code>rt</code> が必要です。</dd>\n\n    </dl>\n  "
@@ -2131,8 +2199,8 @@
    },
    "element not allowed" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the parent element does not allow the element.</p>\n\n    <dl class=\"switch\">\n\n    <dt>In HTML <code>ul</code>, <code>ol</code>, or\n    <code>dir</code> element</dt>\n\n    <dd>Only <code>li</code> elements are allowed as children.</dd>\n\n    <dt>In HTML <code>dl</code> element</dt>\n\n    <dd>Only <code>dt</code> and <code>dd</code> elements are allowed\n    as children.</dd>\n\n    <dt>In HTML <code>table</code> element</dt>\n\n    <dd>The content must be:\n\n      <ol>\n\n      <li>Optionally, a <code>caption</code> element</li>\n\n      <li>Zero or more <code>colgroup</code> elements</li>\n\n      <li>Optionally, a <code>thead</code> element</li>\n\n      <li>Optionally, a <code>tfoot</code> element</li>\n\n      <li>Zero or more <code>tbody</code> elements or one or more\n      <code>tr</code> elements</li>\n\n      <li>Optionally, a <code>tfoot</code> element</li>\n\n      </ol>\n\n    </dd>\n\n    <dd>In addition, <code>script</code> and <code>template</code>\n    elements can be used anywhere.</dd>\n\n    <dd>The <code>tfoot</code> element can be used only once.</dd>\n\n    <dt>In HTML <code>style</code> element</dt>\n\n    <dd>Child elements are not allowed.</dd>\n\n    <dt>In HTML <code>hgroup</code> element</dt>\n\n    <dd>Only <code>h<var>n</var></code> elements can be used.</dd>\n\n    <dt>In HTML <code>select</code> element</dt>\n\n    <dd>Only <code>option</code> and <code>optgroup</code> elements\n    can be used.</dd>\n\n    <dt>In HTML <code>optgroup</code> element</dt>\n\n    <dd>Only <code>option</code> elements can be used.  The\n    <code>optgroup</code> element cannot be nested.</dd>\n\n    <dt>In HTML <code>datalist</code> element</dt>\n\n    <dd>The element contains either one or more <code>option</code>\n    elements, or fallback content for old browsers, but not both.  No\n    other element is not allowed when <code>option</code> element\n    child is used.</dd>\n\n    <dt>In HTML <code>style</code> and <code>script</code>\n    element</dt>\n\n    <dd>The element cannot contain child elements unless the styling\n    or scripting language is XML-based, or the <code>script</code>\n    element has the <code>src</code> attribute.</dd>\n\n    <dt>In HTML <code>html</code> element</dt>\n\n    <dd>There must be a <code>head</code> element followed by a\n    <code>body</code> element.  The <code>frameset</code> element is\n    obsolete and is not allowed.  No other element is allowed.  Any\n    actual content of the document must be put into the\n    <code>body</code> element.  Scripts must be put into the\n    <code>head</code> or the <code>body</code> element.</dd>\n\n    <dt>In HTML <code>frameset</code> element</dt>\n\n    <dd>Only <code>frameset</code>, <code>frame</code>, and\n    <code>noframes</code> elements can be used.</dd>\n\n    <dd>For the frameset document, the <code>noframes</code> element\n    can only be used once as a child of the outermost\n    <code>frameset</code> element.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>親要素の内容モデルがこの要素を認めていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>ul</code>, <code>ol</code>,\n    <code>dir</code> 要素内</dt>\n\n    <dd>子要素として使えるのは <code>li</code> 要素だけです。</dd>\n\n    <dt>HTML <code>dl</code> 要素内</dt>\n\n    <dd>子要素として使えるのは <code>dt</code> 要素と <code>dd</code>\n    要素だけです。</dd>\n\n    <dt>HTML <code>table</code> 要素</dt>\n\n    <dd>内容は次の要素でなければいけません。\n\n      <ol>\n\n      <li><code>caption</code> 要素最大1つ</li>\n\n      <li><code>colgroup</code> 要素任意個</li>\n\n      <li><code>thead</code> 要素最大1つ</li>\n\n      <li><code>tfoot</code> 要素最大1つ</li>\n\n      <li><code>tbody</code> 要素任意個または\n      <code>tr</code> 要素1個以上</li>\n\n      <li><code>tfoot</code> 要素最大1つ</li>\n\n      </ol>\n\n    </dd>\n\n    <dd>加えて、 <code>script</code> 要素と <code>template</code>\n    要素はどこでも使えます。</dd>\n\n    <dd><code>tfoot</code> 要素は1つだけ使えます。</dd>\n\n    <dt>HTML <code>style</code> 要素内</dt>\n\n    <dd>子要素は認められていません。</dd>\n\n    <dt>HTML <code>hgroup</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>h<var>n</var></code> 要素だけです。</dd>\n\n    <dt>HTML <code>select</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>option</code> 要素と <code>optgroup</code>\n    要素だけです。</dd>\n\n    <dt>HTML <code>optgroup</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>option</code> 要素だけです。\n    <code>optgroup</code> 要素を入れ子にはできません。</dd>\n\n    <dt>HTML <code>datalist</code> 要素</dt>\n\n    <dd><code>option</code> 要素1つ以上か、古いブラウザー向けの代替の内容かを含められますが、\n    両方は入れられません。 <code>option</code> 要素が子供として使われている時には、\n    他の要素は使えません。</dd>\n\n    <dt>HTML <code>style</code> 要素、<code>script</code> 要素</dt>\n\n    <dd>スタイル言語・スクリプト言語が XML ベースの場合や\n    <code>src</code> 属性がある場合を除き、子要素は使えません。</dd>\n\n    <dt>HTML <code>html</code> 要素内</dt>\n\n    <dd><code>head</code> 要素が1つあって、その後に <code>body</code>\n    要素が1つなければいけません。 <code>frameset</code>\n    要素は廃止されたので認められていません。文書の実質的な内容は\n    <code>body</code> 要素内に入れなければいけません。\n    スクリプトは <code>head</code> 要素か <code>body</code>\n    要素の中に入れなければいけません。</dd>\n\n    <dt>HTML <code>frameset</code> 要素内</dt>\n\n    <dd><code>frameset</code>, <code>frame</code>,\n    <code>noframes</code> 各要素だけ使えます。</dd>\n\n    <dd>フレーム集合文書では <code>noframes</code> 要素は最外\n    <code>frameset</code> 要素の子供としてのみ使えます。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The content model of the parent element does not allow the element.</p>\n\n    <dl class=\"switch\">\n\n    <dt>In HTML <code>ul</code>, <code>ol</code>, or\n    <code>dir</code> element</dt>\n\n    <dd>Only <code>li</code> elements are allowed as children.</dd>\n\n    <dt>In HTML <code>dl</code> element</dt>\n\n    <dd>Only <code>dt</code> and <code>dd</code> elements are allowed\n    as children.</dd>\n\n    <dt>In HTML <code>table</code> element</dt>\n\n    <dd>The content must be:\n\n      <ol>\n\n      <li>Optionally, a <code>caption</code> element</li>\n\n      <li>Zero or more <code>colgroup</code> elements</li>\n\n      <li>Optionally, a <code>thead</code> element</li>\n\n      <li>Optionally, a <code>tfoot</code> element</li>\n\n      <li>Zero or more <code>tbody</code> elements or one or more\n      <code>tr</code> elements</li>\n\n      <li>Optionally, a <code>tfoot</code> element</li>\n\n      </ol>\n\n    </dd>\n\n    <dd>In addition, <code>script</code> and <code>template</code>\n    elements can be used anywhere.</dd>\n\n    <dd>The <code>tfoot</code> element can be used only once.</dd>\n\n    <dt>In HTML <code>style</code> element</dt>\n\n    <dd>Child elements are not allowed.</dd>\n\n    <dt>In HTML <code>hgroup</code> element</dt>\n\n    <dd>Only <code>h<var>n</var></code> elements can be used.</dd>\n\n    <dt>In HTML <code>select</code> element</dt>\n\n    <dd>Only <code>option</code> and <code>optgroup</code> elements\n    can be used.</dd>\n\n    <dt>In HTML <code>optgroup</code> element</dt>\n\n    <dd>Only <code>option</code> elements can be used.  The\n    <code>optgroup</code> element cannot be nested.</dd>\n\n    <dt>In HTML <code>datalist</code> element</dt>\n\n    <dd>The element contains either one or more <code>option</code>\n    elements, or fallback content for old browsers, but not both.  No\n    other element is not allowed when <code>option</code> element\n    child is used.</dd>\n\n    <dt>In HTML <code>style</code> and <code>script</code>\n    element</dt>\n\n    <dd>The element cannot contain child elements unless the styling\n    or scripting language is XML-based, or the <code>script</code>\n    element has the <code>src</code> attribute.</dd>\n\n    <dt>In HTML <code>html</code> element</dt>\n\n    <dd>There must be a <code>head</code> element followed by a\n    <code>body</code> element.  The <code>frameset</code> element is\n    obsolete and is not allowed.  No other element is allowed.  Any\n    actual content of the document must be put into the\n    <code>body</code> element.  Scripts must be put into the\n    <code>head</code> or the <code>body</code> element.</dd>\n\n    <dt>In HTML <code>frameset</code> element</dt>\n\n    <dd>Only <code>frameset</code>, <code>frame</code>, and\n    <code>noframes</code> elements can be used.</dd>\n\n    <dd>For the frameset document, the <code>noframes</code> element\n    can only be used once as a child of the outermost\n    <code>frameset</code> element.</dd>\n\n    <dt>In Atom elements</dt>\n\n    <dd>Only limited set of elements can be used as child.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルがこの要素を認めていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>HTML <code>ul</code>, <code>ol</code>,\n    <code>dir</code> 要素内</dt>\n\n    <dd>子要素として使えるのは <code>li</code> 要素だけです。</dd>\n\n    <dt>HTML <code>dl</code> 要素内</dt>\n\n    <dd>子要素として使えるのは <code>dt</code> 要素と <code>dd</code>\n    要素だけです。</dd>\n\n    <dt>HTML <code>table</code> 要素</dt>\n\n    <dd>内容は次の要素でなければいけません。\n\n      <ol>\n\n      <li><code>caption</code> 要素最大1つ</li>\n\n      <li><code>colgroup</code> 要素任意個</li>\n\n      <li><code>thead</code> 要素最大1つ</li>\n\n      <li><code>tfoot</code> 要素最大1つ</li>\n\n      <li><code>tbody</code> 要素任意個または\n      <code>tr</code> 要素1個以上</li>\n\n      <li><code>tfoot</code> 要素最大1つ</li>\n\n      </ol>\n\n    </dd>\n\n    <dd>加えて、 <code>script</code> 要素と <code>template</code>\n    要素はどこでも使えます。</dd>\n\n    <dd><code>tfoot</code> 要素は1つだけ使えます。</dd>\n\n    <dt>HTML <code>style</code> 要素内</dt>\n\n    <dd>子要素は認められていません。</dd>\n\n    <dt>HTML <code>hgroup</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>h<var>n</var></code> 要素だけです。</dd>\n\n    <dt>HTML <code>select</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>option</code> 要素と <code>optgroup</code>\n    要素だけです。</dd>\n\n    <dt>HTML <code>optgroup</code> 要素</dt>\n\n    <dd>子要素として使えるのは <code>option</code> 要素だけです。\n    <code>optgroup</code> 要素を入れ子にはできません。</dd>\n\n    <dt>HTML <code>datalist</code> 要素</dt>\n\n    <dd><code>option</code> 要素1つ以上か、古いブラウザー向けの代替の内容かを含められますが、\n    両方は入れられません。 <code>option</code> 要素が子供として使われている時には、\n    他の要素は使えません。</dd>\n\n    <dt>HTML <code>style</code> 要素、<code>script</code> 要素</dt>\n\n    <dd>スタイル言語・スクリプト言語が XML ベースの場合や\n    <code>src</code> 属性がある場合を除き、子要素は使えません。</dd>\n\n    <dt>HTML <code>html</code> 要素内</dt>\n\n    <dd><code>head</code> 要素が1つあって、その後に <code>body</code>\n    要素が1つなければいけません。 <code>frameset</code>\n    要素は廃止されたので認められていません。文書の実質的な内容は\n    <code>body</code> 要素内に入れなければいけません。\n    スクリプトは <code>head</code> 要素か <code>body</code>\n    要素の中に入れなければいけません。</dd>\n\n    <dt>HTML <code>frameset</code> 要素内</dt>\n\n    <dd><code>frameset</code>, <code>frame</code>,\n    <code>noframes</code> 各要素だけ使えます。</dd>\n\n    <dd>フレーム集合文書では <code>noframes</code> 要素は最外\n    <code>frameset</code> 要素の子供としてのみ使えます。</dd>\n\n    <dt>Atom 要素内</dt>\n\n    <dd>子要素として使えるのは限られた要素だけです。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "This element is not allowed here",
@@ -2165,13 +2233,28 @@
       }
    },
    "element not allowed:atom|TextConstruct" : {
+      "desc" : {
+         "en" : "\n    <p>Child elements are not allowed in an Atom Text construct or\n    <code>content</code> element, except when the <code>type</code>\n    attribute value is <code>xhtml</code>, in which case only an HTML\n    <code>div</code> element is allowed.</p>\n\n    <p>If the <code>type</code> attribute value is <code>html</code>,\n    any tag in the HTML fragment must be escaped.</p>\n  ",
+         "ja" : "\n    <p>Atom Text 構造要素や <code>content</code>\n    要素では子要素は原則として使えません。</p>\n\n    <p><code>type</code> 属性値が <code>html</code>\n    のときは、 HTML 素片中のタグはエスケープしなければいけません。</p>\n\n    <p><code>type</code> 属性値が <code>xhtml</code>\n    のときは、 HTML <code>div</code> 要素を1つだけ使えます。</p>\n  "
+      },
       "message" : {
-         "en" : "This element is not allowed in Text\n  construct."
+         "en" : "The element is not allowed here",
+         "ja" : "この要素はここでは認められていません"
       }
    },
    "element not allowed:atom|content" : {
       "message" : {
          "en" : "This element is not allowed in an Atom\n  <code>content</code> element."
+      }
+   },
+   "element not allowed:atom|link rel=alternate" : {
+      "desc" : {
+         "en" : "\n    <p>In an element, there must not be multiple\n    <code>atom:link</code> elements with <code>rel</code> attribute\n    value <code>alternate</code> unless its <code>type</code> and/or\n    <code>hreflang</code> attribute values are different.</p>\n  ",
+         "ja" : "\n    <p>ある要素の子供で <code>atom:link</code> 要素の\n    <code>rel</code> 属性が <code>alternate</code> であるものは、\n    <code>type</code> と <code>hreflang</code>\n    の値の組み合わせが同じであってはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is an <code>&lt;atom:link rel=alternate&gt;</code>\n  element with same <code>type</code> and <code>hreflang</code>",
+         "ja" : "<code>&lt;atom:link rel=alternate&gt;</code>\n  要素で <code>type</code> と <code>hreflang</code>\n  の組み合わせが同じものが他にもあります"
       }
    },
    "element not allowed:base" : {
@@ -2204,10 +2287,20 @@
          "en" : "In a <code>details</code> or <code>fieldset</code>\n  element, only at the beginning of the element a <code>legend</code> element\n  may be used."
       }
    },
+   "element not allowed:duplicate" : {
+      "desc" : {
+         "en" : "\n    <p>The element can only be used once as a child element of the\n    parent.</p>\n  ",
+         "ja" : "\n    <p>この要素は、この要素の親に対する子要素としては一度しか使えません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is a sibling element with same\n  local name",
+         "ja" : "同じ要素名の兄弟要素があります"
+      }
+   },
    "element not allowed:empty" : {
       "desc" : {
-         "en" : "\n    <p>The content model of the parent element is empty such that\n    the element is not allowed.</p>\n  ",
-         "ja" : "\n    <p>親要素の内容モデルが空なので、この要素は認められていません。</p>\n  "
+         "en" : "\n    <p>The content model of the parent element is empty such that\n    the element is not allowed.</p>\n\n    <dl class=\"switch\">\n\n    <dt>Atom <code>atom:content</code> element</dt>\n\n    <dd>If a <code>src</code> attribute is specified, no child element\n    is allowed.</dd>\n\n    <dt>AtomPub <code>app:categories</code> element</dt>\n\n    <dd>If an <code>href</code> attribute is specified, no child\n    element is allowed.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>親要素の内容モデルが空なので、この要素は認められていません。</p>\n\n    <dl class=\"switch\">\n\n    <dt>Atom <code>atom:content</code> 要素</dt>\n\n    <dd><code>src</code> 属性があると子要素を含めてはいけません。</dd>\n\n    <dt>AtomPub <code>app:categories</code> 要素</dt>\n\n    <dd><code>href</code> 属性があると子要素を含めてはいけません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The parent is an empty element such that element is not allowed",
@@ -3083,8 +3176,8 @@
    },
    "invalid attribute value" : {
       "desc" : {
-         "en" : "\n    <p>The attribute value is invalid.</p>\n \n    <dl class=\"switch\">\n\n    <dt>The <code>xml:space</code> attribute</dt>\n\n    <dd>The value must be either <code>default</code> or\n    <code>preserve</code>.</dd>\n\n    <dt>HTML elements, the <code>xmlns</code> attribute in no\n    namespace</dt>\n\n    <dd>The value must be\n    <code>http://www.w3.org/1999/xhtml</code>.</dd>\n\n    <dt>HTML <code>img</code> element, the\n    <code>generator-unable-to-provide-required-alt</code>\n    attribute</dt>\n\n    <dd>The value must be the empty string.</dd>\n\n    </dl>\n  ",
-         "ja" : "\n    <p>この属性値は非妥当です。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>xml:space</code> 属性</dt>\n\n    <dd>属性値は <code>default</code> か <code>preserve</code>\n    でなければいけません。</dd>\n\n    <dt>HTML 要素の名前空間に属さない <code>xmlns</code> 属性</dt>\n\n    <dd>属性値は <code>http://www.w3.org/1999/xhtml</code>\n    でなければいけません。</dd>\n\n    <dt>HTML <code>img</code> 要素\n    <code>generator-unable-to-provide-required-alt</code>\n    属性</dt>\n\n    <dd>属性値は空文字列でなければいけません。</dd>\n\n    </dl>\n  "
+         "en" : "\n    <p>The attribute value is invalid.</p>\n \n    <dl class=\"switch\">\n\n    <dt>The <code>xml:space</code> attribute</dt>\n\n    <dd>The value must be either <code>default</code> or\n    <code>preserve</code>.</dd>\n\n    <dt>HTML elements, the <code>xmlns</code> attribute in no\n    namespace</dt>\n\n    <dd>The value must be\n    <code>http://www.w3.org/1999/xhtml</code>.</dd>\n\n    <dt>HTML <code>img</code> element, the\n    <code>generator-unable-to-provide-required-alt</code>\n    attribute</dt>\n\n    <dd>The value must be the empty string.</dd>\n\n    <dt>Atom Text construct element, <code>type</code> attribute</dt>\n\n    <dd>The attribute value must be <code>text</code>,\n    <code>html</code>, or <code>xhtml</code>.</dd>\n\n    </dl>\n  ",
+         "ja" : "\n    <p>この属性値は非妥当です。</p>\n\n    <dl class=\"switch\">\n\n    <dt><code>xml:space</code> 属性</dt>\n\n    <dd>属性値は <code>default</code> か <code>preserve</code>\n    でなければいけません。</dd>\n\n    <dt>HTML 要素の名前空間に属さない <code>xmlns</code> 属性</dt>\n\n    <dd>属性値は <code>http://www.w3.org/1999/xhtml</code>\n    でなければいけません。</dd>\n\n    <dt>HTML <code>img</code> 要素\n    <code>generator-unable-to-provide-required-alt</code>\n    属性</dt>\n\n    <dd>属性値は空文字列でなければいけません。</dd>\n\n    <dt>Atom Text 構造要素 <code>type</code> 属性</dt>\n\n    <dd>属性値は <code>text</code>, <code>html</code>, <code>xhtml</code>\n    のいずれかでなければいけません。</dd>\n\n    </dl>\n  "
       },
       "message" : {
          "en" : "The attribute value is invalid",
@@ -4261,6 +4354,16 @@
          "en" : "After the keyword <code>SYSTEM</code>, no\n  system identifier is specified."
       }
    },
+   "no XML decl" : {
+      "desc" : {
+         "en" : "\n    <p>There should be an XML declaration in an XML document.</p>\n\n    <p>There should be a text declaration in an XML external entity.</p>\n  ",
+         "ja" : "\n    <p>XML 文書には XML 宣言があるべきです。</p>\n\n    <p>XML 外部実体にはテキスト宣言があるべきです。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is no XML declaration",
+         "ja" : "xML 宣言がありません"
+      }
+   },
    "no arguments in" : {
       "message" : {
          "en" : "No <code>in</code> keyword for an argument is\n  found."
@@ -4653,8 +4756,13 @@
       }
    },
    "not IMT" : {
+      "desc" : {
+         "en" : "\n    <p>The specified value is not a MIME type.</p>\n\n    <p>When an Atom <code>content</code> element has a\n    <code>src</code> attribute, the <code>type</code> attribute value\n    cannot be a non-MIME type value.</p>\n  ",
+         "ja" : "\n    <p>指定された値は MIME 型ではありません。</p>\n\n    <p>Atom <code>content</code> 要素に\n    <code>src</code> 属性があるときには、 <code>type</code>\n    属性値は MIME 型以外の値であってはいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "A value that is not an Internet Media Type\n  is not allowed here."
+         "en" : "The value is not a MIME type",
+         "ja" : "この値は MIME 型ではありません"
       }
    },
    "not boxable type" : {
@@ -4766,6 +4874,16 @@
       "message" : {
          "en" : "The parameter entity is not declared",
          "ja" : "この引数実体は宣言されていません"
+      }
+   },
+   "pi in pe in decl" : {
+      "desc" : {
+         "en" : "\n    <p>Processing instructions are not allowed in an external\n    parameter entity referenced within a markup declaration (outside\n    of literals).</p>\n  ",
+         "ja" : "\n    <p>マーク付け宣言内 (リテラル外) から参照されている外部引数実体では処理指令を使ってはいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is a processing instruction in\n  an external entity referenced within a markup declaration",
+         "ja" : "マーク付け宣言内から参照されている外部実体に処理指令があります"
       }
    },
    "pio" : {
@@ -6217,6 +6335,46 @@
          "en" : "Extended attribute <code><var>{text}</var></code>\n  is not applicable to this kind of object."
       }
    },
+   "xml:dtd:attlist ignored" : {
+      "desc" : {
+         "en" : "\n    <p>Since there was a parameter entity reference whose entity is\n    not read, processing of attribute definition list declarations are\n    stopped.  This attribute definition list declaration is\n    ignored.</p>\n  ",
+         "ja" : "\n    <p>読んでいない引数実体参照があったため、属性定義並び宣言の処理は停止されています。\n    この属性定義並び宣言は無視されました。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>ATTLIST</code> declaration is\n  ignored as there was unread parameter entity",
+         "ja" : "未読の引数実体があったためこの\n  <code>ATTLIST</code> 宣言は無視されました"
+      }
+   },
+   "xml:dtd:entity ignored" : {
+      "desc" : {
+         "en" : "\n    <p>Since there was a parameter entity reference whose entity is\n    not read, processing of entity declarations are stopped.  This\n    entity declaration is ignored.</p>\n  ",
+         "ja" : "\n    <p>読んでいない引数実体参照があったため、実体宣言の処理は停止されています。\n    この実体宣言は無視されました。</p>\n  "
+      },
+      "message" : {
+         "en" : "The <code>ENTITY</code> declaration is\n  ignored as there was unread parameter entity",
+         "ja" : "未読の引数実体があったためこの\n  <code>ENTITY</code> 宣言は無視されました"
+      }
+   },
+   "xml:dtd:ext decl" : {
+      "desc" : {
+         "en" : "\n    <p>A markup declaration appears in an external entity or in a\n    parameter entity (i.e. is an external markup declaration).</p>\n\n    <p>As processing of external markup declarations is not required\n    to XML processors, the document might be misinterpreted depending\n    on how XML processor is implemented or configured.</p>\n  ",
+         "ja" : "\n    <p>マーク付け宣言が外部実体か引数実体の中にあります\n    (つまり外部マーク付け宣言です)。</p>\n\n    <p>外部マーク付け宣言の処理はすべての XML 処理器に義務付けられているわけではありませんから、\n    XML 処理器がどう実装されているか、設定されているかによって文書の解釈が異なってくるかもしれません。</p>\n  "
+      },
+      "message" : {
+         "en" : "An external markup declaration is found",
+         "ja" : "外部マーク付け宣言があります"
+      }
+   },
+   "xml:dtd:pi" : {
+      "desc" : {
+         "en" : "\n    <p>A processing instruction is used in DTD.</p>\n\n    <p>If a processing instruction appears in an external entity or in\n    a parameter entity, it might not be included depending on how the\n    XML processor is implemented or configured.</p>\n\n    <p>Processing instructions in DTD might not be result in the DOM\n    tree such that applications might not be able to access them.</p>\n  ",
+         "ja" : "\n    <p>処理指令が DTD 中で使われています。</p>\n\n    <p>処理指令が外部実体や引数実体で使われている場合、 XML\n    処理器の実装や設定次第で取り込まれないかもしれません。</p>\n\n    <p>DTD 内の処理指令は DOM 木に現れないかもしれませんから、\n    アプリケーションがアクセスできないかもしれません。</p>\n  "
+      },
+      "message" : {
+         "en" : "A processing instruction is used in DTD",
+         "ja" : "DTD 中に処理指令があります"
+      }
+   },
    "xml:lang ne lang" : {
       "desc" : {
          "en" : "\n    <p>The value of the <code>lang</code> attribute in no namespace\n    and the value of the <code>lang</code> attribute in the XML\n    namespace or the value of the <code>xml:lang</code> attribute in\n    no namespace must be equivalent.</p>\n\n    <p>Note that you can omit the <code>xml:lang</code> attribute.</p>\n  ",
@@ -6244,6 +6402,16 @@
       "message" : {
          "en" : "The prefixed namespace cannot be undeclared",
          "ja" : "名前空間接頭辞の宣言は取り消せません"
+      }
+   },
+   "xs:nonNegativeInteger:bad value" : {
+      "desc" : {
+         "en" : "\n    <p>The value must be a non-negative integer.</p>\n\n    <p>The value can be one or more ASCII digits, optionally preceded\n    by a <code>+</code> sign, or a <code>-</code> sign followed by one\n    or more <code>0</code>.</p>\n  ",
+         "ja" : "\n    <p>値は非負整数でなければいけません。</p>\n\n    <p>ASCII 数字1文字以上か、その前に <code>+</code> 符号をつけたものか、\n    <code>-</code> 符号のあとに <code>0</code>\n    を1つ以上続けたもののいずれかでなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The value is not a non-negative integer",
+         "ja" : "この値は非負整数ではありません"
       }
    }
 }

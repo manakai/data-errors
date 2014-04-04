@@ -1142,6 +1142,22 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="no XML decl"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">There is no XML declaration</d:message>
+  <d:message xml:lang="ja">xML 宣言がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>There should be an XML declaration in an XML document.</p>
+
+    <p>There should be a text declaration in an XML external entity.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>XML 文書には XML 宣言があるべきです。</p>
+
+    <p>XML 外部実体にはテキスト宣言があるべきです。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="second root element"
     modules="Web::XML::Parser">
   <d:message xml:lang="en">There is a start tag after the end tag
@@ -1359,6 +1375,21 @@ p {
   </d:desc>
 </d:item>
 
+<d:item name="pi in pe in decl"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">There is a processing instruction in
+  an external entity referenced within a markup declaration</d:message>
+  <d:message xml:lang="ja">マーク付け宣言内から参照されている外部実体に処理指令があります</d:message>
+  <d:desc xml:lang="en">
+    <p>Processing instructions are not allowed in an external
+    parameter entity referenced within a markup declaration (outside
+    of literals).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>マーク付け宣言内 (リテラル外) から参照されている外部引数実体では処理指令を使ってはいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="stop processing"
     modules="Web::HTML::Tokenizer Web::XML::Parser">
   <d:message xml:lang="en">Processing of markup declarations has been
@@ -1402,6 +1433,97 @@ p {
   </d:desc>
   <d:desc xml:lang="ja">
     <p>非解析対象実体を実体参照から参照することはできません。</p>
+  </d:desc>
+</d:item>
+
+</section>
+
+<section id="xml-dtd-errors">
+<h2>XML DTD errors</h2>
+
+<!--
+XXX
+VC:Standalone Document Declaration:entity
+-->
+
+<d:item name="xml:dtd:attlist ignored"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">The <code>ATTLIST</code> declaration is
+  ignored as there was unread parameter entity</d:message>
+  <d:message xml:lang="ja">未読の引数実体があったためこの
+  <code>ATTLIST</code> 宣言は無視されました</d:message>
+  <d:desc xml:lang="en">
+    <p>Since there was a parameter entity reference whose entity is
+    not read, processing of attribute definition list declarations are
+    stopped.  This attribute definition list declaration is
+    ignored.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>読んでいない引数実体参照があったため、属性定義並び宣言の処理は停止されています。
+    この属性定義並び宣言は無視されました。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="xml:dtd:entity ignored"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">The <code>ENTITY</code> declaration is
+  ignored as there was unread parameter entity</d:message>
+  <d:message xml:lang="ja">未読の引数実体があったためこの
+  <code>ENTITY</code> 宣言は無視されました</d:message>
+  <d:desc xml:lang="en">
+    <p>Since there was a parameter entity reference whose entity is
+    not read, processing of entity declarations are stopped.  This
+    entity declaration is ignored.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>読んでいない引数実体参照があったため、実体宣言の処理は停止されています。
+    この実体宣言は無視されました。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="xml:dtd:ext decl"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">An external markup declaration is found</d:message>
+  <d:message xml:lang="ja">外部マーク付け宣言があります</d:message>
+  <d:desc xml:lang="en">
+    <p>A markup declaration appears in an external entity or in a
+    parameter entity (i.e. is an external markup declaration).</p>
+
+    <p>As processing of external markup declarations is not required
+    to XML processors, the document might be misinterpreted depending
+    on how XML processor is implemented or configured.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>マーク付け宣言が外部実体か引数実体の中にあります
+    (つまり外部マーク付け宣言です)。</p>
+
+    <p>外部マーク付け宣言の処理はすべての XML 処理器に義務付けられているわけではありませんから、
+    XML 処理器がどう実装されているか、設定されているかによって文書の解釈が異なってくるかもしれません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="xml:dtd:pi"
+    modules="Web::XML::Parser">
+  <d:message xml:lang="en">A processing instruction is used in DTD</d:message>
+  <d:message xml:lang="ja">DTD 中に処理指令があります</d:message>
+  <d:desc xml:lang="en">
+    <p>A processing instruction is used in DTD.</p>
+
+    <p>If a processing instruction appears in an external entity or in
+    a parameter entity, it might not be included depending on how the
+    XML processor is implemented or configured.</p>
+
+    <p>Processing instructions in DTD might not be result in the DOM
+    tree such that applications might not be able to access them.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>処理指令が DTD 中で使われています。</p>
+
+    <p>処理指令が外部実体や引数実体で使われている場合、 XML
+    処理器の実装や設定次第で取り込まれないかもしれません。</p>
+
+    <p>DTD 内の処理指令は DOM 木に現れないかもしれませんから、
+    アプリケーションがアクセスできないかもしれません。</p>
   </d:desc>
 </d:item>
 
@@ -2398,6 +2520,22 @@ p {
 <section id="element-content-model-errors">
 <h2>Element Content Model Errors</h2>
 
+<d:item name="app:draft:bad value"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not <code>yes</code> or
+  <code>no</code></d:message>
+  <d:message xml:lang="ja">値が <code>yes</code> でも <code>no</code>
+  でもありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The content of an AtomPub <code>app:draft</code> element must
+    be either <code>yes</code> or <code>no</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>AtomPub <code>app:draft</code> 要素の内容は
+    <code>yes</code> か <code>no</code> でなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="basehref after URL attribute"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">There is a URL attribute before the
@@ -2603,9 +2741,15 @@ p {
   <d:desc xml:lang="en">
     <p>The content model of the parent element is empty such that text
     other than inter-element white space is not allowed.</p>
+
+    <p>In an Atom <code>content</code> element with a <code>src</code>
+    attribute, no character is allowed.</p>
   </d:desc>
   <d:desc xml:lang="ja">
     <p>親要素の内容モデルは空なので、要素間空白以外のテキストは認められていません。</p>
+
+    <p>Atom <code>content</code> 要素は <code>src</code> 
+    属性があると要素内に文字を含めてはいけません。</p>
   </d:desc>
 </d:item>
 
@@ -2616,9 +2760,19 @@ p {
 </d:item>
 
 <d:item name="character not allowed:atom|TextConstruct"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">Non‐white‐space characters are not allowed in
-  Text construct.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Text other than spaces is not allowed</d:message>
+  <d:message xml:lang="ja">空白以外のテキストは使えません</d:message>
+  <d:desc xml:lang="en">
+    <p>In an Atom Text construct or <code>content</code> element whose
+    <code>type</code> is <code>xhtml</code> or an XML MIME type, text
+    other than space characters is not allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>Atom Text 構造要素や <code>content</code> 要素の
+    <code>type</code> 属性値が <code>xhtml</code> や XML MIME
+    型の時は空白文字以外のテキストは使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="child element missing"
@@ -2660,6 +2814,11 @@ p {
     <code>source</code> element children, the element has no
     effect.</dd>
 
+    <dt>In Atom Text construct element whose <code>type</code> is
+    <code>xhtml</code></dt>
+
+    <dd>There must be an HTML <code>div</code> element.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -2688,6 +2847,11 @@ p {
 
     <dd><code>src</code> 属性か、1つ以上の
     <code>source</code> 子要素かどちらかがないとこの要素の意味がありません。</dd>
+
+    <dt>Atom Text 構造要素で <code>type</code> が
+    <code>xhtml</code> のもの</dt>
+
+    <dd>HTML <code>div</code> 要素が必要です。</dd>
 
     </dl>
   </d:desc>
@@ -2721,24 +2885,75 @@ p {
 </d:item>
 
 <d:item name="child element missing:atom"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">There must be an element
-  <code><var>{text}</var></code> in the Atom namespace as a child of this
-  element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is no child Atom
+  <code><var>{text}</var></code> element</d:message>
+  <d:message xml:lang="ja">Atom
+  <code><var>{text}</var></code> 要素が子要素としてありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The element must contain a child element with the specified
+    local name in the Atom namespace
+    (<code>http://www.w3.org/2005/Atom</code>).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この要素は子要素として  Atom 名前空間
+    (<code>http://www.w3.org/2005/Atom</code>) の特定の局所名の要素が必要です。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="child element missing:atom:link:alternate"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">There must be an Atom <code>link</code> element
-  whose <code>rel</code> attribute is set to <code>alternate</code> as a
-  child of this element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is no child
+  <code>&lt;atom:link rel=alternate></code> element</d:message>
+  <d:message xml:lang="ja">子要素 <code>&lt;atom:link rel=alternate></code>
+  がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>An <code>atom:entry</code> or <code>atom:feed</code> element
+    must contain an Atom <code>link</code> element whose
+    <code>rel</code> attribute value is <code>alternate</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>atom:entry</code> 要素や <code>atom:feed</code>
+    要素の子要素として Atom
+    <code>link</code> 要素で <code>rel</code> 属性値が
+    <code>alternate</code> であるものが必要です。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="child element missing:atom:link:self"
-    modules="Whatpm::ContentChecker::HTML">
-  <d:message xml:lang="en">There should be an Atom <code>link</code> element
-  whose <code>rel</code> attribute is set to <code>self</code> as a
-  child of this element.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is no child
+  <code>&lt;atom:link rel=self></code> element</d:message>
+  <d:message xml:lang="ja">子要素 <code>&lt;atom:link rel=self></code>
+  がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>An <code>atom:feed</code> element should contain an Atom
+    <code>link</code> element whose <code>rel</code> attribute value
+    is <code>self</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>atom:feed</code> 要素の子要素として Atom
+    <code>link</code> 要素で <code>rel</code> 属性値が
+    <code>should</code> であるものが含まれているべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="child element missing:app"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is no child AtomPub
+  <code><var>{text}</var></code> element</d:message>
+  <d:message xml:lang="ja">AtomPub
+  <code><var>{text}</var></code> 要素が子要素としてありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The element must contain a child element with the specified
+    local name in the AtomPub namespace
+    (<code>http://www.w3.org/2007/app</code>).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この要素は子要素として  Atompub 名前空間
+    (<code>http://www.w3.org/2007/app</code>)
+    の特定の局所名の要素が必要です。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="doctype after element"
@@ -2790,6 +3005,22 @@ p {
   </d:desc>
   <d:desc xml:lang="ja">
     <p>文書の子供にできる要素は1つだけです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="element after entry"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is an <code>atom:entry</code> element
+  before this element</d:message>
+  <d:message xml:lang="ja">この要素の前に <code>atom:entry</code>
+  要素がありました</d:message>
+  <d:desc xml:lang="en">
+    <p>In an Atom <code>feed</code> element, <code>atom:entry</code>
+    elements must be inserted after any other element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>Atom <code>feed</code> 要素中で <code>atom:entry</code>
+    要素は他の要素の後になければいけません。</p>
   </d:desc>
 </d:item>
 
@@ -2950,6 +3181,10 @@ p {
     can only be used once as a child of the outermost
     <code>frameset</code> element.</dd>
 
+    <dt>In Atom elements</dt>
+
+    <dd>Only limited set of elements can be used as child.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -3041,6 +3276,10 @@ p {
     <dd>フレーム集合文書では <code>noframes</code> 要素は最外
     <code>frameset</code> 要素の子供としてのみ使えます。</dd>
 
+    <dt>Atom 要素内</dt>
+
+    <dd>子要素として使えるのは限られた要素だけです。</dd>
+
     </dl>
   </d:desc>
 </d:item>
@@ -3131,6 +3370,20 @@ p {
   may be used.</d:message>
 </d:item>
 
+<d:item name="element not allowed:duplicate"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is a sibling element with same
+  local name</d:message>
+  <d:message xml:lang="ja">同じ要素名の兄弟要素があります</d:message>
+  <d:desc xml:lang="en">
+    <p>The element can only be used once as a child element of the
+    parent.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この要素は、この要素の親に対する子要素としては一度しか使えません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="element not allowed:empty"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The parent is an empty element such that element is not allowed</d:message>
@@ -3138,9 +3391,35 @@ p {
   <d:desc xml:lang="en">
     <p>The content model of the parent element is empty such that
     the element is not allowed.</p>
+
+    <dl class="switch">
+
+    <dt>Atom <code>atom:content</code> element</dt>
+
+    <dd>If a <code>src</code> attribute is specified, no child element
+    is allowed.</dd>
+
+    <dt>AtomPub <code>app:categories</code> element</dt>
+
+    <dd>If an <code>href</code> attribute is specified, no child
+    element is allowed.</dd>
+
+    </dl>
   </d:desc>
   <d:desc xml:lang="ja">
     <p>親要素の内容モデルが空なので、この要素は認められていません。</p>
+
+    <dl class="switch">
+
+    <dt>Atom <code>atom:content</code> 要素</dt>
+
+    <dd><code>src</code> 属性があると子要素を含めてはいけません。</dd>
+
+    <dt>AtomPub <code>app:categories</code> 要素</dt>
+
+    <dd><code>href</code> 属性があると子要素を含めてはいけません。</dd>
+
+    </dl>
   </d:desc>
 </d:item>
 
@@ -3505,6 +3784,27 @@ p {
   <code>content</code> element.</d:message>
 </d:item>
 
+<d:item name="element not allowed:atom|link rel=alternate"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is an <code>&lt;atom:link rel=alternate></code>
+  element with same <code>type</code> and <code>hreflang</code></d:message>
+  <d:message xml:lang="ja"><code>&lt;atom:link rel=alternate></code>
+  要素で <code>type</code> と <code>hreflang</code>
+  の組み合わせが同じものが他にもあります</d:message>
+  <d:desc xml:lang="en">
+    <p>In an element, there must not be multiple
+    <code>atom:link</code> elements with <code>rel</code> attribute
+    value <code>alternate</code> unless its <code>type</code> and/or
+    <code>hreflang</code> attribute values are different.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>ある要素の子供で <code>atom:link</code> 要素の
+    <code>rel</code> 属性が <code>alternate</code> であるものは、
+    <code>type</code> と <code>hreflang</code>
+    の値の組み合わせが同じであってはいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="element not allowed:atom|PersonConstruct"
     modules="Whatpm::ContentChecker::Atom">
   <d:message xml:lang="en">This element is not allowed in Person
@@ -3512,9 +3812,28 @@ p {
 </d:item>
 
 <d:item name="element not allowed:atom|TextConstruct"
-    modules="Whatpm::ContentChecker::Atom">
-  <d:message xml:lang="en">This element is not allowed in Text
-  construct.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The element is not allowed here</d:message>
+  <d:message xml:lang="ja">この要素はここでは認められていません</d:message>
+  <d:desc xml:lang="en">
+    <p>Child elements are not allowed in an Atom Text construct or
+    <code>content</code> element, except when the <code>type</code>
+    attribute value is <code>xhtml</code>, in which case only an HTML
+    <code>div</code> element is allowed.</p>
+
+    <p>If the <code>type</code> attribute value is <code>html</code>,
+    any tag in the HTML fragment must be escaped.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>Atom Text 構造要素や <code>content</code>
+    要素では子要素は原則として使えません。</p>
+
+    <p><code>type</code> 属性値が <code>html</code>
+    のときは、 HTML 素片中のタグはエスケープしなければいけません。</p>
+
+    <p><code>type</code> 属性値が <code>xhtml</code>
+    のときは、 HTML <code>div</code> 要素を1つだけ使えます。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="element not allowed:t:if" modules="Temma::Processor">
@@ -3975,6 +4294,26 @@ p {
     属性で指定されたスタイル言語の適合性検査には対応していません。</p>
     
     <p>内容が適合しているかどうかは<em>不明</em>です。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="xs:nonNegativeInteger:bad value"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not a non-negative integer</d:message>
+  <d:message xml:lang="ja">この値は非負整数ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value must be a non-negative integer.</p>
+
+    <p>The value can be one or more ASCII digits, optionally preceded
+    by a <code>+</code> sign, or a <code>-</code> sign followed by one
+    or more <code>0</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>値は非負整数でなければいけません。</p>
+
+    <p>ASCII 数字1文字以上か、その前に <code>+</code> 符号をつけたものか、
+    <code>-</code> 符号のあとに <code>0</code>
+    を1つ以上続けたもののいずれかでなければいけません。</p>
   </d:desc>
 </d:item>
 
@@ -4809,6 +5148,12 @@ p {
     <dd>Otherwise, the <code>keyparams</code> and <code>pqg</code>
     attributes are not allowed.</dd>
 
+    <dt>AtomPub <code>app:categories</code> element</dt>
+
+    <dd>If an <code>href</code> attribute is specified, none of
+    <code>fixed</code> and <code>scheme</code> attributes can be
+    specified.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -4940,7 +5285,32 @@ p {
     <dd>それ以外の時は、 <code>keyparams</code> 属性も <code>pqg</code>
     属性も使えません。</dd>
 
+    <dt>AtomPub <code>app:categories</code> 要素</dt>
+
+    <dd><code>href</code> 属性があるときは
+    <code>fixed</code> 属性や <code>scheme</code>
+    属性を指定できません。</dd>
+
     </dl>
+  </d:desc>
+</d:item>
+
+<d:item name="attribute not allowed:dialog tabindex"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">A <code>tabindex</code> attribute is specified
+  for a <code>dialog</code> element</d:message>
+  <d:message xml:lang="ja"><code>dialog</code> 要素に
+  <code>tabindex</code> 属性が指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>tabindex</code> attribute cannot be specified for
+    an HTML <code>dialog</code> element as it is redudant or
+    conflcts with the element's emantics.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>HTML <code>dialog</code> 要素の <code>tabindex</code> 
+    属性は、冗長であるか要素の意味で矛盾してしまうので、
+    指定できません。</p>
   </d:desc>
 </d:item>
 
@@ -6530,6 +6900,11 @@ p {
 
     <dd>The value must be the empty string.</dd>
 
+    <dt>Atom Text construct element, <code>type</code> attribute</dt>
+
+    <dd>The attribute value must be <code>text</code>,
+    <code>html</code>, or <code>xhtml</code>.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -6552,6 +6927,11 @@ p {
     属性</dt>
 
     <dd>属性値は空文字列でなければいけません。</dd>
+
+    <dt>Atom Text 構造要素 <code>type</code> 属性</dt>
+
+    <dd>属性値は <code>text</code>, <code>html</code>, <code>xhtml</code>
+    のいずれかでなければいけません。</dd>
 
     </dl>
   </d:desc>
@@ -8820,9 +9200,18 @@ p {
 </d:item>
 
 <d:item name="IMT:composite"
-    modules="Whatpm::ContentChecker::Atom">
-  <d:message xml:lang="en">The specified media type is a composite
-  type, which is not allowed in this context.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The MIME type is a composite type</d:message>
+  <d:message xml:lang="ja">この MIME 型は合成型です</d:message>
+  <d:desc xml:lang="en">
+    <p>A composite MIME type (<code>message/<var>*</var></code> and
+    <code>multipart/<var>*</var></code>) cannot be embedded in an Atom
+    element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>合成 MIME 型 (<code>message/<var>*</var></code> and
+    <code>multipart/<var>*</var></code>) を Atom 要素内に埋め込むことはできません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="IMT:limited use subtype"
@@ -8992,9 +9381,23 @@ p {
 </d:item>
 
 <d:item name="not IMT"
-    modules="Whatpm::ContentChecker::Atom">
-  <d:message xml:lang="en">A value that is not an Internet Media Type
-  is not allowed here.</d:message>
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not a MIME type</d:message>
+  <d:message xml:lang="ja">この値は MIME 型ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The specified value is not a MIME type.</p>
+
+    <p>When an Atom <code>content</code> element has a
+    <code>src</code> attribute, the <code>type</code> attribute value
+    cannot be a non-MIME type value.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>指定された値は MIME 型ではありません。</p>
+
+    <p>Atom <code>content</code> 要素に
+    <code>src</code> 属性があるときには、 <code>type</code>
+    属性値は MIME 型以外の値であってはいけません。</p>
+  </d:desc>
 </d:item>
 
 </section>
