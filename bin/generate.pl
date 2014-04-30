@@ -1,20 +1,20 @@
 use strict;
 use warnings;
-use Path::Class;
-use lib glob file (__FILE__)->dir->subdir ('modules', '*', 'lib');
-use Encode;
-use JSON;
+use Path::Tiny;
+use lib glob path (__FILE__)->parent->child ('modules', '*', 'lib');
+use JSON::PS;
 use Web::DOM::Document;
 use Web::XML::Parser;
 
-my $source_f = file (__FILE__)->dir->parent->file ('source', 'errors.xml');
+my $source_path = path (__FILE__)->parent->parent->child ('source/errors.xml');
 my $doc = Web::DOM::Document->new;
 
 my $parser = Web::XML::Parser->new;
-$parser->parse_char_string ((decode 'utf-8', scalar $source_f->slurp) => $doc);
+$parser->parse_char_string ($source_path->slurp_utf8 => $doc);
 $doc->manakai_is_html (1);
 
-my $items = $doc->get_elements_by_tag_name_ns ('http://suika.fam.cx/~wakaba/archive/2007/wdcc-desc/', 'item');
+my $items = $doc->get_elements_by_tag_name_ns
+    ('http://suika.fam.cx/~wakaba/archive/2007/wdcc-desc/', 'item');
 
 my $data = {};
 
@@ -45,5 +45,5 @@ for my $item (@$items) {
   }
 }
 
-my $errors_f = file (__FILE__)->dir->parent->file ('data', 'errors.json');
-print { $errors_f->openw } JSON->new->utf8->canonical->pretty->encode ($data);
+my $errors_path = path (__FILE__)->parent->parent->child ('data/errors.json');
+print { $errors_path->openw } perl2json_bytes_for_record $data;

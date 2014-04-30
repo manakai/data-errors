@@ -1,12 +1,11 @@
 use strict;
 use warnings;
-use Path::Class;
-use lib glob file (__FILE__)->dir->subdir ('modules', '*', 'lib');
-use Encode;
-use JSON::Functions::XS qw(file2perl perl2json_bytes_for_record);
+use Path::Tiny;
+use lib glob path (__FILE__)->parent->child ('modules', '*', 'lib');
+use JSON::PS qw(file2perl perl2json_bytes_for_record);
 
-my $xml = file2perl file (__FILE__)->dir->parent->file ('source', 'xml-constraints.json');
-my $xmlns = file2perl file (__FILE__)->dir->parent->file ('source', 'xmlns-constraints.json');
+my $xml = file2perl path (__FILE__)->parent->parent->child ('source', 'xml-constraints.json');
+my $xmlns = file2perl path (__FILE__)->parent->parent->child ('source', 'xmlns-constraints.json');
 
 my $Data = {};
 

@@ -1,13 +1,13 @@
-# -*- Makefile -*-
-
 all: all-data
+
+clean: clean-json-ps
 
 ## ------ Setup ------
 
 WGET = wget
 GIT = git
 
-deps: git-submodules pmbp-install
+deps: git-submodules pmbp-install json-ps
 
 git-submodules:
 	$(GIT) submodule update --init
@@ -33,6 +33,13 @@ data/errors.json: source/errors.xml bin/generate.pl
 
 data/xml.json: source/xml-constraints.json source/xmlns-constraints.json bin/xml.pl
 	$(PERL) bin/xml.pl > $@
+
+json-ps: local/perl-latest/pm/lib/perl5/JSON/PS.pm
+clean-json-ps:
+	rm -fr local/perl-latest/pm/lib/perl5/JSON/PS.pm
+local/perl-latest/pm/lib/perl5/JSON/PS.pm:
+	mkdir -p local/perl-latest/pm/lib/perl5/JSON
+	$(WGET) -O $@ https://raw.githubusercontent.com/wakaba/perl-json-ps/master/lib/JSON/PS.pm
 
 ## ------ Tests ------
 
