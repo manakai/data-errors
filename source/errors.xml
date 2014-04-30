@@ -2572,7 +2572,7 @@ VC:Standalone Document Declaration:entity
 </d:item>
 
 <d:item name="character not allowed"
-    modules="Web::HTML::Validator Whatpm::RDFXML">
+    modules="Web::HTML::Validator Web::RDF::XML::Parser">
   <d:message xml:lang="en">Non-space characters are not allowed here</d:message>
   <d:message xml:lang="ja">空白以外の文字はここでは認められていません</d:message>
   <d:desc xml:lang="en">
@@ -3085,7 +3085,7 @@ VC:Standalone Document Declaration:entity
 </d:item>
 
 <d:item name="element not allowed"
-    modules="Web::HTML::Validator Whatpm::RDFXML Temma::Processor">
+    modules="Web::HTML::Validator Web::RDF::XML::Parser Temma::Processor">
   <d:message xml:lang="en">This element is not allowed here</d:message>
   <d:message xml:lang="ja">この要素はここでは認められていません</d:message>
   <d:desc xml:lang="en">
@@ -5011,7 +5011,7 @@ VC:Standalone Document Declaration:entity
 
 <d:item name="attribute not allowed"
     targets="attr"
-    modules="Web::HTML::Validator Whatpm::RDFXML">
+    modules="Web::HTML::Validator Web::RDF::XML::Parser">
   <d:message xml:lang="en">The attribute is not allowed here</d:message>
   <d:message xml:lang="ja">この属性はここでは使えません</d:message>
   <d:desc xml:lang="en">
@@ -12643,10 +12643,18 @@ Regexp::Parser::JavaScript's extension. -->
 <h2>RDF/XML Errors</h2>
 
 <d:item name="bad rdf namespace"
-    modules="Whatpm::RDFXML">
-  <d:message xml:lang="en">The namespace URI of an element that
-  represents an RDF concept must be 
-  <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>.</d:message>
+    modules="Web::RDF::XML::Parser">
+  <d:message xml:lang="en">The namespace is a wrong RDF namespace URL</d:message>
+  <d:message xml:lang="ja">この名前空間は、誤った RDF 名前空間 URL です</d:message>
+  <d:desc xml:lang="en">
+    <p>The namespace URL for the RDF Vocabulary must be 
+    <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>RDF 語彙の名前空間 URL は
+    <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>
+    でなければいけません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="duplicate rdf id"
@@ -12656,32 +12664,195 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="duplicate unqualified attr"
-    modules="Whatpm::RDFXML">
-  <d:message xml:lang="en">Both unqualified attribute and namespace‐qualified
-  RDF attribute are specified, which is not allowed.</d:message>
+    modules="Web::RDF::XML::Parser">
+  <d:message xml:lang="en">There are same attributes in no namespace
+  and in the RDF namespace</d:message>
+  <d:message xml:lang="ja">同じ属性が null 名前空間と RDF
+  名前空間と両方にあります</d:message>
+  <d:desc xml:lang="en">
+    <p>There are both an attribute in no namespace and
+    an attribute in the RDF namespace.  Only the attribute
+    in the RDF namespace should be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>名前空間に属さない属性と RDF 名前空間の属性の両方が指定されていますが、
+    RDF 名前空間の属性のみを指定するべきです。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="parse type other"
-    modules="Whatpm::RDFXML">
-  <d:message xml:lang="en">An invalid value is specified to 
-  the <code>parseType</code> attribute.</d:message>
+    modules="Web::RDF::XML::Parser">
+  <d:message xml:lang="en">An unknown <code>rdf:parseType</code>
+  value is specified</d:message>
+  <d:message xml:lang="ja">未知の <code>rdf:parseType</code>
+  属性値が指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>rdf:parseType</code> attribute value must be
+    <code>Literal</code>, <code>Resource</code>, or
+    <code>Collection</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>rdf:parseType</code> 属性値は
+    <code>Literal</code>, <code>Resource</code>,
+    <code>Collection</code> のいずれかでなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="rdf:attr ignored"
+    modules="Web::RDF::XML::Parser">
+  <d:message xml:lang="en">The attribute is ignored</d:message>
+  <d:message xml:lang="ja">この属性は無視されます</d:message>
+  <d:desc xml:lang="en">
+    <p>In RDF/XML, attributes whose name begins with <code>xml</code>
+    are ignored (except for <code>xml:lang</code>,
+    <code>xml:base</code>, and <code>xmlns</code>).</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>RDF/XML では名前が <code>xml</code> から始まる属性は無視されます
+    (<code>xml:lang</code>,
+    <code>xml:base</code>, <code>xmlns</code> は無視されません)。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="rdf-id:syntax error"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The ID is not an XML NCName</d:message>
+  <d:message xml:lang="ja">この ID は XML の NCName ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value of an <code>rdf:ID</code> or <code>rdf:nodeID</code>
+    attribute must be an XML 1.0 <code>NCName</code>.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>rdf:ID</code> 属性や <code>rdf:nodeID</code> 属性の値は
+    XML 1.0 の <code>NCName</code> でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="rdf:langString:no lang"
+    modules="Web::RDF::Checker">
+  <d:message xml:lang="en">Language tag is not specified</d:message>
+  <d:message xml:lang="ja">言語タグが指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>For an RDF literal with datatype <code>rdf:langString</code>, a
+    language tag must be specified.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>データ型 <code>rdf:langString</code> の RDF リテラルには言語タグ が必要です。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="rdf:unknown datatype"
+    modules="Web::RDF::Checker">
+  <d:message xml:lang="en">Conformance checking of the datatype is not
+  supported</d:message>
+  <d:message xml:lang="ja">このデータ型の適合性検査には対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>Conformance checking of the datatype in use is not supported.
+    The lexical form might or might not be conforming.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>このデータ型の適合性検査には対応していません。
+    このデータ型が指定されている字句形は適合するかもしれませんし、
+    しないかもしれません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="rdf vocab:not defined"
+    modules="Web::RDF::Checker">
+  <d:message xml:lang="en">The URL is not part of the RDF Vocabulary</d:message>
+  <d:message xml:lang="ja">この URL は RDF 語彙に含まれていません</d:message>
+  <d:desc xml:lang="en">
+    <p>If a URL in an RDF triple or an RDF/XML document belongs to the
+    RDF namespace, it must be defined in the RDF Vocabulary.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>RDF 三項組や RDF/XML 文書に含まれる URL が RDF
+    名前空間に属すものである場合、 RDF 語彙に含まれているものでなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="rdfxml:no root element"
+    modules="Web::RDF::XML::Parser">
+  <d:message xml:lang="en">There is no RDF/XML element</d:message>
+  <d:message xml:lang="ja">RDF/XML 要素がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>There must be at least one RDF/XML element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>RDF/XML の要素がいくつか必要です。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="second node element" 
-    modules="Whatpm::RDFXML">
-  <d:message xml:lang="en">There is another element, such that
-  this element is not allowed.</d:message>
+    modules="Web::RDF::XML::Parser">
+  <d:message xml:lang="en">There is another RDF/XML node element</d:message>
+  <d:message xml:lang="ja">他にも RDF/XML 節点要素があります</d:message>
+  <d:desc xml:lang="en">
+    <p>In this context, there can be only an RDF/XML node element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この文脈では RDF/XML 節点要素を1つだけしか使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="unqualified attr"
-    modules="Whatpm::RDFXML">
-  <d:message xml:lang="en">Unqualified attribute is not allowed.</d:message>
+    modules="Web::RDF::XML::Parser">
+  <d:message xml:lang="en">The attribute is in no namespace</d:message>
+  <d:message xml:lang="ja">この属性は名前空間に属していません</d:message>
+  <d:desc xml:lang="en">
+    <p>Attribute in no namespace is not allowed in RDF/XML.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>名前空間に属さない属性は RDF/XML では使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="unqualified rdf attr"
-    modules="Whatpm::RDFXML">
-  <d:message xml:lang="en">RDF attribute should be
-  namespace‐qualified.</d:message>
+    modules="Web::RDF::XML::Parser">
+  <d:message xml:lang="en">The attribute is not in the RDF namespace</d:message>
+  <d:message xml:lang="ja">この属性は RDF 名前空間に属していません</d:message>
+  <d:desc xml:lang="en">
+    <p>The RDF/XML attributes must be in the RDF namespace
+    <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>.  Some
+    attributes are also in null namespace for compatibility with 1999
+    version of RDF/XML but they should not be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>RDF/XML の属性は RDF 名前空間
+    <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>
+    に属していなければいけません。いくつかの属性は null
+    名前空間にもありますが、 1999年版の RDF/XML との互換性のためですから、
+    使うべきではありません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="xsd:rdf:non-standard datatype"
+    modules="Web::RDF::Checker">
+  <d:message xml:lang="en">A non-standard datatype is used</d:message>
+  <d:message xml:lang="ja">非標準のデータ型が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>A non-standard datatype is used for an RDF literal.  For
+    interoperability, only standard datatype should be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>RDF リテラルに非標準のデータ型が使われています。
+    相互運用性のためには標準のデータ型だけを使うべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="xsd:rdf:unsuitable"
+    modules="Web::RDF::Checker">
+  <d:message xml:lang="en">The datatype is not an RDF-compatible XSD
+  type</d:message>
+  <d:message xml:lang="ja">このデータ型は RDF 互換 XSD 型ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>An XML Schema datatype that is not RDF-compatible cannot be
+    used in an RDF literal.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>XML Schema のデータ型は RDF 互換なものでなければ RDF
+    リテラルでは使えません。</p>
+  </d:desc>
 </d:item>
 
 </section>

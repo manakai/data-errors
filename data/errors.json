@@ -1295,8 +1295,13 @@
       }
    },
    "bad rdf namespace" : {
+      "desc" : {
+         "en" : "\n    <p>The namespace URL for the RDF Vocabulary must be \n    <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>.</p>\n  ",
+         "ja" : "\n    <p>RDF 語彙の名前空間 URL は\n    <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>\n    でなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "The namespace URI of an element that\n  represents an RDF concept must be \n  <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>."
+         "en" : "The namespace is a wrong RDF namespace URL",
+         "ja" : "この名前空間は、誤った RDF 名前空間 URL です"
       }
    },
    "bare ero" : {
@@ -2155,8 +2160,13 @@
       }
    },
    "duplicate unqualified attr" : {
+      "desc" : {
+         "en" : "\n    <p>There are both an attribute in no namespace and\n    an attribute in the RDF namespace.  Only the attribute\n    in the RDF namespace should be used.</p>\n  ",
+         "ja" : "\n    <p>名前空間に属さない属性と RDF 名前空間の属性の両方が指定されていますが、\n    RDF 名前空間の属性のみを指定するべきです。</p>\n  "
+      },
       "message" : {
-         "en" : "Both unqualified attribute and namespace‐qualified\n  RDF attribute are specified, which is not allowed."
+         "en" : "There are same attributes in no namespace\n  and in the RDF namespace",
+         "ja" : "同じ属性が null 名前空間と RDF\n  名前空間と両方にあります"
       }
    },
    "duplicate xattr" : {
@@ -4862,8 +4872,13 @@
       }
    },
    "parse type other" : {
+      "desc" : {
+         "en" : "\n    <p>The <code>rdf:parseType</code> attribute value must be\n    <code>Literal</code>, <code>Resource</code>, or\n    <code>Collection</code>.</p>\n  ",
+         "ja" : "\n    <p><code>rdf:parseType</code> 属性値は\n    <code>Literal</code>, <code>Resource</code>,\n    <code>Collection</code> のいずれかでなければいけません。</p>\n  "
+      },
       "message" : {
-         "en" : "An invalid value is specified to \n  the <code>parseType</code> attribute."
+         "en" : "An unknown <code>rdf:parseType</code>\n  value is specified",
+         "ja" : "未知の <code>rdf:parseType</code>\n  属性値が指定されています"
       }
    },
    "pe not declared" : {
@@ -4931,6 +4946,66 @@
       },
       "message" : {
          "en" : "この要素より前に <code><var>{text}</var></code>\n  要素がありません"
+      }
+   },
+   "rdf vocab:not defined" : {
+      "desc" : {
+         "en" : "\n    <p>If a URL in an RDF triple or an RDF/XML document belongs to the\n    RDF namespace, it must be defined in the RDF Vocabulary.</p>\n  ",
+         "ja" : "\n    <p>RDF 三項組や RDF/XML 文書に含まれる URL が RDF\n    名前空間に属すものである場合、 RDF 語彙に含まれているものでなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The URL is not part of the RDF Vocabulary",
+         "ja" : "この URL は RDF 語彙に含まれていません"
+      }
+   },
+   "rdf-id:syntax error" : {
+      "desc" : {
+         "en" : "\n    <p>The value of an <code>rdf:ID</code> or <code>rdf:nodeID</code>\n    attribute must be an XML 1.0 <code>NCName</code>.</p>\n  ",
+         "ja" : "\n    <p><code>rdf:ID</code> 属性や <code>rdf:nodeID</code> 属性の値は\n    XML 1.0 の <code>NCName</code> でなければいけません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The ID is not an XML NCName",
+         "ja" : "この ID は XML の NCName ではありません"
+      }
+   },
+   "rdf:attr ignored" : {
+      "desc" : {
+         "en" : "\n    <p>In RDF/XML, attributes whose name begins with <code>xml</code>\n    are ignored (except for <code>xml:lang</code>,\n    <code>xml:base</code>, and <code>xmlns</code>).</p>\n  ",
+         "ja" : "\n    <p>RDF/XML では名前が <code>xml</code> から始まる属性は無視されます\n    (<code>xml:lang</code>,\n    <code>xml:base</code>, <code>xmlns</code> は無視されません)。</p>\n  "
+      },
+      "message" : {
+         "en" : "The attribute is ignored",
+         "ja" : "この属性は無視されます"
+      }
+   },
+   "rdf:langString:no lang" : {
+      "desc" : {
+         "en" : "\n    <p>For an RDF literal with datatype <code>rdf:langString</code>, a\n    language tag must be specified.</p>\n  ",
+         "ja" : "\n    <p>データ型 <code>rdf:langString</code> の RDF リテラルには言語タグ が必要です。</p>\n  "
+      },
+      "message" : {
+         "en" : "Language tag is not specified",
+         "ja" : "言語タグが指定されていません"
+      }
+   },
+   "rdf:unknown datatype" : {
+      "desc" : {
+         "en" : "\n    <p>Conformance checking of the datatype in use is not supported.\n    The lexical form might or might not be conforming.</p>\n  ",
+         "ja" : "\n    <p>このデータ型の適合性検査には対応していません。\n    このデータ型が指定されている字句形は適合するかもしれませんし、\n    しないかもしれません。</p>\n  "
+      },
+      "message" : {
+         "en" : "Conformance checking of the datatype is not\n  supported",
+         "ja" : "このデータ型の適合性検査には対応していません"
+      }
+   },
+   "rdfxml:no root element" : {
+      "desc" : {
+         "en" : "\n    <p>There must be at least one RDF/XML element.</p>\n  ",
+         "ja" : "\n    <p>RDF/XML の要素がいくつか必要です。</p>\n  "
+      },
+      "message" : {
+         "en" : "There is no RDF/XML element",
+         "ja" : "RDF/XML 要素がありません"
       }
    },
    "ref outside of root element" : {
@@ -5102,8 +5177,13 @@
       }
    },
    "second node element" : {
+      "desc" : {
+         "en" : "\n    <p>In this context, there can be only an RDF/XML node element.</p>\n  ",
+         "ja" : "\n    <p>この文脈では RDF/XML 節点要素を1つだけしか使えません。</p>\n  "
+      },
       "message" : {
-         "en" : "There is another element, such that\n  this element is not allowed."
+         "en" : "There is another RDF/XML node element",
+         "ja" : "他にも RDF/XML 節点要素があります"
       }
    },
    "second root element" : {
@@ -5942,13 +6022,23 @@
       }
    },
    "unqualified attr" : {
+      "desc" : {
+         "en" : "\n    <p>Attribute in no namespace is not allowed in RDF/XML.</p>\n  ",
+         "ja" : "\n    <p>名前空間に属さない属性は RDF/XML では使えません。</p>\n  "
+      },
       "message" : {
-         "en" : "Unqualified attribute is not allowed."
+         "en" : "The attribute is in no namespace",
+         "ja" : "この属性は名前空間に属していません"
       }
    },
    "unqualified rdf attr" : {
+      "desc" : {
+         "en" : "\n    <p>The RDF/XML attributes must be in the RDF namespace\n    <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>.  Some\n    attributes are also in null namespace for compatibility with 1999\n    version of RDF/XML but they should not be used.</p>\n  ",
+         "ja" : "\n    <p>RDF/XML の属性は RDF 名前空間\n    <code>http://www.w3.org/1999/02/22-rdf-syntax-ns#</code>\n    に属していなければいけません。いくつかの属性は null\n    名前空間にもありますが、 1999年版の RDF/XML との互換性のためですから、\n    使うべきではありません。</p>\n  "
+      },
       "message" : {
-         "en" : "RDF attribute should be\n  namespace‐qualified."
+         "en" : "The attribute is not in the RDF namespace",
+         "ja" : "この属性は RDF 名前空間に属していません"
       }
    },
    "url:empty" : {
@@ -6412,6 +6502,26 @@
       "message" : {
          "en" : "The value is not a non-negative integer",
          "ja" : "この値は非負整数ではありません"
+      }
+   },
+   "xsd:rdf:non-standard datatype" : {
+      "desc" : {
+         "en" : "\n    <p>A non-standard datatype is used for an RDF literal.  For\n    interoperability, only standard datatype should be used.</p>\n  ",
+         "ja" : "\n    <p>RDF リテラルに非標準のデータ型が使われています。\n    相互運用性のためには標準のデータ型だけを使うべきです。</p>\n  "
+      },
+      "message" : {
+         "en" : "A non-standard datatype is used",
+         "ja" : "非標準のデータ型が使われています"
+      }
+   },
+   "xsd:rdf:unsuitable" : {
+      "desc" : {
+         "en" : "\n    <p>An XML Schema datatype that is not RDF-compatible cannot be\n    used in an RDF literal.</p>\n  ",
+         "ja" : "\n    <p>XML Schema のデータ型は RDF 互換なものでなければ RDF\n    リテラルでは使えません。</p>\n  "
+      },
+      "message" : {
+         "en" : "The datatype is not an RDF-compatible XSD\n  type",
+         "ja" : "このデータ型は RDF 互換 XSD 型ではありません"
       }
    }
 }
