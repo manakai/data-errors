@@ -206,6 +206,26 @@
          "en" : "Quantifiers cannot be nested."
       }
    },
+   "OGP locale:bad value" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The value must be a locale identifier in OGP, i.e. a language\u000A    code (lowercase), followed by a \u003Ccode>_\u003C/code> character, followed\u000A    by a country code (uppercase).  This is not equal to a BCP 47\u000A    language tag.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>値は OGP のロケール識別子 (言語符号 (小文字) のあとに\u000A    \u003Ccode>_\u003C/code> のあとに国符号 (大文字)) でなけれないけません。\u000A    これは BCP 47 言語タグとは違います。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The value is not an OGP locale",
+         "ja" : "これは OGP ロケール値ではありません"
+      }
+   },
+   "OGP unit:bad value" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The value must be one of units defined in OGP.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>値は OGP で定義されている単位のいずれかでなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The value is not a unit for OGP",
+         "ja" : "この値は OGP の単位ではありません"
+      }
+   },
    "Octal escape is obsolete" : {
       "message" : {
          "en" : "Octal escape is used."
@@ -2167,6 +2187,9 @@
       "message" : {
          "en" : "There are same attributes in no namespace\u000A  and in the RDF namespace",
          "ja" : "同じ属性が null 名前空間と RDF\u000A  名前空間と両方にあります"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "duplicate xattr" : {
@@ -4861,6 +4884,96 @@
          "ja" : "DOCTYPE に公開識別子やシステム識別子があります"
       }
    },
+   "ogp:bad property" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The \u003Ccode>property\u003C/code> attribute value must be one of OGP\u000A    property names.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>\u003Ccode>property\u003C/code> 属性値は OGP の属性値のいずれかでなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The property name is invalid",
+         "ja" : "この特性名は正しくありません"
+      }
+   },
+   "ogp:enum:bad value" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The property of the element only allowes a limited set of\u000A    values.  One of them must be specified.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>この要素の特性には決められた値しか使えません。指定されている値は認められた値ではありません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The value is not one of allowed proeprty values",
+         "ja" : "この値は認められている特性値ではありません"
+      }
+   },
+   "ogp:missing prop" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>When OGP is used, when an OGP \u003Ccode>og:type\u003C/code> is\u000A    specified, or when an OGP property is specified, an OGP property\u000A    might also have to be specified in the document.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>OGP が使われている時やある OGP \u003Ccode>og:type\u003C/code>\u000A    が使われている時、ある OGP 特性が指定されている時には、\u000A    特定の OGP 特性も文書中に指定しておかなければいけないことがあります。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "Property \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  is not specified in the document",
+         "ja" : "特性 \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  がこの文書には指定されていません"
+      }
+   },
+   "ogp:og:type:bad value" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The \u003Ccode>og:type\u003C/code> property value must be one of OGP type\u000A    values.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>\u003Ccode>og:type\u003C/code> 特性値は OGP の型のいずれかでなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The \u003Ccode>og:type\u003C/code> value is invalid",
+         "ja" : "この \u003Ccode>og:type\u003C/code> 値は正しくありません"
+      }
+   },
+   "ogp:og:type:private value" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>A private \u003Ccode>og:type\u003C/code> property is used, which should\u000A    be avoided whenever possible for interoperability.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>私的な \u003Ccode>og:type\u003C/code> 特性値が使われていますが、\u000A    相互運用性のため、できるだけ避けるべきです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "A private \u003Ccode>og:type\u003C/code> value is used",
+         "ja" : "独自の \u003Ccode>og:type\u003C/code> 値が使われています"
+      }
+   },
+   "ogp:private property" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>A private property name is used, which should be avoided\u000A    whenever possible for interoperability.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>私的な 特性名が使われていますが、\u000A    相互運用性のため、できるだけ避けるべきです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "A private property name is used",
+         "ja" : "独自の特性名が使われています"
+      }
+   },
+   "ogp:prop:bad og:type" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>Many OGP properties are only defined for specific sets of\u000A    \u003Ccode>og:type\u003C/code> values.  Otherwise they cannot be used.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>多くの OGP 特性は特定の \u003Ccode>og:type\u003C/code> の時だけ定義されています。\u000A    それ以外の時には使えません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The property can only be specified\u000A  for a document with \u003Ccode>og:type\u003C/code>\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>",
+         "ja" : "この特性は \u003Ccode>og:type\u003C/code>\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> の文書にしか指定できません"
+      }
+   },
+   "ogp:prop:deprecated" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The OGP property is deprecated.  It should not be used.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>この OGP 特性は非推奨です。使うべきではありません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The property is deprecated",
+         "ja" : "この特性は非推奨です"
+      }
+   },
+   "ogp:prop:duplicate" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The OGP property is already specified by another element.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>この OGP 特性は他の要素により既に指定されています。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The property is already specified",
+         "ja" : "この特性は既に指定されています"
+      }
+   },
    "oltype:invalid" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The value of the \u003Ccode>type\u003C/code> attribute of the\u000A    \u003Ccode>ol\u003C/code> element must be one of following values:\u000A    \u003Ccode>1\u003C/code>, \u003Ccode>A\u003C/code>, \u003Ccode>a\u003C/code>, \u003Ccode>I\u003C/code>, or\u000A    \u003Ccode>i\u003C/code>.\u003C/p>\u000A  ",
@@ -4976,6 +5089,9 @@
       "message" : {
          "en" : "The attribute is ignored",
          "ja" : "この属性は無視されます"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "rdf:langString:no lang" : {
@@ -6029,6 +6145,9 @@
       "message" : {
          "en" : "The attribute is in no namespace",
          "ja" : "この属性は名前空間に属していません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "unqualified rdf attr" : {
@@ -6039,6 +6158,9 @@
       "message" : {
          "en" : "The attribute is not in the RDF namespace",
          "ja" : "この属性は RDF 名前空間に属していません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "url:empty" : {

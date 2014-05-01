@@ -7527,6 +7527,18 @@ VC:Standalone Document Declaration:entity
   </d:desc>
 </d:item>
 
+<d:item name="OGP unit:bad value"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not a unit for OGP</d:message>
+  <d:message xml:lang="ja">この値は OGP の単位ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value must be one of units defined in OGP.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>値は OGP で定義されている単位のいずれかでなければいけません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="oltype:invalid"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The list item type is invalid</d:message>
@@ -12122,7 +12134,7 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="langtag:region:invalid"
-    modules="Web::LangTag">
+    modules="Web::LangTag Web::HTML::Validator">
   <d:message xml:lang="en">Region subtag <code><var>{value}</var></code>
   is not registered</d:message>
   <d:message xml:lang="ja">地域部分タグ <code><var>{value}</var></code>
@@ -12637,6 +12649,23 @@ Regexp::Parser::JavaScript's extension. -->
   </d:desc>
 </d:item>
 
+<d:item name="OGP locale:bad value"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not an OGP locale</d:message>
+  <d:message xml:lang="ja">これは OGP ロケール値ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The value must be a locale identifier in OGP, i.e. a language
+    code (lowercase), followed by a <code>_</code> character, followed
+    by a country code (uppercase).  This is not equal to a BCP 47
+    language tag.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>値は OGP のロケール識別子 (言語符号 (小文字) のあとに
+    <code>_</code> のあとに国符号 (大文字)) でなけれないけません。
+    これは BCP 47 言語タグとは違います。</p>
+  </d:desc>
+</d:item>
+
 </section>
 
 <section id="rdfxml-errors">
@@ -12664,6 +12693,7 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="duplicate unqualified attr"
+    targets="attr"
     modules="Web::RDF::XML::Parser">
   <d:message xml:lang="en">There are same attributes in no namespace
   and in the RDF namespace</d:message>
@@ -12699,6 +12729,7 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="rdf:attr ignored"
+    targets="attr"
     modules="Web::RDF::XML::Parser">
   <d:message xml:lang="en">The attribute is ignored</d:message>
   <d:message xml:lang="ja">この属性は無視されます</d:message>
@@ -12796,6 +12827,7 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="unqualified attr"
+    targets="attr"
     modules="Web::RDF::XML::Parser">
   <d:message xml:lang="en">The attribute is in no namespace</d:message>
   <d:message xml:lang="ja">この属性は名前空間に属していません</d:message>
@@ -12808,6 +12840,7 @@ Regexp::Parser::JavaScript's extension. -->
 </d:item>
 
 <d:item name="unqualified rdf attr"
+    targets="attr"
     modules="Web::RDF::XML::Parser">
   <d:message xml:lang="en">The attribute is not in the RDF namespace</d:message>
   <d:message xml:lang="ja">この属性は RDF 名前空間に属していません</d:message>
@@ -12852,6 +12885,138 @@ Regexp::Parser::JavaScript's extension. -->
   <d:desc xml:lang="ja">
     <p>XML Schema のデータ型は RDF 互換なものでなければ RDF
     リテラルでは使えません。</p>
+  </d:desc>
+</d:item>
+
+</section>
+
+<section id="ogp">
+<h2>OGP errors</h2>
+
+
+<d:item name="ogp:bad property"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The property name is invalid</d:message>
+  <d:message xml:lang="ja">この特性名は正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>property</code> attribute value must be one of OGP
+    property names.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>property</code> 属性値は OGP の属性値のいずれかでなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ogp:enum:bad value"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The value is not one of allowed proeprty values</d:message>
+  <d:message xml:lang="ja">この値は認められている特性値ではありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The property of the element only allowes a limited set of
+    values.  One of them must be specified.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この要素の特性には決められた値しか使えません。指定されている値は認められた値ではありません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ogp:missing prop"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Property <code><var>{text}</var></code>
+  is not specified in the document</d:message>
+  <d:message xml:lang="ja">特性 <code><var>{text}</var></code>
+  がこの文書には指定されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>When OGP is used, when an OGP <code>og:type</code> is
+    specified, or when an OGP property is specified, an OGP property
+    might also have to be specified in the document.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>OGP が使われている時やある OGP <code>og:type</code>
+    が使われている時、ある OGP 特性が指定されている時には、
+    特定の OGP 特性も文書中に指定しておかなければいけないことがあります。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ogp:og:type:bad value"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The <code>og:type</code> value is invalid</d:message>
+  <d:message xml:lang="ja">この <code>og:type</code> 値は正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The <code>og:type</code> property value must be one of OGP type
+    values.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>og:type</code> 特性値は OGP の型のいずれかでなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ogp:og:type:private value"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">A private <code>og:type</code> value is used</d:message>
+  <d:message xml:lang="ja">独自の <code>og:type</code> 値が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>A private <code>og:type</code> property is used, which should
+    be avoided whenever possible for interoperability.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>私的な <code>og:type</code> 特性値が使われていますが、
+    相互運用性のため、できるだけ避けるべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ogp:private property"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">A private property name is used</d:message>
+  <d:message xml:lang="ja">独自の特性名が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>A private property name is used, which should be avoided
+    whenever possible for interoperability.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>私的な 特性名が使われていますが、
+    相互運用性のため、できるだけ避けるべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ogp:prop:bad og:type"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The property can only be specified
+  for a document with <code>og:type</code>
+  <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">この特性は <code>og:type</code>
+  <code><var>{text}</var></code> の文書にしか指定できません</d:message>
+  <d:desc xml:lang="en">
+    <p>Many OGP properties are only defined for specific sets of
+    <code>og:type</code> values.  Otherwise they cannot be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>多くの OGP 特性は特定の <code>og:type</code> の時だけ定義されています。
+    それ以外の時には使えません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ogp:prop:deprecated"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The property is deprecated</d:message>
+  <d:message xml:lang="ja">この特性は非推奨です</d:message>
+  <d:desc xml:lang="en">
+    <p>The OGP property is deprecated.  It should not be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この OGP 特性は非推奨です。使うべきではありません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="ogp:prop:duplicate"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The property is already specified</d:message>
+  <d:message xml:lang="ja">この特性は既に指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>The OGP property is already specified by another element.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この OGP 特性は他の要素により既に指定されています。</p>
   </d:desc>
 </d:item>
 
