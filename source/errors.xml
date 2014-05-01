@@ -4960,9 +4960,6 @@ VC:Standalone Document Declaration:entity
     <li>The <code>itemprop</code> attribute</li>
     <li>The <code>charset</code> attribute</li>
     </ul>
-
-    <p>If the <code>meta</code> element is for OGP, you can ignore
-    this error.</p>
   </d:desc>
   <d:desc xml:lang="ja">
     <p><code>meta</code> 要素は次のいずれかの属性が必要です。</p>
@@ -4973,9 +4970,6 @@ VC:Standalone Document Declaration:entity
     <li><code>itemprop</code> 属性</li>
     <li><code>charset</code> 属性</li>
     </ul>
-
-    <p>この <code>meta</code> 要素が OGP なら、
-    このエラーは無視して構いません。</p>
   </d:desc>
 </d:item>
 
@@ -5055,10 +5049,6 @@ VC:Standalone Document Declaration:entity
     <dd>Exactly one of <code>name</code>, <code>http-equiv</code>,
     <code>itemprop</code>, and <code>charset</code> attributes can be
     specified.</dd>
-
-    <dd>If you are using OGP and the <code>property</code> attribute
-    is also specified, the error for the <code>content</code>
-    attribute may be ignored.</dd>
 
     <dd>If there is the <code>charset</code> attribute, the
     <code>content</code> attribute must not be specified.</dd>
@@ -5195,9 +5185,6 @@ VC:Standalone Document Declaration:entity
     <dd><code>name</code>, <code>http-equiv</code>,
     <code>itemprop</code>, <code>charset</code>
     のどれか1つの属性だけ指定できます。</dd>
-
-    <dd>OGP を使っていて <code>property</code> 属性も指定されていれば、
-    <code>content</code> 属性のエラーは無視して構いません。</dd>
 
     <dd><code>charset</code> 属性があるときは <code>content</code>
     属性は使えません。</dd>
@@ -5401,10 +5388,6 @@ VC:Standalone Document Declaration:entity
     <dd>These attributes are obsolete and can no logner be used in the
     document.  Use CSS instead.</dd>
 
-    <dt>HTML <code>property</code> attribute</dt>
-
-    <dd>If you are using OGP, ignore this error.</dd>
-
     <dt>HTML <code>prefix</code> attribute</dt>
 
     <dd>The attribute can be deleted safely.</dd>
@@ -5453,10 +5436,6 @@ VC:Standalone Document Declaration:entity
     <code>vspace</code> 属性</dt>
 
     <dd>廃止されており、文書中で使うことはできません。 CSS を使ってください。</dd>
-
-    <dt>HTML <code>property</code> 属性</dt>
-
-    <dd>OGP を使っているなら、このエラーは無視してください。</dd>
 
     <dt>HTML <code>prefix</code> 属性</dt>
 
