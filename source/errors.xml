@@ -11163,6 +11163,88 @@ Regexp::Parser::JavaScript's extension. -->
   </d:desc>
 </d:item>
 
+<d:item name="datetime:expanded year"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">An expanded year syntax is used</d:message>
+  <d:message xml:lang="en">年が展開表現です</d:message>
+  <d:desc xml:lang="en">
+    <p>The expanded representation of the year (sign followed by four
+    more more digits) might not be interoperable.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>年の展開表現 (符号の後に4桁以上の数字) は相互運用性が高くないかもしれません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:hyphen"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">A <code class="charname">HYPHEN</code>
+  character is found</d:message>
+  <d:message xml:lang="en">文字 <code class="charname">HYPHEN</code>
+  が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the character <code class="charname">HYPHEN</code> in a
+    date/time representation is not well-supported.  For
+    interoperability, a <code>HYPHEN-MINUS</code> character
+    (<code>-</code>) should be used instead.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>日時での <code class="charname">HYPHEN</code>
+    文字はあまり対応されていないので、相互運用性のため、
+    <code>HYPHEN-MINUS</code> 文字 (<code>-</code>)
+    を使った方が良さそうです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:lowercase designator"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">A lowercase designator is used in date/time
+  representation</d:message>
+  <d:message xml:lang="en">小文字の指示子が日時内にあります</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of lowercase designator in place of uppercase designator
+    is not allowed unless uppercase letters are not available.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>小文字の指示子を大文字の指示子の代わりに使って良いのは、
+    大文字を使えない環境のみです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:minus sign"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">A <code class="charname">MINUS SIGN</code>
+  character is found</d:message>
+  <d:message xml:lang="en">文字 <code class="charname">MINUS SIGN</code>
+  が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the character <code class="charname">MINUS SIGN</code> in a
+    date/time representation is not well-supported.  For
+    interoperability, a <code>HYPHEN-MINUS</code> character
+    (<code>-</code>) should be used instead.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>日時での <code class="charname">MINUS SIGN</code>
+    文字はあまり対応されていないので、相互運用性のため、
+    <code>HYPHEN-MINUS</code> 文字 (<code>-</code>)
+    を使った方が良さそうです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:pre-gregorio year"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">A year before introduction of the Gregorian
+  Calendar is used</d:message>
+  <d:message xml:lang="en">グレゴリオ暦導入前の年です</d:message>
+  <d:desc xml:lang="en">
+    <p>A year before introduction of the Gregorian Calendar might not
+    be interoperable.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>グレゴリオ暦導入前の年号は相互運用性が高くないかもしれません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="datetime:syntax error"
     modules="Web::DateTime::Parser">
   <d:message xml:lang="en">The value is not a global date and time string</d:message>
@@ -11217,6 +11299,33 @@ Regexp::Parser::JavaScript's extension. -->
   </d:desc>
 </d:item>
 
+<d:item name="decimal sign:period"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">A period character is used as a decimal separator</d:message>
+  <d:message xml:lang="ja">ピリオドが小数点として使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>In ISO 8601-based time formats, <code>,</code> is preferred to
+    <code>.</code> as a decimal separtor.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>ISO 8601 に基づく時刻の書式では、小数点として <code>.</code>
+    よりも <code>,</code> が好ましいとされています。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:alternative"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">The alternative format is used as the duration</d:message>
+  <d:message xml:lang="en">時間長の代替書式が使われています</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of the alternative format in the duration might not be
+    interoperable.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>時間長で代替書式を用いるのは相互運用性が高くないかもしれません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="duration:case"
     modules="Web::DateTime::Parser">
   <d:message xml:lang="en">A delimiter character in the duration is
@@ -11229,6 +11338,19 @@ Regexp::Parser::JavaScript's extension. -->
   <d:desc xml:lang="ja">
     <p><code>P</code> から始まる時間文字列では、
     区切りは大文字でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:fraction"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">A fractional part is found in the duration</d:message>
+  <d:message xml:lang="en">時間長に小数部分があります</d:message>
+  <d:desc xml:lang="en">
+    <p>Use of fractional part in the duration string might not be
+    interoperable.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>時間長で小数部分を指定するのは相互運用性が高くないかもしれません。</p>
   </d:desc>
 </d:item>
 
@@ -11302,6 +11424,19 @@ Regexp::Parser::JavaScript's extension. -->
     <p>HTML では月文字列は
     <code><var>YYYY</var>-<var>MM</var></code>
     という形式でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="period:not 1&lt;=2"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">The start date is greater than the end date</d:message>
+  <d:message xml:lang="ja">開始日時が終了日時より大きくなっています</d:message>
+  <d:desc xml:lang="en">
+    <p>The start date of the period string must be less than or equal
+    to the end date.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>期間文字列の開始日時は終了日時より大きな値であってはいけません。</p>
   </d:desc>
 </d:item>
 

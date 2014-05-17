@@ -1930,6 +1930,15 @@
          "ja" : "時間帯 \u003Ccode>-00:00\u003C/code> はありません"
       }
    },
+   "datetime:alternative" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>Use of the alternative format in the duration might not be\u000A    interoperable.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>時間長で代替書式を用いるのは相互運用性が高くないかもしれません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "時間長の代替書式が使われています"
+      }
+   },
    "datetime:bad day" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The day component must be greater than 0 and less than or equal\u000A    to the number of days in the month.\u003C/p>\u000A  ",
@@ -2020,6 +2029,24 @@
          "ja" : "年の値が値域外です"
       }
    },
+   "datetime:expanded year" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The expanded representation of the year (sign followed by four\u000A    more more digits) might not be interoperable.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>年の展開表現 (符号の後に4桁以上の数字) は相互運用性が高くないかもしれません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "年が展開表現です"
+      }
+   },
+   "datetime:fraction" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>Use of fractional part in the duration string might not be\u000A    interoperable.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>時間長で小数部分を指定するのは相互運用性が高くないかもしれません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "時間長に小数部分があります"
+      }
+   },
    "datetime:fractional second" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The second component of a vevent duration string cannot contain\u000A    a fractional part.\u003C/p>\u000A  ",
@@ -2030,6 +2057,42 @@
          "ja" : "秒の小数部が含まれています"
       }
    },
+   "datetime:hyphen" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>Use of the character \u003Ccode class=\u0022charname\u0022>HYPHEN\u003C/code> in a\u000A    date/time representation is not well-supported.  For\u000A    interoperability, a \u003Ccode>HYPHEN-MINUS\u003C/code> character\u000A    (\u003Ccode>-\u003C/code>) should be used instead.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>日時での \u003Ccode class=\u0022charname\u0022>HYPHEN\u003C/code>\u000A    文字はあまり対応されていないので、相互運用性のため、\u000A    \u003Ccode>HYPHEN-MINUS\u003C/code> 文字 (\u003Ccode>-\u003C/code>)\u000A    を使った方が良さそうです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "文字 \u003Ccode class=\u0022charname\u0022>HYPHEN\u003C/code>\u000A  が使われています"
+      }
+   },
+   "datetime:lowercase designator" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>Use of lowercase designator in place of uppercase designator\u000A    is not allowed unless uppercase letters are not available.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>小文字の指示子を大文字の指示子の代わりに使って良いのは、\u000A    大文字を使えない環境のみです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "小文字の指示子が日時内にあります"
+      }
+   },
+   "datetime:minus sign" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>Use of the character \u003Ccode class=\u0022charname\u0022>MINUS SIGN\u003C/code> in a\u000A    date/time representation is not well-supported.  For\u000A    interoperability, a \u003Ccode>HYPHEN-MINUS\u003C/code> character\u000A    (\u003Ccode>-\u003C/code>) should be used instead.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>日時での \u003Ccode class=\u0022charname\u0022>MINUS SIGN\u003C/code>\u000A    文字はあまり対応されていないので、相互運用性のため、\u000A    \u003Ccode>HYPHEN-MINUS\u003C/code> 文字 (\u003Ccode>-\u003C/code>)\u000A    を使った方が良さそうです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "文字 \u003Ccode class=\u0022charname\u0022>MINUS SIGN\u003C/code>\u000A  が使われています"
+      }
+   },
+   "datetime:pre-gregorio year" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>A year before introduction of the Gregorian Calendar might not\u000A    be interoperable.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>グレゴリオ暦導入前の年号は相互運用性が高くないかもしれません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "グレゴリオ暦導入前の年です"
+      }
+   },
    "datetime:syntax error" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The value must be a valid global date and time string.\u003C/p>\u000A\u000A    \u003Cp>In HTML, a global date and time string must be in the format\u000A    \u003Ccode>\u003Cvar>YYYY\u003C/var>-\u003Cvar>MM\u003C/var>-\u003Cvar>DD\u003C/var>T\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>\u003Cvar>zone\u003C/var>\u003C/code>.\u003C/p>\u000A  ",
@@ -2038,6 +2101,16 @@
       "message" : {
          "en" : "The value is not a global date and time string",
          "ja" : "この値は大域日時文字列ではありません"
+      }
+   },
+   "decimal sign:period" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>In ISO 8601-based time formats, \u003Ccode>,\u003C/code> is preferred to\u000A    \u003Ccode>.\u003C/code> as a decimal separtor.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>ISO 8601 に基づく時刻の書式では、小数点として \u003Ccode>.\u003C/code>\u000A    よりも \u003Ccode>,\u003C/code> が好ましいとされています。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "A period character is used as a decimal separator",
+         "ja" : "ピリオドが小数点として使われています"
       }
    },
    "deprecated:attr" : {
@@ -5161,6 +5234,16 @@
       "message" : {
          "en" : "The parameter entity is not declared",
          "ja" : "この引数実体は宣言されていません"
+      }
+   },
+   "period:not 1\u003C=2" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The start date of the period string must be less than or equal\u000A    to the end date.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>期間文字列の開始日時は終了日時より大きな値であってはいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The start date is greater than the end date",
+         "ja" : "開始日時が終了日時より大きくなっています"
       }
    },
    "pi in pe in decl" : {
