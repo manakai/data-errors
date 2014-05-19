@@ -1939,6 +1939,16 @@
          "en" : "時間長の代替書式が使われています"
       }
    },
+   "datetime:bad CFWS" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>Tokens should be separated by only one \u003Ccode>U\u002B0020\u003C/code>\u000A    \u003Ccode class=\u0022charname\u0022>SPACE\u003C/code> character.  Use of other space\u000A    characters, multiple space characters, and comments should be\u000A    avoided.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>字句間は \u003Ccode>U\u002B0020\u003C/code>\u000A    \u003Ccode class=\u0022charname\u0022>SPACE\u003C/code> 文字1つだけで区切るべきです。\u000A    他の空白文字や複数の空白文字や注釈は使うべきではありません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "Tokens are not separated by only a space",
+         "ja" : "字句間がスペース1文字のみ以外で区切られています"
+      }
+   },
    "datetime:bad day" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The day component must be greater than 0 and less than or equal\u000A    to the number of days in the month.\u003C/p>\u000A  ",
@@ -1981,8 +1991,8 @@
    },
    "datetime:bad second" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>The second component must be greater than or equal to 0 and\u000A    less than 60.\u003C/p>\u000A    \u003Cp>Leap seconds are not supported.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>秒の値は0以上60未満でなければいけません。\u003C/p>\u000A    \u003Cp>閏秒には対応していません。\u003C/p>\u000A  "
+         "en" : "\u000A    \u003Cp>The second component must be greater than or equal to 0 and\u000A    less than 60.\u003C/p>\u000A    \u003Cp>Leap seconds are not supported by most Web date-time\u000A    formats.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>秒の値は0以上59以下でなければいけません。\u003C/p>\u000A    \u003Cp>ほとんどの Web の日時の書式は閏秒には対応していません。\u003C/p>\u000A  "
       },
       "message" : {
          "en" : "The second is out of range",
@@ -2017,6 +2027,16 @@
       "message" : {
          "en" : "The week is out of range",
          "ja" : "週の値が値域外です"
+      }
+   },
+   "datetime:bad weekday" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The weekday component of the date must be equal to the day of\u000A    the week.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>日付の曜日の部分はその日の曜日でなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The weekday name is wrong",
+         "ja" : "曜日名が正しくありません"
       }
    },
    "datetime:bad year" : {
@@ -2084,6 +2104,16 @@
          "en" : "文字 \u003Ccode class=\u0022charname\u0022>MINUS SIGN\u003C/code>\u000A  が使われています"
       }
    },
+   "datetime:month:bad case" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>For interoperability, month names should be in titlecase.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>相互運用性のために月名の先頭の文字は大文字にし、\u000A    それ以外の文字は小文字にするべきです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The month name is not titlecased",
+         "ja" : "月名の先頭が大文字でそれ以外が小文字になっていません"
+      }
+   },
    "datetime:pre-gregorio year" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>A year before introduction of the Gregorian Calendar might not\u000A    be interoperable.\u003C/p>\u000A  ",
@@ -2101,6 +2131,36 @@
       "message" : {
          "en" : "The value is not a global date and time string",
          "ja" : "この値は大域日時文字列ではありません"
+      }
+   },
+   "datetime:tz:bad case" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>For interoperability, time zone names should be in uppercase.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>相互運用性のために時間帯名は大文字にするべきです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The time zone name is not in uppercase",
+         "ja" : "時間帯名が大文字になっていません"
+      }
+   },
+   "datetime:tzname" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>For interoperability, time zone offset should be specified in\u000A    \u003Ccode>\u002B0000\u003C/code> format.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>相互運用性のために時差は \u003Ccode>\u002B0000\u003C/code> 形式で指定するべきです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The time zone is specified by a name",
+         "ja" : "時間帯が名前で指定されています"
+      }
+   },
+   "datetime:weekday:bad case" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>For interoperability, weekday names should be in titlecase.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>相互運用性のために曜日名の先頭の文字は大文字にし、\u000A    それ以外の文字は小文字にするべきです。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The weekday name is not titlecased",
+         "ja" : "曜日名の先頭が大文字でそれ以外が小文字になっていません"
       }
    },
    "decimal sign:period" : {

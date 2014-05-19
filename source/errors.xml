@@ -11056,11 +11056,12 @@ Regexp::Parser::JavaScript's extension. -->
   <d:desc xml:lang="en">
     <p>The second component must be greater than or equal to 0 and
     less than 60.</p>
-    <p>Leap seconds are not supported.</p>
+    <p>Leap seconds are not supported by most Web date-time
+    formats.</p>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p>秒の値は0以上60未満でなければいけません。</p>
-    <p>閏秒には対応していません。</p>
+    <p>秒の値は0以上59以下でなければいけません。</p>
+    <p>ほとんどの Web の日時の書式は閏秒には対応していません。</p>
   </d:desc>
 </d:item>
 
@@ -11102,6 +11103,19 @@ Regexp::Parser::JavaScript's extension. -->
   </d:desc>
   <d:desc xml:lang="ja">
     <p>週の値は1以上、当該年の週数以下でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:bad weekday"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">The weekday name is wrong</d:message>
+  <d:message xml:lang="ja">曜日名が正しくありません</d:message>
+  <d:desc xml:lang="en">
+    <p>The weekday component of the date must be equal to the day of
+    the week.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>日付の曜日の部分はその日の曜日でなければいけません。</p>
   </d:desc>
 </d:item>
 
@@ -11231,6 +11245,36 @@ Regexp::Parser::JavaScript's extension. -->
   </d:desc>
 </d:item>
 
+<d:item name="datetime:month:bad case"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">The month name is not titlecased</d:message>
+  <d:message xml:lang="ja">月名の先頭が大文字でそれ以外が小文字になっていません</d:message>
+  <d:desc xml:lang="en">
+    <p>For interoperability, month names should be in titlecase.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>相互運用性のために月名の先頭の文字は大文字にし、
+    それ以外の文字は小文字にするべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:bad CFWS"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">Tokens are not separated by only a space</d:message>
+  <d:message xml:lang="ja">字句間がスペース1文字のみ以外で区切られています</d:message>
+  <d:desc xml:lang="en">
+    <p>Tokens should be separated by only one <code>U+0020</code>
+    <code class="charname">SPACE</code> character.  Use of other space
+    characters, multiple space characters, and comments should be
+    avoided.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>字句間は <code>U+0020</code>
+    <code class="charname">SPACE</code> 文字1つだけで区切るべきです。
+    他の空白文字や複数の空白文字や注釈は使うべきではありません。</p>
+  </d:desc>
+</d:item>
+
 <d:item name="datetime:pre-gregorio year"
     modules="Web::DateTime::Parser">
   <d:message xml:lang="en">A year before introduction of the Gregorian
@@ -11261,6 +11305,44 @@ Regexp::Parser::JavaScript's extension. -->
     <p>HTML では大域日時文字列は
     <code><var>YYYY</var>-<var>MM</var>-<var>DD</var>T<var>hh</var>:<var>mm</var>:<var>ss</var><var>zone</var></code>
     という形式でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:tz:bad case"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">The time zone name is not in uppercase</d:message>
+  <d:message xml:lang="ja">時間帯名が大文字になっていません</d:message>
+  <d:desc xml:lang="en">
+    <p>For interoperability, time zone names should be in uppercase.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>相互運用性のために時間帯名は大文字にするべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:tzname"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">The time zone is specified by a name</d:message>
+  <d:message xml:lang="ja">時間帯が名前で指定されています</d:message>
+  <d:desc xml:lang="en">
+    <p>For interoperability, time zone offset should be specified in
+    <code>+0000</code> format.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>相互運用性のために時差は <code>+0000</code> 形式で指定するべきです。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="datetime:weekday:bad case"
+    modules="Web::DateTime::Parser">
+  <d:message xml:lang="en">The weekday name is not titlecased</d:message>
+  <d:message xml:lang="ja">曜日名の先頭が大文字でそれ以外が小文字になっていません</d:message>
+  <d:desc xml:lang="en">
+    <p>For interoperability, weekday names should be in titlecase.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>相互運用性のために曜日名の先頭の文字は大文字にし、
+    それ以外の文字は小文字にするべきです。</p>
   </d:desc>
 </d:item>
 
