@@ -3532,6 +3532,76 @@
          "ja" : "JavaScript 構文解析エラー: \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>"
       }
    },
+   "json:bad array sep" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>In a JSON array, items must be separated by a \u003Ccode>,\u003C/code>\u000A    character.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>JSON 配列内では項目同士は \u003Ccode>,\u003C/code>\u000A    で区切らなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "There is no \u003Ccode>,\u003C/code> between array items",
+         "ja" : "配列の項目の間に \u003Ccode>,\u003C/code> がありません"
+      }
+   },
+   "json:bad object name" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>In a JSON object, only name/value pairs, where name is a JSON\u000A    string, are allowed.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>JSON オブジェクト内には名前と値の組だけしか書けません。\u000A    名前は JSON 文字列でなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "There is no name for an object member",
+         "ja" : "オブジェクトの構成要素の名前がありません"
+      }
+   },
+   "json:bad object nv sep" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>In a JSON object, name and value must be separated by a\u000A    \u003Ccode>:\u003C/code> character.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>JSON オブジェクト内の名前と値は \u003Ccode>:\u003C/code>\u000A    で区切らなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "There is no \u003Ccode>:\u003C/code> between name\u000A  and value",
+         "ja" : "名前と値の間に \u003Ccode>:\u003C/code> がありません"
+      }
+   },
+   "json:bad object sep" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>In a JSON object, name/value pairs must be separated by a\u000A    \u003Ccode>,\u003C/code> character.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>JSON オブジェクト内では名前と値の組同士は \u003Ccode>,\u003C/code>\u000A    で区切らなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "There is no \u003Ccode>,\u003C/code> between name/value\u000A  pairs",
+         "ja" : "名前と値の組同士の間に \u003Ccode>,\u003C/code> がありません"
+      }
+   },
+   "json:bad string" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The JSON string is syntactically invalid.  It must be enclosed\u000A    by \u003Ccode>\u0022\u003C/code> characters.  It cannot contain bare\u000A    newlines.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>この JSON 文字列は構文的に正しくありません。\u000A    文字列は \u003Ccode>\u0022\u003C/code> で囲まなければいけません。\u000A    文字列中に改行をそのまま書くことはできません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The string is broken",
+         "ja" : "この文字列は壊れています"
+      }
+   },
+   "json:bad value" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>There is no JSON value where a JSON value is expected.  JSON\u000A    value is either \u003Ccode>true\u003C/code>, \u003Ccode>false\u003C/code>,\u000A    \u003Ccode>null\u003C/code>, a number, a string, an array, or an object.\u003C/p>\u000A    \u003Cp>Comments are not allowed in JSON.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>JSON 値が必要なところに JSON 値がありません。 JSON\u000A    値は \u003Ccode>true\u003C/code>, \u003Ccode>false\u003C/code>,\u000A    \u003Ccode>null\u003C/code>, 数値、文字列、配列、オブジェクトのいずれかです。\u003C/p>\u000A    \u003Cp>JSON ではコメントは書けません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "There is no JSON value",
+         "ja" : "JSON 値がありません"
+      }
+   },
+   "json:eof expected" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>There is a garbage after the JSON value.\u003C/p>\u000A    \u003Cp>Comments are not allowed in JSON.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>JSON 値の後に何かごみがあります。\u003C/p>\u000A    \u003Cp>JSON ではコメントは書けません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "There is an invalid character after\u000A  the JSON value",
+         "ja" : "JSON 値の後におかしな文字があります"
+      }
+   },
    "lang selector not closed" : {
       "message" : {
          "en" : "Argument list of the \u003Ccode>:lang\u003C/code>\u000A  selector is not closed by a \u003Ccode>)\u003C/code> character."

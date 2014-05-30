@@ -13203,8 +13203,120 @@ Regexp::Parser::JavaScript's extension. -->
 
 </section>
 
+<section id="json-errors">
+<h2>JSON errors</h2>
+
+<d:item name="json:bad array sep"
+    modules="JSON::PS">
+  <d:message xml:lang="en">There is no <code>,</code> between array items</d:message>
+  <d:message xml:lang="ja">配列の項目の間に <code>,</code> がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>In a JSON array, items must be separated by a <code>,</code>
+    character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>JSON 配列内では項目同士は <code>,</code>
+    で区切らなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="json:bad object name"
+    modules="JSON::PS">
+  <d:message xml:lang="en">There is no name for an object member</d:message>
+  <d:message xml:lang="ja">オブジェクトの構成要素の名前がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>In a JSON object, only name/value pairs, where name is a JSON
+    string, are allowed.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>JSON オブジェクト内には名前と値の組だけしか書けません。
+    名前は JSON 文字列でなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="json:bad object nv sep"
+    modules="JSON::PS">
+  <d:message xml:lang="en">There is no <code>:</code> between name
+  and value</d:message>
+  <d:message xml:lang="ja">名前と値の間に <code>:</code> がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>In a JSON object, name and value must be separated by a
+    <code>:</code> character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>JSON オブジェクト内の名前と値は <code>:</code>
+    で区切らなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="json:bad object sep"
+    modules="JSON::PS">
+  <d:message xml:lang="en">There is no <code>,</code> between name/value
+  pairs</d:message>
+  <d:message xml:lang="ja">名前と値の組同士の間に <code>,</code> がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>In a JSON object, name/value pairs must be separated by a
+    <code>,</code> character.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>JSON オブジェクト内では名前と値の組同士は <code>,</code>
+    で区切らなければいけません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="json:bad string"
+    modules="JSON::PS">
+  <d:message xml:lang="en">The string is broken</d:message>
+  <d:message xml:lang="ja">この文字列は壊れています</d:message>
+  <d:desc xml:lang="en">
+    <p>The JSON string is syntactically invalid.  It must be enclosed
+    by <code>"</code> characters.  It cannot contain bare
+    newlines.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>この JSON 文字列は構文的に正しくありません。
+    文字列は <code>"</code> で囲まなければいけません。
+    文字列中に改行をそのまま書くことはできません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="json:bad value"
+    modules="JSON::PS">
+  <d:message xml:lang="en">There is no JSON value</d:message>
+  <d:message xml:lang="ja">JSON 値がありません</d:message>
+  <d:desc xml:lang="en">
+    <p>There is no JSON value where a JSON value is expected.  JSON
+    value is either <code>true</code>, <code>false</code>,
+    <code>null</code>, a number, a string, an array, or an object.</p>
+    <p>Comments are not allowed in JSON.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>JSON 値が必要なところに JSON 値がありません。 JSON
+    値は <code>true</code>, <code>false</code>,
+    <code>null</code>, 数値、文字列、配列、オブジェクトのいずれかです。</p>
+    <p>JSON ではコメントは書けません。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="json:eof expected"
+    modules="JSON::PS">
+  <d:message xml:lang="en">There is an invalid character after
+  the JSON value</d:message>
+  <d:message xml:lang="ja">JSON 値の後におかしな文字があります</d:message>
+  <d:desc xml:lang="en">
+    <p>There is a garbage after the JSON value.</p>
+    <p>Comments are not allowed in JSON.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>JSON 値の後に何かごみがあります。</p>
+    <p>JSON ではコメントは書けません。</p>
+  </d:desc>
+</d:item>
+
+</section>
+
 <section id="rdfxml-errors">
-<h2>RDF/XML Errors</h2>
+<h2>RDF/XML errors</h2>
 
 <d:item name="bad rdf namespace"
     modules="Web::RDF::XML::Parser">
