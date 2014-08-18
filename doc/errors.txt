@@ -75,6 +75,12 @@ following name/value pairs:
     JSON array containing test data for HTML parsers.  Array items are
     JSON objects with following name/value pairs:
 
+      context [string?]
+
+        The local name of the context element, if any.  Note that the
+        namespace is the HTML namespace.  If this value is not
+        specified, there is no context element.
+
       index [number]
 
         The offset in the |input| at which an error with the error
@@ -83,6 +89,18 @@ following name/value pairs:
       input [string]
 
         The input character string to be tested.
+
+      text [string?]
+
+        The value of the |text| field of the error, if any, or |null|,
+        otherwise.
+
+      value [string?]
+
+        The value of the |value| field of the error, if any, or
+        |null|, otherwise.
+
+    Note that the |input| might contain other errors, too.
 
   targets [object?]
 
