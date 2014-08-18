@@ -3,10 +3,20 @@ all: deps all-data
 clean: clean-json-ps
 	rm -fr local/data-web-defs
 
-## ------ Setup ------
-
 WGET = wget
+CURL = curl
 GIT = git
+
+updatenightly: update-submodules dataautoupdate
+update-submodules: local/bin/pmbp.pl
+	$(CURL) -s -S -L https://gist.githubusercontent.com/motemen/667573/raw/git-submodule-track | sh
+	$(GIT) add bin/modules
+	perl local/bin/pmbp.pl --update
+	$(GIT) add config
+dataautoupdate: clean deps all-data
+	$(GIT) add data/*.json
+
+## ------ Setup ------
 
 deps: git-submodules pmbp-install json-ps
 
@@ -26,6 +36,7 @@ pmbp-install: pmbp-upgrade
 ## ------ Build ------
 
 PERL = ./perl
+PROVE = ./prove
 
 all-data: data/errors.json data/xml.json
 
@@ -51,7 +62,12 @@ local/perl-latest/pm/lib/perl5/JSON/PS.pm:
 
 test: test-deps test-main
 
-test-deps: deps
+test-deps: deps local/bin/jq
+
+local/bin/jq:
+	mkdir -p local/bin
+	$(WGET) -O $@ http://stedolan.github.io/jq/download/linux64/jq
+	chmod u+x $@
 
 test-main:
-	# XXX
+	$(PROVE) t/
