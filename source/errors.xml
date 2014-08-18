@@ -928,42 +928,11 @@
   <code>;</code> character.</d:message>
 </d:item>
 
-<d:item name="no space before attr name"
-    modules="Web::HTML::Tokenizer Web::XML::Parser">
-  <d:message xml:lang="en">There is no space before an attribute</d:message>
-  <d:message xml:lang="ja">属性の前に空白がありません</d:message>
-  <d:desc xml:lang="en">
-    <p>There must be one or more white space characters between
-    attributes and before the first attribute.</p>
-
-    <p>Character <code>U+000C</code> cannot be used as a space before
-    an attribute in an HTML document.</p>
-
-    <p>Characters <code>U+0085</code> and <code>U+202B</code> cannot
-    be used as a space before an attribute in an HTML or XML 1.0
-    document.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>属性の間や最初の属性の前には空白文字が1つ以上必要です。</p>
-
-    <p>文字 <code>U+000C</code> を XML 文書の属性の前の空白として使うことはできません。</p>
-
-    <p>文字 <code>U+0085</code> や文字 <code>U+202B</code>
-    を HTML や XML 1.0 の文書の属性の前の空白として使うことはできません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="no space before DOCTYPE name"
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">After the string <code>&lt;!DOCTYPE</code>, there
   must be at least a white space character before the document type
   name.</d:message>
-</d:item>
-
-<d:item name="no space between attributes"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">Attributes must be separeted by at least a
-  white space character.</d:message>
 </d:item>
 
 <d:item name="no SYSTEM literal"
@@ -1022,12 +991,6 @@ p {
     some mobile Web browsers, will display processing instructions
     as string.</p>
   </d:desc>
-</d:item>
-
-<d:item name="string after DOCTYPE name"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">There is a bogus string after the document type
-  name.</d:message>
 </d:item>
 
 <d:item name="string after PUBLIC"
@@ -1648,18 +1611,6 @@ VC:Standalone Document Declaration:entity
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">Non‐white‐space characters are not allowed
   after the <code>frame</code> is closed.</d:message>
-</d:item>
-
-<d:item name="after head"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">The <code><var>{text}</var></code> element cannot be
-  inserted between <code>head</code> and <code>body</code>
-  elements.</d:message>
-  <d:desc xml:lang="en">
-    <p>A start tag appears after the <code>head</code> element is closed
-    but before the <code>body</code> element is opened.
-    The document is non-conforming.</p>
-  </d:desc>
 </d:item>
 
 <d:item name="after html"
