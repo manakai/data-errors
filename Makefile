@@ -36,6 +36,7 @@ pmbp-install: pmbp-upgrade
 ## ------ Build ------
 
 PERL = ./perl
+PROVE = ./prove
 
 all-data: data/errors.json data/xml.json
 
@@ -61,7 +62,12 @@ local/perl-latest/pm/lib/perl5/JSON/PS.pm:
 
 test: test-deps test-main
 
-test-deps: deps
+test-deps: deps local/bin/jq
+
+local/bin/jq:
+	mkdir -p local/bin
+	$(WGET) -O $@ http://stedolan.github.io/jq/download/linux64/jq
+	chmod u+x $@
 
 test-main:
-	# XXX
+	$(PROVE) t/
