@@ -3,10 +3,20 @@ all: deps all-data
 clean: clean-json-ps
 	rm -fr local/data-web-defs
 
-## ------ Setup ------
-
 WGET = wget
+CURL = curl
 GIT = git
+
+updatenightly: update-submodules dataautoupdate
+update-submodules: local/bin/pmbp.pl
+	$(CURL) -s -S -L https://gist.githubusercontent.com/motemen/667573/raw/git-submodule-track | sh
+	$(GIT) add bin/modules
+	perl local/bin/pmbp.pl --update
+	$(GIT) add config
+dataautoupdate: clean deps all-data
+	$(GIT) add data/*.json
+
+## ------ Setup ------
 
 deps: git-submodules pmbp-install json-ps
 
