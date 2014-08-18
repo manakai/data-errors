@@ -1576,24 +1576,24 @@
             "input" : "\u003C!DOCTYPE html !>"
          },
          {
-            "index" : 23,
+            "index" : 21,
             "input" : "\u003C!DOCTYPE html PUBLIC!>"
          },
          {
-            "index" : 20,
-            "input" : "\u003C!DOCTYPE html \u0022a\u0022!>"
+            "index" : 25,
+            "input" : "\u003C!DOCTYPE html public \u0022a\u0022!>"
          },
          {
-            "index" : 23,
+            "index" : 21,
             "input" : "\u003C!DOCTYPE html SYSTEM?>"
          },
          {
-            "index" : 46,
-            "input" : "\u003C!DOCTYPE html system \u0022about:legacy-compat\u0022@p>"
+            "index" : 24,
+            "input" : "\u003C!DOCTYPE html system \u0022\u0022@p>"
          },
          {
-            "index" : 91,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022-//W3C//DTD HTML 4.01//EN\u0022 \u0022http://www.w3.org/TR/html4/strict.dtd\u0022?>"
+            "index" : 67,
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022abc\u0022 \u0022http://www.w3.org/TR/html4/strict.dtd\u0022?>"
          }
       ]
    },
@@ -4950,24 +4950,26 @@
       },
       "parser_error_names" : {
          "after-doctype-public-keyword-003e" : 1,
-         "after-doctype-system-keyword-003e" : 1
+         "after-doctype-system-keyword-003e" : 1,
+         "before-doctype-public-identifier-003e" : 1,
+         "before-doctype-system-identifier-003e" : 1
       },
       "parser_tests" : [
          {
-            "index" : 16,
-            "input" : "\u003C!DOCTYPE PUBLIC>"
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE html PUBLIC>"
          },
          {
-            "index" : 17,
-            "input" : "\u003C!DOCTYPE PUBLIC >"
+            "index" : 22,
+            "input" : "\u003C!DOCTYPE html PUBLIC >"
          },
          {
-            "index" : 16,
-            "input" : "\u003C!DOCTYPE system>"
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE html system>"
          },
          {
-            "index" : 18,
-            "input" : "\u003C!DOCTYPE system  >"
+            "index" : 23,
+            "input" : "\u003C!DOCTYPE html system  >"
          }
       ]
    },
@@ -5313,35 +5315,37 @@
          "Web::HTML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
+         "after-doctype-public-identifier-0022" : 1,
          "after-doctype-public-identifier-0027" : 1,
          "after-doctype-public-keyword-0022" : 1,
+         "after-doctype-public-keyword-0027" : 1,
          "after-doctype-system-keyword-0022" : 1,
          "after-doctype-system-keyword-0027" : 1
       },
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html PUBLIC\u0022-//W3C//DTD HTML 4.01//EN\u0022>"
+            "input" : "\u003C!DOCTYPE html PUBLIC\u0022abc\u0022>"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html SYSTEM\u0022about:legacy-compat\u0022>"
+            "input" : "\u003C!DOCTYPE html SYSTEM\u0022\u0022>"
          },
          {
             "index" : 24,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022\u0022\u0022about:legacy-compat\u0022>"
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022\u0022\u0022\u0022>"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html PUBLIC'-//W3C//DTD HTML 4.01//EN'>"
+            "input" : "\u003C!DOCTYPE html PUBLIC'abc'>"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html SYSTEM'about:legacy-compat'>"
+            "input" : "\u003C!DOCTYPE html SYSTEM''>"
          },
          {
-            "index" : 49,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022-//W3C//DTD HTML 4.01//EN\u0022'http://www.w3.org/TR/html4/strict.dtd'>"
+            "index" : 27,
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022abc\u0022'http'>"
          }
       ]
    },
@@ -5556,7 +5560,7 @@
          },
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML system \u0022about:legacy-compat\u0022>"
+            "input" : "\u003C!DOCTYPE HTML system \u0022\u0022>"
          }
       ]
    },
@@ -6316,8 +6320,8 @@
          },
          {
             "context" : "html",
-            "index" : 7,
-            "input" : "\u003C/body>\u003C/html>",
+            "index" : 22,
+            "input" : "\u003C!DOCTYPE html>\u003C/body>\u003C/html>",
             "value" : "html"
          }
       ],
@@ -6402,9 +6406,14 @@
          "Web::HTML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
-         "after-attribute-name-003c" : 1
+         "after-attribute-name-003c" : 1,
+         "attribute-name-003c" : 1
       },
       "parser_tests" : [
+         {
+            "index" : 22,
+            "input" : "\u003C!DOCTYPE html>\u003Cp foo \u003Cbar>"
+         },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE html>\u003Cp foo\u003Cbar>"
