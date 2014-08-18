@@ -438,35 +438,6 @@
 <section id="html5-tokenize-error">
 <h2>HTML5 Parse Errors in Tokenization Stage</h2>
 
-<d:item name="bad attribute name"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">Attribute name cannot contain characters
-  <code>"</code>, <code>'</code>, and <code>=</code>.</d:message>
-</d:item>
-
-<d:item name="bad attribute value"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">Attribute value must be quoted by <code>"</code>
-  or <code>'</code> if it contains a <code>"</code>, <code>'</code>, or
-  <code>=</code> character.</d:message>
-  <d:desc xml:lang="en">
-    <p>In an unquoted attribute value, a character <code>"</code>
-    (<code>U+0022</code> <code class="charname">QUOTATION MARK</code>),
-    <code>'</code> (<code>U+0026</code> 
-    <code class="charname">APOSTROPHE</code>), or <code>=</code>
-    (<code>U+003D</code> <code class="charname">EQUAL SIGN</code>)
-    is contained.  These characters are not allowed in unquoted attribute
-    values, since they are used to quote attribute values or to separate
-    attribute name and value.</p>
-
-    <p>This error is also raised if one try to use empty attribute
-    value like <code class="html bad example">&lt;foo bar= baz=></code>;
-    in this example, <code class="html bad example">baz=</code> is
-    treated as an invalid attribute value for the attribute
-    <code class="html bad example">bar</code>, not as another attribute.</p>
-  </d:desc>
-</d:item>
-
 <d:item name="bare ero"
     modules="Whatpm::HTML::Parser Whatpm::WebVTT::Parser">
   <d:message xml:lang="en">The <code>&amp;</code> character must
@@ -532,147 +503,6 @@
     文字参照を使ってください。
     </p>
       <pre class="html example"><code>&amp;amp;</code></pre>
-  </d:desc>
-</d:item>
-
-<d:item name="bare etago"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">A <code>&lt;/</code> string is not followed
-  by a tag name.</d:message><!-- </ EOF -->
-  <d:desc xml:lang="en">
-    <p>There is a <code>&lt;</code> (<code>U+003C</code> 
-    <code class="charname">LESS-THAN SIGN</code>) character
-    immediately followed by a <code>/</code> (<code>U+005F</code>
-    <code>SOLIDUS</code>) character, which is not part
-    of any end tag, in the input stream.  The document
-    is non-conforming.</p>
-
-    <p>The <code>&lt;/</code> sequence immediately followed
-    by an <abbr title="End of file pseudo-character">EOF</abbr> is
-    interpreted as a string data of <code>&lt;/</code>.</p>
-
-    <p>The <code>&lt;/</code> sequence as string data must
-    be escaped as:
-    </p>
-    <pre class="html example"><code>&amp;lt;/</code></pre>
-  </d:desc>
-</d:item>
-
-<d:item name="bare stago"
-    modules="Whatpm::HTML::Parser Whatpm::WebVTT::Parser">
-  <d:message xml:lang="en">A <code>&lt;</code> character is not followed
-  by a tag name or a <code>!</code>, <code>/</code>, or
-  <code>?</code> character.</d:message>
-  <d:message xml:lang="en">文字 <code>&lt;</code> の次がタグ名でも
-  <code>!</code>, <code>/</code>,
-  <code>?</code> のいずれでもありません。</d:message>
-  <d:desc xml:lang="en">
-    <p>A <code>&lt;</code> (<code class="char">U+003C</code> <code
-    class="charname">LESS-THAN SIGN</code>) character which is not
-    part of any markup appears in the input stream.</p>
-
-    <p>The <code>&lt;</code> character as a data character must
-    be escaped as:
-    </p>
-    <pre class="html example"><code>&amp;lt;</code></pre>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>文字 <code>&lt;</code> (<code class="char">U+003C</code> <code
-    class="charname">LESS-THAN SIGN</code>) が出現しましたが、
-    正しいマーク付けの一部ではありません。</p>
-
-    <p>文字 <code>&lt;</code> をデータ文字として表したい時は、
-    エスケープしなければなりません。</p>
-    <pre class="html example"><code>&amp;lt;</code></pre>
-  </d:desc>
-</d:item>
-
-<d:item name="bare nero"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">The decimal representation of the code position
-  of a character must be specified after <code>&amp;#</code>.</d:message>
-  <d:desc xml:lang="en">
-    <p>An <code>&amp;</code> (<code>U+0026</code>
-    <code class="charname">AMPERSAND</code>) character immediately
-    followed by a <code>#</code> (<code>U+0023</code>
-    <code>NUMBER SIGN</code>) character which
-    is not part of any reference appears in the input stream.
-    The document is non-conforming.</p>
-
-    <p>The string <code>&amp;#</code> must be the first two characters
-    of a reference:
-      <dl class="switch">
-      <dt>Numeric character reference</dt>
-          <dd><pre class="html example"><code>&amp;#<var>d</var>;</code></pre>
-          where <var>d</var> is the decimal representation of
-          the code point of the character to be referenced.</dd>
-      <dt>Hexadecimal character reference</dt>
-          <dd><pre class="html example"><code>&amp;#x<var>h</var>;</code></pre>
-          where <var>h</var> is the hexadecimal representation
-          of the code point of the character to be referenced.</dd>
-      </dl>
-    </p>
-
-    <p>To represent <code>&amp;#</code> as data characters, use
-    a named entity reference for the <code>&amp;</code> character:
-      <pre class="html example"><code>&amp;amp;#</code></pre>
-    </p>
-  </d:desc>
-</d:item>
-
-<d:item name="bare hcro"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">The hexadecimal representation of the code position
-  of a character must be specified after <code>&amp;#x</code>.</d:message>
-  <d:desc xml:lang="en">
-   <p>The string <code>&amp;#x</code> or <code>&amp;#X</code> which
-   is not part of any reference appears in the input stream.
-    The document is non-conforming.</p>
-
-    <p>The string <code>&amp;#x</code> or <code>&amp;#X</code> must
-    be the first three characters of a hexadecimal reference:
-      <pre class="html example"><code>&amp;#x<var>h</var>;</code></pre>
-    where <var>h</var> is the hexadecimal representation
-    of the code point of the character to be referenced.</p>
-
-    <p>To represent <code>&amp;#x</code> as data characters, use
-    a named entity reference for the <code>&amp;</code> character:
-      <pre class="html example"><code>&amp;amp;#x</code></pre>
-    </p>
-  </d:desc>
-</d:item>
-
-<d:item name="bogus comment"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">String <code>&lt;!</code> is not followed
-  by <code>--</code>.</d:message>
-  <d:desc xml:lang="en">
-    <p>There is a <code>&lt;</code> (<code>U+003C</code> 
-    <code class="charname">LESS-THAN SIGN</code>) character
-    followed by a <code>!</code> (<code>U+0021</code>
-    <code class="charname">EXCLAMATION MARK</code>) character,
-    which is not followed by a <code>--</code> or
-    <code>!DOCTYPE</code>.  The document is non-conforming.</p>
-
-    <dl class="switch">
-    <dt>Comments</dt>
-      <dd>In HTML document, comments must be introduced by
-      <code class="example">&lt;!--</code> (<code>&lt;!</code>
-      <em>immediately</em> followed
-      by <em>two</em> <code>-</code>s) and must be terminated by
-      <code class="example">--></code>.
-      Strings <code>&lt;!</code> not followed
-      by <code>--</code> and <code>&lt;!-</code> not followed by
-      <code>-</code> are not valid open delimiters for comments.</dd>
-    <dt>Marked sections, including <code>CDATA</code> sections</dt>
-      <dd>Marked sections are not allowed in HTML document.</dd>
-    <dt>Markup declarations</dt>
-      <dd>Markup declarations, except for <code>DOCTYPE</code>
-      and comment declarations, are not allowed in HTML document.</dd>
-    <dt>String <code>&lt;!</code></dt>
-      <dd>String <code>&lt;!</code> must be escaped as
-      <code class="example">&amp;lt;!</code>.</dd>
-    </dl>
   </d:desc>
 </d:item>
 
@@ -801,28 +631,6 @@
   </d:message>
 </d:item>
 
-<d:item name="empty end tag"
-    modules="Whatpm::HTML::Parser Whatpm::WebVTT::Parser">
-  <d:message xml:lang="en">Empty end tag (<code>&lt;/></code>) is not
-  allowed.</d:message>
-  <d:message xml:lang="ja">空の終了タグ (<code>&lt;/></code>)
-  は認められていません。</d:message>
-  <d:message xml:lang="en">
-    <p>In HTML, XML, and WebVTT, empty end tag, i.e. end
-    tag with no tag name, is not allowed.</p>
-    <p>To represent an end tag, you have to specify the
-    tag name explicitly.</p>
-    <p>To represent a string with the <code>&lt;</code> character,
-    you have to use the character reference: <code>&amp;lt;</code>.</p>
-  </d:message>
-  <d:message xml:lang="ja">
-    <p>HTML、XML、WebVTT では、タグ名の無い空の終了タグは認められていません。</p>
-    <p>終了タグを記述する時はタグ名も明示しなければなりません。</p>
-    <p>「<code>&lt;</code>」という文字を使いたい時は文字参照
-    「<code>&amp;lt;</code>」を使わなければなりません。</p>
-  </d:message>
-</d:item>
-
 <d:item name="end tag attribute"
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">End tag cannot have attributes.</d:message>
@@ -910,22 +718,10 @@
   </d:desc>
 </d:item>
 
-<d:item name="no DOCTYPE name"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">After the string <code>&lt;!DOCTYPE </code>, the
-  document type name must be specified.</d:message>
-</d:item>
-
 <d:item name="no PUBLIC literal"
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">After the keyword <code>PUBLIC</code>, no
   oublic identifier is specified.</d:message>
-</d:item>
-
-<d:item name="no refc"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">Character reference must be closed by a
-  <code>;</code> character.</d:message>
 </d:item>
 
 <d:item name="no space before DOCTYPE name"
@@ -939,58 +735,6 @@
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">After the keyword <code>SYSTEM</code>, no
   system identifier is specified.</d:message>
-</d:item>
-
-<d:item name="pio"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">Processing instruction 
-  (<code>&lt;?<var>...</var>></code>) is not allowed in HTML
-  document.</d:message>
-  <d:desc xml:lang="en">
-    <p>Processing instructions (<code>&lt;?<var>...</var>?></code>),
-    including XML declaration (<code>&lt;?xml <var>...</var>?></code>)
-    and XML style sheet <abbr title="processing instruction">PI</abbr>
-    (<code>&lt;?xml-stylesheet <var>...</var>?></code>), are not allowed 
-    in the HTML syntax.  The document is non-conforming.</p>
-
-    <dl class="switch">
-    <dt><code>&lt;?xbl?></code> (<abbr>XBL</abbr> Association)</dt>
-      <dd>An <abbr>XBL</abbr> binding cannot be associated by 
-      <abbr title="processing instruction">PI</abbr> in <abbr>HTML</abbr>
-      document.  Use <code>binding</code> property in <abbr>CSS</abbr>
-      style sheet as:
-        <pre class="html example"><code>&lt;style>
-p {
-  binding: url(binding.xbl);
-}
-&lt;/style></code></pre>
-      </dd>
-    <dt><code>&lt;?xml?&gt;</code> (XML declaration)</dt>
-        <dd>XML declaration is unnecessary for HTML documents.</dd>
-    <dt><code>&lt;?xml-stylesheet?></code> (XML style sheet
-    <abbr title="processing instruction">PI</abbr>)</dt>
-        <dd>Use HTML <code>link</code> element with <code>rel</code>
-        attribute set to <code>stylesheet</code> (or,
-        <code>alternate stylesheet</code> for an alternate style 
-        sheet).
-          <pre class="example html"><code>&lt;link rel=stylesheet href="path/to/stylesheet.css"></code></pre>
-        </dd>
-    <dt><code>&lt;?php?&gt;</code> or 
-    <code>&lt;? <var>... <abbr>PHP</abbr> code ...</var> ?&gt;</code> 
-    (<abbr>PHP</abbr> code)</dt>
-        <dd>The conformance checker does <em>not</em> support
-        checking for PHP source documents.</dd>
-    <dt>Other processing instructions</dt>
-        <dd>Processing instructions cannot be inserted in an HTML
-        document.  Use XML document or insert 
-        <code>ProcessingInstruction</code> node by scripting.</dd>
-    </dl>
-
-    <p>Web browsers will parse processing instructions as bogus
-    comments.  Some legacy Web browsers, such as IE:mac and
-    some mobile Web browsers, will display processing instructions
-    as string.</p>
-  </d:desc>
 </d:item>
 
 <d:item name="string after PUBLIC"
@@ -1033,18 +777,6 @@ p {
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">The <code>DOCTYPE</code> is not closed by a
   <code>></code> character.</d:message>
-</d:item>
-
-<d:item name="unclosed PUBLIC literal"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">The public identifier literal is not closed by a
-  quotation mark.</d:message>
-</d:item>
-
-<d:item name="unclosed SYSTEM literal"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">The system identifier literal is not closed by a
-  quotation mark.</d:message>
 </d:item>
 
 <d:item name="unclosed tag"
