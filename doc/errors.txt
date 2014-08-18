@@ -9,13 +9,36 @@ types and their descriptions.
 Descriptions are JSON objects, which contains zero or more of
 following name/value pairs:
 
-  message
+  default_error_level [string?]
+
+    The default error level, which is typically used with the error
+    type, if known.  The value is one of error level values as
+    described in |onerror.txt|.
+
+  desc [object?]
+
+    JSON object whose name/value pairs are language tags and longer
+    descriptions of the error in the language.
+
+    The value is an HTML fragment that can be used where flow content
+    is expected.
+
+  layer [string?]
+
+    The typical processing stage in which the error might be detected.
+    The value is one of following values:
+
+      |character-set|     Character interpretation
+      |tokenization|      Tokenization
+      |tree-construction| Tree construction
+
+  message [object?]
 
     JSON object whose name/value pairs are language tags and text
     messages describing the error in the language.
 
-    The value is an HTML fragment that can be used where flow content
-    is expected.
+    The value is an HTML fragment that can be used where phrasing
+    content is expected.
 
     The value can contain HTML |var| elements whose content is a text
     node with data |{...}| where "..." is one of following variable
@@ -28,21 +51,46 @@ following name/value pairs:
                          |node| of the error.
       @                  The |nodeValue| of the |node| of the error.
 
-  desc
+  modules [object?]
 
-    JSON object whose name/value pairs are language tags and longer
-    descriptions of the error in the language.
+    JSON object whose names are Perl package name (or pseudo Perl
+    package name) and values are boolean true values.  Package names
+    represent that the error type is used by that module.  Package
+    names might not be actual module names; for example, there is no
+    Perl module or package |Web::HTML::Parser::tokenizer| in fact, but
+    it represents the tokenizer feature of the |Web::HTML::Parser|
+    module.
 
-    The value is an HTML fragment that can be used where flow content
-    is expected.
+  parser_error_names [object?]
 
-  targets
+    JSON object whose names are error names used in parser data files
+    (see, e.g.,
+    <https://github.com/manakai/data-web-defs/blob/master/doc/html-syntax.txt>)
+    corresponding to the error type and values are boolean true
+    values.  Note that there can be exactly one error type for a
+    parser error name.
+
+  parser_tests
+
+    JSON array containing test data for HTML parsers.  Array items are
+    JSON objects with following name/value pairs:
+
+      index [number]
+
+        The offset in the |input| at which an error with the error
+        type is expected to be reported.
+
+      input [string]
+
+        The input character string to be tested.
+
+  targets [object?]
 
     If specified, JSON object whose name/value pairs are target names
     and boolean true values.  They represent kinds of targets of the
     error.  The available target name is:
 
-      attr   The error is about the attribute (not only attribute value).
+      |attr|   The error is about the attribute (not only attribute value).
 
 Language tags are BCP 47 language tags, normalized in lowercase.
 

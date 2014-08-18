@@ -1,6 +1,7 @@
-all: all-data
+all: deps all-data
 
 clean: clean-json-ps
+	rm -fr local/data-web-defs
 
 ## ------ Setup ------
 
@@ -28,7 +29,12 @@ PERL = ./perl
 
 all-data: data/errors.json data/xml.json
 
-data/errors.json: source/errors.xml bin/generate.pl
+local/data-web-defs/parser-errors.json:
+	mkdir -p local/data-web-defs
+	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/data-web-defs/master/intermediate/errors/parser-errors.json
+
+data/errors.json: source/errors.xml bin/generate.pl \
+    local/data-web-defs/parser-errors.json
 	$(PERL) bin/generate.pl
 
 data/xml.json: source/xml-constraints.json source/xmlns-constraints.json bin/xml.pl

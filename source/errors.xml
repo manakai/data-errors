@@ -322,20 +322,6 @@
 <section id="character-set-layer">
 <h2>Characters</h2>
 
-<d:item name="NULL"
-    modules="Web::HTML::Tokenizer Web::HTML::Parser">
-  <d:message xml:lang="en">There is a <code class="charname">NULL</code> character</d:message>
-  <d:message xml:lang="ja"><code class="charname">NULL</code> 文字があります</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>U+0000</code> <code class="charname">NULL</code>
-    character must not be used in a document.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>U+0000</code> <code class="charname">NULL</code> 
-    文字を使ってはいけません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="control char"
     modules="Whatpm::Charset::UnicodeChecker">
   <!-- HTML5 Parse Error -->
@@ -2164,25 +2150,6 @@ VC:Standalone Document Declaration:entity
   </d:desc>
 </d:item>
 
-<d:item name="no DOCTYPE"
-    class="parse-error"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">This document does not start with a
-  <code>DOCTYPE</code>.</d:message>
-  <d:desc xml:lang="en">
-    <p>The document does not start with a <code>DOCTYPE</code>.
-    The document is non-conforming.</p>
-
-    <p>An HTML document must start by a <code>DOCTYPE</code>:
-      <pre class="html example"><code>&lt;!DOCTYPE HTML></code></pre>
-    </p>
-
-    <p>Only white space characters and comments are allowed
-    before the <code>DOCTYPE</code>.  XML declaration is <em>not</em>
-    allowed in HTML document.</p>
-  </d:desc>
-</d:item>
-
 <d:item name="no end tag at EOF"
     modules="Web::HTML::Parser">
   <d:message xml:lang="en">The tag <code>&lt;/<var>{text}</var>></code>
@@ -2352,23 +2319,6 @@ VC:Standalone Document Declaration:entity
   </d:desc>
 </d:item>
 
-<d:item name="obs DOCTYPE"
-    modules="Web::HTML::Parser">
-  <d:message xml:lang="en">The DOCTYPE has public and/or system
-  identifiers</d:message>
-  <d:message xml:lang="ja">DOCTYPE に公開識別子やシステム識別子があります</d:message>
-  <d:desc xml:lang="en">
-    <p>The simplest DOCTYPE syntax <code>&lt;!DOCTYPE html></code>
-    should be used.  Use of <code>PUBLIC</code> or <code>SYSTEM</code>
-    identifiers, which was encouraged in 90s, is discouraged.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>DOCTYPE は <code>&lt;!DOCTYPE html></code> とだけあれば十分です。
-    90年代には <code>PUBLIC</code> や <code>SYSTEM</code>
-    を書くのが流行りましたが、今は不要です。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="start tag not allowed"
     class="parse-error"
     modules="Whatpm::HTML::Parser Whatpm::WebVTT::Parser
@@ -2404,39 +2354,6 @@ VC:Standalone Document Declaration:entity
       <dd>開始タグ <code>&lt;rt></code> は
       <code>ruby</code> 要素の中でだけ使えます。</dd>
     </dl>
-  </d:desc>
-</d:item>
-
-<d:item name="stray end tag"
-    modules="Web::HTML::Parser Web::XML::Parser">
-  <d:message xml:lang="en">The tag <code>&lt;/<var>{value}</var>></code>
-  has no corresponding start tag</d:message>
-  <d:message xml:lang="ja">終了タグ <code>&lt;/<var>{value}</var>></code>
-  に対応する開始タグがありません</d:message>
-  <d:desc xml:lang="en">
-    <p>The end tag has no corresponding start tag.  There must be a
-    start tag with the same tag name before the end tag.  The end tag
-    is ignored.</p>
-
-    <p>Note that void elements have no end tag, that is, following
-    elements cannot have end tags: <code>area</code>,
-    <code>base</code>, <code>br</code>, <code>col</code>,
-    <code>embed</code>, <code>hr</code>, <code>img</code>,
-    <code>input</code>, <code>keygen</code>, <code>link</code>,
-    <code>menuitem</code>, <code>meta</code>, <code>param</code>,
-    <code>source</code>, <code>track</code>, and <code>wbr</code>.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この終了タグには対応する開始タグがありません。終了タグより前に同じタグ名の開始タグが必要です。
-    終了タグは無視されます。</p>
-
-    <p>なお void 要素は終了タグを持ちませんから、次の要素では終了タグを使えません:
-    <code>area</code>,
-    <code>base</code>, <code>br</code>, <code>col</code>,
-    <code>embed</code>, <code>hr</code>, <code>img</code>,
-    <code>input</code>, <code>keygen</code>, <code>link</code>,
-    <code>menuitem</code>, <code>meta</code>, <code>param</code>,
-    <code>source</code>, <code>track</code>, <code>wbr</code>。</p>
   </d:desc>
 </d:item>
 
