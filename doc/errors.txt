@@ -90,6 +90,11 @@ following name/value pairs:
 
         The input character string to be tested.
 
+      noscript [boolean]
+
+        Whether the scripting flag of the parser used to parse the
+        |input| is NOT set.
+
       text [string?]
 
         The value of the |text| field of the error, if any, or |null|,
