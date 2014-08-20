@@ -288,33 +288,44 @@
 </d:item>
 
 <d:item name="charset label detected"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">While parsing the document as
-  <code><var>{text}</var></code>, a character encoding declaration specifying
-  a different character encoding is found.  The document
-  is reparsed.</d:message>
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">There is a character encoding declaration
+  of <code><var>{value}</var></code> while parsing the document as
+  encoded in <code><var>{text}</var></code></d:message.
+  <d:message xml:lang="en">文書を <code><var>{text}</var></code>
+  で符号化されているとして処理していたところ、
+  <code><var>{value}</var></code> の文字符号化宣言が見つかりました</d:message>
   <d:desc xml:lang="en">
-    <p>While parsing a document in a character encoding,
-    a character encoding declaration which declares the character
-    encoding of the document as another character encoding is found.
-    The occurence of this warning itself does not make the document
-    non‐conforming.  However, the failure of the first attempt to
-    to detect the character encoding might be a result of non‐conformance 
-    of the document.</p>
+    <p>While parsing a document using a character encoding, the parser
+    detects a character encoding declaration which declares another
+    character encoding.  To interpret the document as intended, the
+    parser reprocesses the document again.</p>
 
-    <p>The document will be reparsed from the beginning.  Some error
-    or warning might be reported again.</p>
+    <p>This is not itself an error.  However, it implies that there is
+    something wrong with the character encoding of the document.</p>
 
-    <p>These are suggestions to avoid this warning:</p>
-    <ul>
-    <li>Specify <code>charset</code> parameter in the <code>Content-Type</code>
-    field in the <abbr>HTTP</abbr> header, as:
-    <pre class="HTTP example"><code>Content-Type: text/html; charset="<var>charset-name</var>"</code></pre></li>
-    <li>Put the character encoding declaration
-    (<code class="html example">&lt;meta charset="<var>charset-name</var>"></code>)
-    just after <code class="html example">&lt;head></code> start tag.</li>
-    <li>Use <code>UTF-8</code>.</li>
-    </ul>
+    <p>You should always <strong>use the UTF-8 encoding</strong>.</p>
+
+    <p>If this message is reported even when the document is encoded
+    in UTF-8, add the following HTML fragment in the <code>head</code>
+    element of the document:</p>
+
+    <pre class="code"><code>&lt;meta charset=utf-8></code></pre>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>文書をある文字符号化で構文解析している途中で、
+    別の文字符号化を指定した文字符号化宣言が見つかりました。
+    文書を想定通りに解釈するためにもう一度最初から処理しなおします。</p>
+
+    <p>これ自体はエラーではありませんが、
+    文書の文字符号化が何かおかしいかもしれません。</p>
+
+    <p>原則として常に <strong>UTF-8 で符号化する</strong>のが基本です。</p>
+
+    <p>UTF-8 で符号化していてもこのメッセージが表示される場合には、
+    文書の <code>head</code> 要素内に次のタグを追加してください。</p>
+
+    <pre class="code"><code>&lt;meta charset=utf-8></code></pre>
   </d:desc>
 </d:item>
 </section>
@@ -323,24 +334,62 @@
 <h2>Characters</h2>
 
 <d:item name="control char"
-    modules="Whatpm::Charset::UnicodeChecker">
-  <!-- HTML5 Parse Error -->
-  <d:message xml:lang="en">Code point <code><var>{text}</var></code> is
-  not allowed.</d:message>
+    modules="Whatpm::Charset::UnicodeChecker Web::HTML::Parser">
+  <d:message xml:lang="en">There is a control character
+  <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">制御文字
+  <code><var>{text}</var></code> があります</d:message>
+  <d:desc xml:lang="en">
+    <p>There is a control character.</p>
+    <p>Control characters other than tabs and newlines are not allowed
+    in HTML<!-- parse error -->, CSS, and XML.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>制御文字があります。</p>
+    <p>タブと改行以外の制御文字は、 HTML、CSS、XML
+    では使えません。</p>
+  </d:desc>
 </d:item>
 
 <d:item name="nonchar"
-    modules="Whatpm::Charset::UnicodeChecker">
-  <d:message xml:lang="en">Noncharacter <code><var>{text}</var></code>
-  is found in the input stream.</d:message>
+    modules="Whatpm::Charset::UnicodeChecker Web::HTML::Parser">
+  <d:message xml:lang="en">There is a noncharacter code point
+  <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">非文字符号位置
+  <code><var>{text}</var></code> があります</d:message>
   <d:desc xml:lang="en">
-    <p>Noncharacter code points are used in the input stream.</p>
+    <p>There is a noncharacter code point.</p>
 
     <p>Noncharacter code points are reserved for internal processings.
-    Their use for information interchanges are forbidden.</p>
+    They are not appropriate for information interchange.  They are
+    not allowed in HTML.  They are not encouraged in XML.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>非文字符号位置があります。</p>
+    <p>非文字符号位置は内部処理用に予約されています。
+    情報交換には不適切です。 HTML では認められていません。
+    XML では非推奨とされています。</p>
+  </d:desc>
+</d:item>
 
-    <p>In addition, they are not allowed in HTML document.</p>
-    <!-- "permanently undefined Unicode characters" in HTML5. -->
+<d:item name="char:surrogate"
+    modules="Web::HTML::Parser">
+  <d:message xml:lang="en">There is a surrogate code point
+  <code><var>{text}</var></code></d:message>
+  <d:message xml:lang="ja">サロゲート符号位置
+  <code><var>{text}</var></code> があります</d:message>
+  <d:desc xml:lang="en">
+    <p>There is a surrogate code point.</p>
+
+    <p>Surrogate code points are reserved for use in UTF-16 encodings.
+    They cannot be used as characters.  They are forbidden in HTML and
+    XML.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>サロゲート符号位置があります。</p>
+    <p>サロゲート符号位置は UTF-16 符号化で使うために予約されています。
+    文字として使うことはできません。 HTML と XML
+    では禁止されています。</p>
   </d:desc>
 </d:item>
 
@@ -577,38 +626,6 @@
   </d:desc>
 </d:item>
 
-<d:item name="duplicate attribute"
-    modules="Web::HTML::Tokenizer Temma::Parser">
-  <d:message xml:lang="en">There are multiple attributes with name
-  <code><var>{text}</var></code></d:message>
-  <d:message xml:lang="ja">属性 <code><var>{text}</var></code>
-  が複数あります</d:message>
-  <d:desc xml:lang="en">
-    <p>There are more than one attributes with the same name in a tag.</p>
-
-    <dl class="switch">
-
-    <dt>HTML <code>img</code> element, the <code>motion</code>
-    attribute</dt>
-
-    <dd>This attribute is obsolete.  Use animation GIF instead.</dd>
-
-    </dl>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>同じ名前の属性を複数個同じタグに指定することはできません。</p>
-
-    <dl class="switch">
-
-    <dt>HTML <code>img</code> 要素 <code>motion</code> 属性</dt>
-
-    <dd>この属性は廃止されました。代わりにアニメーション GIF
-    を使ってください。</dd>
-
-    </dl>
-  </d:desc>
-</d:item>
-
 <d:item name="empty start tag"
     modules="Whatpm::HTML::Parser Whatpm::WebVTT::Parser">
   <d:message xml:lang="en">Empty start tag (<code>&lt;></code>) is not
@@ -629,12 +646,6 @@
     <p>「<code>&lt;</code>」という文字を使いたい時は文字参照
     「<code>&amp;lt;</code>」を使わなければなりません。</p>
   </d:message>
-</d:item>
-
-<d:item name="end tag attribute"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">End tag cannot have attributes.</d:message>
-  <d:message xml:lang="ja">終了タグに属性が指定されています。</d:message>
 </d:item>
 
 <d:item name="empty unquoted attribute value"
@@ -662,62 +673,6 @@
   </d:desc>
 </d:item>
 
-<d:item name="invalid character reference"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">Character reference to
-  <code><var>{text}</var></code> is not allowed.</d:message>
-  <!-- Control characters, CR character, DEL character, C1 characters,
-       noncharacter code points, surrogate code points, non-Unicode
-       characters -->
-</d:item>
-
-<d:item name="nestc"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">Polytheistic slash (<code>/></code>) cannot be
-  used for this element.</d:message>
-  <d:desc xml:lang="en">
-    <p>Polytheistic slash (<code>/></code>) must not be used
-    for the element.  The document is non-conforming.</p>
-
-    <p>The polytheistic slash can only be
-    used for <code>base</code>, <code>link</code>, <code>meta</code>,
-    <code>hr</code>, <code>br</code>, <code>img</code>, 
-    <code>embed</code>, <code>param</code>, <code>area</code>,
-    <code>col</code>, and <code>input</code> elements.</p>
-
-    <dl class="switch">
-    <dt><code>&lt;script/></code></dt>
-        <dd><p>The polytheistic slash cannot be used for <code>script</code>
-        element.  Even for an empty <code>script</code> element,
-        there must be an explicit end tag
-        <code class="html example">&lt;/script></code>.</p>
-
-        <p><strong>NOTE</strong>: Though some user agents interpret
-        polytheistic slash for <code>script</code> element as the 
-        closing of the element, such usage is not allowed under
-        the current standard.</p></dd>
-    <dt><code>&lt;basefont/></code>, <code>&lt;bgsound/></code>,
-    <code>&lt;frame/></code>, <code>&lt;keygen/></code>,
-    <code>&lt;spacer/></code>, <code>&lt;wbr/></code></dt>
-        <dd>These elements are themselves non-conforming.</dd>
-    <!-- isindex, image -->
-    <dt><code>&lt;command/></code>, <code>&lt;event-source/></code>,
-    <code>&lt;nest/></code>, or <code>&lt;source/></code></dt>
-        <dd>Future revision of HTML5 parsing algorithm is expected
-        to allow polytheistic slash for these elements.</dd>
-    <dt><code>&lt;a/></code>, <code>&lt;p/></code></dt>
-        <dd>These elements are not always empty and therefore
-        polytheistic slash is not allowed.  Use explicit end tag
-        to represent empty element as:
-          <pre class="example html"><code>&lt;p>&lt;/p></code></pre>
-        </dd>
-    </dl>
-
-    <p>Note that, unlike in XML, the polytheistic slash has
-    no effect in HTML.</p>
-  </d:desc>
-</d:item>
-
 <d:item name="no PUBLIC literal"
     modules="Whatpm::HTML::Parser">
   <d:message xml:lang="en">After the keyword <code>PUBLIC</code>, no
@@ -729,36 +684,6 @@
   <d:message xml:lang="en">After the string <code>&lt;!DOCTYPE</code>, there
   must be at least a white space character before the document type
   name.</d:message>
-</d:item>
-
-<d:item name="no SYSTEM literal"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">After the keyword <code>SYSTEM</code>, no
-  system identifier is specified.</d:message>
-</d:item>
-
-<d:item name="string after PUBLIC"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">There is a bogus string after the keyword
-  <code>PUBLIC</code>.</d:message>
-</d:item>
-
-<d:item name="string after PUBLIC literal"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">There is a bogus string after the public
-  identifier.</d:message>
-</d:item>
-
-<d:item name="string after SYSTEM"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">There is a bogus string after the keyword
-  <code>SYSTEM</code>.</d:message>
-</d:item>
-
-<d:item name="string after SYSTEM literal"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">There is a bogus string after the system
-  identifier.</d:message>
 </d:item>
 
 <d:item name="unclosed attribute value"
@@ -936,65 +861,6 @@
   <d:desc xml:lang="ja">
     <p>文字 <code>%</code> の後には参照する引数実体の名前と文字
     <code>;</code> が必要です。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="entity not declared"
-    modules="Whatpm::WebVTT::Parser">
-  <d:message xml:lang="en">Entity <code><var>{value}</var></code>
-  is not declared.</d:message>
-  <d:message xml:lang="ja">実体 <code><var>{value}</var></code>
-  は宣言されていません。</d:message>
-  <d:desc xml:lang="en">
-    <p>The referenced entity is not declared.</p>
-
-    <dl class="swtich">
-      <dt>XML documents</dt>
-
-      <dd>In XML documents, most of entities must be declared in the
-      document type definition of the document.  Lack of entity
-      declaration is validity error, or sometimes well-formedness
-      error, depending on the standaloness of the document.</dd>
-
-      <dd>In XML documents, although entities <code>amp</code>,
-      <code>lt</code>, <code>gt</code>, <code>quot</code>, and
-      <code>apos</code> are predefined, therefore they can be used
-      even when they are not explicitly declared, they have to be
-      declared for interoperability, according to the XML
-      specification.</dd>
-
-      <dt>WebVTT documents</dt>
-
-      <dd>In WebVTT documents. only the following character 
-      references are allowed: <code>&amp;amp;</code>,
-      <code>&amp;lt;</code>, <code>&amp;gt;</code>,
-      <code>&amp;lrm;</code>, <code>&amp;rlm;</code>,
-      and <code>&amp;nbsp;</code>.</dd>
-    </dl>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>参照されている実体は宣言されていません。</p>
-
-    <dl class="swtich">
-      <dt>XML 文書</dt>
-
-      <dd>XML 文書では、ほとんどの実体は文書の文書型定義で制限されていなければなりません。
-      実体宣言が無いのは妥当性制約違反ですし、
-      文書の単独性如何によっては整形式制約違反でもあります。</dd>
-
-      <dd>XML 文書では、実体 <code>amp</code>,
-      <code>lt</code>, <code>gt</code>, <code>quot</code>, 
-      <code>apos</code> は定義済みであり、明示的に宣言する必要はないのですが、
-      XML 仕様によれば相互運用性のために敢えて宣言する必要があります。</dd>
-
-      <dt>WebVTT 文書</dt>
-
-      <dd>WebVTT 文書では、文字参照として使えるのは
-      <code>&amp;amp;</code>,
-      <code>&amp;lt;</code>, <code>&amp;gt;</code>,
-      <code>&amp;lrm;</code>, <code>&amp;rlm;</code>,
-      <code>&amp;nbsp;</code> だけです。</dd>
-    </dl>
   </d:desc>
 </d:item>
 
@@ -1421,22 +1287,6 @@ VC:Standalone Document Declaration:entity
   file.</d:message>
 </d:item>
 
-<d:item name="in html:#DOCTYPE"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">A <code>DOCTYPE</code> appears after any
-  element or data character has been seen.</d:message>
-  <!-- <!DOCTYPE HTML><!DOCTYPE HTML> -->
-  <!-- <html><!DOCTYPE HTML> -->
-  <d:desc xml:lang="en">
-    <p>A <code>DOCTYPE</code> appears after any element or data character
-    has been seen.  The document is non-conforming.</p>
-    
-    <p>The <code>DOCTYPE</code> must be placed before any
-    tag, reference, or data character.  Only white space characters
-    and comments can be inserted before the <code>DOCTYPE</code>.</p>
-  </d:desc>
-</d:item>
-
 <d:item name="not closed"
     class="parse-error"
     modules="Whatpm::HTML::Parser Whatpm::WebVTT::Parser
@@ -1517,25 +1367,6 @@ VC:Standalone Document Declaration:entity
     <p>タグが正しく入れ子になっていない、
     <code class="bad example">&lt;a>&lt;b>&lt;/a>&lt;/b></code>
     のようなケースでもこのエラーになります。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="not HTML5"
-    class="parse-error"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">This document is written in an old version of 
-  HTML.</d:message>
-  <d:desc xml:lang="en">
-    <p>The document contains a <code>DOCTYPE</code> declaration
-    that is different from HTML5 <code>DOCTYPE</code> (i.e. 
-    <code class="example html">&lt;!DOCTYPE HTML&gt;</code>).
-    The document is non‐conforming.</p>
-
-    <p>The document might or might not be conformant to
-    some version of HTML.  However, conformance to any HTML
-    specification other than HTML5 provides for no practical
-    convenience, since Web borwsers will parse any
-    HTML document (roughly) as defined in HTML5.</p>
   </d:desc>
 </d:item>
 
@@ -1626,29 +1457,6 @@ VC:Standalone Document Declaration:entity
       <dd>これらの要素は常に内容が空であるため、
       終了タグが認められていません。終了タグを削除してください。</dd>
     </dl>
-  </d:desc>
-</d:item>
-
-<d:item name="XSLT-compat" 
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">The <code>DOCTYPE</code> legacy string is
-  used.</d:message>
-  <d:message xml:lang="ja"><code>DOCTYPE</code>
-  遺物文字列が使われています。</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>DOCTYPE</code> with the <code>DOCTYPE</code> legacy
-    string, i.e.
-    <code class="html bad example">&lt;!DOCTYPE HTML PUBLIC "XSLT-compat"></code>
-    is used.</p>
-
-    <p>The <code>DOCTYPE</code> legacy string should not be used for documents
-    <em>not</em> generated from XSLT transformation process.  It is allowed
-    only to enable to use XSLT style sheets with the HTML output mode, which
-    does not support generation of the <code>DOCTYPE</code> with no
-    <code>PUBLIC</code>
-    identifier.  For other purposes, the <code>DOCTYPE</code> legacy
-    string, i.e. <code class="html bad example">PUBLIC "XSLT-compat"</code>,
-    is useless and should not be used.</p>
   </d:desc>
 </d:item>
 
@@ -4887,20 +4695,6 @@ VC:Standalone Document Declaration:entity
   </d:desc>
   <d:desc xml:lang="ja">
     <p>属性値は1文字 (長さ1の文字列) でなければいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="charref in charset"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The character encoding declaration contains
-  a character reference</d:message>
-  <d:message xml:lang="ja">文字符号化宣言に文字参照が使われています</d:message>
-  <d:desc xml:lang="en">
-    <p>The character encoding declaration cannot contain any HTML
-    character reference.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>文字符号化宣言は HTML の文字参照を含んではいけません。</p>
   </d:desc>
 </d:item>
 

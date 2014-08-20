@@ -31,6 +31,7 @@ following name/value pairs:
       |character-set|     Character interpretation
       |tokenization|      Tokenization
       |tree-construction| Tree construction
+      |namespaces|        Namespace processing
 
   message [object?]
 
@@ -89,6 +90,12 @@ following name/value pairs:
       input [string]
 
         The input character string to be tested.
+
+      level [string?]
+
+        The error level of the error.  If not specified, the default
+        error level (|default_error_level|) of the error type is
+        expected.
 
       noscript [boolean]
 

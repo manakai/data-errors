@@ -70,6 +70,84 @@
          "ja" : "この要素は空ではありません"
       }
    },
+   "AAA:formatting element not current" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There are some misnested elements; an element opened before another\u000Aelement is closed before the other element.  The end tag closes the\u000Afirst element, but it should have been appeared after the other\u000Aelement's end tag.\u003C/p>",
+         "ja" : "\u003Cp>入れ子関係がおかしな要素があるようです。\u000Aある要素が別の要素より先に開かれましたが、\u000Aその別の要素より先に最初の要素が閉じられています。\u000Aこの終了タグはその最初の要素のものですが、\u000A後の要素の終了タグより後に置かなければいけません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "The end tag closes a misnested element",
+         "ja" : "この終了タグは入れ子関係がおかしくなった要素を閉じています"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 23,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cb>\u003Cdiv>\u003C/b>",
+            "value" : "b"
+         }
+      ],
+      "value" : [
+         "token",
+         "tag name"
+      ]
+   },
+   "AAA:formatting element not in scope" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be an explicit end tag for the elements, except for a\u000Afew HTML elements.  The end tag is ignored as there is some element\u000Adescendant that cannot be closed by the end tag.\u003C/p>",
+         "ja" : "\u003Cp>一部の HTML 要素を除き、要素の終了タグは明記しないといけません。\u000Aこの終了タグでは閉じられない子孫要素があるため、無視されます。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "The end tag cannot close the element as its descendant is not closed",
+         "ja" : "子孫が閉じられていないので、この終了タグは要素を閉じられません"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 26,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cb>\u003Ctable>b\u003C/b>a",
+            "value" : "b"
+         }
+      ],
+      "value" : [
+         "token",
+         "tag name"
+      ]
+   },
+   "AAA:in afe but not in open elements" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There are some misnested elements; an element opened before another\u000Aelement is closed before the other element.  The end tag closes the\u000Aother element, but it should have been appeared before the first\u000Aelement's end tag.\u003C/p>",
+         "ja" : "\u003Cp>入れ子関係がおかしな要素があるようです。\u000Aある要素が別の要素より先に開かれましたが、\u000Aその別の要素より先に最初の要素が閉じられています。\u000Aこの終了タグはその別の要素のものですが、最初の要素の終了タグより前に置かなければいけません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "The end tag closes a misnested element",
+         "ja" : "この終了タグは入れ子関係がおかしくなった要素を閉じています"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 31,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cspan>\u003Cb>\u003C/span>\u003C/b>",
+            "value" : "b"
+         }
+      ],
+      "value" : [
+         "token",
+         "tag name"
+      ]
+   },
    "CSS cursor hand" : {
       "message" : {
          "en" : "Value \u003Ccode>hand\u003C/code> is not valid as\u000A  \u003Ccode>&lt;'cursor'&gt;\u003C/code>."
@@ -567,15 +645,6 @@
       "message" : {
          "en" : "The value is not an XML version",
          "ja" : "この値は XML の版ではありません"
-      }
-   },
-   "XSLT-compat" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The \u003Ccode>DOCTYPE\u003C/code> with the \u003Ccode>DOCTYPE\u003C/code> legacy\u000A    string, i.e.\u000A    \u003Ccode class=\u0022html bad example\u0022>&lt;!DOCTYPE HTML PUBLIC \u0022XSLT-compat\u0022&gt;\u003C/code>\u000A    is used.\u003C/p>\u000A\u000A    \u003Cp>The \u003Ccode>DOCTYPE\u003C/code> legacy string should not be used for documents\u000A    \u003Cem>not\u003C/em> generated from XSLT transformation process.  It is allowed\u000A    only to enable to use XSLT style sheets with the HTML output mode, which\u000A    does not support generation of the \u003Ccode>DOCTYPE\u003C/code> with no\u000A    \u003Ccode>PUBLIC\u003C/code>\u000A    identifier.  For other purposes, the \u003Ccode>DOCTYPE\u003C/code> legacy\u000A    string, i.e. \u003Ccode class=\u0022html bad example\u0022>PUBLIC \u0022XSLT-compat\u0022\u003C/code>,\u000A    is useless and should not be used.\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "The \u003Ccode>DOCTYPE\u003C/code> legacy string is\u000A  used.",
-         "ja" : "\u003Ccode>DOCTYPE\u003C/code>\u000A  遺物文字列が使われています。"
       }
    },
    "_charset_ value" : {
@@ -1439,6 +1508,33 @@
          "attr" : 1
       }
    },
+   "bad DOCTYPE name" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The name in the DOCTYPE must be equal to the qualified name of the\u000Aroot element.  In HTML document, it must be \u003Ccode>html\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>DOCTYPE の名前は根要素の修飾名と同じでなければいけません。\u000AHTML 文書では \u003Ccode>html\u003C/code> でなければいけません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "The DOCTYPE name is not the root element name",
+         "ja" : "DOCTYPE の名前が根要素の名前と違います"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 0,
+            "input" : "\u003C!DOCTYPE foo>",
+            "value" : "foo"
+         },
+         {
+            "index" : 0,
+            "input" : "\u003C!DOCTYPE html4>",
+            "value" : "html4"
+         }
+      ]
+   },
    "bad attribute name" : {
       "default_level" : "m",
       "desc" : {
@@ -1884,6 +1980,16 @@
          "en" : "Cell slot (\u003Cvar>{text}\u003C/var>) is filled by\u000A  multiple cells."
       }
    },
+   "char:surrogate" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>There is a surrogate code point.\u003C/p>\u000A\u000A    \u003Cp>Surrogate code points are reserved for use in UTF-16 encodings.\u000A    They cannot be used as characters.  They are forbidden in HTML and\u000A    XML.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>サロゲート符号位置があります。\u003C/p>\u000A    \u003Cp>サロゲート符号位置は UTF-16 符号化で使うために予約されています。\u000A    文字として使うことはできません。 HTML と XML\u000A    では禁止されています。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "There is a surrogate code point\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>",
+         "ja" : "サロゲート符号位置\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> があります"
+      }
+   },
    "char:syntax error" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The attribute value must be a character, i.e. a string whose\u000A    length is one.\u003C/p>\u000A  ",
@@ -1971,14 +2077,41 @@
       }
    },
    "charref in charset" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>The character encoding declaration cannot contain any HTML\u000A    character reference.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>文字符号化宣言は HTML の文字参照を含んではいけません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>The character encoding declaration cannot contain any HTML\u000A    character reference.\u003C/p>",
+         "ja" : "\u003Cp>文字符号化宣言は HTML の文字参照を含んではいけません。\u003C/p>"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "The character encoding declaration contains\u000A  a character reference",
+         "en" : "The character encoding declaration contains a character reference",
          "ja" : "文字符号化宣言に文字参照が使われています"
-      }
+      },
+      "modules" : {
+         "Web::HTML::Parser" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf-&#x38;>"
+         },
+         {
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&#46;8>"
+         },
+         {
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&amp;8>"
+         },
+         {
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&amp>"
+         },
+         {
+            "index" : 45,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta http-equiv=content-type content=\u0022text/html;&#x20;charset=utf-8\u0022>"
+         }
+      ]
    },
    "charref=" : {
       "desc" : {
@@ -1992,10 +2125,11 @@
    },
    "charset label detected" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>While parsing a document in a character encoding,\u000A    a character encoding declaration which declares the character\u000A    encoding of the document as another character encoding is found.\u000A    The occurence of this warning itself does not make the document\u000A    non‐conforming.  However, the failure of the first attempt to\u000A    to detect the character encoding might be a result of non‐conformance \u000A    of the document.\u003C/p>\u000A\u000A    \u003Cp>The document will be reparsed from the beginning.  Some error\u000A    or warning might be reported again.\u003C/p>\u000A\u000A    \u003Cp>These are suggestions to avoid this warning:\u003C/p>\u000A    \u003Cul>\u000A    \u003Cli>Specify \u003Ccode>charset\u003C/code> parameter in the \u003Ccode>Content-Type\u003C/code>\u000A    field in the \u003Cabbr>HTTP\u003C/abbr> header, as:\u000A    \u003Cpre class=\u0022HTTP example\u0022>\u000A\u003Ccode>Content-Type: text/html; charset=\u0022\u003Cvar>charset-name\u003C/var>\u0022\u003C/code>\u003C/pre>\u003C/li>\u000A    \u003Cli>Put the character encoding declaration\u000A    (\u003Ccode class=\u0022html example\u0022>&lt;meta charset=\u0022\u003Cvar>charset-name\u003C/var>\u0022&gt;\u003C/code>)\u000A    just after \u003Ccode class=\u0022html example\u0022>&lt;head&gt;\u003C/code> start tag.\u003C/li>\u000A    \u003Cli>Use \u003Ccode>UTF-8\u003C/code>.\u003C/li>\u000A    \u003C/ul>\u000A  "
+         "en" : "\u000A    \u003Cp>While parsing a document using a character encoding, the parser\u000A    detects a character encoding declaration which declares another\u000A    character encoding.  To interpret the document as intended, the\u000A    parser reprocesses the document again.\u003C/p>\u000A\u000A    \u003Cp>This is not itself an error.  However, it implies that there is\u000A    something wrong with the character encoding of the document.\u003C/p>\u000A\u000A    \u003Cp>You should always \u003Cstrong>use the UTF-8 encoding\u003C/strong>.\u003C/p>\u000A\u000A    \u003Cp>If this message is reported even when the document is encoded\u000A    in UTF-8, add the following HTML fragment in the \u003Ccode>head\u003C/code>\u000A    element of the document:\u003C/p>\u000A\u000A    \u003Cpre class=\u0022code\u0022>\u000A\u003Ccode>&lt;meta charset=utf-8&gt;\u003C/code>\u003C/pre>\u000A  ",
+         "ja" : "\u000A    \u003Cp>文書をある文字符号化で構文解析している途中で、\u000A    別の文字符号化を指定した文字符号化宣言が見つかりました。\u000A    文書を想定通りに解釈するためにもう一度最初から処理しなおします。\u003C/p>\u000A\u000A    \u003Cp>これ自体はエラーではありませんが、\u000A    文書の文字符号化が何かおかしいかもしれません。\u003C/p>\u000A\u000A    \u003Cp>原則として常に \u003Cstrong>UTF-8 で符号化する\u003C/strong>のが基本です。\u003C/p>\u000A\u000A    \u003Cp>UTF-8 で符号化していてもこのメッセージが表示される場合には、\u000A    文書の \u003Ccode>head\u003C/code> 要素内に次のタグを追加してください。\u003C/p>\u000A\u000A    \u003Cpre class=\u0022code\u0022>\u000A\u003Ccode>&lt;meta charset=utf-8&gt;\u003C/code>\u003C/pre>\u000A  "
       },
       "message" : {
-         "en" : "While parsing the document as\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>, a character encoding declaration specifying\u000A  a different character encoding is found.  The document\u000A  is reparsed."
+         "en" : "There is a character encoding declaration\u000A  of \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> while parsing the document as\u000A  encoded in \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>文書を \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  で符号化されているとして処理していたところ、\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> の文字符号化宣言が見つかりました"
       }
    },
    "charset label:matching" : {
@@ -2161,8 +2295,13 @@
       }
    },
    "control char" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>There is a control character.\u003C/p>\u000A    \u003Cp>Control characters other than tabs and newlines are not allowed\u000A    in HTML\u003C!-- parse error -->, CSS, and XML.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>制御文字があります。\u003C/p>\u000A    \u003Cp>タブと改行以外の制御文字は、 HTML、CSS、XML\u000A    では使えません。\u003C/p>\u000A  "
+      },
       "message" : {
-         "en" : "Code point \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> is\u000A  not allowed."
+         "en" : "There is a control character\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>",
+         "ja" : "制御文字\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> があります"
       }
    },
    "coords:number lt 6" : {
@@ -2734,14 +2873,27 @@
       }
    },
    "duplicate attribute" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>There are more than one attributes with the same name in a tag.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>img\u003C/code> element, the \u003Ccode>motion\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>This attribute is obsolete.  Use animation GIF instead.\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  ",
-         "ja" : "\u000A    \u003Cp>同じ名前の属性を複数個同じタグに指定することはできません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>img\u003C/code> 要素 \u003Ccode>motion\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>この属性は廃止されました。代わりにアニメーション GIF\u000A    を使ってください。\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  "
+         "en" : "\u003Cp>There are more than one attributes with the same name in a tag.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>img\u003C/code> element, the \u003Ccode>motion\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>This attribute is obsolete.  Use animation GIF instead.\u003C/dd>\u000A\u000A    \u003C/dl>",
+         "ja" : "\u003Cp>同じ名前の属性を複数個同じタグに指定することはできません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>img\u003C/code> 要素 \u003Ccode>motion\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>この属性は廃止されました。代わりにアニメーション GIF\u000A    を使ってください。\u003C/dd>\u000A\u000A    \u003C/dl>"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "There are multiple attributes with name\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>",
-         "ja" : "属性 \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  が複数あります"
-      }
+         "en" : "There are multiple \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> attributes",
+         "ja" : "属性 \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> が複数あります"
+      },
+      "modules" : {
+         "Temma::Parser" : 1,
+         "Web::HTML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 30,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cdiv class=foo class=bar>",
+            "text" : "class"
+         }
+      ]
    },
    "duplicate autofocus" : {
       "desc" : {
@@ -3537,20 +3689,47 @@
       }
    },
    "end tag attribute" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An end tag cannot have attributes.\u003C/p>",
+         "ja" : "\u003Cp>終了タグに属性は指定できません。\u003C/p>"
+      },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "End tag cannot have attributes.",
-         "ja" : "終了タグに属性が指定されています。"
-      }
+         "en" : "An attribute is specified for an end tag",
+         "ja" : "終了タグに属性が指定されています"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 32,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cdiv class=foo>aa\u003C/div class=foo>"
+         }
+      ]
    },
    "entity not declared" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>The referenced entity is not declared.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022swtich\u0022>\u000A      \u003Cdt>XML documents\u003C/dt>\u000A\u000A      \u003Cdd>In XML documents, most of entities must be declared in the\u000A      document type definition of the document.  Lack of entity\u000A      declaration is validity error, or sometimes well-formedness\u000A      error, depending on the standaloness of the document.\u003C/dd>\u000A\u000A      \u003Cdd>In XML documents, although entities \u003Ccode>amp\u003C/code>,\u000A      \u003Ccode>lt\u003C/code>, \u003Ccode>gt\u003C/code>, \u003Ccode>quot\u003C/code>, and\u000A      \u003Ccode>apos\u003C/code> are predefined, therefore they can be used\u000A      even when they are not explicitly declared, they have to be\u000A      declared for interoperability, according to the XML\u000A      specification.\u003C/dd>\u000A\u000A      \u003Cdt>WebVTT documents\u003C/dt>\u000A\u000A      \u003Cdd>In WebVTT documents. only the following character \u000A      references are allowed: \u003Ccode>&amp;amp;\u003C/code>,\u000A      \u003Ccode>&amp;lt;\u003C/code>, \u003Ccode>&amp;gt;\u003C/code>,\u000A      \u003Ccode>&amp;lrm;\u003C/code>, \u003Ccode>&amp;rlm;\u003C/code>,\u000A      and \u003Ccode>&amp;nbsp;\u003C/code>.\u003C/dd>\u000A    \u003C/dl>\u000A  ",
-         "ja" : "\u000A    \u003Cp>参照されている実体は宣言されていません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022swtich\u0022>\u000A      \u003Cdt>XML 文書\u003C/dt>\u000A\u000A      \u003Cdd>XML 文書では、ほとんどの実体は文書の文書型定義で制限されていなければなりません。\u000A      実体宣言が無いのは妥当性制約違反ですし、\u000A      文書の単独性如何によっては整形式制約違反でもあります。\u003C/dd>\u000A\u000A      \u003Cdd>XML 文書では、実体 \u003Ccode>amp\u003C/code>,\u000A      \u003Ccode>lt\u003C/code>, \u003Ccode>gt\u003C/code>, \u003Ccode>quot\u003C/code>, \u000A      \u003Ccode>apos\u003C/code> は定義済みであり、明示的に宣言する必要はないのですが、\u000A      XML 仕様によれば相互運用性のために敢えて宣言する必要があります。\u003C/dd>\u000A\u000A      \u003Cdt>WebVTT 文書\u003C/dt>\u000A\u000A      \u003Cdd>WebVTT 文書では、文字参照として使えるのは\u000A      \u003Ccode>&amp;amp;\u003C/code>,\u000A      \u003Ccode>&amp;lt;\u003C/code>, \u003Ccode>&amp;gt;\u003C/code>,\u000A      \u003Ccode>&amp;lrm;\u003C/code>, \u003Ccode>&amp;rlm;\u003C/code>,\u000A      \u003Ccode>&amp;nbsp;\u003C/code> だけです。\u003C/dd>\u000A    \u003C/dl>\u000A  "
+         "en" : "\u003Cp>The referenced entity is not declared.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022swtich\u0022>\u000A      \u003Cdt>In HTML document\u000A\u000A      \u003C/dt>\u003Cdd>In an HTML document, only limited set of character\u000A      references can be used.\u000A\u000A      \u003C/dd>\u003Cdt>In XML document\u003C/dt>\u000A\u000A      \u003Cdd>In an XML document, most of entities must be declared in the\u000A      document type definition of the document.  Lack of entity\u000A      declaration is validity error, or sometimes well-formedness\u000A      error, depending on the standaloness of the document.\u003C/dd>\u000A\u000A      \u003Cdd>In an XML document, although entities \u003Ccode>amp\u003C/code>,\u000A      \u003Ccode>lt\u003C/code>, \u003Ccode>gt\u003C/code>, \u003Ccode>quot\u003C/code>, and\u000A      \u003Ccode>apos\u003C/code> are predefined, therefore they can be used\u000A      even when they are not explicitly declared, they have to be\u000A      declared for interoperability, according to the XML\u000A      specification.\u003C/dd>\u000A\u000A      \u003Cdt>In WebVTT document\u003C/dt>\u000A\u000A      \u003Cdd>In a WebVTT document, only the following character\u000A      references are allowed: \u003Ccode>&amp;amp;\u003C/code>,\u000A      \u003Ccode>&amp;lt;\u003C/code>, \u003Ccode>&amp;gt;\u003C/code>,\u000A      \u003Ccode>&amp;lrm;\u003C/code>, \u003Ccode>&amp;rlm;\u003C/code>, and\u000A      \u003Ccode>&amp;nbsp;\u003C/code>.\u003C/dd>\u000A    \u003C/dl>\u000A\u000A\u003Cp>To represent an \u003Ccode>&amp;\u003C/code> character, it must be escaped as\u000A\u003Ccode>&amp;amp;\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>参照されている実体は宣言されていません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022swtich\u0022>\u000A      \u003Cdt>HTML 文書\u000A\u000A      \u003C/dt>\u003Cdd>HTML 文書では、限られた文字参照しか使えません。\u000A\u000A      \u003C/dd>\u003Cdt>XML 文書\u003C/dt>\u000A\u000A      \u003Cdd>XML 文書では、ほとんどの実体は文書の文書型定義で制限されていなければなりません。\u000A      実体宣言が無いのは妥当性制約違反ですし、\u000A      文書の単独性如何によっては整形式制約違反でもあります。\u003C/dd>\u000A\u000A      \u003Cdd>XML 文書では、実体 \u003Ccode>amp\u003C/code>,\u000A      \u003Ccode>lt\u003C/code>, \u003Ccode>gt\u003C/code>, \u003Ccode>quot\u003C/code>, \u000A      \u003Ccode>apos\u003C/code> は定義済みであり、明示的に宣言する必要はないのですが、\u000A      XML 仕様によれば相互運用性のために敢えて宣言する必要があります。\u003C/dd>\u000A\u000A      \u003Cdt>WebVTT 文書\u003C/dt>\u000A\u000A      \u003Cdd>WebVTT 文書では、文字参照として使えるのは\u000A      \u003Ccode>&amp;amp;\u003C/code>,\u000A      \u003Ccode>&amp;lt;\u003C/code>, \u003Ccode>&amp;gt;\u003C/code>,\u000A      \u003Ccode>&amp;lrm;\u003C/code>, \u003Ccode>&amp;rlm;\u003C/code>,\u000A      \u003Ccode>&amp;nbsp;\u003C/code> だけです。\u003C/dd>\u000A    \u003C/dl>\u000A\u000A\u003Cp>\u003Ccode>&amp;\u003C/code> という文字を表したいときは、\u000A\u003Ccode>&amp;amp;\u003C/code> とエスケープしなければいけません。\u003C/p>"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "Entity \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code>\u000A  is not declared.",
-         "ja" : "実体 \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code>\u000A  は宣言されていません。"
-      }
+         "en" : "Entity \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> is not declared",
+         "ja" : "実体 \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> は宣言されていません"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE HTML>&hoge;",
+            "value" : "&hoge;"
+         }
+      ]
    },
    "enumerated:invalid" : {
       "desc" : {
@@ -3646,6 +3825,43 @@
          "en" : "The font size value is invalid",
          "ja" : "フォントサイズの指定が正しくありません"
       }
+   },
+   "foreign:bad xmlns value" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The value of the \u003Ccode>xmlns\u003C/code> attribute in the XMLNS\u000Anamespace must be equal to the namespace of the element.\u000A\u000A\u003C/p>\u003Cp>For an SVG element, the attribute value must be\u000A\u003Ccode>http://www.w3.org/2000/svg\u003C/code>.\u000A\u000A\u003C/p>\u003Cp>For a MathML element, the attribute value must be\u000A\u003Ccode>http://www.w3.org/1998/Math/MathML\u003C/code>.\u000A\u000A\u003C/p>\u003Cp>The value of the \u003Ccode>xlink\u003C/code> attribute in the XMLNS\u000Anamespace (i.e. the \u003Ccode>xmlns:xlink\u003C/code> attribute) must be\u000A\u003Ccode>http://www.w3.org/1999/xlink\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>XMLNS 名前空間の \u003Ccode>xmlns\u003C/code> 属性の値は、\u000A要素の名前空間と同じでなければいけません。\u000A\u000A\u003C/p>\u003Cp>SVG 要素の属性値は\u000A\u003Ccode>http://www.w3.org/2000/svg\u003C/code> でなければいけません。\u000A\u000A\u003C/p>\u003Cp>MathML 要素の属性値は\u000A\u003Ccode>http://www.w3.org/1998/Math/MathML\u003C/code> でなければいけません。\u000A\u000A\u003C/p>\u003Cp>XMLNS 名前空間の \u003Ccode>xlink\u003C/code> 属性\u000A(\u003Ccode>xmlns:xlink\u003C/code> 属性) の値は\u000A\u003Ccode>http://www.w3.org/1999/xlink\u003C/code> でなければいけません。\u003C/p>"
+      },
+      "layer" : "namespaces",
+      "message" : {
+         "en" : "The \u003Ccode>xmlns\u003C/code> attribute value is incorrect",
+         "ja" : "\u003Ccode>xmlns\u003C/code> 属性値が正しくありません"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 20,
+            "input" : "\u003C!DOCTYPE HTML>\u003Csvg xmlns=hoge>",
+            "value" : "hoge"
+         },
+         {
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmath xmlns=hoge>",
+            "value" : "hoge"
+         },
+         {
+            "index" : 26,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmath>\u003Cfoo xmlns=hoge>",
+            "value" : "hoge"
+         },
+         {
+            "index" : 20,
+            "input" : "\u003C!DOCTYPE HTML>\u003Csvg xmlns:xlink=\u0022foo\u0022>",
+            "value" : "foo"
+         }
+      ]
    },
    "form feed" : {
       "desc" : {
@@ -4187,14 +4403,6 @@
          "tag name"
       ]
    },
-   "in html:#DOCTYPE" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>A \u003Ccode>DOCTYPE\u003C/code> appears after any element or data character\u000A    has been seen.  The document is non-conforming.\u003C/p>\u000A    \u000A    \u003Cp>The \u003Ccode>DOCTYPE\u003C/code> must be placed before any\u000A    tag, reference, or data character.  Only white space characters\u000A    and comments can be inserted before the \u003Ccode>DOCTYPE\u003C/code>.\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "A \u003Ccode>DOCTYPE\u003C/code> appears after any\u000A  element or data character has been seen."
-      }
-   },
    "in noscript" : {
       "default_level" : "m",
       "desc" : {
@@ -4428,6 +4636,12 @@
             "index" : 0,
             "input" : "\u003Ctbody>",
             "value" : "tbody"
+         },
+         {
+            "context" : "template",
+            "index" : 9,
+            "input" : "\u003Ctd>\u003C/td>\u003Ctbody>",
+            "value" : "tbody"
          }
       ],
       "value" : [
@@ -4512,9 +4726,41 @@
       }
    },
    "invalid character reference" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>A character reference cannot be used to reference a control\u000Acharacter, surrogate code point, noncharacter code point, or\u000Anon-Unicode code point.\u003C/p>",
+         "ja" : "\u003Cp>文字参照は、制御文字、サロゲート符号位置、非文字符号位置、\u000A非 Unicode 符号位置を参照することはできません。\u003C/p>"
+      },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "Character reference to\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> is not allowed."
-      }
+         "en" : "Special code point \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> is referenced",
+         "ja" : "特殊な符号位置 \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> が参照されています"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE HTML>&#0;",
+            "text" : "U\u002B0000"
+         },
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE HTML>&#x7F;",
+            "text" : "U\u002B007F"
+         },
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE HTML>&#x10FFFF;",
+            "text" : "U\u002B10FFFF"
+         },
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE HTML>&#x000000000000000700ffff;",
+            "text" : "U-0700FFFF"
+         }
+      ]
    },
    "invalid-state-error" : {
       "desc" : {
@@ -5274,6 +5520,27 @@
          "ja" : "何か他の方法で表現できない場合以外これを使うべきではありません"
       }
    },
+   "legacy DOCTYPE" : {
+      "default_level" : "s",
+      "desc" : {
+         "en" : "\u003Cp>The DOCTYPE has a legacy DOCTYPE string system identifier\u000A(\u003Ccode>about:legacy-compat\u003C/code>), which is hardly necessary.  You\u000Acan simply write \u003Ccode>&lt;!DOCTYPE HTML&gt;\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>DOCTYPE に遺物 DOCTYPE 文字列のシステム識別子がありますが、\u000Aこれは滅多に必要ありません。単純に\u000A\u003Ccode>&lt;!DOCTYPE HTML&gt;\u003C/code> と書くだけで十分です。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "The DOCTYPE has a system identifier",
+         "ja" : "DOCTYPE にシステム識別子があります"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 0,
+            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022about:legacy-compat\u0022>"
+         }
+      ]
+   },
    "length:syntax error" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The attribute value must specify the dimension, as a non-negative\u000A    integer or a non-negative percentage integer.\u003C/p>\u000A    \u003Cp>Signs, separators, and units are not allowed.\u003C/p>\u000A  ",
@@ -5681,12 +5948,44 @@
       }
    },
    "nestc" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>Polytheistic slash (\u003Ccode>/&gt;\u003C/code>) must not be used\u000A    for the element.  The document is non-conforming.\u003C/p>\u000A\u000A    \u003Cp>The polytheistic slash can only be\u000A    used for \u003Ccode>base\u003C/code>, \u003Ccode>link\u003C/code>, \u003Ccode>meta\u003C/code>,\u000A    \u003Ccode>hr\u003C/code>, \u003Ccode>br\u003C/code>, \u003Ccode>img\u003C/code>, \u000A    \u003Ccode>embed\u003C/code>, \u003Ccode>param\u003C/code>, \u003Ccode>area\u003C/code>,\u000A    \u003Ccode>col\u003C/code>, and \u003Ccode>input\u003C/code> elements.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A    \u003Cdt>\u003Ccode>&lt;script/&gt;\u003C/code>\u003C/dt>\u000A        \u003Cdd>\u003Cp>The polytheistic slash cannot be used for \u003Ccode>script\u003C/code>\u000A        element.  Even for an empty \u003Ccode>script\u003C/code> element,\u000A        there must be an explicit end tag\u000A        \u003Ccode class=\u0022html example\u0022>&lt;/script&gt;\u003C/code>.\u003C/p>\u000A\u000A        \u003Cp>\u003Cstrong>NOTE\u003C/strong>: Though some user agents interpret\u000A        polytheistic slash for \u003Ccode>script\u003C/code> element as the \u000A        closing of the element, such usage is not allowed under\u000A        the current standard.\u003C/p>\u003C/dd>\u000A    \u003Cdt>\u003Ccode>&lt;basefont/&gt;\u003C/code>, \u003Ccode>&lt;bgsound/&gt;\u003C/code>,\u000A    \u003Ccode>&lt;frame/&gt;\u003C/code>, \u003Ccode>&lt;keygen/&gt;\u003C/code>,\u000A    \u003Ccode>&lt;spacer/&gt;\u003C/code>, \u003Ccode>&lt;wbr/&gt;\u003C/code>\u003C/dt>\u000A        \u003Cdd>These elements are themselves non-conforming.\u003C/dd>\u000A    \u003C!-- isindex, image -->\u000A    \u003Cdt>\u003Ccode>&lt;command/&gt;\u003C/code>, \u003Ccode>&lt;event-source/&gt;\u003C/code>,\u000A    \u003Ccode>&lt;nest/&gt;\u003C/code>, or \u003Ccode>&lt;source/&gt;\u003C/code>\u003C/dt>\u000A        \u003Cdd>Future revision of HTML5 parsing algorithm is expected\u000A        to allow polytheistic slash for these elements.\u003C/dd>\u000A    \u003Cdt>\u003Ccode>&lt;a/&gt;\u003C/code>, \u003Ccode>&lt;p/&gt;\u003C/code>\u003C/dt>\u000A        \u003Cdd>These elements are not always empty and therefore\u000A        polytheistic slash is not allowed.  Use explicit end tag\u000A        to represent empty element as:\u000A          \u003Cpre class=\u0022example html\u0022>\u000A\u003Ccode>&lt;p&gt;&lt;/p&gt;\u003C/code>\u003C/pre>\u000A        \u003C/dd>\u000A    \u003C/dl>\u000A\u000A    \u003Cp>Note that, unlike in XML, the polytheistic slash has\u000A    no effect in HTML.\u003C/p>\u000A  "
+         "en" : "\u003Cp>The self-closing start tag syntax (\u003Ccode>/&gt;\u003C/code>) has effect only\u000Afor SVG and MathML elements.  For HTML void elements such as\u000A\u003Ccode>br\u003C/code> and \u003Ccode>img\u003C/code>, it is allowed but has no effect.\u000AFor the other HTML elements, \u003Ccode>/\u003C/code> is simply ignored and is\u000Anot allowed.\u000A\u000A\u003C/p>\u003Cp>The self-closing tag syntax is not allowed in an end tag.\u003C/p>",
+         "ja" : "\u003Cp>その場で要素を閉じるタグの構文 (\u003Ccode>/&gt;\u003C/code>) は SVG や\u000AMathML の要素でのみ意味があります。 HTML の void 要素\u000A(\u003Ccode>br\u003C/code> や \u003Ccode>img\u003C/code> など) でも認められていますが、\u000A意味はありません。それ以外の HTML 要素では\u000A\u003Ccode>/\u003C/code> は無視されるだけなので、認められていません。\u000A\u000A\u003C/p>\u003Cp>その場で閉じる構文は、終了タグでは使えません。\u003C/p>"
       },
+      "layer" : "tree-construction",
       "message" : {
-         "en" : "Polytheistic slash (\u003Ccode>/&gt;\u003C/code>) cannot be\u000A  used for this element."
-      }
+         "en" : "The self-closing syntax (\u003Ccode>/&gt;\u003C/code>) is used",
+         "ja" : "その場で要素を閉じる構文 (\u003Ccode>/&gt;\u003C/code>) が使われています"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "-start-tag-self-closing-flag" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp/>",
+            "text" : "p"
+         },
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cimg/>",
+            "level" : "w",
+            "text" : "img"
+         },
+         {
+            "index" : 18,
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp>\u003C/p/>",
+            "text" : "p"
+         }
+      ],
+      "text" : [
+         "token",
+         "tag name"
+      ]
    },
    "nestc has no net" : {
       "default_level" : "m",
@@ -5880,11 +6179,6 @@
          "en" : "After the keyword \u003Ccode>PUBLIC\u003C/code>, no\u000A  oublic identifier is specified."
       }
    },
-   "no SYSTEM literal" : {
-      "message" : {
-         "en" : "After the keyword \u003Ccode>SYSTEM\u003C/code>, no\u000A  system identifier is specified."
-      }
-   },
    "no XML decl" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>There should be an XML declaration in an XML document.\u003C/p>\u000A\u000A    \u003Cp>There should be a text declaration in an XML external entity.\u003C/p>\u000A  ",
@@ -6036,7 +6330,7 @@
          "en" : "\u003Cp>A character or entity reference must be terminated by a\u000A\u003Ccode>;\u003C/code> character.\u003C/p>",
          "ja" : "\u003Cp>文字参照や実体参照の末尾には \u003Ccode>;\u003C/code> が必要です。\u003C/p>"
       },
-      "layer" : "tokenization",
+      "layer" : "tokenizer",
       "message" : {
          "en" : "There is no \u003Ccode>;\u003C/code> at the end of a reference",
          "ja" : "参照の末尾に \u003Ccode>;\u003C/code> がありません"
@@ -6060,6 +6354,10 @@
          {
             "index" : 19,
             "input" : "\u003C!DOCTYPE HTML>&amp**"
+         },
+         {
+            "index" : 28,
+            "input" : "\u003C!DOCTYPE HTML>\u003Ca href=\u0022&amp=aa\u0022>"
          }
       ]
    },
@@ -6348,18 +6646,12 @@
    },
    "nonchar" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>Noncharacter code points are used in the input stream.\u003C/p>\u000A\u000A    \u003Cp>Noncharacter code points are reserved for internal processings.\u000A    Their use for information interchanges are forbidden.\u003C/p>\u000A\u000A    \u003Cp>In addition, they are not allowed in HTML document.\u003C/p>\u000A    \u003C!-- \u0022permanently undefined Unicode characters\u0022 in HTML5. -->\u000A  "
+         "en" : "\u000A    \u003Cp>There is a noncharacter code point.\u003C/p>\u000A\u000A    \u003Cp>Noncharacter code points are reserved for internal processings.\u000A    They are not appropriate for information interchange.  They are\u000A    not allowed in HTML.  They are not encouraged in XML.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>非文字符号位置があります。\u003C/p>\u000A    \u003Cp>非文字符号位置は内部処理用に予約されています。\u000A    情報交換には不適切です。 HTML では認められていません。\u000A    XML では非推奨とされています。\u003C/p>\u000A  "
       },
       "message" : {
-         "en" : "Noncharacter \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  is found in the input stream."
-      }
-   },
-   "not HTML5" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The document contains a \u003Ccode>DOCTYPE\u003C/code> declaration\u000A    that is different from HTML5 \u003Ccode>DOCTYPE\u003C/code> (i.e. \u000A    \u003Ccode class=\u0022example html\u0022>&lt;!DOCTYPE HTML&gt;\u003C/code>).\u000A    The document is non‐conforming.\u003C/p>\u000A\u000A    \u003Cp>The document might or might not be conformant to\u000A    some version of HTML.  However, conformance to any HTML\u000A    specification other than HTML5 provides for no practical\u000A    convenience, since Web borwsers will parse any\u000A    HTML document (roughly) as defined in HTML5.\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "This document is written in an old version of \u000A  HTML."
+         "en" : "There is a noncharacter code point\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>",
+         "ja" : "非文字符号位置\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> があります"
       }
    },
    "not IMT" : {
@@ -6550,14 +6842,6 @@
          "ja" : "この値は文字符号化の名札ではありません"
       }
    },
-   "not first start tag" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>There is a start tag of the \u003Ccode>html\u003C/code> element\u000A    that it not the first start tag in the input stream.\u000A    The document is non-conforming.\u003C/p>\u000A\u000A    \u003Cp>In an HTML document, there cannot be more than one\u000A    \u003Ccode>html\u003C/code> element and therefore there cannot be\u000A    more than one \u003Ccode>&lt;html&gt;\u003C/code> tag.  In addition,\u000A    nothing can be placed before the \u003Ccode>&lt;html&gt;\u003C/code> tag\u000A    except a \u003Ccode>DOCTYPE\u003C/code>, white space characters, \u000A    and comments.\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "This \u003Ccode>&lt;html&gt;\u003C/code> tag is not\u000A  the first start tag."
-      }
-   },
    "not manifest" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The specified document is \u003Cem>not\u003C/em> a cache manifest.\u000A    The document is non-conforming.\u003C/p>\u000A\u000A    \u003Cp>An entity labeled as Internet media type \u000A    \u003Ccode>text/cache-manifest\u003C/code> must contain a cache manifest.\u003C/p>\u000A\u000A    \u003Cp>A cache manifest must start with a line whose content is \u000A    \u003Ccode class=\u0022manifest example\u0022>CACHE MANIFEST\u003C/code>\u000A    (exactly one space character between\u000A    \u003Ccode>CACHE\u003C/code> and \u003Ccode>MANIFEST\u003C/code>).\u003C/p>\u000A  "
@@ -6591,11 +6875,11 @@
          "ja" : "名前空間属性の接頭辞が \u003Ccode>xmlns\u003C/code>\u000A  ではありません"
       }
    },
-   "obs DOCTYPE" : {
+   "obsolete DOCTYPE" : {
       "default_level" : "m",
       "desc" : {
-         "en" : "\u003Cp>The simplest DOCTYPE syntax \u003Ccode>&lt;!DOCTYPE html&gt;\u003C/code> should\u000Aalways be used.  Use of \u003Ccode>PUBLIC\u003C/code> or \u003Ccode>SYSTEM\u003C/code>\u000Aidentifiers, which was encouraged in 00s, is discouraged.\u003C/p>",
-         "ja" : "\u003Cp>DOCTYPE は \u003Ccode>&lt;!DOCTYPE html&gt;\u003C/code> とだけあれば十分です。00\u000A年代には \u003Ccode>PUBLIC\u003C/code> や \u003Ccode>SYSTEM\u003C/code>\u000Aを書くのが流行りましたが、今は不要です。\u003C/p>"
+         "en" : "\u003Cp>The DOCTYPE has public and/or system identifiers, which are\u000Ahistorical constructs that are no longer useful.  You can simply write\u000A\u003Ccode>&lt;!DOCTYPE HTML&gt;\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>DOCTYPE に公開識別子やシステム識別子がありますが、\u000Aこれらは歴史的なもので、もはや意味がありません。単純に\u000A\u003Ccode>&lt;!DOCTYPE HTML&gt;\u003C/code> と書くだけで十分です。\u003C/p>"
       },
       "layer" : "tree-construction",
       "message" : {
@@ -6603,6 +6887,7 @@
          "ja" : "DOCTYPE に公開識別子やシステム識別子があります"
       },
       "modules" : {
+         "Web::HTML::Parser::tokenizer" : 1,
          "Web::HTML::Parser::tree_constructor" : 1
       },
       "parser_error_names" : {
@@ -6611,7 +6896,23 @@
       "parser_tests" : [
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE html4>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022hoge\u0022>"
+         },
+         {
+            "index" : 0,
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022hoge\u0022 \u0022fuga\u0022>"
+         },
+         {
+            "index" : 0,
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022-//W3C//DTD HTML 4.01//EN\u0022 \u0022fa\u0022>"
+         },
+         {
+            "index" : 0,
+            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022hoge\u0022>"
+         },
+         {
+            "index" : 0,
+            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022http://www.w3.org/TR/html4/strict.dtd\u0022>"
          },
          {
             "index" : 0,
@@ -6620,6 +6921,27 @@
          {
             "index" : 0,
             "input" : "\u003C!DOCTYPE HTML system \u0022\u0022>"
+         }
+      ]
+   },
+   "obsolete permitted DOCTYPE" : {
+      "default_level" : "s",
+      "desc" : {
+         "en" : "\u003Cp>The DOCTYPE has one of public identifiers of HTML4/XHTML1 age,\u000Awhich is no longer necessary.  You can simply write\u000A\u003Ccode>&lt;!DOCTYPE HTML&gt;\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>DOCTYPE に HTML4/XHTML1 時代の公開識別子やシステム識別子がありますが、\u000Aこれはもう必要ありません。単純に\u000A\u003Ccode>&lt;!DOCTYPE HTML&gt;\u003C/code> と書くだけで十分です。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "The DOCTYPE has public and/or system identifiers",
+         "ja" : "DOCTYPE に公開識別子やシステム識別子があります"
+      },
+      "modules" : {
+         "Web::HTML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 0,
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022-//W3C//DTD HTML 4.01//EN\u0022>"
          }
       ]
    },
@@ -7932,32 +8254,18 @@
             "index" : 25,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctemplate>\u003C/fpopo>",
             "value" : "fpopo"
+         },
+         {
+            "context" : "template",
+            "index" : 6,
+            "input" : "\u003Clink>\u003C/template>",
+            "value" : "template"
          }
       ],
       "value" : [
          "token",
          "tag name"
       ]
-   },
-   "string after PUBLIC" : {
-      "message" : {
-         "en" : "There is a bogus string after the keyword\u000A  \u003Ccode>PUBLIC\u003C/code>."
-      }
-   },
-   "string after PUBLIC literal" : {
-      "message" : {
-         "en" : "There is a bogus string after the public\u000A  identifier."
-      }
-   },
-   "string after SYSTEM" : {
-      "message" : {
-         "en" : "There is a bogus string after the keyword\u000A  \u003Ccode>SYSTEM\u003C/code>."
-      }
-   },
-   "string after SYSTEM literal" : {
-      "message" : {
-         "en" : "There is a bogus string after the system\u000A  identifier."
-      }
    },
    "syntax error:iri3987" : {
       "message" : {
