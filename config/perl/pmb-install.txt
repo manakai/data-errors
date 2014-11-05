@@ -6,4 +6,4 @@ Exporter~5.70
 Carp~1.3301
 Encode~2.64
 Path::Class~0.35
-Path::Tiny~0.059
+Path::Tiny~0.060
