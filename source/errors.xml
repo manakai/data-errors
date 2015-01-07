@@ -487,96 +487,6 @@
 <section id="html5-tokenize-error">
 <h2>HTML5 Parse Errors in Tokenization Stage</h2>
 
-<d:item name="bare ero"
-    modules="Whatpm::HTML::Parser Whatpm::WebVTT::Parser">
-  <d:message xml:lang="en">The <code>&amp;</code> character must
-  be escaped as <code class="html example">&amp;amp;</code>.</d:message>
-  <d:message xml:lang="ja">文字 <code>&amp;</code> は
-  <code class="html example">&amp;amp;</code>
-  とエスケープしなければなりません。</d:message>
-  <d:desc xml:lang="en">
-    <p>An <code>&amp;</code> character which
-    is not part of any reference appears in the input stream.</p>
-
-    <p><em>Any <code>&amp;</code> character in URLs
-    must be escaped as <code class="example">&amp;amp;</code>.</em></p>
-
-    <p>The <code>&amp;</code> character must
-    be the first character of a reference:
-    </p>
-
-      <dl class="switch">
-      <dt>Named character reference (HTML / WebVTT)</dt>
-          <dd><pre class="html example"><code>&amp;<var>entity-name</var>;</code></pre>
-          where <var>entity-name</var> is the name of the
-          character to be referenced.</dd>
-      <dt>Numeric character reference (HTML only)</dt>
-          <dd><pre class="html example"><code>&amp;#<var>d</var>;</code></pre>
-          where <var>d</var> is the decimal representation of
-          the code position of the character to be referenced.</dd>
-      <dt>Hexadecimal character reference (HTML only)</dt>
-          <dd><pre class="html example"><code>&amp;#x<var>h</var>;</code></pre>
-          where <var>h</var> is the hexadecimal representation
-          of the code position of the character to be referenced.</dd>
-      </dl>
-
-    <p>To represent <code>&amp;</code> as a data character, use
-    named character reference:
-    </p>
-      <pre class="html example"><code>&amp;amp;</code></pre>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>文字 <code>&amp;</code> が、文字参照の一部ではなく、
-    単独で現れました。</p>
-
-    <p><em>URL 中の <code>&amp;</code> 文字も
-    <code class="example">&amp;amp;</code> 
-    とエスケープしなければなりません。</em></p>
-
-    <p>文字 <code>&amp;</code> は参照の最初の1文字でなければなりません。
-    </p>
-
-      <dl class="switch">
-      <dt>名前付き文字参照 (HTML / WebVTT)</dt>
-          <dd><pre class="html example"><code>&amp;<var>実体名</var>;</code></pre>
-          の<var>実体名</var>が参照する文字の名前となります。</dd>
-      <dt>数値文字参照 (HTML のみ)</dt>
-          <dd><pre class="html example"><code>&amp;#<var>d</var>;</code></pre>
-          の <var>d</var> が参照する文字の符号位置の十進表現となります。</dd>
-      <dt>十六進数文字参照 (HTML のみ)</dt>
-          <dd><pre class="html example"><code>&amp;#x<var>h</var>;</code></pre>
-          の <var>h</var> が参照する文字の符号位置の十六進表現となります。</dd>
-      </dl>
-
-    <p>データ文字としての <code>&amp;</code> を表したい時は、
-    文字参照を使ってください。
-    </p>
-      <pre class="html example"><code>&amp;amp;</code></pre>
-  </d:desc>
-</d:item>
-
-<d:item name="bogus end tag"
-    modules="Whatpm::HTML::Parser">
-  <d:message xml:lang="en">String <code>&lt;/</code> is not followed
-  by tag name.</d:message><!-- </ non-name-start-char-non-EOF -->
-  <d:desc xml:lang="en">
-    <p>There is a <code>&lt;</code> (<code>U+003C</code> 
-    <code class="charname">LESS-THAN SIGN</code>) character
-    immediately followed by a <code>/</code> (<code>U+005F</code>
-    <code>SOLIDUS</code>) character, which is not part
-    of any end tag, in the input stream.  The document
-    is non-conforming.</p>
-
-    <p>The <code>&lt;/</code> sequence not followed by a
-    tag name is parsed as an opening of bogus comment.</p>
-
-    <p>The <code>&lt;/</code> sequence as string data must
-    be escaped as:
-    <pre class="html example"><code>&amp;lt;/</code></pre>
-    </p>
-  </d:desc>
-</d:item>
-
 <d:item name="charref="
     modules="Web::HTML::Tokenizer">
   <d:message xml:lang="en">There is a <code>&amp;<var>...</var>=</code>
@@ -722,129 +632,6 @@
 
 </section>
 
-<section id="xml-syntax-errors">
-<h2>XML syntax errors</h2>
-
-<d:item name="bogus XML declaration"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">There is a bogus string in the XML or text
-  declaration</d:message>
-  <d:message xml:lang="ja">XML 宣言かテキスト宣言の中に正しくない文字列が含まれています</d:message>
-  <d:desc xml:lang="en">
-    <p>An XML declaration must only contain <code>version</code>,
-    <code>encoding</code>, and <code>standalone</code>
-    pseudo-attributes, in this order, in appropriate syntax.</p>
-
-    <p>A text declaration must only contain <code>version</code> and
-    <code>encoding</code> pseudo-attributes in this order, in
-    appropriate syntax.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>XML 宣言は擬似属性 <code>version</code>, <code>encoding</code>,
-    <code>standalone</code> をこの順序で正しい構文でのみ含めることができます。</p>
-
-    <p>テキスト宣言は擬似属性 <code>version</code>, <code>encoding</code>
-    をこの順序で正しい構文でのみ含めることができます。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="no XML decl"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">There is no XML declaration</d:message>
-  <d:message xml:lang="ja">xML 宣言がありません</d:message>
-  <d:desc xml:lang="en">
-    <p>There should be an XML declaration in an XML document.</p>
-
-    <p>There should be a text declaration in an XML external entity.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>XML 文書には XML 宣言があるべきです。</p>
-
-    <p>XML 外部実体にはテキスト宣言があるべきです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="second root element"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">There is a start tag after the end tag
-  of the root element</d:message>
-  <d:message xml:lang="ja">根要素の終了タグの後に開始タグがあります</d:message>
-  <d:desc xml:lang="en">
-    <p>There must be only one child element in the document.  There
-    cannot be any start or end tag after the end tag of the root
-    element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>文書の子要素は1つだけしかあってはいけません。
-    根要素の終了タグの後に開始タグや終了タグがあってはいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="text outside of root element"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">There is a non-space character outside
-  of the root element</d:message>
-  <d:message xml:lang="ja">根要素の外側に空白でない文字があります</d:message>
-  <d:desc xml:lang="en">
-    <p>Non-space characters must be in the root element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>空白以外の文字は根要素外では使えません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="XML encoding:syntax error"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">The value is not a syntactically valid
-  encoding label</d:message>
-  <d:message xml:lang="ja">この値は構文的に正しい符号化の名札ではありません</d:message>
-  <d:desc xml:lang="en">
-    <p>The value of the <code>encoding</code> pseudo-attribute in an
-    XML or text declaration must be a string consist of one or more
-    ASCII letters, digits, <code>.</code>, <code>_</code>, and
-    <code>-</code>.  The first character must be an ASCII letter.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>XML 宣言やテキスト宣言の <code>encoding</code> 擬似属性の値は
-    ASCII のアルファベット、数字、 <code>.</code>、 <code>_</code>、
-    <code>-</code> のみから構成される文字列でなければいけません。
-    最初の文字は ASCII のアルファベットでなけれればいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="XML standalone:syntax error"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">The value is neither <code>yes</code> nor
-  <code>no</code></d:message>
-  <d:message xml:lang="ja">この値は <code>yes</code> でも
-  <code>no</code> でもありません</d:message>
-  <d:desc xml:lang="en">
-    <p>The value of the <code>standalone</code> pseudo-attribute in an
-    XML declaration must be either <code>yes</code> or <code>no</code>.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>XML 宣言の <code>encoding</code> 擬似属性の値は
-    <code>yes</code> か <code>no</code> でなければいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="XML version:syntax error"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">The value is not an XML version</d:message>
-  <d:message xml:lang="ja">この値は XML の版ではありません</d:message>
-  <d:desc xml:lang="en">
-    <p>The value of the <code>version</code> pseudo-attribute in the
-    XML or text declaration must be a string <code>1.</code> followed
-    by one or more digits.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>XML 宣言やテキスト宣言の <code>version</code> 擬似属性の値は
-    <code>1.</code> の後に数字が1桁以上続く文字列でなければいけません。</p>
-  </d:desc>
-</d:item>
-
-</section>
-
 <section id="xml-entity-errors">
 <h2>XML entity errors</h2>
 
@@ -861,51 +648,6 @@
   <d:desc xml:lang="ja">
     <p>文字 <code>%</code> の後には参照する引数実体の名前と文字
     <code>;</code> が必要です。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="external entref"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">An external entity is referenced
-  but ignored</d:message>
-  <d:message xml:lang="ja">外部実体が参照されていますが、無視します</d:message>
-  <d:desc xml:lang="en">
-    <p>The entity reference is a reference to an external entity.
-    Since the processors is configure not to expand external entities
-    (default) or since the processor can't fetch the external entity,
-    the entity reference cannot be expanded and is ignored.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この実体参照は外部実体を参照しています。 XML 処理器が外部実体を展開しないように設定されている
-    (既定値) か、外部実体を取得できなかったので、
-    この実体参照は展開されず、無視されます。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="WFC:No External Entity References"
-    modules="Web::HTML::Tokenizer">
-  <d:message xml:lang="en">An external entity is referenced in
-  an attribute value</d:message>
-  <d:message xml:lang="ja">属性値内で外部実体が参照されています</d:message>
-  <d:desc xml:lang="en">
-    <p>An entity reference in an attribute value cannot reference an
-    external entity.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>属性値内の実体参照が外部実体を参照しています。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="WFC:No Recursion"
-    modules="Web::HTML::Tokenizer Web::XML::Parser">
-  <d:message xml:lang="en">The entity reference points an open entity</d:message>
-  <d:message xml:lang="ja">この実体参照は開いている実体を参照しています</d:message>
-  <d:desc xml:lang="en">
-    <p>An entity reference cannot be used to recursively reference a
-    currently open entity.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>実体参照を使って現在開いている実体を再帰的に参照してはいけません。</p>
   </d:desc>
 </d:item>
 
@@ -934,143 +676,6 @@
   </d:desc>
   <d:desc xml:lang="ja">
     <p>マーク付け宣言内 (リテラル外) から参照されている外部引数実体では処理指令を使ってはいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="stop processing"
-    modules="Web::HTML::Tokenizer Web::XML::Parser">
-  <d:message xml:lang="en">Processing of markup declarations has been
-  stopped</d:message>
-  <d:message xml:lang="ja">マーク付け宣言の処理が停止されました</d:message>
-  <d:desc xml:lang="en">
-    <p>As there is an error in DTD, or an external entity can't be
-    retrieved, processing of markup declarations has been stopped.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>DTD 中に誤りがあったため、あるいは取得できない外部実体があったため、
-    マーク付け宣言の処理は停止されました。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="ref outside of root element"
-    modules="Web::HTML::Tokenizer">
-  <d:message xml:lang="en">An general entity reference is used outside
-  of the root element</d:message>
-  <d:message xml:lang="ja">根要素外で一般実体参照が使われています</d:message>
-  <d:desc xml:lang="en">
-    <p>General entity references are only allowed in attribute values
-    and in element contents.  It cannot be used outside of the root
-    element's start and end tags.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>一般実体参照は、属性値や要素の内容の中でのみ使えます。
-    根要素の開始タグと終了タグの外側では使えません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="unparsed entity"
-    modules="Web::HTML::Tokenizer">
-<!-- WFC:Parsed Entity -->
-  <d:message xml:lang="en">An unparsed entity is referenced by
-  an entity reference</d:message>
-  <d:message xml:lang="ja">実体参照が非解析対象実体を参照しています</d:message>
-  <d:desc xml:lang="en">
-    <p>An unparsed entity cannot be referenced by an entity
-    reference.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>非解析対象実体を実体参照から参照することはできません。</p>
-  </d:desc>
-</d:item>
-
-</section>
-
-<section id="xml-dtd-errors">
-<h2>XML DTD errors</h2>
-
-<!--
-XXX
-VC:Standalone Document Declaration:entity
--->
-
-<d:item name="xml:dtd:attlist ignored"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">The <code>ATTLIST</code> declaration is
-  ignored as there was unread parameter entity</d:message>
-  <d:message xml:lang="ja">未読の引数実体があったためこの
-  <code>ATTLIST</code> 宣言は無視されました</d:message>
-  <d:desc xml:lang="en">
-    <p>Since there was a parameter entity reference whose entity is
-    not read, processing of attribute definition list declarations are
-    stopped.  This attribute definition list declaration is
-    ignored.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>読んでいない引数実体参照があったため、属性定義並び宣言の処理は停止されています。
-    この属性定義並び宣言は無視されました。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="xml:dtd:entity ignored"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">The <code>ENTITY</code> declaration is
-  ignored as there was unread parameter entity</d:message>
-  <d:message xml:lang="ja">未読の引数実体があったためこの
-  <code>ENTITY</code> 宣言は無視されました</d:message>
-  <d:desc xml:lang="en">
-    <p>Since there was a parameter entity reference whose entity is
-    not read, processing of entity declarations are stopped.  This
-    entity declaration is ignored.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>読んでいない引数実体参照があったため、実体宣言の処理は停止されています。
-    この実体宣言は無視されました。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="xml:dtd:ext decl"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">An external markup declaration is found</d:message>
-  <d:message xml:lang="ja">外部マーク付け宣言があります</d:message>
-  <d:desc xml:lang="en">
-    <p>A markup declaration appears in an external entity or in a
-    parameter entity (i.e. is an external markup declaration).</p>
-
-    <p>As processing of external markup declarations is not required
-    to XML processors, the document might be misinterpreted depending
-    on how XML processor is implemented or configured.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>マーク付け宣言が外部実体か引数実体の中にあります
-    (つまり外部マーク付け宣言です)。</p>
-
-    <p>外部マーク付け宣言の処理はすべての XML 処理器に義務付けられているわけではありませんから、
-    XML 処理器がどう実装されているか、設定されているかによって文書の解釈が異なってくるかもしれません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="xml:dtd:pi"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">A processing instruction is used in DTD</d:message>
-  <d:message xml:lang="ja">DTD 中に処理指令があります</d:message>
-  <d:desc xml:lang="en">
-    <p>A processing instruction is used in DTD.</p>
-
-    <p>If a processing instruction appears in an external entity or in
-    a parameter entity, it might not be included depending on how the
-    XML processor is implemented or configured.</p>
-
-    <p>Processing instructions in DTD might not be result in the DOM
-    tree such that applications might not be able to access them.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>処理指令が DTD 中で使われています。</p>
-
-    <p>処理指令が外部実体や引数実体で使われている場合、 XML
-    処理器の実装や設定次第で取り込まれないかもしれません。</p>
-
-    <p>DTD 内の処理指令は DOM 木に現れないかもしれませんから、
-    アプリケーションがアクセスできないかもしれません。</p>
   </d:desc>
 </d:item>
 
@@ -3839,21 +3444,6 @@ VC:Standalone Document Declaration:entity
   </d:desc>
 </d:item>
 
-<d:item name="attribute missing:encoding"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">No <code>encoding</code> pseudo-attribute
-  is specified</d:message>
-  <d:message xml:lang="ja"><code>encoding</code> 擬似属性がありません</d:message>
-  <d:desc xml:lang="en">
-    <p>A <code>encoding</code> pseudo-attribute must be specified in
-    the text declaration.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>テキスト宣言には <code>encoding</code>
-    擬似属性を指定しなければいけません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="attribute missing:href|target"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Neither <code>href</code> or
@@ -3931,21 +3521,6 @@ VC:Standalone Document Declaration:entity
   <d:message xml:lang="en">For a <code>meta</code> element, exactly one of
   <code>name</code>, <code>http-equiv</code>, and <code>charset</code>
   attributes must be specified.</d:message>
-</d:item>
-
-<d:item name="attribute missing:version"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">No <code>version</code> pseudo-attribute
-  is specified</d:message>
-  <d:message xml:lang="ja"><code>version</code> 擬似属性がありません</d:message>
-  <d:desc xml:lang="en">
-    <p>A <code>version</code> pseudo-attribute must be specified as
-    the first pseudo-attribute of the XML declaration.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>XML 宣言の最初の擬似属性として <code>version</code>
-    擬似属性を指定しなければいけません。</p>
-  </d:desc>
 </d:item>
 
 <d:item name="attribute not allowed"
@@ -4258,22 +3833,6 @@ VC:Standalone Document Declaration:entity
   <d:desc xml:lang="ja">
     <p><code>img</code> 要素の <code>ismap</code> 属性が使えるのは
     <code>a</code> 要素内でだけです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="attribute not allowed:standalone"
-    modules="Web::XML::Parser">
-  <d:message xml:lang="en">A <code>standalone</code> pseudo-attribute is
-  specified in a text declaration</d:message>
-  <d:message xml:lang="ja">テキスト宣言に <code>standalone</code>
-  擬似属性が指定されています</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>standalone</code> pseudo-attribute is only allowed
-    in an XML declaration, not in a text declaration.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>standalone</code> 擬似属性は XML 宣言でのみ使うことができ、
-    テキスト宣言では使えません。</p>
   </d:desc>
 </d:item>
 
@@ -8589,11 +8148,6 @@ VC:Standalone Document Declaration:entity
     modules="CSS::SelectorsParser">
   <d:message xml:lang="en">Attribute namespace wildcard <code>*</code>
   is not followed by a <code>|</code> character.</d:message>
-</d:item>
-
-<d:item name="no attr value"
-    modules="CSS::SelectorsParser">
-  <d:message xml:lang="en">Attribute value is missing.</d:message>
 </d:item>
 
 <d:item name="no class name"
