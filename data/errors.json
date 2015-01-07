@@ -32,7 +32,8 @@
       "parser_tests" : [
          {
             "index" : 15,
-            "input" : "\u003C!DOCTYPE HTML>\u003C/br>"
+            "input" : "\u003C!DOCTYPE HTML>\u003C/br>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -56,7 +57,8 @@
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/p>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/p>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -88,6 +90,7 @@
          {
             "index" : 23,
             "input" : "\u003C!DOCTYPE HTML>\u003Cb>\u003Cdiv>\u003C/b>",
+            "lang" : "HTML",
             "value" : "b"
          }
       ],
@@ -114,6 +117,7 @@
          {
             "index" : 26,
             "input" : "\u003C!DOCTYPE HTML>\u003Cb>\u003Ctable>b\u003C/b>a",
+            "lang" : "HTML",
             "value" : "b"
          }
       ],
@@ -140,6 +144,7 @@
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Cspan>\u003Cb>\u003C/span>\u003C/b>",
+            "lang" : "HTML",
             "value" : "b"
          }
       ],
@@ -329,7 +334,8 @@
          "ja" : "\u003Ccode class=\u0022charname\u0022>NULL\u003C/code> 文字があります"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "NULL" : 1
@@ -592,60 +598,140 @@
          "en" : "Modifier \u003Ccode>(?\u003Cvar>{text}\u003C/var>)\u003C/code>\u000A  \u003Cem>in\u003C/em> a regular expression has no effect."
       }
    },
-   "WFC:No External Entity References" : {
+   "VC:Standalone Document Declaration:attr" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>An entity reference in an attribute value cannot reference an\u000A    external entity.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>属性値内の実体参照が外部実体を参照しています。\u003C/p>\u000A  "
+         "en" : "\u003Cp>In an XML document with \u003Ccode>standalone=\u0022yes\u0022\u003C/code>,\u000Aelement attributes must not be affected by \u003Ccode>ATTLIST\u003C/code>\u000Adeclarations in an external entity.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>standalone=\u0022yes\u0022\u003C/code> が指定された XML 文書では、\u000A要素の属性が外部実体で宣言された \u003Ccode>ATTLIST\u003C/code>\u000A宣言の影響を受けてはいけません。\u003C/p>"
       },
+      "layer" : "dtd-augmentation",
       "message" : {
-         "en" : "An external entity is referenced in\u000A  an attribute value",
-         "ja" : "属性値内で外部実体が参照されています"
+         "en" : "Attributes are affected by an external \u003Ccode>ATTLIST\u003C/code> declaration",
+         "ja" : "属性が外部実体の \u003Ccode>ATTLIST\u003C/code> 宣言の影響を受けます"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
       }
    },
-   "WFC:No Recursion" : {
+   "VC:Standalone Document Declaration:entity" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>An entity reference cannot be used to recursively reference a\u000A    currently open entity.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>実体参照を使って現在開いている実体を再帰的に参照してはいけません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>In an XML document with \u003Ccode>standalone=\u0022yes\u0022\u003C/code>,\u000Aan externally declared entity cannot be referenced.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>standalone=\u0022yes\u0022\u003C/code> が指定された XML 文書では外部実体で宣言された実体を参照できません。\u003C/p>"
       },
+      "layer" : "entity",
       "message" : {
-         "en" : "The entity reference points an open entity",
-         "ja" : "この実体参照は開いている実体を参照しています"
-      }
+         "en" : "An externally declared entity is referenced in a standalone document",
+         "ja" : "単独文書から外部実体で宣言された実体が参照されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 117,
+            "input" : "\u003C?xml version=\u00221.0\u0022 standalone=\u0022yes\u0022?>\u003C!DOCTYPE html [\u000A\u003C!ENTITY % x PUBLIC \u0022-//W3C//DTD XHTML 1.1//EN\u0022 \u0022x\u0022>\u000A%x;\u000A]>\u003Cp>&copy;\u003C/p>",
+            "lang" : "XML",
+            "value" : "&copy;"
+         }
+      ]
+   },
+   "WFC:No External Entity References" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An external entity cannot be referenced in an attribute value.\u003C/p>",
+         "ja" : "\u003Cp>属性値では外部実体を参照できません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "An external entity is referenced in an attribute value",
+         "ja" : "属性値から外部実体が参照されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 44,
+            "input" : "\u003C!DOCTYPE a[\u003C!ENTITY x SYSTEM \u0022foo\u0022>]>\u003Ca b=\u0022&x;\u0022>",
+            "lang" : "XML",
+            "value" : "&x;"
+         }
+      ]
+   },
+   "WFC:No Recursion" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An entity cannot be referenced recursively.\u003C/p>",
+         "ja" : "\u003Cp>実体を再帰的に参照することはできません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "An entity is recursively referenced",
+         "ja" : "同じ実体が再帰的に参照されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 29,
+            "input" : "\u003C!DOCTYPE p[\u000A  \u003C!ENTITY foo \u0022&foo;\u0022>\u000A]>\u003Cp>&foo;",
+            "lang" : "XML",
+            "value" : "&foo;"
+         }
+      ]
+   },
+   "WFC:PEs in Internal Subset" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>A parameter entity reference is not allowed in a markup declaration\u000Ain the internal subset or a parameter entity referenced from the\u000Ainternal subset.\u003C/p>",
+         "ja" : "\u003Cp>引数実体参照は、内部部分集合や内部部分集合から参照されている引数実体では使えません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "There is an entity reference in a markup declaration",
+         "ja" : "マーク付け宣言内に実体参照があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 43,
+            "input" : "\u003C!DOCTYPE a[\u003C!ENTITY % foo \u0022x ''\u0022>\u003C!ENTITY %foo;>]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "%foo;"
+         }
+      ]
    },
    "XML 1.0 NCName:syntax error" : {
       "message" : {
          "en" : "The specified value is not a legal XML Namespaces\u000A  1.0 \u003Ccode>NCName\u003C/code>."
       }
    },
-   "XML encoding:syntax error" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The value of the \u003Ccode>encoding\u003C/code> pseudo-attribute in an\u000A    XML or text declaration must be a string consist of one or more\u000A    ASCII letters, digits, \u003Ccode>.\u003C/code>, \u003Ccode>_\u003C/code>, and\u000A    \u003Ccode>-\u003C/code>.  The first character must be an ASCII letter.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>XML 宣言やテキスト宣言の \u003Ccode>encoding\u003C/code> 擬似属性の値は\u000A    ASCII のアルファベット、数字、 \u003Ccode>.\u003C/code>、 \u003Ccode>_\u003C/code>、\u000A    \u003Ccode>-\u003C/code> のみから構成される文字列でなければいけません。\u000A    最初の文字は ASCII のアルファベットでなけれればいけません。\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "The value is not a syntactically valid\u000A  encoding label",
-         "ja" : "この値は構文的に正しい符号化の名札ではありません"
-      }
-   },
    "XML standalone:syntax error" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>The value of the \u003Ccode>standalone\u003C/code> pseudo-attribute in an\u000A    XML declaration must be either \u003Ccode>yes\u003C/code> or \u003Ccode>no\u003C/code>.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>XML 宣言の \u003Ccode>encoding\u003C/code> 擬似属性の値は\u000A    \u003Ccode>yes\u003C/code> か \u003Ccode>no\u003C/code> でなければいけません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>The \u003Ccode>standalone\u003C/code> pseudo-attribute value must be\u000A\u003Ccode>yes\u003C/code> or \u003Ccode>no\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>standalone\u003C/code> 擬似属性値は \u003Ccode>yes\u003C/code> か\u000A\u003Ccode>no\u003C/code> でなければいけません。\u003C/p>"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "The value is neither \u003Ccode>yes\u003C/code> nor\u000A  \u003Ccode>no\u003C/code>",
-         "ja" : "この値は \u003Ccode>yes\u003C/code> でも\u000A  \u003Ccode>no\u003C/code> でもありません"
-      }
-   },
-   "XML version:syntax error" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The value of the \u003Ccode>version\u003C/code> pseudo-attribute in the\u000A    XML or text declaration must be a string \u003Ccode>1.\u003C/code> followed\u000A    by one or more digits.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>XML 宣言やテキスト宣言の \u003Ccode>version\u003C/code> 擬似属性の値は\u000A    \u003Ccode>1.\u003C/code> の後に数字が1桁以上続く文字列でなければいけません。\u003C/p>\u000A  "
+         "en" : "The \u003Ccode>standalone\u003C/code> value is neither \u003Ccode>yes\u003C/code> nor\u000A\u003Ccode>no\u003C/code>",
+         "ja" : "\u003Ccode>standalone\u003C/code> 属性値が \u003Ccode>yes\u003C/code> でも \u003Ccode>no\u003C/code>\u000Aでもありません"
       },
-      "message" : {
-         "en" : "The value is not an XML version",
-         "ja" : "この値は XML の版ではありません"
-      }
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 32,
+            "input" : "\u003C?xml version=\u00221.0\u0022 standalone=\u0022true\u0022?>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "true"
+         }
+      ]
    },
    "_charset_ value" : {
       "desc" : {
@@ -738,7 +824,8 @@
       "parser_tests" : [
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE html>\u003C/head>\u003Clink>"
+            "input" : "\u003C!DOCTYPE html>\u003C/head>\u003Clink>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -794,7 +881,8 @@
       "parser_tests" : [
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE html>\u003C/html>\u003Cp>"
+            "input" : "\u003C!DOCTYPE html>\u003C/html>\u003Cp>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -1279,7 +1367,8 @@
          "ja" : "属性名と属性値の間に \u003Ccode>=\u003C/code> がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "after-attribute-name-0022" : 1,
@@ -1288,11 +1377,13 @@
       "parser_tests" : [
          {
             "index" : 24,
-            "input" : "\u003C!DOCTYPE html>\u003Cfoo bar \u0022>\u003C/foo>"
+            "input" : "\u003C!DOCTYPE html>\u003Cfoo bar \u0022>\u003C/foo>",
+            "lang" : "HTML"
          },
          {
             "index" : 24,
-            "input" : "\u003C!DOCTYPE html>\u003Cfoo bar '>\u003C/foo>"
+            "input" : "\u003C!DOCTYPE html>\u003Cfoo bar '>\u003C/foo>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -1362,13 +1453,18 @@
       }
    },
    "attribute missing:encoding" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>A \u003Ccode>encoding\u003C/code> pseudo-attribute must be specified in\u000A    the text declaration.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>テキスト宣言には \u003Ccode>encoding\u003C/code>\u000A    擬似属性を指定しなければいけません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>There must be the \u003Ccode>encoding\u003C/code> pseudo-attribute in\u000Aa text declaration.\u003C/p>",
+         "ja" : "\u003Cp>テキスト宣言には \u003Ccode>encoding\u003C/code> 擬似属性が必要です。\u003C/p>"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "No \u003Ccode>encoding\u003C/code> pseudo-attribute\u000A  is specified",
-         "ja" : "\u003Ccode>encoding\u003C/code> 擬似属性がありません"
+         "en" : "There is no \u003Ccode>encoding\u003C/code> attribute",
+         "ja" : "\u003Ccode>encoding\u003C/code> 属性がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
       }
    },
    "attribute missing:href|target" : {
@@ -1412,14 +1508,36 @@
       }
    },
    "attribute missing:version" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>A \u003Ccode>version\u003C/code> pseudo-attribute must be specified as\u000A    the first pseudo-attribute of the XML declaration.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>XML 宣言の最初の擬似属性として \u003Ccode>version\u003C/code>\u000A    擬似属性を指定しなければいけません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>There must be the \u003Ccode>version\u003C/code> pseudo-attribute in\u000Aan XML declaration.\u003C/p>",
+         "ja" : "\u003Cp>XML 宣言には \u003Ccode>version\u003C/code> 擬似属性が必要です。\u003C/p>"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "No \u003Ccode>version\u003C/code> pseudo-attribute\u000A  is specified",
-         "ja" : "\u003Ccode>version\u003C/code> 擬似属性がありません"
-      }
+         "en" : "There is no \u003Ccode>version\u003C/code> attribute",
+         "ja" : "\u003Ccode>version\u003C/code> 属性がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 2,
+            "input" : "\u003C?xml?>\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 6,
+            "input" : "\u003C?xml encoding=\u0022utf-8\u0022?>\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 7,
+            "input" : "\u003C?xml  encoding=\u0022utf-8\u0022?>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
    },
    "attribute not allowed" : {
       "desc" : {
@@ -1461,13 +1579,18 @@
       }
    },
    "attribute not allowed:standalone" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>The \u003Ccode>standalone\u003C/code> pseudo-attribute is only allowed\u000A    in an XML declaration, not in a text declaration.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>\u003Ccode>standalone\u003C/code> 擬似属性は XML 宣言でのみ使うことができ、\u000A    テキスト宣言では使えません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>The \u003Ccode>standalone\u003C/code> pseudo-attribute is not allowed\u000Ain a text declaration.\u003C/p>",
+         "ja" : "\u003Cp>テキスト宣言では \u003Ccode>standalone\u003C/code> 擬似属性は使えません。\u003C/p>"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "A \u003Ccode>standalone\u003C/code> pseudo-attribute is\u000A  specified in a text declaration",
-         "ja" : "テキスト宣言に \u003Ccode>standalone\u003C/code>\u000A  擬似属性が指定されています"
+         "en" : "There is a \u003Ccode>standalone\u003C/code> attribute",
+         "ja" : "\u003Ccode>standalone\u003C/code> 属性があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
       }
    },
    "attribute not defined" : {
@@ -1526,11 +1649,13 @@
          {
             "index" : 0,
             "input" : "\u003C!DOCTYPE foo>",
+            "lang" : "HTML",
             "value" : "foo"
          },
          {
             "index" : 0,
             "input" : "\u003C!DOCTYPE html4>",
+            "lang" : "HTML",
             "value" : "html4"
          }
       ]
@@ -1547,7 +1672,8 @@
          "ja" : "属性名に \u003Ccode>\u0022\u003C/code> や \u003Ccode>'\u003C/code> が含まれています"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "attribute-name-0022" : 1,
@@ -1558,11 +1684,13 @@
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html>\u003Cp foo\u0022aa>"
+            "input" : "\u003C!DOCTYPE html>\u003Cp foo\u0022aa>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html>\u003Cp foo'aa>"
+            "input" : "\u003C!DOCTYPE html>\u003Cp foo'aa>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -1578,7 +1706,8 @@
          "ja" : "引用符で括られていない属性値に \u003Ccode>\u0022\u003C/code>, \u003Ccode>'\u003C/code>,\u000A\u003Ccode>`\u003C/code>, \u003Ccode>=\u003C/code> が含まれています"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "attribute-value-unquoted-0022" : 1,
@@ -1592,31 +1721,38 @@
       "parser_tests" : [
          {
             "index" : 25,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=bar\u0022>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=bar\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 25,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=bar'>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=bar'>",
+            "lang" : "HTML"
          },
          {
             "index" : 25,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=bar`>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=bar`>",
+            "lang" : "HTML"
          },
          {
             "index" : 25,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=bar=>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=bar=>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=`>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=`>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo==>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo==>",
+            "lang" : "HTML"
          },
          {
             "index" : 26,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo= bar=>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo= bar=>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -1627,6 +1763,29 @@
       "message" : {
          "en" : "Character encoding \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  should not be used for \u003Cabbr>HTML\u003C/abbr> document."
       }
+   },
+   "bad predefined entity decl" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The entity declaration for a predefined entity must be\u000Aequivalent to the predefined entity.\u003C/p>",
+         "ja" : "\u003Cp>定義済み実体の実体宣言は定義済み実体と等価なものでなければいけません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "The predefined entity declaration is wrong",
+         "ja" : "この定義済み実体の宣言は正しくありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ENTITY amp \u0022hoge\u0022>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "amp"
+         }
+      ]
    },
    "bad rdf namespace" : {
       "desc" : {
@@ -1639,14 +1798,37 @@
       }
    },
    "bare ero" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>An \u003Ccode>&amp;\u003C/code> character which\u000A    is not part of any reference appears in the input stream.\u003C/p>\u000A\u000A    \u003Cp>\u003Cem>Any \u003Ccode>&amp;\u003C/code> character in URLs\u000A    must be escaped as \u003Ccode class=\u0022example\u0022>&amp;amp;\u003C/code>.\u003C/em>\u003C/p>\u000A\u000A    \u003Cp>The \u003Ccode>&amp;\u003C/code> character must\u000A    be the first character of a reference:\u000A    \u003C/p>\u000A\u000A      \u003Cdl class=\u0022switch\u0022>\u000A      \u003Cdt>Named character reference (HTML / WebVTT)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;\u003Cvar>entity-name\u003C/var>;\u003C/code>\u003C/pre>\u000A          where \u003Cvar>entity-name\u003C/var> is the name of the\u000A          character to be referenced.\u003C/dd>\u000A      \u003Cdt>Numeric character reference (HTML only)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;#\u003Cvar>d\u003C/var>;\u003C/code>\u003C/pre>\u000A          where \u003Cvar>d\u003C/var> is the decimal representation of\u000A          the code position of the character to be referenced.\u003C/dd>\u000A      \u003Cdt>Hexadecimal character reference (HTML only)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;#x\u003Cvar>h\u003C/var>;\u003C/code>\u003C/pre>\u000A          where \u003Cvar>h\u003C/var> is the hexadecimal representation\u000A          of the code position of the character to be referenced.\u003C/dd>\u000A      \u003C/dl>\u000A\u000A    \u003Cp>To represent \u003Ccode>&amp;\u003C/code> as a data character, use\u000A    named character reference:\u000A    \u003C/p>\u000A      \u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;amp;\u003C/code>\u003C/pre>\u000A  ",
-         "ja" : "\u000A    \u003Cp>文字 \u003Ccode>&amp;\u003C/code> が、文字参照の一部ではなく、\u000A    単独で現れました。\u003C/p>\u000A\u000A    \u003Cp>\u003Cem>URL 中の \u003Ccode>&amp;\u003C/code> 文字も\u000A    \u003Ccode class=\u0022example\u0022>&amp;amp;\u003C/code> \u000A    とエスケープしなければなりません。\u003C/em>\u003C/p>\u000A\u000A    \u003Cp>文字 \u003Ccode>&amp;\u003C/code> は参照の最初の1文字でなければなりません。\u000A    \u003C/p>\u000A\u000A      \u003Cdl class=\u0022switch\u0022>\u000A      \u003Cdt>名前付き文字参照 (HTML / WebVTT)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;\u003Cvar>実体名\u003C/var>;\u003C/code>\u003C/pre>\u000A          の\u003Cvar>実体名\u003C/var>が参照する文字の名前となります。\u003C/dd>\u000A      \u003Cdt>数値文字参照 (HTML のみ)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;#\u003Cvar>d\u003C/var>;\u003C/code>\u003C/pre>\u000A          の \u003Cvar>d\u003C/var> が参照する文字の符号位置の十進表現となります。\u003C/dd>\u000A      \u003Cdt>十六進数文字参照 (HTML のみ)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;#x\u003Cvar>h\u003C/var>;\u003C/code>\u003C/pre>\u000A          の \u003Cvar>h\u003C/var> が参照する文字の符号位置の十六進表現となります。\u003C/dd>\u000A      \u003C/dl>\u000A\u000A    \u003Cp>データ文字としての \u003Ccode>&amp;\u003C/code> を表したい時は、\u000A    文字参照を使ってください。\u000A    \u003C/p>\u000A      \u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;amp;\u003C/code>\u003C/pre>\u000A  "
+         "en" : "\u003Cp>An \u003Ccode>&amp;\u003C/code> character which\u000A    is not part of any reference appears in the input stream.\u003C/p>\u000A\u000A    \u003Cp>\u003Cem>Any \u003Ccode>&amp;\u003C/code> character in URLs\u000A    must be escaped as \u003Ccode class=\u0022example\u0022>&amp;amp;\u003C/code>.\u003C/em>\u003C/p>\u000A\u000A    \u003Cp>The \u003Ccode>&amp;\u003C/code> character must\u000A    be the first character of a reference:\u000A    \u003C/p>\u000A\u000A      \u003Cdl class=\u0022switch\u0022>\u000A      \u003Cdt>Named character reference (HTML / WebVTT)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;\u003Cvar>entity-name\u003C/var>;\u003C/code>\u003C/pre>\u000A          where \u003Cvar>entity-name\u003C/var> is the name of the\u000A          character to be referenced.\u003C/dd>\u000A      \u003Cdt>Numeric character reference (HTML only)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;#\u003Cvar>d\u003C/var>;\u003C/code>\u003C/pre>\u000A          where \u003Cvar>d\u003C/var> is the decimal representation of\u000A          the code position of the character to be referenced.\u003C/dd>\u000A      \u003Cdt>Hexadecimal character reference (HTML only)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;#x\u003Cvar>h\u003C/var>;\u003C/code>\u003C/pre>\u000A          where \u003Cvar>h\u003C/var> is the hexadecimal representation\u000A          of the code position of the character to be referenced.\u003C/dd>\u000A      \u003C/dl>\u000A\u000A    \u003Cp>To represent \u003Ccode>&amp;\u003C/code> as a data character, use\u000A    named character reference:\u000A    \u003C/p>\u000A      \u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;amp;\u003C/code>\u003C/pre>",
+         "ja" : "\u003Cp>文字 \u003Ccode>&amp;\u003C/code> が、文字参照の一部ではなく、\u000A    単独で現れました。\u003C/p>\u000A\u000A    \u003Cp>\u003Cem>URL 中の \u003Ccode>&amp;\u003C/code> 文字も\u000A    \u003Ccode class=\u0022example\u0022>&amp;amp;\u003C/code> \u000A    とエスケープしなければなりません。\u003C/em>\u003C/p>\u000A\u000A    \u003Cp>文字 \u003Ccode>&amp;\u003C/code> は参照の最初の1文字でなければなりません。\u000A    \u003C/p>\u000A\u000A      \u003Cdl class=\u0022switch\u0022>\u000A      \u003Cdt>名前付き文字参照 (HTML / WebVTT)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;\u003Cvar>実体名\u003C/var>;\u003C/code>\u003C/pre>\u000A          の\u003Cvar>実体名\u003C/var>が参照する文字の名前となります。\u003C/dd>\u000A      \u003Cdt>数値文字参照 (HTML のみ)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;#\u003Cvar>d\u003C/var>;\u003C/code>\u003C/pre>\u000A          の \u003Cvar>d\u003C/var> が参照する文字の符号位置の十進表現となります。\u003C/dd>\u000A      \u003Cdt>十六進数文字参照 (HTML のみ)\u003C/dt>\u000A          \u003Cdd>\u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;#x\u003Cvar>h\u003C/var>;\u003C/code>\u003C/pre>\u000A          の \u003Cvar>h\u003C/var> が参照する文字の符号位置の十六進表現となります。\u003C/dd>\u000A      \u003C/dl>\u000A\u000A    \u003Cp>データ文字としての \u003Ccode>&amp;\u003C/code> を表したい時は、\u000A    文字参照を使ってください。\u000A    \u003C/p>\u000A      \u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;amp;\u003C/code>\u003C/pre>"
       },
+      "layer" : "tokenization",
       "message" : {
-         "en" : "The \u003Ccode>&amp;\u003C/code> character must\u000A  be escaped as \u003Ccode class=\u0022html example\u0022>&amp;amp;\u003C/code>.",
-         "ja" : "文字 \u003Ccode>&amp;\u003C/code> は\u000A  \u003Ccode class=\u0022html example\u0022>&amp;amp;\u003C/code>\u000A  とエスケープしなければなりません。"
-      }
+         "en" : "There is an unescaped \u003Ccode>&amp;\u003C/code> character",
+         "ja" : "エスケープされていない \u003Ccode>&amp;\u003C/code> があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1,
+         "Whatpm::WebVTT::Parser" : 1
+      },
+      "parser_error_names" : {
+         "character-reference-0022" : 1,
+         "character-reference-0026" : 1,
+         "character-reference-0027" : 1,
+         "character-reference-003c" : 1,
+         "character-reference-003d" : 1,
+         "character-reference-0060" : 1,
+         "character-reference-allowed-char" : 1,
+         "character-reference-ws" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 6,
+            "input" : "\u003Cp x=A&=>",
+            "lang" : "XML"
+         }
+      ]
    },
    "bare etago" : {
       "default_level" : "m",
@@ -1660,15 +1842,23 @@
          "ja" : "\u003Ccode>&lt;/\u003C/code> の後にタグ名がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
-         "end-tag-open-else" : 1
+         "end-tag-open-else" : 1,
+         "end-tag-open-ws" : 1
       },
       "parser_tests" : [
          {
             "index" : 17,
-            "input" : "\u003C!DOCTYPE HTML>\u003C/!?>"
+            "input" : "\u003C!DOCTYPE HTML>\u003C/!?>",
+            "lang" : "HTML"
+         },
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE HTML>\u003C/ >",
+            "lang" : "XML"
          }
       ]
    },
@@ -1684,7 +1874,8 @@
          "ja" : "\u003Ccode>&amp;#x\u003C/code> の後に符号位置の数値がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "character-reference-before-hexadecimal-number-else" : 1
@@ -1692,11 +1883,13 @@
       "parser_tests" : [
          {
             "index" : 18,
-            "input" : "\u003C!DOCTYPE HTML>&#x"
+            "input" : "\u003C!DOCTYPE HTML>&#x",
+            "lang" : "HTML"
          },
          {
             "index" : 18,
-            "input" : "\u003C!DOCTYPE HTML>&#Xzza"
+            "input" : "\u003C!DOCTYPE HTML>&#Xzza",
+            "lang" : "HTML"
          }
       ]
    },
@@ -1712,7 +1905,8 @@
          "ja" : "\u003Ccode>&amp;#\u003C/code> の後に符号位置の数値がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "character-reference-number-else" : 1
@@ -1720,11 +1914,13 @@
       "parser_tests" : [
          {
             "index" : 18,
-            "input" : "\u003C!DOCTYPE HTML>a&#"
+            "input" : "\u003C!DOCTYPE HTML>a&#",
+            "lang" : "HTML"
          },
          {
             "index" : 18,
-            "input" : "\u003C!DOCTYPE HTML>a&#abx"
+            "input" : "\u003C!DOCTYPE HTML>a&#abx",
+            "lang" : "HTML"
          }
       ]
    },
@@ -1737,6 +1933,37 @@
          "en" : "The \u003Ccode>%\u003C/code> character is not followed\u000A  by a parameter entity name",
          "ja" : "文字 \u003Ccode>%\u003C/code> の後に引数実体名がありません"
       }
+   },
+   "bare pio" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>After the \u003Ccode>&lt;?\u003C/code> string, there must be a processing instruction's\u000Atarget name.  To represent a string \u003Ccode>&lt;?\u003C/code>, the \u003Ccode>&lt;\u003C/code>\u000Acharacter must be escaped as \u003Ccode>&amp;lt;\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>&lt;?\u003C/code> の後には処理指令の対象名が必要です。文字列\u000A\u003Ccode>&lt;?\u003C/code> を表したい時は \u003Ccode>&lt;\u003C/code> を\u000A\u003Ccode>&amp;lt;\u003C/code> とエスケープしないといけません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is no processing instruction target",
+         "ja" : "処理指令の対象名がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "pi-003f" : 1,
+         "pi-ws" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 5,
+            "input" : "\u003Cp>Aa\u003C??>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 5,
+            "input" : "\u003Cp>Aa\u003C? ?>",
+            "lang" : "XML"
+         }
+      ]
    },
    "bare stago" : {
       "default_level" : "m",
@@ -1751,15 +1978,30 @@
       },
       "modules" : {
          "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1,
          "Whatpm::WebVTT::Parser" : 1
       },
       "parser_error_names" : {
-         "tag-open-else" : 1
+         "doctype-tag-open-else" : 1,
+         "tag-open-003e" : 1,
+         "tag-open-else" : 1,
+         "tag-open-ws" : 1
       },
       "parser_tests" : [
          {
             "index" : 16,
-            "input" : "\u003C!DOCTYPE HTML>\u003C\u0022"
+            "input" : "\u003C!DOCTYPE HTML>\u003C\u0022",
+            "lang" : "HTML"
+         },
+         {
+            "index" : 3,
+            "input" : "\u003Cp>\u003C>\u003C/p>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 12,
+            "input" : "\u003C!DOCTYPE a[\u003Cb>]>\u003Ca/>",
+            "lang" : "XML"
          }
       ]
    },
@@ -1849,7 +2091,8 @@
          "ja" : "DOCTYPE 内におかしな文字列があります"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "after-doctype-name-else" : 1,
@@ -1865,59 +2108,82 @@
       "parser_tests" : [
          {
             "index" : 15,
-            "input" : "\u003C!DOCTYPE html !>"
+            "input" : "\u003C!DOCTYPE html !>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html PUBLIC!>"
+            "input" : "\u003C!DOCTYPE html PUBLIC!>",
+            "lang" : "HTML"
          },
          {
             "index" : 25,
-            "input" : "\u003C!DOCTYPE html public \u0022a\u0022!>"
+            "input" : "\u003C!DOCTYPE html public \u0022a\u0022!>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html SYSTEM?>"
+            "input" : "\u003C!DOCTYPE html SYSTEM?>",
+            "lang" : "HTML"
          },
          {
             "index" : 24,
-            "input" : "\u003C!DOCTYPE html system \u0022\u0022@p>"
+            "input" : "\u003C!DOCTYPE html system \u0022\u0022@p>",
+            "lang" : "HTML"
          },
          {
             "index" : 67,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022abc\u0022 \u0022http://www.w3.org/TR/html4/strict.dtd\u0022?>"
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022abc\u0022 \u0022http://www.w3.org/TR/html4/strict.dtd\u0022?>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE html PUBLIC hoge>"
+            "input" : "\u003C!DOCTYPE html PUBLIC hoge>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE html SYSTEM hoge>"
+            "input" : "\u003C!DOCTYPE html SYSTEM hoge>",
+            "lang" : "HTML"
          },
          {
             "index" : 28,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022hoge\u0022hoge>"
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022hoge\u0022hoge>",
+            "lang" : "HTML"
          },
          {
             "index" : 29,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022hoge\u0022 hoge>"
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022hoge\u0022 hoge>",
+            "lang" : "HTML"
          },
          {
             "index" : 9,
-            "input" : "\u003C!DOCTYPE!>"
+            "input" : "\u003C!DOCTYPE!>",
+            "lang" : "HTML"
          }
       ]
    },
    "bogus XML declaration" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>An XML declaration must only contain \u003Ccode>version\u003C/code>,\u000A    \u003Ccode>encoding\u003C/code>, and \u003Ccode>standalone\u003C/code>\u000A    pseudo-attributes, in this order, in appropriate syntax.\u003C/p>\u000A\u000A    \u003Cp>A text declaration must only contain \u003Ccode>version\u003C/code> and\u000A    \u003Ccode>encoding\u003C/code> pseudo-attributes in this order, in\u000A    appropriate syntax.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>XML 宣言は擬似属性 \u003Ccode>version\u003C/code>, \u003Ccode>encoding\u003C/code>,\u000A    \u003Ccode>standalone\u003C/code> をこの順序で正しい構文でのみ含めることができます。\u003C/p>\u000A\u000A    \u003Cp>テキスト宣言は擬似属性 \u003Ccode>version\u003C/code>, \u003Ccode>encoding\u003C/code>\u000A    をこの順序で正しい構文でのみ含めることができます。\u003C/p>\u000A  "
+         "en" : "\u003Cp>The XML or text declaration is syntactically wrong.  It has\u000Astricter syntax than normal tags.\u003C/p>",
+         "ja" : "\u003Cp>XML 宣言やテキスト宣言が構文的に正しくありません。\u000A通常のタグより構文が厳密になっています。\u003C/p>"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "There is a bogus string in the XML or text\u000A  declaration",
-         "ja" : "XML 宣言かテキスト宣言の中に正しくない文字列が含まれています"
-      }
+         "en" : "The XML declaration is syntactically broken",
+         "ja" : "この XML 宣言は構文的に正しくありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 20,
+            "input" : "\u003C?xml version=\u00221.0\u0022 foo=\u0022bar\u0022?>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
    },
    "bogus comment" : {
       "default_level" : "m",
@@ -1931,29 +2197,30 @@
          "ja" : "\u003Ccode>&lt;!\u003C/code> の後に \u003Ccode>--\u003C/code> がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
+         "doctype-markup-declaration-open-else" : 1,
          "markup-declaration-open-else" : 1
       },
       "parser_tests" : [
          {
             "index" : 17,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!HOGE>"
+            "input" : "\u003C!DOCTYPE HTML>\u003C!HOGE>",
+            "lang" : "HTML"
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!DOCTYPO>"
+            "input" : "\u003C!DOCTYPE HTML>\u003C!DOCTYPO>",
+            "lang" : "HTML"
+         },
+         {
+            "index" : 14,
+            "input" : "\u003C!DOCTYPE x[\u003C!z>]]>",
+            "lang" : "XML"
          }
       ]
-   },
-   "bogus end tag" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>There is a \u003Ccode>&lt;\u003C/code> (\u003Ccode>U\u002B003C\u003C/code> \u000A    \u003Ccode class=\u0022charname\u0022>LESS-THAN SIGN\u003C/code>) character\u000A    immediately followed by a \u003Ccode>/\u003C/code> (\u003Ccode>U\u002B005F\u003C/code>\u000A    \u003Ccode>SOLIDUS\u003C/code>) character, which is not part\u000A    of any end tag, in the input stream.  The document\u000A    is non-conforming.\u003C/p>\u000A\u000A    \u003Cp>The \u003Ccode>&lt;/\u003C/code> sequence not followed by a\u000A    tag name is parsed as an opening of bogus comment.\u003C/p>\u000A\u000A    \u003Cp>The \u003Ccode>&lt;/\u003C/code> sequence as string data must\u000A    be escaped as:\u000A    \u003Cpre class=\u0022html example\u0022>\u000A\u003Ccode>&amp;lt;/\u003C/code>\u003C/pre>\u000A    \u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "String \u003Ccode>&lt;/\u003C/code> is not followed\u000A  by tag name."
-      }
    },
    "boolean:invalid" : {
       "desc" : {
@@ -2082,7 +2349,7 @@
          "en" : "\u003Cp>The character encoding declaration cannot contain any HTML\u000A    character reference.\u003C/p>",
          "ja" : "\u003Cp>文字符号化宣言は HTML の文字参照を含んではいけません。\u003C/p>"
       },
-      "layer" : "tokenizer",
+      "layer" : "entity",
       "message" : {
          "en" : "The character encoding declaration contains a character reference",
          "ja" : "文字符号化宣言に文字参照が使われています"
@@ -2093,23 +2360,28 @@
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf-&#x38;>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf-&#x38;>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&#46;8>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&#46;8>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&amp;8>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&amp;8>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&amp>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta charset=utf&amp>",
+            "lang" : "HTML"
          },
          {
             "index" : 45,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta http-equiv=content-type content=\u0022text/html;&#x20;charset=utf-8\u0022>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cmeta http-equiv=content-type content=\u0022text/html;&#x20;charset=utf-8\u0022>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -2283,6 +2555,31 @@
          "en" : "Pseudo-element must terminate the\u000A  selector.",
          "ja" : "擬似要素で選択子が終わらなければなりません。"
       }
+   },
+   "condsect in internal subset" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In the internal subset or a parameter entity referenced from the internal\u000Asubset, no marked section is allowed.\u003C/p>",
+         "ja" : "\u003Cp>内部部分集合や内部部分集合から参照された引数実体では、\u000Aマーク区間は使えません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is a marked section in the internal subset",
+         "ja" : "内部部分集合にマーク区間があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "doctype-markup-declaration-open-005b" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 12,
+            "input" : "\u003C!DOCTYPE x[\u003C![INCLUDE[aa]]>]>\u003Cx/>",
+            "lang" : "XML"
+         }
+      ]
    },
    "const type mismatch" : {
       "message" : {
@@ -2694,6 +2991,50 @@
          "ja" : "ピリオドが小数点として使われています"
       }
    },
+   "default value not allowed" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The default value can't be specified when the default type\u000Ais \u003Ccode>#IMPLIED\u003C/code> or \u003Ccode>#REQUIRED\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>既定値は既定型が \u003Ccode>#IMPLIED\u003C/code> や \u003Ccode>#REQUIRED\u003C/code>\u000Aの時には指定できません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "Default value is not allowed for the default type",
+         "ja" : "この既定型では既定値は指定できません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 29,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ATTLIST foo bar CDATA #IMPLIED \u0022a\u0022>\u000A]>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "default value not provided" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The default value must be specified unless the default type\u000Ais \u003Ccode>#IMPLIED\u003C/code> or \u003Ccode>#REQUIRED\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>既定型が \u003Ccode>#IMPLIED\u003C/code> や \u003Ccode>#REQUIRED\u003C/code>\u000Aの時以外は既定値を指定しなければなりません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "Default value is not specified",
+         "ja" : "既定値が指定されていません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 29,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ATTLIST foo bar CDATA #FIXED >\u000A]>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
+   },
    "deprecated:attr" : {
       "message" : {
          "en" : "This attribute is deprecated."
@@ -2744,16 +3085,20 @@
          "ja" : "DOCTYPE が文書の先頭ではありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tree_constructor" : 1
+         "Web::HTML::Parser::tree_constructor" : 1,
+         "Web::XML::Parser::tree_constructor" : 1
       },
       "parser_error_names" : {
          "after-body-doctype" : 1,
          "after-frameset-doctype" : 1,
          "after-head-doctype" : 1,
+         "after-root-element-doctype" : 1,
          "before-head-doctype" : 1,
          "before-html-doctype" : 1,
+         "before-root-element-doctype" : 1,
          "in-body-doctype" : 1,
          "in-column-group-doctype" : 1,
+         "in-element-doctype" : 1,
          "in-foreign-content-doctype" : 1,
          "in-frameset-doctype" : 1,
          "in-head-doctype" : 1,
@@ -2764,56 +3109,69 @@
       "parser_tests" : [
          {
             "index" : 15,
-            "input" : "\u003C!DOCTYPE html>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE html>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html>\u003Chtml>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE html>\u003Chtml>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003C/body>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003C/body>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 36,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cframeset>\u003C/frameset>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cframeset>\u003C/frameset>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003C/head>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003C/head>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 32,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccolgroup>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccolgroup>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 20,
-            "input" : "\u003C!DOCTYPE HTML>\u003Csvg>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Csvg>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 25,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cframeset>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cframeset>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML",
             "noscript" : 1
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cselect>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cselect>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -2872,6 +3230,54 @@
          "ja" : "このアンカー名は他の要素に割り当てられています"
       }
    },
+   "duplicate attlist decl" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There should be at most one \u003Ccode>ATTLIST\u003C/code> declaration\u000Afor the same tag name.\u003C/p>",
+         "ja" : "\u003Cp>同じタグ名の \u003Ccode>ATTLIST\u003C/code> 宣言は高々1つしか含めるべきではありません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "There is another \u003Ccode>ATTLIST\u003C/code> declaration for the element",
+         "ja" : "同じ要素の \u003Ccode>ATTLIST\u003C/code> 宣言が他にもあります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 29,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ATTLIST foo>\u003C!ATTLIST foo>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "level" : "w",
+            "value" : "foo"
+         }
+      ]
+   },
+   "duplicate attrdef" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There should be at most one attribute definition for\u000Asame element and attribute names.  Anything other than\u000Athe first definition is ignored.\u003C/p>",
+         "ja" : "\u003Cp>同じ要素名と属性名の属性定義は高々1つしか含めるべきではありません。\u000A最初の属性定義以外は無視されます。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "There is another attribute definition with same name",
+         "ja" : "同じ名前の属性定義が他にもあります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 39,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ATTLIST a bb CDATA \u0022\u0022 bb ID #IMPLIED>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "level" : "w",
+            "value" : "bb"
+         }
+      ]
+   },
    "duplicate attribute" : {
       "default_level" : "m",
       "desc" : {
@@ -2885,12 +3291,14 @@
       },
       "modules" : {
          "Temma::Parser" : 1,
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_tests" : [
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Cdiv class=foo class=bar>",
+            "lang" : "HTML",
             "text" : "class"
          }
       ]
@@ -2927,11 +3335,13 @@
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cbody>",
+            "lang" : "HTML",
             "value" : "body"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Chtml>",
+            "lang" : "HTML",
             "value" : "html"
          }
       ],
@@ -2985,6 +3395,60 @@
          "ja" : "文書の子要素が複数あります"
       }
    },
+   "duplicate element decl" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be at most one \u003Ccode>ELEMENT\u003C/code> declaration\u000Afor the same tag name.\u003C/p>",
+         "ja" : "\u003Cp>同じタグ名の \u003Ccode>ELEMENT\u003C/code> 宣言は高々1つしか含められません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "There is another declaration for the element",
+         "ja" : "この要素の宣言が他にもあります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 34,
+            "input" : "\u003C!DOCTYPE a[\u000A\u003C!ELEMENT foo EMPTY>\u000A\u003C!ELEMENT foo ANY>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "foo"
+         }
+      ]
+   },
+   "duplicate entity decl" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There should be at most one \u003Ccode>ENTITY\u003C/code> declaration\u000Awith same type and name.  Anything other than the first declaration\u000Ais ignored.\u003C/p>",
+         "ja" : "\u003Cp>同じ種類と名前の \u003Ccode>ENTITY\u003C/code> 宣言は高々1つしか含めるべきではありません。\u000A最初の宣言以外は無視されます。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "There is another \u003Ccode>ENTITY\u003C/code> declaration with\u000Asame type and name",
+         "ja" : "同じ種類と名前の \u003Ccode>ENTITY\u003C/code> 宣言が他にもあります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 30,
+            "input" : "\u003C!DOCTYPE a[\u000A \u003C!ENTITY foo \u0022\u0022>\u003C!ENTITY foo \u0022a\u0022>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "level" : "w",
+            "value" : "&foo;"
+         },
+         {
+            "index" : 32,
+            "input" : "\u003C!DOCTYPE a[\u000A \u003C!ENTITY % foo \u0022\u0022>\u003C!ENTITY % foo \u0022a\u0022>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "level" : "w",
+            "value" : "%foo;"
+         }
+      ]
+   },
    "duplicate form name" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The \u003Ccode>name\u003C/code> attribute value of the \u003Ccode>form\u003C/code>\u000A    element must be unique.\u003C/p>\u000A  ",
@@ -3029,6 +3493,29 @@
          "en" : "There are multiple character encoding\u000A  declarations",
          "ja" : "文字符号化宣言が複数あります"
       }
+   },
+   "duplicate notation decl" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be at most one \u003Ccode>NOTATION\u003C/code> declaration\u000Afor the same name.\u003C/p>",
+         "ja" : "\u003Cp>同じ名前の \u003Ccode>NOTATION\u003C/code> 宣言は高々1つしか含めるべきではありません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "There is another \u003Ccode>NOTATION\u003C/code> declaration with the same name",
+         "ja" : "同じ名前の \u003Ccode>NOTATION\u003C/code> 宣言が他にもあります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 41,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!NOTATION foo SYSTEM \u0022x\u0022>\u003C!NOTATION foo SYSTEM \u0022a\u0022>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "foo"
+         }
+      ]
    },
    "duplicate oc namespace" : {
       "message" : {
@@ -3471,60 +3958,70 @@
          {
             "index" : 25,
             "input" : "\u003C!DOCTYPE HTML>\u003Cdt>\u003Cspan>\u003Cdt>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "dt"
          },
          {
             "index" : 25,
             "input" : "\u003C!DOCTYPE HTML>\u003Cdt>\u003Cspan>\u003Cdd>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "dd"
          },
          {
             "index" : 25,
             "input" : "\u003C!DOCTYPE HTML>\u003Cli>\u003Cspan>\u003Cli>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "li"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Cruby>\u003Crp>\u003Cspan>\u003Crt>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "rt"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Cruby>\u003Crt>\u003Cspan>\u003Crp>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "rp"
          },
          {
             "index" : 37,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003Cspan>\u003Ccaption>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "caption"
          },
          {
             "index" : 37,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003Cspan>\u003Ctr>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "tr"
          },
          {
             "index" : 20,
             "input" : "\u003C!DOCTYPE HTML>\u003Csvg>\u003Cp>",
+            "lang" : "HTML",
             "text" : "svg",
             "value" : "p"
          },
          {
             "index" : 20,
             "input" : "\u003C!DOCTYPE HTML>\u003Csvg>\u003Cfont face>",
+            "lang" : "HTML",
             "text" : "svg",
             "value" : "font"
          },
          {
             "index" : 23,
             "input" : "\u003C!DOCTYPE HTML>\u003Cselect>\u003Cinput>",
+            "lang" : "HTML",
             "text" : "select",
             "value" : "input"
          }
@@ -3588,6 +4085,30 @@
          "ja" : "\u003Ccode>alt\u003C/code> 属性値が空です"
       }
    },
+   "empty attlist decl" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The \u003Ccode>ATTLIST\u003C/code> declaration should contain\u000Aat least one attribute definition.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>ATTLIST\u003C/code> 宣言は属性定義を最低1つは含めるべきです。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "The \u003Ccode>ATTLIST\u003C/code> declaration is empty",
+         "ja" : "この \u003Ccode>ATTLIST\u003C/code> 宣言は空です"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 12,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST fa>]>\u003Ca/>",
+            "lang" : "XML",
+            "level" : "w",
+            "value" : "fa"
+         }
+      ]
+   },
    "empty attribute value" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The attribute value cannot be empty.  Otherwise the user\u000A    cannot figure what to do as the item is not described or\u000A    not rendered at all.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>The \u003Ccode>id\u003C/code> attribute\u003C/dt>\u000A\u000A    \u003Cdd>The unique identifier (ID) of the element cannot be empty.  If\u000A    the element has no identifier, the \u003Ccode>id\u003C/code> attribute\u000A    should be omitted.\u003C/dd>\u000A\u000A    \u003Cdt>The \u003Ccode>map\u003C/code> element, the \u003Ccode>name\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>The map name cannot be empty.\u003C/dd>\u000A\u000A    \u003Cdt>The \u003Ccode>dirname\u003C/code> attribute\u003C/dt>\u000A\u000A    \u003Cdd>The field name cannot be empty.\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  ",
@@ -3631,6 +4152,7 @@
       },
       "modules" : {
          "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1,
          "Whatpm::WebVTT::Parser" : 1
       },
       "parser_error_names" : {
@@ -3639,7 +4161,8 @@
       "parser_tests" : [
          {
             "index" : 20,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp>\u003C/>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp>\u003C/>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -3700,12 +4223,14 @@
          "ja" : "終了タグに属性が指定されています"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_tests" : [
          {
             "index" : 32,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cdiv class=foo>aa\u003C/div class=foo>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cdiv class=foo>aa\u003C/div class=foo>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -3715,19 +4240,78 @@
          "en" : "\u003Cp>The referenced entity is not declared.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022swtich\u0022>\u000A      \u003Cdt>In HTML document\u000A\u000A      \u003C/dt>\u003Cdd>In an HTML document, only limited set of character\u000A      references can be used.\u000A\u000A      \u003C/dd>\u003Cdt>In XML document\u003C/dt>\u000A\u000A      \u003Cdd>In an XML document, most of entities must be declared in the\u000A      document type definition of the document.  Lack of entity\u000A      declaration is validity error, or sometimes well-formedness\u000A      error, depending on the standaloness of the document.\u003C/dd>\u000A\u000A      \u003Cdd>In an XML document, although entities \u003Ccode>amp\u003C/code>,\u000A      \u003Ccode>lt\u003C/code>, \u003Ccode>gt\u003C/code>, \u003Ccode>quot\u003C/code>, and\u000A      \u003Ccode>apos\u003C/code> are predefined, therefore they can be used\u000A      even when they are not explicitly declared, they have to be\u000A      declared for interoperability, according to the XML\u000A      specification.\u003C/dd>\u000A\u000A      \u003Cdt>In WebVTT document\u003C/dt>\u000A\u000A      \u003Cdd>In a WebVTT document, only the following character\u000A      references are allowed: \u003Ccode>&amp;amp;\u003C/code>,\u000A      \u003Ccode>&amp;lt;\u003C/code>, \u003Ccode>&amp;gt;\u003C/code>,\u000A      \u003Ccode>&amp;lrm;\u003C/code>, \u003Ccode>&amp;rlm;\u003C/code>, and\u000A      \u003Ccode>&amp;nbsp;\u003C/code>.\u003C/dd>\u000A    \u003C/dl>\u000A\u000A\u003Cp>To represent an \u003Ccode>&amp;\u003C/code> character, it must be escaped as\u000A\u003Ccode>&amp;amp;\u003C/code>.\u003C/p>",
          "ja" : "\u003Cp>参照されている実体は宣言されていません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022swtich\u0022>\u000A      \u003Cdt>HTML 文書\u000A\u000A      \u003C/dt>\u003Cdd>HTML 文書では、限られた文字参照しか使えません。\u000A\u000A      \u003C/dd>\u003Cdt>XML 文書\u003C/dt>\u000A\u000A      \u003Cdd>XML 文書では、ほとんどの実体は文書の文書型定義で制限されていなければなりません。\u000A      実体宣言が無いのは妥当性制約違反ですし、\u000A      文書の単独性如何によっては整形式制約違反でもあります。\u003C/dd>\u000A\u000A      \u003Cdd>XML 文書では、実体 \u003Ccode>amp\u003C/code>,\u000A      \u003Ccode>lt\u003C/code>, \u003Ccode>gt\u003C/code>, \u003Ccode>quot\u003C/code>, \u000A      \u003Ccode>apos\u003C/code> は定義済みであり、明示的に宣言する必要はないのですが、\u000A      XML 仕様によれば相互運用性のために敢えて宣言する必要があります。\u003C/dd>\u000A\u000A      \u003Cdt>WebVTT 文書\u003C/dt>\u000A\u000A      \u003Cdd>WebVTT 文書では、文字参照として使えるのは\u000A      \u003Ccode>&amp;amp;\u003C/code>,\u000A      \u003Ccode>&amp;lt;\u003C/code>, \u003Ccode>&amp;gt;\u003C/code>,\u000A      \u003Ccode>&amp;lrm;\u003C/code>, \u003Ccode>&amp;rlm;\u003C/code>,\u000A      \u003Ccode>&amp;nbsp;\u003C/code> だけです。\u003C/dd>\u000A    \u003C/dl>\u000A\u000A\u003Cp>\u003Ccode>&amp;\u003C/code> という文字を表したいときは、\u000A\u003Ccode>&amp;amp;\u003C/code> とエスケープしなければいけません。\u003C/p>"
       },
-      "layer" : "tokenizer",
+      "layer" : "entity",
       "message" : {
          "en" : "Entity \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> is not declared",
          "ja" : "実体 \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> は宣言されていません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_tests" : [
          {
             "index" : 15,
             "input" : "\u003C!DOCTYPE HTML>&hoge;",
+            "lang" : "HTML",
             "value" : "&hoge;"
+         }
+      ]
+   },
+   "entity:too deep" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Level of entity reference nesting is too deep.\u000A\u003C/p>\u003Cp>No more entity reference in this subtree is expanded for security reasons.\u003C/p>",
+         "ja" : "\u003Cp>実体参照の入れ子の階層が深すぎます。\u000A\u003C/p>\u003Cp>この部分木の実体参照は安全のためこれ以上展開しません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "Entities are nesting too many times",
+         "ja" : "実体参照が深すぎます"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      }
+   },
+   "entity:too many refs" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There are too many entity references.\u000A\u003C/p>\u003Cp>No more entity reference is expanded for security reasons.\u003C/p>",
+         "ja" : "\u003Cp>実体参照が多すぎます。\u000A\u003C/p>\u003Cp>実体参照は安全のためこれ以上展開しません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "There are too many entity references",
+         "ja" : "実体参照が多すぎます"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      }
+   },
+   "entref in attr has element" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>None of tag, comment, processing instructions, declaration, or\u000Asection can be used in an entity referenced in an attribute value.\u003C/p>",
+         "ja" : "\u003Cp>属性値で参照する実体ではタグ、注釈、処理指令、宣言、\u000A区間を使うことはできません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "There is a tag in an entity referenced in an attribute value",
+         "ja" : "属性値で参照されたいる実体にタグがあります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "attribute-value-in-entity-003c" : 1,
+         "default-attribute-value-in-entity-003c" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 43,
+            "input" : "\u003C!DOCTYPE a[\u000A\u003C!ENTITY x \u0022\u003Cy>\u003C/y>\u0022>\u000A]>\u003Ca b=\u0022&x;\u0022/>",
+            "lang" : "XML",
+            "value" : "&x;"
          }
       ]
    },
@@ -3778,14 +4362,24 @@
       }
    },
    "external entref" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>The entity reference is a reference to an external entity.\u000A    Since the processors is configure not to expand external entities\u000A    (default) or since the processor can't fetch the external entity,\u000A    the entity reference cannot be expanded and is ignored.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>この実体参照は外部実体を参照しています。 XML 処理器が外部実体を展開しないように設定されている\u000A    (既定値) か、外部実体を取得できなかったので、\u000A    この実体参照は展開されず、無視されます。\u003C/p>\u000A  "
       },
+      "layer" : "entity",
       "message" : {
-         "en" : "An external entity is referenced\u000A  but ignored",
-         "ja" : "外部実体が参照されていますが、無視します"
-      }
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 85,
+            "input" : "\u003C?xml version=\u00221.0\u0022 standalone=\u0022yes\u0022?>\u003C!DOCTYPE a[\u000A  \u003C!ENTITY ext SYSTEM \u0022ext\u0022>\u000A]>\u003Ca>&ext;\u003C/a>",
+            "lang" : "XML",
+            "level" : "i",
+            "value" : "&ext;"
+         }
+      ]
    },
    "fallback-char-error" : {
       "message" : {
@@ -3844,21 +4438,25 @@
          {
             "index" : 20,
             "input" : "\u003C!DOCTYPE HTML>\u003Csvg xmlns=hoge>",
+            "lang" : "HTML",
             "value" : "hoge"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cmath xmlns=hoge>",
+            "lang" : "HTML",
             "value" : "hoge"
          },
          {
             "index" : 26,
             "input" : "\u003C!DOCTYPE HTML>\u003Cmath>\u003Cfoo xmlns=hoge>",
+            "lang" : "HTML",
             "value" : "hoge"
          },
          {
             "index" : 20,
             "input" : "\u003C!DOCTYPE HTML>\u003Csvg xmlns:xlink=\u0022foo\u0022>",
+            "lang" : "HTML",
             "value" : "foo"
          }
       ]
@@ -3978,7 +4576,8 @@
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cimage>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cimage>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -4132,31 +4731,38 @@
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ctr>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ctr>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ccol>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ccol>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Chead>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Chead>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cframe>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cframe>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cframeset>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cframeset>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ctbody>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ctbody>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ctd>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ctd>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -4172,10 +4778,13 @@
          "ja" : "ファイルの末尾で \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A要素が閉じられていません"
       },
       "modules" : {
-         "Web::HTML::Parser::tree_constructor" : 1
+         "Web::HTML::Parser::tree_constructor" : 1,
+         "Web::XML::Parser::tree_constructor" : 1
       },
       "parser_error_names" : {
          "in-body-eof" : 1,
+         "in-element-eof" : 1,
+         "in-element-eof-2" : 1,
          "in-frameset-eof" : 1,
          "in-template-eof" : 1,
          "text-eof" : 1
@@ -4184,32 +4793,44 @@
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Choge>",
+            "lang" : "HTML",
             "text" : "hoge"
          },
          {
             "index" : 25,
             "input" : "\u003C!DOCTYPE HTML>\u003Cframeset>",
+            "lang" : "HTML",
             "text" : "frameset"
          },
          {
             "index" : 25,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctemplate>",
+            "lang" : "HTML",
             "text" : "template"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctemplate>\u003Cfoo>",
+            "lang" : "HTML",
             "text" : "foo"
          },
          {
             "index" : 20,
             "input" : "\u003C!DOCTYPE HTML>\u003Cxmp>",
+            "lang" : "HTML",
             "text" : "xmp"
          },
          {
             "index" : 27,
             "input" : "\u003C!DOCTYPE HTML>\u003Cplaintext>a",
+            "lang" : "HTML",
             "text" : "plaintext"
+         },
+         {
+            "index" : 6,
+            "input" : "\u003Cp>xxx",
+            "lang" : "XML",
+            "text" : "p"
          }
       ],
       "text" : [
@@ -4239,12 +4860,14 @@
             "context" : "caption",
             "index" : 0,
             "input" : "\u003Ctbody>",
+            "lang" : "HTML",
             "text" : "tbody"
          },
          {
             "context" : "caption",
             "index" : 0,
             "input" : "\u003Ccol>",
+            "lang" : "HTML",
             "text" : "col"
          }
       ],
@@ -4296,17 +4919,20 @@
          {
             "context" : "colgroup",
             "index" : 0,
-            "input" : "\u003Cp>"
+            "input" : "\u003Cp>",
+            "lang" : "HTML"
          },
          {
             "context" : "colgroup",
             "index" : 0,
-            "input" : "\u003C/p>"
+            "input" : "\u003C/p>",
+            "lang" : "HTML"
          },
          {
             "context" : "colgroup",
             "index" : 0,
-            "input" : "h"
+            "input" : "h",
+            "lang" : "HTML"
          }
       ]
    },
@@ -4331,17 +4957,20 @@
          {
             "context" : "frameset",
             "index" : 0,
-            "input" : "\u003Cp>"
+            "input" : "\u003Cp>",
+            "lang" : "HTML"
          },
          {
             "context" : "frameset",
             "index" : 0,
-            "input" : "\u003C/p>"
+            "input" : "\u003C/p>",
+            "lang" : "HTML"
          },
          {
             "context" : "frameset",
             "index" : 0,
-            "input" : "h"
+            "input" : "h",
+            "lang" : "HTML"
          }
       ]
    },
@@ -4365,7 +4994,8 @@
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Chead>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Chead>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -4390,6 +5020,7 @@
          {
             "index" : 19,
             "input" : "\u003C!DOCTYPE HTML>\u003Ch3>\u003Ch5>",
+            "lang" : "HTML",
             "text" : "h3",
             "value" : "h5"
          }
@@ -4425,36 +5056,43 @@
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>\u003Cp>",
+            "lang" : "HTML",
             "noscript" : 1
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>\u003Choge>",
+            "lang" : "HTML",
             "noscript" : 1
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>foo",
+            "lang" : "HTML",
             "noscript" : 1
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>",
+            "lang" : "HTML",
             "noscript" : 1
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>\u003Cnoscript>\u003C/noscript>",
+            "lang" : "HTML",
             "noscript" : 1
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>\u003Chead>\u003C/noscript>",
+            "lang" : "HTML",
             "noscript" : 1
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>\u003Cbody>",
+            "lang" : "HTML",
             "noscript" : 1
          }
       ]
@@ -4479,11 +5117,13 @@
       "parser_tests" : [
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML>\u003CSelect>\u003Cfoo>"
+            "input" : "\u003C!DOCTYPE HTML>\u003CSelect>\u003Cfoo>",
+            "lang" : "HTML"
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML>\u003CSelect>\u003C/foo>"
+            "input" : "\u003C!DOCTYPE HTML>\u003CSelect>\u003C/foo>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -4508,6 +5148,7 @@
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cselect>\u003C/tbody>",
+            "lang" : "HTML",
             "value" : "tbody"
          }
       ],
@@ -4537,6 +5178,7 @@
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cselect>\u003Ctbody>",
+            "lang" : "HTML",
             "value" : "tbody"
          }
       ],
@@ -4567,19 +5209,23 @@
       "parser_tests" : [
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cp>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cp>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003C/gfoo>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003C/gfoo>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cform>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cform>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cinput>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cinput>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -4605,6 +5251,7 @@
             "context" : "tbody",
             "index" : 0,
             "input" : "\u003Ctbody>",
+            "lang" : "HTML",
             "value" : "tbody"
          }
       ],
@@ -4635,12 +5282,14 @@
             "context" : "tr",
             "index" : 0,
             "input" : "\u003Ctbody>",
+            "lang" : "HTML",
             "value" : "tbody"
          },
          {
             "context" : "template",
             "index" : 9,
             "input" : "\u003Ctd>\u003C/td>\u003Ctbody>",
+            "lang" : "HTML",
             "value" : "tbody"
          }
       ],
@@ -4670,11 +5319,13 @@
       "parser_tests" : [
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>abc"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>abc",
+            "lang" : "HTML"
          },
          {
             "index" : 25,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cp>abc"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Cp>abc",
+            "lang" : "HTML"
          }
       ]
    },
@@ -4731,33 +5382,38 @@
          "en" : "\u003Cp>A character reference cannot be used to reference a control\u000Acharacter, surrogate code point, noncharacter code point, or\u000Anon-Unicode code point.\u003C/p>",
          "ja" : "\u003Cp>文字参照は、制御文字、サロゲート符号位置、非文字符号位置、\u000A非 Unicode 符号位置を参照することはできません。\u003C/p>"
       },
-      "layer" : "tokenizer",
+      "layer" : "character-set",
       "message" : {
          "en" : "Special code point \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> is referenced",
          "ja" : "特殊な符号位置 \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> が参照されています"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_tests" : [
          {
             "index" : 15,
             "input" : "\u003C!DOCTYPE HTML>&#0;",
+            "lang" : "HTML",
             "text" : "U\u002B0000"
          },
          {
             "index" : 15,
             "input" : "\u003C!DOCTYPE HTML>&#x7F;",
+            "lang" : "HTML",
             "text" : "U\u002B007F"
          },
          {
             "index" : 15,
             "input" : "\u003C!DOCTYPE HTML>&#x10FFFF;",
+            "lang" : "HTML",
             "text" : "U\u002B10FFFF"
          },
          {
             "index" : 15,
             "input" : "\u003C!DOCTYPE HTML>&#x000000000000000700ffff;",
+            "lang" : "HTML",
             "text" : "U-0700FFFF"
          }
       ]
@@ -4867,6 +5523,32 @@
          "en" : "There is an invalid character after\u000A  the JSON value",
          "ja" : "JSON 値の後におかしな文字があります"
       }
+   },
+   "keyword-wrong-case" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The keywords must be in uppercase in XML.\u003C/p>",
+         "ja" : "\u003Cp>XML ではキーワードは大文字でなければいけません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "The keyword is not in uppercase",
+         "ja" : "キーワードが大文字ではありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "keyword-wrong-case" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 18,
+            "input" : "\u003C!DOCTYPE hoge [\u003C!ELEment foo EMPTY>]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "ELEment"
+         }
+      ]
    },
    "lang selector not closed" : {
       "message" : {
@@ -5537,7 +6219,8 @@
       "parser_tests" : [
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022about:legacy-compat\u0022>"
+            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022about:legacy-compat\u0022>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -5619,6 +6302,39 @@
          "ja" : "この値は正しくありません"
       }
    },
+   "lt in attr value" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The \u003Ccode>&lt;\u003C/code> character is not allowed in an attribute\u000Avalue.  It must be escaped as \u003Ccode>&amp;lt;\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>属性値に \u003Ccode>&lt;\u003C/code> を含めることはできません。 \u003Ccode>&amp;lt;\u003C/code>\u000Aとエスケープしなければいけません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is \u003Ccode>&lt;\u003C/code> in an attribute value",
+         "ja" : "属性値に \u003Ccode>&lt;\u003C/code> があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "attribute-value-double-quoted-003c" : 1,
+         "attribute-value-single-quoted-003c" : 1,
+         "default-attribute-value-double-quoted-003c" : 1,
+         "default-attribute-value-single-quoted-003c" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 7,
+            "input" : "\u003Cp x=\u0022a\u003Cb\u0022/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 7,
+            "input" : "\u003Cp x='a\u003Cb'/>",
+            "lang" : "XML"
+         }
+      ]
+   },
    "max lt min" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The value of the \u003Ccode>max\u003C/code> attribute must be greater\u000A    than or equal to the value of the \u003Ccode>min\u003C/code> attribute.\u003C/p>\u000A  ",
@@ -5627,6 +6343,86 @@
       "message" : {
          "en" : "The \u003Ccode>max\u003C/code> value is less than\u000A  the \u003Ccode>min\u003C/code> value",
          "ja" : "\u003Ccode>max\u003C/code> の値が \u003Ccode>min\u003C/code>\u000A  の値よりも小さいです"
+      }
+   },
+   "mdc in pe in md" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The markup declaration cannot be closed within a parameter\u000Aentity referenced from the markup declaration.\u003C/p>",
+         "ja" : "\u003Cp>マーク付け宣言から参照されている引数実体でマーク付け宣言を閉じることはできません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is a \u003Ccode>&gt;\u003C/code> in a parameter entity",
+         "ja" : "引数実体内に \u003Ccode>&gt;\u003C/code> があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-after-allowed-token-list-003e-md-fragment" : 1,
+         "after-allowed-token-003e-md-fragment" : 1,
+         "after-allowed-token-list-003e-md-fragment" : 1,
+         "after-attlist-attribute-default-003e-md-fragment" : 1,
+         "after-attlist-attribute-name-003e-md-fragment" : 1,
+         "after-attlist-attribute-type-003e-md-fragment" : 1,
+         "after-attlist-default-value-003e-md-fragment" : 1,
+         "after-content-model-group-003e-md-fragment" : 1,
+         "after-content-model-item-003e-md-fragment" : 1,
+         "after-element-content-003e-md-fragment" : 1,
+         "after-entity-name-003e-md-fragment" : 1,
+         "after-entity-parameter-003e-md-fragment" : 1,
+         "after-entity-public-identifier-003e-md-fragment" : 1,
+         "after-entity-public-keyword-003e-md-fragment" : 1,
+         "after-entity-system-identifier-003e-md-fragment" : 1,
+         "after-entity-system-keyword-003e-md-fragment" : 1,
+         "after-ignore-keyword-003e-md-fragment" : 1,
+         "after-include-keyword-003e-md-fragment" : 1,
+         "after-mss-003e-md-fragment" : 1,
+         "after-ndata-keyword-003e-md-fragment" : 1,
+         "after-notation-name-003e-md-fragment" : 1,
+         "after-notation-public-identifier-003e-md-fragment" : 1,
+         "after-notation-public-keyword-003e-md-fragment" : 1,
+         "after-notation-system-identifier-003e-md-fragment" : 1,
+         "after-notation-system-keyword-003e-md-fragment" : 1,
+         "allowed-token-003e-md-fragment" : 1,
+         "attlist-003e-md-fragment" : 1,
+         "attlist-attribute-default-003e-md-fragment" : 1,
+         "attlist-attribute-name-003e-md-fragment" : 1,
+         "attlist-attribute-type-003e-md-fragment" : 1,
+         "attlist-name-003e-md-fragment" : 1,
+         "before-allowed-token-003e-md-fragment" : 1,
+         "before-attlist-attribute-default-003e-md-fragment" : 1,
+         "before-attlist-attribute-name-003e-md-fragment" : 1,
+         "before-attlist-name-003e-md-fragment" : 1,
+         "before-content-model-item-003e-md-fragment" : 1,
+         "before-element-content-003e-md-fragment" : 1,
+         "before-element-name-003e-md-fragment" : 1,
+         "before-entity-name-003e-md-fragment" : 1,
+         "before-entity-public-identifier-003e-md-fragment" : 1,
+         "before-entity-system-identifier-003e-md-fragment" : 1,
+         "before-ndata-identifier-003e-md-fragment" : 1,
+         "before-ndata-keyword-003e-md-fragment" : 1,
+         "before-notation-name-003e-md-fragment" : 1,
+         "before-notation-public-identifier-003e-md-fragment" : 1,
+         "before-notation-system-identifier-003e-md-fragment" : 1,
+         "between-entity-public-and-system-identifiers-003e-md-fragment" : 1,
+         "between-notation-public-and-system-identifiers-003e-md-fragment" : 1,
+         "bogus-markup-declaration-003e-md-fragment" : 1,
+         "bogus-status-keyword-003e-md-fragment" : 1,
+         "content-model-element-003e-md-fragment" : 1,
+         "element-003e-md-fragment" : 1,
+         "element-content-keyword-003e-md-fragment" : 1,
+         "element-name-003e-md-fragment" : 1,
+         "entity-003e-md-fragment" : 1,
+         "entity-name-003e-md-fragment" : 1,
+         "entity-public-identifier-double-quoted-003e-md-fragment" : 1,
+         "entity-public-identifier-single-quoted-003e-md-fragment" : 1,
+         "ndata-identifier-003e-md-fragment" : 1,
+         "notation-003e-md-fragment" : 1,
+         "notation-name-003e-md-fragment" : 1,
+         "notation-public-identifier-double-quoted-003e-md-fragment" : 1,
+         "notation-public-identifier-single-quoted-003e-md-fragment" : 1
       }
    },
    "memoryname:syntax error" : {
@@ -5912,6 +6708,53 @@
          "en" : "The specified value has a syntax error as a\u000A  media query."
       }
    },
+   "ms:no dso" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>A marked section must be opened by \u003Ccode>&lt;![\u003C/code>,\u000Afollowed by a status keyword, followed by a \u003Ccode>[\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>マーク区間は \u003Ccode>&lt;![\u003C/code>、状態キーワード、 \u003Ccode>[\u003C/code>\u000Aで開かなければいけません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "The marked section is incompletly opened",
+         "ja" : "マーク区間が完全には開いていません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-ignore-keyword-003c" : 1,
+         "after-ignore-keyword-003e" : 1,
+         "after-ignore-keyword-005d" : 1,
+         "after-ignore-keyword-else" : 1,
+         "after-include-keyword-003c" : 1,
+         "after-include-keyword-003e" : 1,
+         "after-include-keyword-005d" : 1,
+         "after-include-keyword-else" : 1,
+         "after-mss-else" : 1
+      }
+   },
+   "ms:no status keyword" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be a status keyword (\u003Ccode>INCLUDE\u003C/code> or \u003Ccode>IGNORE\u003C/code>)\u000Aas the parameter to the marked section.\u003C/p>",
+         "ja" : "\u003Cp>マーク区間の引数として状態キーワード (\u003Ccode>INCLUDE\u003C/code> か\u000A\u003Ccode>IGNORE\u003C/code>) が必要です。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is no status keyword",
+         "ja" : "状態キーワードがありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-mss-003c" : 1,
+         "after-mss-003e" : 1,
+         "after-mss-005b" : 1,
+         "after-mss-005d" : 1
+      }
+   },
    "multilength:syntax error" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The value must be a dimension value using one of these forms: a\u000A    non-negative integer, a non-negative percentage integer, a\u000A    non-negative integer followed by the \u003Ccode>*\u003C/code> character, or\u000A    a \u003Ccode>*\u003C/code> character.\u003C/p>\u000A  ",
@@ -5959,7 +6802,8 @@
          "ja" : "その場で要素を閉じる構文 (\u003Ccode>/&gt;\u003C/code>) が使われています"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "-start-tag-self-closing-flag" : 1
@@ -5968,17 +6812,20 @@
          {
             "index" : 15,
             "input" : "\u003C!DOCTYPE HTML>\u003Cp/>",
+            "lang" : "HTML",
             "text" : "p"
          },
          {
             "index" : 15,
             "input" : "\u003C!DOCTYPE HTML>\u003Cimg/>",
+            "lang" : "HTML",
             "level" : "w",
             "text" : "img"
          },
          {
             "index" : 18,
             "input" : "\u003C!DOCTYPE HTML>\u003Cp>\u003C/p/>",
+            "lang" : "HTML",
             "text" : "p"
          }
       ],
@@ -5999,7 +6846,8 @@
          "ja" : "タグが \u003Ccode>/\u003C/code> の後 \u003Ccode>&gt;\u003C/code> で閉じられていません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "self-closing-start-tag-else" : 1
@@ -6007,11 +6855,13 @@
       "parser_tests" : [
          {
             "index" : 19,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp / >"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp / >",
+            "lang" : "HTML"
          },
          {
             "index" : 18,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp/hoge>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp/hoge>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -6085,7 +6935,8 @@
       "parser_tests" : [
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctd>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctd>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -6109,11 +6960,13 @@
       "parser_tests" : [
          {
             "index" : 0,
-            "input" : "hoge"
+            "input" : "hoge",
+            "lang" : "HTML"
          },
          {
             "index" : 7,
-            "input" : "\u003C!---->hoge"
+            "input" : "\u003C!---->hoge",
+            "lang" : "HTML"
          }
       ]
    },
@@ -6129,30 +6982,60 @@
          "ja" : "引用符で括られた文字列がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
+         "after-doctype-public-identifier-003e" : 1,
+         "after-doctype-public-identifier-005b" : 1,
          "after-doctype-public-keyword-003e" : 1,
+         "after-doctype-public-keyword-005b" : 1,
          "after-doctype-system-keyword-003e" : 1,
+         "after-doctype-system-keyword-005b" : 1,
+         "after-entity-public-identifier-003e" : 1,
+         "after-entity-public-identifier-else" : 1,
+         "after-entity-public-keyword-003e" : 1,
+         "after-entity-public-keyword-else" : 1,
+         "after-entity-system-keyword-003e" : 1,
+         "after-entity-system-keyword-else" : 1,
+         "after-notation-public-keyword-003e" : 1,
+         "after-notation-system-keyword-003e" : 1,
          "before-doctype-public-identifier-003e" : 1,
-         "before-doctype-system-identifier-003e" : 1
+         "before-doctype-public-identifier-005b" : 1,
+         "before-doctype-system-identifier-003e" : 1,
+         "before-doctype-system-identifier-005b" : 1,
+         "before-entity-public-identifier-003e" : 1,
+         "before-entity-public-identifier-else" : 1,
+         "before-entity-system-identifier-003e" : 1,
+         "before-entity-system-identifier-else" : 1,
+         "before-notation-public-identifier-003e" : 1,
+         "before-notation-public-identifier-else" : 1,
+         "before-notation-system-identifier-003e" : 1,
+         "between-doctype-public-and-system-identifiers-003e" : 1,
+         "between-doctype-public-and-system-identifiers-005b" : 1,
+         "between-entity-public-and-system-identifiers-003e" : 1,
+         "between-entity-public-and-system-identifiers-else" : 1
       },
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html PUBLIC>"
+            "input" : "\u003C!DOCTYPE html PUBLIC>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE html PUBLIC >"
+            "input" : "\u003C!DOCTYPE html PUBLIC >",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html system>"
+            "input" : "\u003C!DOCTYPE html system>",
+            "lang" : "HTML"
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE html system  >"
+            "input" : "\u003C!DOCTYPE html system  >",
+            "lang" : "HTML"
          }
       ]
    },
@@ -6168,10 +7051,12 @@
          "ja" : "文書型名がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
-         "before-doctype-name-003e" : 1
+         "before-doctype-name-003e" : 1,
+         "before-doctype-name-005b" : 1
       }
    },
    "no PUBLIC literal" : {
@@ -6180,14 +7065,39 @@
       }
    },
    "no XML decl" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>There should be an XML declaration in an XML document.\u003C/p>\u000A\u000A    \u003Cp>There should be a text declaration in an XML external entity.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>XML 文書には XML 宣言があるべきです。\u003C/p>\u000A\u000A    \u003Cp>XML 外部実体にはテキスト宣言があるべきです。\u003C/p>\u000A  "
+         "en" : "\u003Cp>The document entity should contain an XML declaration.\u000AThe other parsed entities should contain a text declaration.\u003C/p>",
+         "ja" : "\u003Cp>文書実体には XML 宣言を含めるべきです。\u000Aその他の解析対象実体にはテキスト宣言を含めるべきです。\u003C/p>"
       },
+      "layer" : "tokenizer",
       "message" : {
          "en" : "There is no XML declaration",
-         "ja" : "xML 宣言がありません"
-      }
+         "ja" : "XML 宣言がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 0,
+            "input" : "\u003Cp/>",
+            "lang" : "XML",
+            "level" : "s"
+         },
+         {
+            "index" : 0,
+            "input" : "  \u003Cp/>",
+            "lang" : "XML",
+            "level" : "s"
+         },
+         {
+            "index" : 0,
+            "input" : "abc\u003Cp/>",
+            "lang" : "XML",
+            "level" : "s"
+         }
+      ]
    },
    "no arguments in" : {
       "message" : {
@@ -6198,6 +7108,45 @@
       "message" : {
          "en" : "No \u003Ccode>(\u003C/code> character for an argument\u000A  list is found."
       }
+   },
+   "no attr default" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be the default type keyword (\u003Ccode>#IMPLIED\u003C/code>,\u000A\u003Ccode>#REQUIRED\u003C/code>, or \u003Ccode>#FIXED\u003C/code>) or the default value\u000Aafter the declared type.\u003C/p>",
+         "ja" : "\u003Cp>宣言型の後には既定型キーワード (\u003Ccode>#IMPLIED\u003C/code>,\u000A\u003Ccode>#REQUIRED\u003C/code>, \u003Ccode>#FIXED\u003C/code>) か既定値が必要です。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is no attribute default",
+         "ja" : "属性の既定値がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-after-allowed-token-list-003e" : 1,
+         "after-allowed-token-list-003e" : 1,
+         "after-attlist-attribute-type-003e" : 1,
+         "attlist-attribute-type-003e" : 1,
+         "before-attlist-attribute-default-0022" : 1,
+         "before-attlist-attribute-default-0025" : 1,
+         "before-attlist-attribute-default-0027" : 1,
+         "before-attlist-attribute-default-003e" : 1,
+         "before-attlist-attribute-default-eof" : 1,
+         "before-attlist-attribute-default-ws" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 33,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST a b CDATA # >]>\u003C/a>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 31,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST a b CDATA>]>\u003C/a>",
+            "lang" : "XML"
+         }
+      ]
    },
    "no attr local name" : {
       "message" : {
@@ -6219,10 +7168,81 @@
          "en" : "Attribute namespace wildcard \u003Ccode>*\u003C/code>\u000A  is not followed by a \u003Ccode>|\u003C/code> character."
       }
    },
-   "no attr value" : {
+   "no attr type" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be the attribute type (a declared type or a group of\u000Aallowed tokens) after the attribute name.\u003C/p>",
+         "ja" : "\u003Cp>属性名の後に属性型 (宣言型か認められる字句の群) が必要です。\u003C/p>"
+      },
+      "layer" : "tokenization",
       "message" : {
-         "en" : "Attribute value is missing."
-      }
+         "en" : "There is no attribute type",
+         "ja" : "属性型がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-attlist-attribute-name-003e" : 1,
+         "attlist-attribute-name-003e" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 29,
+            "input" : "\u003C!DOCTYPE x[\u003C!ATTLIST foo bar>]>\u003Cx/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "no attr value" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be attribute value in XML.\u003C/p>",
+         "ja" : "\u003Cp>XML では属性値は必須です。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is no attribute value",
+         "ja" : "属性値がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-attribute-name-002f" : 1,
+         "after-attribute-name-003e" : 1,
+         "after-attribute-name-else" : 1,
+         "after-attribute-name-upper" : 1,
+         "attribute-name-002f" : 1,
+         "attribute-name-003e" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 6,
+            "input" : "\u003Cp foo/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 6,
+            "input" : "\u003Cp foo>\u003C/p>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 7,
+            "input" : "\u003Cp foo x=\u0022\u0022/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 7,
+            "input" : "\u003Cp foo />",
+            "lang" : "XML"
+         },
+         {
+            "index" : 7,
+            "input" : "\u003Cp foo >",
+            "lang" : "XML"
+         }
+      ]
    },
    "no character encoding declaration" : {
       "desc" : {
@@ -6284,6 +7304,93 @@
          "en" : "Local name part of the type selector (or \u000A  \u003Ccode>*\u003C/code> for the universal selector) is missing."
       }
    },
+   "no md def" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Markup declarations other than \u003Ccode>ATTLIST\u003C/code> must contain\u000Aparameters after the name:\u000A  \u003C/p>\u003Cdl class=\u0022switch\u0022>\u000A  \u003Cdt>\u003Ccode>ENTITY\u003C/code> declaration\u000A  \u003C/dt>\u003Cdd>Either a system identifier and optional public identifier and notation name,\u000A  or an entity value.\u000A  \u003C/dd>\u003Cdt>\u003Ccode>NOTATION\u003C/code> declaration\u000A  \u003C/dt>\u003Cdd>Public and/or system identifiers.\u000A  \u003C/dd>\u003Cdt>\u003Ccode>ELEMENT\u003C/code> declaration\u000A  \u003C/dt>\u003Cdd>The content model.\u000A  \u003C/dd>\u003C/dl>",
+         "ja" : "\u003Cp>\u003Ccode>ATTLIST\u003C/code> 以外のマーク付け宣言は名前の後に引数が必要です。\u000A  \u003C/p>\u003Cdl class=\u0022switch\u0022>\u000A  \u003Cdt>\u003Ccode>ENTITY\u003C/code> 宣言\u000A  \u003C/dt>\u003Cdd>システム識別子と省略可能な公開識別子や記法名か、実体値かのいずれか。\u000A  \u003C/dd>\u003Cdt>\u003Ccode>NOTATION\u003C/code> 宣言\u000A  \u003C/dt>\u003Cdd>公開識別子とシステム識別子の一方または両方。\u000A  \u003C/dd>\u003Cdt>\u003Ccode>ELEMENT\u003C/code> 宣言\u000A  \u003C/dt>\u003Cdd>内容モデル。\u000A  \u003C/dd>\u003C/dl>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "The markup declaration has no parameter",
+         "ja" : "このマーク付け宣言には引数がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-entity-name-003e" : 1,
+         "after-notation-name-003e" : 1,
+         "before-element-content-0029" : 1,
+         "before-element-content-002a" : 1,
+         "before-element-content-002b" : 1,
+         "before-element-content-002c" : 1,
+         "before-element-content-003e" : 1,
+         "before-element-content-003f" : 1,
+         "before-element-content-007c" : 1,
+         "element-name-003e" : 1,
+         "entity-name-003e" : 1,
+         "notation-name-003e" : 1
+      }
+   },
+   "no md name" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>A markup declaration must contain a name as its first parameter.\u003C/p>",
+         "ja" : "\u003Cp>マーク付け宣言には名前を最初の引数として含めなければいけません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "The markup declaration has no name",
+         "ja" : "マーク付け宣言の名前がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "attlist-003e" : 1,
+         "before-attlist-name-003e" : 1,
+         "before-element-name-003e" : 1,
+         "before-entity-name-003e" : 1,
+         "before-notation-name-003e" : 1,
+         "element-003e" : 1,
+         "entity-003e" : 1,
+         "notation-003e" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST>]>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "no notation name" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be a notation name after the \u003Ccode>NDATA\u003C/code> keyword\u003C/p>",
+         "ja" : "\u003Cp>キーワード \u003Ccode>NDATA\u003C/code> の後に記法名がありません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is no notation name",
+         "ja" : "記法名がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-ndata-keyword-003e" : 1,
+         "before-ndata-identifier-003e" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 43,
+            "input" : "\u003C!DOCTYPE x[\u003C!ENTITY foo SYSTEM \u0022aa\u0022 NDATA >]>\u003Cx/>",
+            "lang" : "XML"
+         }
+      ]
+   },
    "no placeholder label option" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>If the \u003Ccode>select\u003C/code> element represents a pull-down list\u000A    box control and the \u003Ccode>required\u003C/code> attribute is specified,\u000A    there must be the placeholder label option.  That is, the first\u000A    element child of the \u003Ccode>select\u003C/code> element must be an\u000A    \u003Ccode>option\u003C/code> element whose value is the empty string.\u003C/p>\u000A  ",
@@ -6336,28 +7443,156 @@
          "ja" : "参照の末尾に \u003Ccode>;\u003C/code> がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
+         "character-reference-0025" : 1,
+         "character-reference-003e" : 1,
          "character-reference-decimal-number-else" : 1,
-         "character-reference-hexadecimal-number-else" : 1
+         "character-reference-hexadecimal-number-else" : 1,
+         "character-reference-name-0022" : 1,
+         "character-reference-name-0023" : 1,
+         "character-reference-name-0025" : 1,
+         "character-reference-name-0026" : 1,
+         "character-reference-name-0027" : 1,
+         "character-reference-name-003c" : 1,
+         "character-reference-name-003d" : 1,
+         "character-reference-name-003e" : 1,
+         "character-reference-name-0060" : 1,
+         "character-reference-name-allowed-char" : 1,
+         "character-reference-name-ws" : 1,
+         "entity-value-double-quoted-state-character-reference-name-0022" : 1,
+         "entity-value-double-quoted-state-character-reference-name-0023" : 1,
+         "entity-value-double-quoted-state-character-reference-name-0025" : 1,
+         "entity-value-double-quoted-state-character-reference-name-0026" : 1,
+         "entity-value-double-quoted-state-character-reference-name-0027" : 1,
+         "entity-value-double-quoted-state-character-reference-name-003c" : 1,
+         "entity-value-double-quoted-state-character-reference-name-003d" : 1,
+         "entity-value-double-quoted-state-character-reference-name-003e" : 1,
+         "entity-value-double-quoted-state-character-reference-name-0060" : 1,
+         "entity-value-double-quoted-state-character-reference-name-ws" : 1,
+         "entity-value-in-entity-state-character-reference-name-0022" : 1,
+         "entity-value-in-entity-state-character-reference-name-0023" : 1,
+         "entity-value-in-entity-state-character-reference-name-0025" : 1,
+         "entity-value-in-entity-state-character-reference-name-0026" : 1,
+         "entity-value-in-entity-state-character-reference-name-0027" : 1,
+         "entity-value-in-entity-state-character-reference-name-003c" : 1,
+         "entity-value-in-entity-state-character-reference-name-003d" : 1,
+         "entity-value-in-entity-state-character-reference-name-003e" : 1,
+         "entity-value-in-entity-state-character-reference-name-0060" : 1,
+         "entity-value-in-entity-state-character-reference-name-ws" : 1,
+         "entity-value-single-quoted-state-character-reference-name-0022" : 1,
+         "entity-value-single-quoted-state-character-reference-name-0023" : 1,
+         "entity-value-single-quoted-state-character-reference-name-0025" : 1,
+         "entity-value-single-quoted-state-character-reference-name-0026" : 1,
+         "entity-value-single-quoted-state-character-reference-name-0027" : 1,
+         "entity-value-single-quoted-state-character-reference-name-003c" : 1,
+         "entity-value-single-quoted-state-character-reference-name-003d" : 1,
+         "entity-value-single-quoted-state-character-reference-name-003e" : 1,
+         "entity-value-single-quoted-state-character-reference-name-0060" : 1,
+         "entity-value-single-quoted-state-character-reference-name-ws" : 1,
+         "parameter-entity-name-in-dtd-0022" : 1,
+         "parameter-entity-name-in-dtd-0023" : 1,
+         "parameter-entity-name-in-dtd-0025" : 1,
+         "parameter-entity-name-in-dtd-0026" : 1,
+         "parameter-entity-name-in-dtd-0027" : 1,
+         "parameter-entity-name-in-dtd-003c" : 1,
+         "parameter-entity-name-in-dtd-003d" : 1,
+         "parameter-entity-name-in-dtd-003e" : 1,
+         "parameter-entity-name-in-dtd-0060" : 1,
+         "parameter-entity-name-in-dtd-ws" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-0022" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-0023" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-0025" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-0026" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-0027" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-003c" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-003d" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-003e" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-0060" : 1,
+         "parameter-entity-name-in-entity-value-double-quoted-ws" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-0022" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-0023" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-0025" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-0026" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-0027" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-003c" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-003d" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-003e" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-0060" : 1,
+         "parameter-entity-name-in-entity-value-in-entity-ws" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-0022" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-0023" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-0025" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-0026" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-0027" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-003c" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-003d" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-003e" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-0060" : 1,
+         "parameter-entity-name-in-entity-value-single-quoted-ws" : 1,
+         "parameter-entity-name-in-markup-declaration-0022" : 1,
+         "parameter-entity-name-in-markup-declaration-0023" : 1,
+         "parameter-entity-name-in-markup-declaration-0025" : 1,
+         "parameter-entity-name-in-markup-declaration-0026" : 1,
+         "parameter-entity-name-in-markup-declaration-0027" : 1,
+         "parameter-entity-name-in-markup-declaration-003c" : 1,
+         "parameter-entity-name-in-markup-declaration-003d" : 1,
+         "parameter-entity-name-in-markup-declaration-003e" : 1,
+         "parameter-entity-name-in-markup-declaration-0060" : 1,
+         "parameter-entity-name-in-markup-declaration-ws" : 1,
+         "parameter-entity-name-in-status-keyword-0022" : 1,
+         "parameter-entity-name-in-status-keyword-0023" : 1,
+         "parameter-entity-name-in-status-keyword-0025" : 1,
+         "parameter-entity-name-in-status-keyword-0026" : 1,
+         "parameter-entity-name-in-status-keyword-0027" : 1,
+         "parameter-entity-name-in-status-keyword-003c" : 1,
+         "parameter-entity-name-in-status-keyword-003d" : 1,
+         "parameter-entity-name-in-status-keyword-003e" : 1,
+         "parameter-entity-name-in-status-keyword-0060" : 1,
+         "parameter-entity-name-in-status-keyword-ws" : 1
       },
       "parser_tests" : [
          {
             "index" : 20,
-            "input" : "\u003C!DOCTYPE HTML>&#125abc;"
+            "input" : "\u003C!DOCTYPE HTML>&#125abc;",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>&#x125azabc;"
+            "input" : "\u003C!DOCTYPE HTML>&#x125azabc;",
+            "lang" : "HTML"
          },
          {
             "index" : 19,
-            "input" : "\u003C!DOCTYPE HTML>&amp**"
+            "input" : "\u003C!DOCTYPE HTML>&amp**",
+            "lang" : "HTML"
          },
          {
             "index" : 28,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ca href=\u0022&amp=aa\u0022>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ca href=\u0022&amp=aa\u0022>",
+            "lang" : "HTML"
+         },
+         {
+            "index" : 13,
+            "input" : "\u003Cp x=\u0022aa&copy=\u0022/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 13,
+            "input" : "\u003Cp x=\u0022aa&copy%\u0022/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 13,
+            "input" : "\u003Cp x=\u0022aa&copy\u003C\u0022/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 23,
+            "input" : "\u003C!DOCTYPE x [\u003C!ENTITY %#>]>\u003Cx/>",
+            "lang" : "XML"
          }
       ]
    },
@@ -6451,6 +7686,61 @@
          "ja" : "参照されている要素が見つからないか、\u000A  \u003Ccode>object\u003C/code> 要素ではありません"
       }
    },
+   "no root element" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be the root element's start tag in an XML document.\u003C/p>",
+         "ja" : "\u003Cp>XML 文書には根要素の開始タグが必要です。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "There is no root element",
+         "ja" : "根要素がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_error_names" : {
+         "before-root-element-eof" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 0,
+            "input" : "",
+            "lang" : "XML"
+         },
+         {
+            "index" : 0,
+            "input" : "",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "no s after target" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be a white space character between the target and data of\u000Aa processing instruction.\u003C/p>",
+         "ja" : "\u003Cp>処理指令の対象名とデータの間には空白が必要です。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is no space between the processing instruction's target and data",
+         "ja" : "処理指令の対象名とデータの間に空白がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "pi-target-question-else" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 6,
+            "input" : "\u003C?hoge??>",
+            "lang" : "XML"
+         }
+      ]
+   },
    "no sequence gt" : {
       "message" : {
          "en" : "A \u003Ccode>sequence&lt;&gt;\u003C/code> type is not\u000A  terminated by a \u003Ccode>&gt;\u003C/code> character."
@@ -6502,7 +7792,8 @@
          "ja" : "\u003Cp>属性の間や最初の属性の前には空白文字が1つ以上必要です。\u003C/p>\u000A\u000A    \u003Cp>文字 \u003Ccode>U\u002B000C\u003C/code> を XML 文書の属性の前の空白として使うことはできません。\u003C/p>\u000A\u000A    \u003Cp>文字 \u003Ccode>U\u002B0085\u003C/code> や文字 \u003Ccode>U\u002B202B\u003C/code>\u000A    を HTML や XML 1.0 の文書の属性の前の空白として使うことはできません。\u003C/p>"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "after-attribute-value-quoted-else" : 1
@@ -6510,7 +7801,13 @@
       "parser_tests" : [
          {
             "index" : 24,
-            "input" : "\u003C!DOCTYPE html>\u003Cp foo=\u0022\u0022bar=\u0022\u0022>"
+            "input" : "\u003C!DOCTYPE html>\u003Cp foo=\u0022\u0022bar=\u0022\u0022>",
+            "lang" : "HTML"
+         },
+         {
+            "index" : 19,
+            "input" : "\u003C?xml version=\u00221.0\u0022encoding=\u0022utf-8\u0022?>\u003Ca/>",
+            "lang" : "XML"
          }
       ]
    },
@@ -6518,7 +7815,7 @@
       "default_level" : "m",
       "desc" : {
          "en" : "\u003Cp>There must be one or more white space characters between the\u000Akeyword \u003Ccode>PUBLIC\u003C/code> or \u003Ccode>SYSTEM\u003C/code> and the quoted\u000Astring, and between two quoted strings.\u003C/p>",
-         "ja" : "\u003Cp>キーワード \u003Ccode>PUBLIC\u003C/code> や \u003Ccode>SYSTEM\u003C/code>\u000Aとその後の括られた文字列の間や、括られた文字列2つの間には、\u000A1つ以上空白文字が必要です。\u003C/p>"
+         "ja" : "\u003Cp>マーク付け宣言の引数であるキーワードや引用符で括られた文字列、群の間は1文字以上の空\u000A白が必要です。\u003C/p>"
       },
       "layer" : "tokenization",
       "message" : {
@@ -6526,7 +7823,8 @@
          "ja" : "括られた文字列の前に空白がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "after-doctype-public-identifier-0022" : 1,
@@ -6539,27 +7837,108 @@
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html PUBLIC\u0022abc\u0022>"
+            "input" : "\u003C!DOCTYPE html PUBLIC\u0022abc\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html SYSTEM\u0022\u0022>"
+            "input" : "\u003C!DOCTYPE html SYSTEM\u0022\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 24,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022\u0022\u0022\u0022>"
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022\u0022\u0022\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html PUBLIC'abc'>"
+            "input" : "\u003C!DOCTYPE html PUBLIC'abc'>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html SYSTEM''>"
+            "input" : "\u003C!DOCTYPE html SYSTEM''>",
+            "lang" : "HTML"
          },
          {
             "index" : 27,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022abc\u0022'http'>"
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022abc\u0022'http'>",
+            "lang" : "HTML"
+         }
+      ]
+   },
+   "no space between params" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be one or more white space characters between markup\u000Adeclaration parameters such as keywords, literals, and groups.\u003C/p>",
+         "ja" : "\u003Cp>マーク付け宣言の引数であるキーワードや引用符で括られた文字列、群の間は1文字以上の空白が必要です。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is no space between markup declaration parameters",
+         "ja" : "マーク付け宣言の引数の間に空白がありません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-allowed-token-list-else" : 1,
+         "after-attlist-default-value-else" : 1,
+         "after-entity-public-identifier-0022" : 1,
+         "after-entity-public-identifier-0027" : 1,
+         "after-entity-public-keyword-0022" : 1,
+         "after-entity-public-keyword-0027" : 1,
+         "after-entity-system-identifier-else" : 1,
+         "after-entity-system-keyword-0022" : 1,
+         "after-entity-system-keyword-0027" : 1,
+         "after-ndata-keyword-else" : 1,
+         "after-notation-public-identifier-0022" : 1,
+         "after-notation-public-identifier-0027" : 1,
+         "after-notation-public-keyword-0022" : 1,
+         "after-notation-public-keyword-0027" : 1,
+         "after-notation-public-keyword-else" : 1,
+         "after-notation-system-keyword-0022" : 1,
+         "after-notation-system-keyword-0027" : 1,
+         "after-notation-system-keyword-else" : 1,
+         "attlist-attribute-default-0022" : 1,
+         "attlist-attribute-default-0027" : 1,
+         "attlist-attribute-name-0028" : 1,
+         "attlist-attribute-type-0022" : 1,
+         "attlist-attribute-type-0023" : 1,
+         "attlist-attribute-type-0027" : 1,
+         "attlist-attribute-type-0028" : 1,
+         "attlist-else" : 1,
+         "element-else" : 1,
+         "element-name-0028" : 1,
+         "entity-else" : 1,
+         "entity-name-0022" : 1,
+         "entity-name-0027" : 1,
+         "notation-else" : 1,
+         "parameter-entity-declaration-or-reference-0022" : 1,
+         "parameter-entity-declaration-or-reference-0025" : 1,
+         "parameter-entity-declaration-or-reference-0026" : 1,
+         "parameter-entity-declaration-or-reference-0027" : 1,
+         "parameter-entity-declaration-or-reference-003c" : 1,
+         "parameter-entity-declaration-or-reference-003d" : 1,
+         "parameter-entity-declaration-or-reference-003e" : 1,
+         "parameter-entity-declaration-or-reference-0060" : 1,
+         "parameter-entity-declaration-or-reference-ws" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 30,
+            "input" : "\u003C!DOCTYPE x [\u003C!ATTLIST a b (c)\u0022d\u0022>]>\u003Cx/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 22,
+            "input" : "\u003C!DOCTYPE x [\u003C!ENTITY%=>]>\u003Cx/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 22,
+            "input" : "\u003C!DOCTYPE x [\u003C!ENTITY%\u003C>]>\u003Cx/>",
+            "lang" : "XML"
          }
       ]
    },
@@ -6691,7 +8070,8 @@
          "ja" : "この終了タグより前で \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> 要素が閉じられていません"
       },
       "modules" : {
-         "Web::HTML::Parser::tree_constructor" : 1
+         "Web::HTML::Parser::tree_constructor" : 1,
+         "Web::XML::Parser::tree_constructor" : 1
       },
       "parser_error_names" : {
          "-steps-close-a-p-element" : 1,
@@ -6709,6 +8089,7 @@
          "in-caption-end-caption-2" : 1,
          "in-caption-end-table-2" : 1,
          "in-cell-end-td-th-2" : 1,
+         "in-element-end-else-2" : 1,
          "in-foreign-content-end-else" : 1,
          "in-foreign-content-end-script" : 1,
          "in-head-end-template-2" : 1
@@ -6717,110 +8098,135 @@
          {
             "index" : 26,
             "input" : "\u003C!DOCTYPE HTML>\u003Cdiv>\u003Cspan>\u003C/div>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "div"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Cmarquee>\u003Cspan>\u003C/marquee>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "marquee"
          },
          {
             "index" : 26,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cdiv>\u003C/body>",
+            "lang" : "HTML",
             "text" : "div",
             "value" : "body"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cdt>\u003Cspan>\u003C/dt>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "dt"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ch3>\u003Cspan>\u003C/h3>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "h3"
          },
          {
             "index" : 33,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Cform>\u003Cspan>\u003C/form>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "form"
          },
          {
             "index" : 43,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ctemplate>\u003Cform>\u003Cspan>\u003C/form>\u003C/template>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "form"
          },
          {
             "index" : 20,
             "input" : "\u003C!DOCTYPE HTML>\u003Cdiv>\u003C/html>",
+            "lang" : "HTML",
             "text" : "div",
             "value" : "html"
          },
          {
             "index" : 33,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Choge>\u003Cspan>\u003C/hoge>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "hoge"
          },
          {
             "index" : 25,
             "input" : "\u003C!DOCTYPE HTML>\u003Cli>\u003Cspan>\u003C/li>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "li"
          },
          {
             "index" : 37,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003Cspan>\u003C/caption>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "caption"
          },
          {
             "index" : 37,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003Cspan>\u003C/table>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "table"
          },
          {
             "index" : 36,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003Cspan>\u003C/td>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "td"
          },
          {
             "index" : 26,
             "input" : "\u003C!DOCTYPE HTML>\u003Csvg>\u003Cg>\u003Ch>\u003C/g>",
+            "lang" : "HTML",
             "text" : "h",
             "value" : "g"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Csvg>\u003Cscript>\u003Ch>\u003C/script>",
+            "lang" : "HTML",
             "text" : "h",
             "value" : "script"
          },
          {
             "index" : 37,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctemplate>\u003Cmeta>\u003Choge>\u003C/template>",
+            "lang" : "HTML",
             "text" : "hoge",
             "value" : "template"
          },
          {
             "index" : 24,
             "input" : "\u003C!DOCTYPE HTML>\u003Cp>\u003Cspan>\u003Cp>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "p"
          },
          {
             "index" : 36,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003Cspan>\u003Ctd>",
+            "lang" : "HTML",
             "text" : "span",
             "value" : "td"
+         },
+         {
+            "index" : 6,
+            "input" : "\u003Cp>\u003Cq>\u003C/p>",
+            "lang" : "XML",
+            "text" : "q",
+            "value" : "p"
          }
       ],
       "text" : [
@@ -6896,31 +8302,38 @@
       "parser_tests" : [
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022hoge\u0022>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022hoge\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022hoge\u0022 \u0022fuga\u0022>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022hoge\u0022 \u0022fuga\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022-//W3C//DTD HTML 4.01//EN\u0022 \u0022fa\u0022>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022-//W3C//DTD HTML 4.01//EN\u0022 \u0022fa\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022hoge\u0022>"
+            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022hoge\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022http://www.w3.org/TR/html4/strict.dtd\u0022>"
+            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022http://www.w3.org/TR/html4/strict.dtd\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE html PUBLIC \u0022-//W3C//DTD HTML 4.01 Transitional//EN\u0022>"
+            "input" : "\u003C!DOCTYPE html PUBLIC \u0022-//W3C//DTD HTML 4.01 Transitional//EN\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML system \u0022\u0022>"
+            "input" : "\u003C!DOCTYPE HTML system \u0022\u0022>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -6941,7 +8354,8 @@
       "parser_tests" : [
          {
             "index" : 0,
-            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022-//W3C//DTD HTML 4.01//EN\u0022>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022-//W3C//DTD HTML 4.01//EN\u0022>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -7067,7 +8481,8 @@
          "ja" : "タグや宣言の途中でファイルが途切れています"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "EOF" : 1
@@ -7085,10 +8500,12 @@
          "ja" : "\u003Ccode>NULL\u003C/code> 文字は無視されます"
       },
       "modules" : {
-         "Web::HTML::Parser::tree_constructor" : 1
+         "Web::HTML::Parser::tree_constructor" : 1,
+         "Web::XML::Parser::tree_constructor" : 1
       },
       "parser_error_names" : {
          "in-body-null" : 1,
+         "in-element-null" : 1,
          "in-foreign-content-null" : 1,
          "in-select-null" : 1,
          "in-table-text-null" : 1
@@ -7096,19 +8513,23 @@
       "parser_tests" : [
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u0000"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u0000",
+            "lang" : "HTML"
          },
          {
             "index" : 26,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Csvg>\u0000"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Csvg>\u0000",
+            "lang" : "HTML"
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cselect>\u0000"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cselect>\u0000",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u0000"
+            "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u0000",
+            "lang" : "HTML"
          }
       ]
    },
@@ -7124,7 +8545,8 @@
          "ja" : "注釈が \u003Ccode>&gt;\u003C/code> によって閉じられています"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "comment-start-003e" : 1,
@@ -7133,11 +8555,13 @@
       "parser_tests" : [
          {
             "index" : 19,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!-->"
+            "input" : "\u003C!DOCTYPE HTML>\u003C!-->",
+            "lang" : "HTML"
          },
          {
             "index" : 20,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!--->"
+            "input" : "\u003C!DOCTYPE HTML>\u003C!--->",
+            "lang" : "HTML"
          }
       ]
    },
@@ -7153,7 +8577,8 @@
          "ja" : "注釈が \u003Ccode>--\u003C/code> を含んでいます"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "comment-end-0021" : 1,
@@ -7163,15 +8588,18 @@
       "parser_tests" : [
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!--a--!>"
+            "input" : "\u003C!DOCTYPE HTML>\u003C!--a--!>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!--a--->"
+            "input" : "\u003C!DOCTYPE HTML>\u003C!--a--->",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!--a--b-->"
+            "input" : "\u003C!DOCTYPE HTML>\u003C!--a--b-->",
+            "lang" : "HTML"
          }
       ]
    },
@@ -7201,31 +8629,37 @@
          {
             "index" : 18,
             "input" : "\u003C!DOCTYPE HTML>\u003Ca>\u003Ca>",
+            "lang" : "HTML",
             "value" : "a"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cform>\u003Cform>",
+            "lang" : "HTML",
             "value" : "form"
          },
          {
             "index" : 23,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbutton>\u003Cbutton>",
+            "lang" : "HTML",
             "value" : "button"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cnobr>\u003Cnobr>",
+            "lang" : "HTML",
             "value" : "nobr"
          },
          {
             "index" : 23,
             "input" : "\u003C!DOCTYPE HTML>\u003Cselect>\u003Cselect>",
+            "lang" : "HTML",
             "value" : "select"
          },
          {
             "index" : 22,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctable>",
+            "lang" : "HTML",
             "value" : "table"
          }
       ],
@@ -7246,38 +8680,49 @@
          "ja" : "宣言が閉じられる前に閉じ引用符がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "doctype-public-identifier-double-quoted-003e" : 1,
          "doctype-public-identifier-single-quoted-003e" : 1,
          "doctype-system-identifier-double-quoted-003e" : 1,
-         "doctype-system-identifier-single-quoted-003e" : 1
+         "doctype-system-identifier-single-quoted-003e" : 1,
+         "entity-public-identifier-double-quoted-003e" : 1,
+         "entity-public-identifier-single-quoted-003e" : 1,
+         "notation-public-identifier-double-quoted-003e" : 1,
+         "notation-public-identifier-single-quoted-003e" : 1
       },
       "parser_tests" : [
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022>\u0022>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022>\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022>\u0022>"
+            "input" : "\u003C!DOCTYPE HTML SYSTEM \u0022>\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 26,
-            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022\u0022 \u0022>\u0022>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022\u0022 \u0022>\u0022>",
+            "lang" : "HTML"
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML PUBLIC '>'>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC '>'>",
+            "lang" : "HTML"
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML SYSTEM '>'>"
+            "input" : "\u003C!DOCTYPE HTML SYSTEM '>'>",
+            "lang" : "HTML"
          },
          {
             "index" : 26,
-            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022\u0022 '>'>"
+            "input" : "\u003C!DOCTYPE HTML PUBLIC \u0022\u0022 '>'>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -7293,7 +8738,8 @@
          "ja" : "\u003Ccode>=\u003C/code> の前に属性名がありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "before-attribute-name-003d" : 1
@@ -7301,7 +8747,8 @@
       "parser_tests" : [
          {
             "index" : 18,
-            "input" : "\u003C!DOCTYPE html>\u003Cp =foo>"
+            "input" : "\u003C!DOCTYPE html>\u003Cp =foo>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -7355,11 +8802,13 @@
       "parser_tests" : [
          {
             "index" : 1,
-            "input" : "\u003C?xml version=\u00221.0\u0022?>\u003C!DOCTYPE HTML>"
+            "input" : "\u003C?xml version=\u00221.0\u0022?>\u003C!DOCTYPE HTML>",
+            "lang" : "HTML"
          },
          {
             "index" : 16,
-            "input" : "\u003C!DOCTYPE HTML>\u003C?php print (\u0022Hello!\u0022)?>"
+            "input" : "\u003C!DOCTYPE HTML>\u003C?php print (\u0022Hello!\u0022)?>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -7466,14 +8915,33 @@
       }
    },
    "ref outside of root element" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>General entity references are only allowed in attribute values\u000A    and in element contents.  It cannot be used outside of the root\u000A    element's start and end tags.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>一般実体参照は、属性値や要素の内容の中でのみ使えます。\u000A    根要素の開始タグと終了タグの外側では使えません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>Character or entity reference must be included in an element or\u000Aan attribute value.\u003C/p>",
+         "ja" : "\u003Cp>文字参照や実体参照は要素や属性値の中でしか使えません。\u003C/p>"
       },
+      "layer" : "entity",
       "message" : {
-         "en" : "An general entity reference is used outside\u000A  of the root element",
-         "ja" : "根要素外で一般実体参照が使われています"
-      }
+         "en" : "There is a reference outside of the root element",
+         "ja" : "根要素の外に参照があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 0,
+            "input" : "&amp;",
+            "lang" : "XML",
+            "value" : "&amp;"
+         },
+         {
+            "index" : 4,
+            "input" : "\u003Ca/>&hoge;",
+            "lang" : "XML",
+            "value" : "&hoge;"
+         }
+      ]
    },
    "referenced attr not defined" : {
       "message" : {
@@ -7644,14 +9112,29 @@
       }
    },
    "second root element" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>There must be only one child element in the document.  There\u000A    cannot be any start or end tag after the end tag of the root\u000A    element.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>文書の子要素は1つだけしかあってはいけません。\u000A    根要素の終了タグの後に開始タグや終了タグがあってはいけません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>There must be only one root element.  No start tag is allowed\u000Aafter the end tag of the root element.\u003C/p>",
+         "ja" : "\u003Cp>根要素は1つだけです。根要素の終了タグの後に開始タグは使えません。\u003C/p>"
       },
+      "layer" : "tree-construction",
       "message" : {
-         "en" : "There is a start tag after the end tag\u000A  of the root element",
-         "ja" : "根要素の終了タグの後に開始タグがあります"
-      }
+         "en" : "There is an element after the root element",
+         "ja" : "根要素の後に別の要素があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_error_names" : {
+         "after-root-element-start-else" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 4,
+            "input" : "\u003Cp/>\u003Cp>",
+            "lang" : "XML"
+         }
+      ]
    },
    "selectors:id:empty" : {
       "desc" : {
@@ -7918,14 +9401,33 @@
       }
    },
    "stop processing" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>As there is an error in DTD, or an external entity can't be\u000A    retrieved, processing of markup declarations has been stopped.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>DTD 中に誤りがあったため、あるいは取得できない外部実体があったため、\u000A    マーク付け宣言の処理は停止されました。\u003C/p>\u000A  "
+         "en" : "\u003Cp>Since there is a reference whose entity cannot be read and\u000Aprocessed, further processing of markup declarations in the DTD is\u000Asuppressed.\u003C/p>",
+         "ja" : "\u003Cp>参照されている実体を読んで処理できなかったため、以後の DTD\u000A中のマーク付け宣言の処理は行いません。\u003C/p>"
       },
+      "layer" : "entity",
       "message" : {
-         "en" : "Processing of markup declarations has been\u000A  stopped",
-         "ja" : "マーク付け宣言の処理が停止されました"
-      }
+         "en" : "Processing of markup declarations is suppressed due to unread\u000Aentity reference",
+         "ja" : "読めない実体参照があったためマーク付け宣言の処理を停止します"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 45,
+            "input" : "\u003C!DOCTYPE hoge[\u000A  \u003C!ENTITY % x SYSTEM \u0022f\u0022>\u000A  %x;\u000A  \u003C!ENTITY hoge \u0022\u0022>\u000A]>\u003Choge/>",
+            "lang" : "XML",
+            "level" : "i"
+         },
+         {
+            "index" : 18,
+            "input" : "\u003C!DOCTYPE hoge[\u000A  %x;\u000A  \u003C!ENTITY hoge \u0022\u0022>\u000A]>\u003Choge/>",
+            "lang" : "XML",
+            "level" : "i"
+         }
+      ]
    },
    "stray end tag" : {
       "default_level" : "m",
@@ -7939,13 +9441,17 @@
          "ja" : "終了タグ \u003Ccode>&lt;/\u003Cvar>{value}\u003C/var>&gt;\u003C/code>\u000Aに対応する開始タグがありません"
       },
       "modules" : {
-         "Web::HTML::Parser::tree_constructor" : 1
+         "Web::HTML::Parser::tree_constructor" : 1,
+         "Web::XML::Parser::tree_constructor" : 1
       },
       "parser_error_names" : {
          "after-body-end-html" : 1,
          "after-head-end-else" : 1,
+         "after-root-element-end-else" : 1,
+         "before-doctype-end-else" : 1,
          "before-head-end-else" : 1,
          "before-html-end-else" : 1,
+         "before-root-element-end-else" : 1,
          "in-body-end-a3bbcd5f4hhlmmnopssu" : 1,
          "in-body-end-applet-marquee-object" : 1,
          "in-body-end-body" : 1,
@@ -7964,6 +9470,8 @@
          "in-cell-end-td-th" : 1,
          "in-column-group-end-col" : 1,
          "in-column-group-end-colgroup" : 1,
+         "in-element-end-else" : 1,
+         "in-element-end-else-3" : 1,
          "in-frameset-end-frameset" : 1,
          "in-head-end-else" : 1,
          "in-head-end-template" : 1,
@@ -7986,285 +9494,496 @@
          {
             "index" : 15,
             "input" : "\u003C!DOCTYPE html>\u003C/hoge>",
+            "lang" : "HTML",
             "value" : "hoge"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE html>\u003Chtml>\u003C/hoge>",
+            "lang" : "HTML",
             "value" : "hoge"
          },
          {
             "index" : 22,
             "input" : "\u003C!DOCTYPE html>\u003C/head>\u003C/hoge>",
+            "lang" : "HTML",
             "value" : "hoge"
          },
          {
             "context" : "html",
             "index" : 22,
             "input" : "\u003C!DOCTYPE html>\u003C/body>\u003C/html>",
+            "lang" : "HTML",
             "value" : "html"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/div>",
+            "lang" : "HTML",
             "value" : "div"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/object>",
+            "lang" : "HTML",
             "value" : "object"
          },
          {
             "context" : "body",
             "index" : 0,
             "input" : "\u003C/body>",
+            "lang" : "HTML",
             "value" : "body"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/dt>",
+            "lang" : "HTML",
             "value" : "dt"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/form>",
+            "lang" : "HTML",
             "value" : "form"
          },
          {
             "index" : 35,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003Ctemplate>\u003Cbr>\u003C/form>",
+            "lang" : "HTML",
             "value" : "form"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/h4>",
+            "lang" : "HTML",
             "value" : "h4"
          },
          {
             "context" : "body",
             "index" : 0,
             "input" : "\u003C/html>",
+            "lang" : "HTML",
             "value" : "html"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/hoge>",
+            "lang" : "HTML",
             "value" : "hoge"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Cbody>\u003C/li>",
+            "lang" : "HTML",
             "value" : "li"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003C/html>",
+            "lang" : "HTML",
             "value" : "html"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003C/body>",
+            "lang" : "HTML",
             "value" : "body"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003C/thead>",
+            "lang" : "HTML",
             "value" : "thead"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003C/tbody>",
+            "lang" : "HTML",
             "value" : "tbody"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003C/tfoot>",
+            "lang" : "HTML",
             "value" : "tfoot"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccaption>\u003C/col>",
+            "lang" : "HTML",
             "value" : "col"
          },
          {
             "context" : "caption",
             "index" : 0,
             "input" : "\u003C/caption>",
+            "lang" : "HTML",
             "value" : "caption"
          },
          {
             "context" : "caption",
             "index" : 0,
             "input" : "\u003C/table>",
+            "lang" : "HTML",
             "value" : "table"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003C/col>",
+            "lang" : "HTML",
             "value" : "col"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003C/body>",
+            "lang" : "HTML",
             "value" : "body"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003C/html>",
+            "lang" : "HTML",
             "value" : "html"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003C/colgroup>",
+            "lang" : "HTML",
             "value" : "colgroup"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003C/caption>",
+            "lang" : "HTML",
             "value" : "caption"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003C/thead>",
+            "lang" : "HTML",
             "value" : "thead"
          },
          {
             "context" : "tr",
             "index" : 4,
             "input" : "\u003Ctd>\u003C/tbody>",
+            "lang" : "HTML",
             "value" : "tbody"
          },
          {
             "context" : "td",
             "index" : 0,
             "input" : "\u003C/table>",
+            "lang" : "HTML",
             "value" : "table"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Ctd>\u003C/th>",
+            "lang" : "HTML",
             "value" : "th"
          },
          {
             "index" : 30,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003Cth>\u003C/td>",
+            "lang" : "HTML",
             "value" : "td"
          },
          {
             "index" : 32,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ccolgroup>\u003C/col>",
+            "lang" : "HTML",
             "value" : "col"
          },
          {
             "context" : "colgroup",
             "index" : 0,
             "input" : "\u003C/colgroup>",
+            "lang" : "HTML",
             "value" : "colgroup"
          },
          {
             "context" : "frameset",
             "index" : 0,
             "input" : "\u003C/frameset>",
+            "lang" : "HTML",
             "value" : "frameset"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003C/hoge>",
+            "lang" : "HTML",
             "value" : "hoge"
          },
          {
             "index" : 21,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003C/template>",
+            "lang" : "HTML",
             "value" : "template"
          },
          {
             "index" : 31,
             "input" : "\u003C!DOCTYPE HTML>\u003Chead>\u003Cnoscript>\u003C/hoge>",
+            "lang" : "HTML",
             "noscript" : 1,
             "value" : "hoge"
          },
          {
             "index" : 26,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctr>\u003C/body>",
+            "lang" : "HTML",
             "value" : "body"
          },
          {
             "context" : "tr",
             "index" : 0,
             "input" : "\u003C/table>",
+            "lang" : "HTML",
             "value" : "table"
          },
          {
             "context" : "tr",
             "index" : 0,
             "input" : "\u003C/tbody>",
+            "lang" : "HTML",
             "value" : "tbody"
          },
          {
             "context" : "tbody",
             "index" : 0,
             "input" : "\u003C/table>",
+            "lang" : "HTML",
             "value" : "table"
          },
          {
             "context" : "tr",
             "index" : 0,
             "input" : "\u003C/table>",
+            "lang" : "HTML",
             "value" : "table"
          },
          {
             "context" : "select",
             "index" : 0,
             "input" : "\u003C/select>",
+            "lang" : "HTML",
             "value" : "select"
          },
          {
             "index" : 23,
             "input" : "\u003C!DOCTYPE HTML>\u003Cselect>\u003C/option>",
+            "lang" : "HTML",
             "value" : "option"
          },
          {
             "index" : 23,
             "input" : "\u003C!DOCTYPE HTML>\u003Cselect>\u003C/optgroup>",
+            "lang" : "HTML",
             "value" : "optgroup"
          },
          {
             "index" : 29,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003Ctbody>\u003C/body>",
+            "lang" : "HTML",
             "value" : "body"
          },
          {
             "context" : "tbody",
             "index" : 0,
             "input" : "\u003C/thead>",
+            "lang" : "HTML",
             "value" : "thead"
          },
          {
             "index" : 22,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctable>\u003C/body>",
+            "lang" : "HTML",
             "value" : "body"
          },
          {
             "context" : "table",
             "index" : 0,
             "input" : "\u003C/table>",
+            "lang" : "HTML",
             "value" : "table"
          },
          {
             "index" : 25,
             "input" : "\u003C!DOCTYPE HTML>\u003Ctemplate>\u003C/fpopo>",
+            "lang" : "HTML",
             "value" : "fpopo"
          },
          {
             "context" : "template",
             "index" : 6,
             "input" : "\u003Clink>\u003C/template>",
+            "lang" : "HTML",
             "value" : "template"
+         },
+         {
+            "index" : 3,
+            "input" : "\u003Cp>\u003C/pq>\u003C/p>",
+            "lang" : "XML",
+            "value" : "pq"
          }
       ],
       "value" : [
          "token",
          "tag name"
+      ]
+   },
+   "string after PUBLIC literal" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The public identifier cannot be followed by parameters other than\u000Athe system identifier in a \u003Ccode>NOTATION\u003C/code> declaration.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>NOTATION\u003C/code> 宣言では公開識別子の後にシステム識別子以外の引数は指定できません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is an unknown parameter after the public identifier",
+         "ja" : "公開識別子の後に未知の引数があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-notation-public-identifier-else" : 1,
+         "between-notation-public-and-system-identifiers-else" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 35,
+            "input" : "\u003C!DOCTYPE a[\u003C!NOTATION a PUBLIC \u0022b\u0022a]>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "string after SYSTEM literal" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The system identifier cannot be followed by another parameter\u000Ain a \u003Ccode>NOTATION\u003C/code> declaration.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>NOTATION\u003C/code> 宣言ではシステム識別子の後に他の引数は指定できません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is an unknown parameter after the system identifier",
+         "ja" : "システム識別子の後に未知の引数があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-notation-system-identifier-else" : 1,
+         "before-ndata-keyword-else" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 35,
+            "input" : "\u003C!DOCTYPE a[\u003C!NOTATION a SYSTEM \u0022b\u0022a]>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "string after internal subset" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Only the \u003Ccode>&gt;\u003C/code> character is allowed after the internal subset.\u003C/p>",
+         "ja" : "\u003Cp>内部部分集合の後には \u003Ccode>&gt;\u003C/code> しか書けません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is an unknown parameter after the internal subset",
+         "ja" : "内部部分集合の後に未知の引数があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-doctype-internal-subset-else" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 13,
+            "input" : "\u003C!DOCTYPE x[]x>\u003Cx/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "string after md def" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The markup declaration cannot contain an unknown parameter.\u003C/p>",
+         "ja" : "\u003Cp>マーク付け宣言に未知の引数を含めることはできません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is an unknown parameter in the markup declaration",
+         "ja" : "マーク付け宣言に未知の引数があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-content-model-item-007c" : 1,
+         "after-element-content-else" : 1,
+         "after-entity-parameter-else" : 1,
+         "after-ignore-keyword-003c-md-fragment" : 1,
+         "after-ignore-keyword-005b-md-fragment" : 1,
+         "after-ignore-keyword-005d-md-fragment" : 1,
+         "after-include-keyword-003c-md-fragment" : 1,
+         "after-include-keyword-005b-md-fragment" : 1,
+         "after-include-keyword-005d-md-fragment" : 1,
+         "after-mss-003c-md-fragment" : 1,
+         "after-mss-005b-md-fragment" : 1,
+         "after-mss-005d-md-fragment" : 1,
+         "before-notation-system-identifier-else" : 1,
+         "bogus-status-keyword-0025-md-fragment" : 1,
+         "bogus-status-keyword-003c-md-fragment" : 1,
+         "bogus-status-keyword-005b-md-fragment" : 1,
+         "bogus-status-keyword-005d-md-fragment" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 30,
+            "input" : "\u003C!DOCTYPE x[\u003C!ELEMENT foo ANY bar>]>\u003Cx/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "string in internal subset" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Nothing ohter than declarations, comments, and processing\u000Ainstructions can be used in the internal subset.  In external\u000Asubset, sections are also allowed.\u003C/p>",
+         "ja" : "\u003Cp>内部部分集合では宣言、注釈、処理指令しか使えません。\u000A外部部分集合では区間も使えます。\u003C/p>"
+      },
+      "layer" : "tokenizer",
+      "message" : {
+         "en" : "There is an unexpected string in DTD",
+         "ja" : "DTD 中に予期せぬ文字列があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_error_names" : {
+         "after-doctype-internal-subset-003e-fragment" : 1,
+         "after-dtd-msc-005d" : 1,
+         "after-dtd-msc-else" : 1,
+         "dtd-else" : 1,
+         "in-subset-char" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 13,
+            "input" : "\u003C!DOCTYPE a[\u000A]]>\u000A]>\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 13,
+            "input" : "\u003C!DOCTYPE a[ a]>\u003Ca/>",
+            "lang" : "XML"
+         }
       ]
    },
    "syntax error:iri3987" : {
@@ -8308,6 +10027,32 @@
          "en" : "This \u003Ccode>rowspan\u003C/code> attribute\u000A  results in creating a table row that does not contain\u000A  any cell anchored to it."
       }
    },
+   "tag in pe in markup declaration" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>A parameter entity referenced from a markup declaration can't contain a tag,\u000Acomment, declaration, section, or processing instruction.\u003C/p>",
+         "ja" : "\u003Cp>マーク付け宣言から参照されている引数実体にはタグ、注釈、宣言、区間、\u000A処理指令を含めることはできません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is a tag in a parameter entity referenced in a markup declaration",
+         "ja" : "マーク付け宣言から参照されている引数実体にタグがあります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "text-declaration-in-markup-declaration-0000" : 1,
+         "text-declaration-in-markup-declaration-0000-" : 1,
+         "text-declaration-in-markup-declaration-0021" : 1,
+         "text-declaration-in-markup-declaration-0025" : 1,
+         "text-declaration-in-markup-declaration-0026" : 1,
+         "text-declaration-in-markup-declaration-0026-" : 1,
+         "text-declaration-in-markup-declaration-003c" : 1,
+         "text-declaration-in-markup-declaration-003e-" : 1,
+         "text-declaration-in-markup-declaration-eof-" : 1
+      }
+   },
    "tag not closed" : {
       "default_level" : "m",
       "desc" : {
@@ -8320,7 +10065,8 @@
          "ja" : "タグが閉じられていません"
       },
       "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1
+         "Web::HTML::Parser::tokenizer" : 1,
+         "Web::XML::Parser::tokenizer" : 1
       },
       "parser_error_names" : {
          "after-attribute-name-003c" : 1,
@@ -8332,23 +10078,28 @@
       "parser_tests" : [
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE html>\u003Cp foo \u003Cbar>"
+            "input" : "\u003C!DOCTYPE html>\u003Cp foo \u003Cbar>",
+            "lang" : "HTML"
          },
          {
             "index" : 21,
-            "input" : "\u003C!DOCTYPE html>\u003Cp foo\u003Cbar>"
+            "input" : "\u003C!DOCTYPE html>\u003Cp foo\u003Cbar>",
+            "lang" : "HTML"
          },
          {
             "index" : 18,
-            "input" : "\u003C!DOCTYPE html>\u003Cp \u003Cbar>"
+            "input" : "\u003C!DOCTYPE html>\u003Cp \u003Cbar>",
+            "lang" : "HTML"
          },
          {
             "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=\u003Cbar>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=\u003Cbar>",
+            "lang" : "HTML"
          },
          {
             "index" : 23,
-            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=a\u003Cbar>"
+            "input" : "\u003C!DOCTYPE HTML>\u003Cp foo=a\u003Cbar>",
+            "lang" : "HTML"
          }
       ]
    },
@@ -8627,14 +10378,46 @@
       }
    },
    "text outside of root element" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>Non-space characters must be in the root element.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>空白以外の文字は根要素外では使えません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>Characters other than white spaces must be included in an\u000Aelement or an attribute value.\u003C/p>",
+         "ja" : "\u003Cp>空白以外の文字は要素や属性値の中でしか使えません。\u003C/p>"
       },
+      "layer" : "tree-construction",
       "message" : {
-         "en" : "There is a non-space character outside\u000A  of the root element",
-         "ja" : "根要素の外側に空白でない文字があります"
-      }
+         "en" : "There is a character outside of the root element",
+         "ja" : "根要素の外に文字があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_error_names" : {
+         "after-root-element-char" : 1,
+         "before-doctype-char" : 1,
+         "before-root-element-char" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 0,
+            "input" : "a\u003Cp/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 12,
+            "input" : "\u003C!DOCTYPE p>a\u003Cp/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 9,
+            "input" : "\u003C!---->  x\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 4,
+            "input" : "\u003Ca/>b",
+            "lang" : "XML"
+         }
+      ]
    },
    "text:bad char" : {
       "desc" : {
@@ -8691,9 +10474,43 @@
          "ja" : "\u003Ccode>--&gt;\u003C/code> が見つかりません"
       }
    },
+   "unclosed cmgroup" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Content model groups must be closed by \u003Ccode>)\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>内容モデル群は \u003Ccode>)\u003C/code> で閉じなければいけません。\u003C/p>"
+      },
+      "layer" : "tokenizer",
+      "message" : {
+         "en" : "There is an unclosed content model group",
+         "ja" : "内容モデル群が括弧で閉じられていません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-content-model-item-003e" : 1,
+         "before-content-model-item-003e" : 1
+      }
+   },
    "unclosed comment" : {
       "message" : {
          "en" : "Comment is not closed by a string\u000A  \u003Ccode>--&gt;\u003C/code>."
+      }
+   },
+   "unclosed literal" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The quoted string must be closed by matching quotation mark.\u003C/p>",
+         "ja" : "\u003Cp>引用符で始まった文字列は引用符で閉じなければいけません。\u003C/p>"
+      },
+      "layer" : "tokenizer",
+      "message" : {
+         "en" : "There is an unclosed literal",
+         "ja" : "引用符の後引用符で閉じられていません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
       }
    },
    "unclosed tag" : {
@@ -8743,6 +10560,52 @@
       "targets" : {
          "attr" : 1
       }
+   },
+   "unknown declared type" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The declared type must be one of allowed keywords.\u003C/p>",
+         "ja" : "\u003Cp>宣言型は認められているキーワードのいずれかを指定しなければいけません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "An unknown declared type keyword is specified",
+         "ja" : "未知の宣言型キーワードが指定されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 29,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ATTLIST  f  abc hoge \u0022\u0022>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "hoge"
+         }
+      ]
+   },
+   "unknown default type" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The default type must be one of allowed keywords.\u003C/p>",
+         "ja" : "\u003Cp>既定型は認められているキーワードのいずれかを指定しなければいけません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "An unknown default type keyword is specified",
+         "ja" : "未知の既定型キーワードが指定されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 29,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ATTLIST  f  abc hoge #hog>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "hog"
+         }
+      ]
    },
    "unknown element" : {
       "desc" : {
@@ -8817,15 +10680,68 @@
          "ja" : "要素 \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> \u000A  は開いていません。"
       }
    },
-   "unparsed entity" : {
+   "unmatched mgc" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>An unparsed entity cannot be referenced by an entity\u000A    reference.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>非解析対象実体を実体参照から参照することはできません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>There must be \u003Ccode>(\u003C/code> before \u003Ccode>)\u003C/code> in the\u000Asame entity.\u003C/p>",
+         "ja" : "同じ実体で \u003Ccode>(\u003C/code> よりも後でないと \u003Ccode>)\u003C/code> \u000Aは使えません。"
       },
+      "layer" : "tokenizer",
       "message" : {
-         "en" : "An unparsed entity is referenced by\u000A  an entity reference",
-         "ja" : "実体参照が非解析対象実体を参照しています"
+         "en" : "There is an unmatched \u003Ccode>)\u003C/code>",
+         "ja" : "対応しない \u003Ccode>)\u003C/code> があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
       }
+   },
+   "unmatched mse" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In XML, the \u003Ccode>&gt;\u003C/code> character in \u003Ccode>]]&gt;\u003C/code> must be\u000Aescaped as \u003Ccode>&amp;gt;\u003C/code> unless it is closing a \u003Ccode>CDATA\u003C/code>\u000Asection.\u003C/p>",
+         "ja" : "\u003Cp>XML では \u003Ccode>]]&gt;\u003C/code> の \u003Ccode>&gt;\u003C/code> は \u003Ccode>CDATA\u003C/code>\u000A区間を閉じる場合を除き \u003Ccode>&amp;gt;\u003C/code> とエスケープしないといけません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is an unmatched \u003Ccode>]]&gt;\u003C/code>",
+         "ja" : "対応していない \u003Ccode>]]&gt;\u003C/code> があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-msc-003e" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 3,
+            "input" : "\u003Cp>]]>\u003C/p>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "unparsed entity" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An unparsed entity cannot be referenced.\u003C/p>",
+         "ja" : "\u003Cp>非解析対象実体は参照できません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "An unparsed entity is referenced",
+         "ja" : "非解析対象実体が参照されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 54,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ENTITY xy SYSTEM \u0022x\u0022 NDATA foo>\u000A]>\u003Cp>&xy;\u003C/p>",
+            "lang" : "XML",
+            "value" : "&xy;"
+         }
+      ]
    },
    "unqualified attr" : {
       "desc" : {
@@ -8852,6 +10768,69 @@
       "targets" : {
          "attr" : 1
       }
+   },
+   "unquoted attr value" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In XML, the attribute value must be quoted by \u003Ccode>\u0022\u003C/code>\u000Aor \u003Ccode>'\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>XML では属性値は \u003Ccode>\u0022\u003C/code> か \u003Ccode>'\u003C/code> で括らなければいけません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "The attribute value is not quoted",
+         "ja" : "属性値が引用符で括られていません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-after-allowed-token-list-else" : 1,
+         "after-attlist-attribute-type-else" : 1,
+         "before-attribute-value-0026" : 1,
+         "before-attribute-value-else" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 5,
+            "input" : "\u003Ca b=c/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 5,
+            "input" : "\u003Ca b=&copy;/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 32,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST a b CDATA foo>]>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "uppercase hcro" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In XML, the \u003Ccode>x\u003C/code> character in \u003Ccode>&amp;#\u003Cmark>x\u003C/mark>\u003Ccode>\u000Aintroducing a hexadecimal character reference must be in\u000Alowercase.\u003C/code>\u003C/code>\u003C/p>",
+         "ja" : "\u003Cp>XML では十六進数文字参照の最初の \u003Ccode>&amp;#\u003Cmark>x\u003C/mark>\u003C/code>\u000Aの \u003Ccode>x\u003C/code> は小文字でなければいけません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "The \u003Ccode>x\u003C/code> character in the reference is in uppercase",
+         "ja" : "文字参照の \u003Ccode>x\u003C/code> が大文字になっています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "character-reference-number-0058" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 5,
+            "input" : "\u003Ca>&#X21;\u003C/a>",
+            "lang" : "XML"
+         }
+      ]
    },
    "url:empty" : {
       "desc" : {
@@ -9248,44 +11227,278 @@
       }
    },
    "xml:dtd:attlist ignored" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>Since there was a parameter entity reference whose entity is\u000A    not read, processing of attribute definition list declarations are\u000A    stopped.  This attribute definition list declaration is\u000A    ignored.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>読んでいない引数実体参照があったため、属性定義並び宣言の処理は停止されています。\u000A    この属性定義並び宣言は無視されました。\u003C/p>\u000A  "
+         "en" : "\u003Cp>\u003Ccode>ATTLIST\u003C/code> declarations are ignored if there is\u000Aan unread entity reference before the declaration.\u003C/p>",
+         "ja" : "\u003Ccode>ATTLIST\u003C/code> 宣言はその前に読んでいない実体参照があると無視されます。"
       },
+      "layer" : "tree-construction",
       "message" : {
-         "en" : "The \u003Ccode>ATTLIST\u003C/code> declaration is\u000A  ignored as there was unread parameter entity",
-         "ja" : "未読の引数実体があったためこの\u000A  \u003Ccode>ATTLIST\u003C/code> 宣言は無視されました"
-      }
+         "en" : "The \u003Ccode>ATTLIST\u003C/code> declaration is ignored",
+         "ja" : "この \u003Ccode>ATTLIST\u003C/code> 宣言は無視されます"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 21,
+            "input" : "\u003C!DOCTYPE a[\u000A%foo;\u000A  \u003C!ATTLIST hoge>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "level" : "w"
+         }
+      ]
    },
    "xml:dtd:entity ignored" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>Since there was a parameter entity reference whose entity is\u000A    not read, processing of entity declarations are stopped.  This\u000A    entity declaration is ignored.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>読んでいない引数実体参照があったため、実体宣言の処理は停止されています。\u000A    この実体宣言は無視されました。\u003C/p>\u000A  "
+         "en" : "\u003Cp>An \u003Ccode>ENTITY\u003C/code> declaration is ignored if there\u000Ais an unread entity reference before the declaration.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>ENTITY\u003C/code> 宣言は、その前に読んでいない実体参照があると無視されます。\u003C/p>"
       },
+      "layer" : "tree-construction",
       "message" : {
-         "en" : "The \u003Ccode>ENTITY\u003C/code> declaration is\u000A  ignored as there was unread parameter entity",
-         "ja" : "未読の引数実体があったためこの\u000A  \u003Ccode>ENTITY\u003C/code> 宣言は無視されました"
-      }
+         "en" : "The \u003Ccode>ENTITY\u003C/code> declaration is ignored",
+         "ja" : "この \u003Ccode>ENTITY\u003C/code> 宣言は無視されます"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 24,
+            "input" : "\u003C!DOCTYPE a [\u000A  %foo;\u000A  \u003C!ENTITY hoge \u0022\u0022>\u000A]>\u003Ca/>",
+            "lang" : "XML",
+            "level" : "w"
+         }
+      ]
+   },
+   "xml:dtd:entity value:unparsed entref" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An unparsed entity cannot be referenced.\u003C/p>",
+         "ja" : "\u003Cp>非解析対象実体は参照できません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "An unparsed entity is referenced",
+         "ja" : "非解析対象実体が参照されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 66,
+            "input" : "\u003C!DOCTYPE a[\u000A  \u003C!ENTITY xy SYSTEM \u0022x\u0022 NDATA foo>\u000A  \u003C!ENTITY bar \u0022a&xy;a\u0022>\u000A]>\u003Cp>\u003C/p>",
+            "lang" : "XML",
+            "level" : "w",
+            "value" : "&xy;"
+         }
+      ]
    },
    "xml:dtd:ext decl" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>A markup declaration appears in an external entity or in a\u000A    parameter entity (i.e. is an external markup declaration).\u003C/p>\u000A\u000A    \u003Cp>As processing of external markup declarations is not required\u000A    to XML processors, the document might be misinterpreted depending\u000A    on how XML processor is implemented or configured.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>マーク付け宣言が外部実体か引数実体の中にあります\u000A    (つまり外部マーク付け宣言です)。\u003C/p>\u000A\u000A    \u003Cp>外部マーク付け宣言の処理はすべての XML 処理器に義務付けられているわけではありませんから、\u000A    XML 処理器がどう実装されているか、設定されているかによって文書の解釈が異なってくるかもしれません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>Markup declarations in external entities are not interoperable.\u003C/p>",
+         "ja" : "\u003Cp>外部実体にあるマーク付け宣言は相互運用性が高くありません。\u003C/p>"
       },
+      "layer" : "tree-construction",
       "message" : {
-         "en" : "An external markup declaration is found",
-         "ja" : "外部マーク付け宣言があります"
+         "en" : "There is a markup declaration in an external entity",
+         "ja" : "外部実体にマーク付け宣言があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
       }
    },
-   "xml:dtd:pi" : {
+   "xml:dtd:no group delimiter" : {
+      "default_level" : "m",
       "desc" : {
-         "en" : "\u000A    \u003Cp>A processing instruction is used in DTD.\u003C/p>\u000A\u000A    \u003Cp>If a processing instruction appears in an external entity or in\u000A    a parameter entity, it might not be included depending on how the\u000A    XML processor is implemented or configured.\u003C/p>\u000A\u000A    \u003Cp>Processing instructions in DTD might not be result in the DOM\u000A    tree such that applications might not be able to access them.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>処理指令が DTD 中で使われています。\u003C/p>\u000A\u000A    \u003Cp>処理指令が外部実体や引数実体で使われている場合、 XML\u000A    処理器の実装や設定次第で取り込まれないかもしれません。\u003C/p>\u000A\u000A    \u003Cp>DTD 内の処理指令は DOM 木に現れないかもしれませんから、\u000A    アプリケーションがアクセスできないかもしれません。\u003C/p>\u000A  "
+         "en" : "\u003Cp>There must be a delimiter (\u003Ccode>|\u003C/code> or \u003Ccode>,\u003C/code>) between group\u000Aitems.  There cannot be a space within an allowed token or element name.\u000ANothing but \u003Ccode>&gt;\u003C/code> is allowed after the outermost content model group.\u003C/p>",
+         "ja" : "\u003Cp>群の項目の間には区切子 (\u003Ccode>|\u003C/code> か \u003Ccode>,\u003C/code>) が必要です。\u000A認められる字句や要素名の中には空白を入れられません。\u000A最外内容モデル群の後には \u003Ccode>&gt;\u003C/code> しか書けません。\u003C/p>"
       },
+      "layer" : "tokenization",
       "message" : {
-         "en" : "A processing instruction is used in DTD",
+         "en" : "There is an unexpected character after a group item",
+         "ja" : "群の項目の後に予期せぬ文字があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-allowed-token-003e" : 1,
+         "after-allowed-token-else" : 1,
+         "after-content-model-group-0028" : 1,
+         "after-content-model-group-else" : 1,
+         "after-content-model-item-0028" : 1,
+         "after-content-model-item-0029" : 1,
+         "after-content-model-item-002a" : 1,
+         "after-content-model-item-002b" : 1,
+         "after-content-model-item-003f" : 1,
+         "after-content-model-item-else" : 1,
+         "allowed-token-003e" : 1,
+         "content-model-element-0028" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 30,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST a b (ab cd) \u0022X\u0022>]>\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 30,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST a b (ab >]>\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 29,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST a b (ab>]>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "xml:dtd:no group item" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There must be an item after \u003Ccode>(\u003C/code>, \u003Ccode>|\u003C/code>, or \u003Ccode>,\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>(\u003C/code>, \u003Ccode>|\u003C/code>, \u003Ccode>,\u003C/code> の後に項目がありません。\u003C/p>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "No group item is specified",
+         "ja" : "群に項目が指定されていません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "before-allowed-token-0029" : 1,
+         "before-allowed-token-003e" : 1,
+         "before-allowed-token-007c" : 1,
+         "before-content-model-item-0029" : 1,
+         "before-content-model-item-002a" : 1,
+         "before-content-model-item-002b" : 1,
+         "before-content-model-item-002c" : 1,
+         "before-content-model-item-003f" : 1,
+         "before-content-model-item-007c" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 28,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST x y ( ) \u0022x\u0022>]>\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 28,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST x y ( >]>\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 28,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST x y ( ) \u0022x\u0022>]>\u003Ca/>",
+            "lang" : "XML"
+         },
+         {
+            "index" : 28,
+            "input" : "\u003C!DOCTYPE a[\u003C!ATTLIST x y ( |a) \u0022y\u0022>]>\u003Ca/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "xml:dtd:param entity with ndata" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The notation name cannot be specified in a parameter entity declaration.\u003C/p>",
+         "ja" : "\u003Cp>引数実体宣言には記法名を指定できません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "The notation name is specified for a parameter entity",
+         "ja" : "引数実体に記法名が指定されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 12,
+            "input" : "\u003C!DOCTYPE a[\u003C!ENTITY % foo SYSTEM \u0022bar\u0022 NDATA x>]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "%foo;"
+         }
+      ]
+   },
+   "xml:dtd:pi" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Processing instructions in DTD are not interoperable.\u003C/p>",
+         "ja" : "\u003Cp>DTD 内の処理指令は相互運用性が高くありません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "There is a processing instruction in DTD",
          "ja" : "DTD 中に処理指令があります"
-      }
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 15,
+            "input" : "\u003C!DOCTYPE foo [\u003C?hoge?>]>\u003Cfoo/>",
+            "lang" : "XML",
+            "level" : "w"
+         }
+      ]
+   },
+   "xml:dtd:string after name" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Markup declarations other than \u003Ccode>ATTLIST\u003C/code> must contain\u000Aparameters after the name:\u000A  \u003C/p>\u003Cdl class=\u0022switch\u0022>\u000A  \u003Cdt>\u003Ccode>ENTITY\u003C/code> declaration\u000A  \u003C/dt>\u003Cdd>Either a system identifier and optional public identifier and notation name,\u000A  or an entity value.\u000A  \u003C/dd>\u003Cdt>\u003Ccode>NOTATION\u003C/code> declaration\u000A  \u003C/dt>\u003Cdd>Public and/or system identifiers.\u000A  \u003C/dd>\u003Cdt>\u003Ccode>ELEMENT\u003C/code> declaration\u000A  \u003C/dt>\u003Cdd>The content model.\u000A  \u003C/dd>\u003C/dl>",
+         "ja" : "\u003Cp>\u003Ccode>ATTLIST\u003C/code> 以外のマーク付け宣言は名前の後に引数が必要です。\u000A  \u003C/p>\u003Cdl class=\u0022switch\u0022>\u000A  \u003Cdt>\u003Ccode>ENTITY\u003C/code> 宣言\u000A  \u003C/dt>\u003Cdd>システム識別子と省略可能な公開識別子や記法名か、実体値かのいずれか。\u000A  \u003C/dd>\u003Cdt>\u003Ccode>NOTATION\u003C/code> 宣言\u000A  \u003C/dt>\u003Cdd>公開識別子とシステム識別子の一方または両方。\u000A  \u003C/dd>\u003Cdt>\u003Ccode>ELEMENT\u003C/code> 宣言\u000A  \u003C/dt>\u003Cdd>内容モデル。\u000A  \u003C/dd>\u003C/dl>"
+      },
+      "layer" : "tokenization",
+      "message" : {
+         "en" : "There is an unknown parameter after the name",
+         "ja" : "名前の後に未知の引数があります"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      },
+      "parser_error_names" : {
+         "after-entity-name-else" : 1,
+         "after-notation-name-else" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 27,
+            "input" : "\u003C!DOCTYPE x[\u003C!NOTATION foo bar>]>\u003Cx/>",
+            "lang" : "XML"
+         }
+      ]
+   },
+   "xml:dtd:unknown content keyword" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>The content model keyword in an \u003Ccode>ELEMENT\u003C/code> declaration\u000Amust be \u003Ccode>EMPTY\u003C/code> or \u003Ccode>ANY\u003C/code>.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>ELEMENT\u003C/code> 宣言の内容モデルのキーワードは\u000A\u003Ccode>EMPTY\u003C/code> か \u003Ccode>ANY\u003C/code> でなければいけません。\u003C/p>"
+      },
+      "layer" : "tree-construction",
+      "message" : {
+         "en" : "An unknown content model keyword is specified",
+         "ja" : "未知の内容モデルのキーワードが指定されています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tree_constructor" : 1
+      },
+      "parser_tests" : [
+         {
+            "index" : 12,
+            "input" : "\u003C!DOCTYPE a[\u003C!ELEMENT a foo>]>\u003Ca/>",
+            "lang" : "XML",
+            "value" : "foo"
+         }
+      ]
    },
    "xml:lang ne lang" : {
       "desc" : {
