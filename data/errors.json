@@ -598,6 +598,21 @@
          "en" : "Modifier \u003Ccode>(?\u003Cvar>{text}\u003C/var>)\u003C/code>\u000A  \u003Cem>in\u003C/em> a regular expression has no effect."
       }
    },
+   "VC:Element Valid:charref in element content" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An element whose type is declared with an element content\u000A(i.e. a content model group with no \u003Ccode>#PCDATA\u003C/code>\u000Akeyword) cannot contain character references.\u003C/p>",
+         "ja" : "\u003Cp>要素内容 (\u003Ccode>#PCDATA\u003C/code> 無しの内容モデル群) \u000Aが宣言された要素型の要素は文字参照を含むことができません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "An element-content element contains a character reference",
+         "ja" : "要素内容として宣言された要素が文字参照を含んでいます"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      }
+   },
    "VC:Standalone Document Declaration:attr" : {
       "default_level" : "m",
       "desc" : {
@@ -2355,7 +2370,7 @@
          "ja" : "文字符号化宣言に文字参照が使われています"
       },
       "modules" : {
-         "Web::HTML::Parser" : 1
+         "Web::HTML::Parser::tokenizer" : 1
       },
       "parser_tests" : [
          {
@@ -4257,6 +4272,21 @@
             "value" : "&hoge;"
          }
       ]
+   },
+   "entity:in EMPTY" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An element whose type is declared as \u003Ccode>EMPTY\u003C/code>\u000Acannot contain entity references.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>EMPTY\u003C/code> と宣言された要素型の要素は実体参照を含むことができません。\u003C/p>"
+      },
+      "layer" : "entity",
+      "message" : {
+         "en" : "An \u003Ccode>EMPTY\u003C/code> element contains an entity reference",
+         "ja" : "\u003Ccode>EMPTY\u003C/code> 要素が実体参照を含んでいます"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      }
    },
    "entity:too deep" : {
       "default_level" : "m",
@@ -11226,6 +11256,21 @@
          "en" : "Extended attribute \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  is not applicable to this kind of object."
       }
    },
+   "xml:CDATA section not allowed by cm" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An element whose type is declared with the \u003Ccode>EMPTY\u003C/code> keyword\u000Aor an element content (i.e. a content model group with no \u003Ccode>#PCDATA\u003C/code>\u000Akeyword) cannot contain \u003Ccode>CDATA\u003C/code> sections.\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>EMPTY\u003C/code> キーワードまたは要素内容 (\u003Ccode>#PCDATA\u003C/code>\u000Aキーワード無しの内容モデル群) を指定して宣言された要素型の要素では、\u000A\u003Ccode>CDATA\u003C/code> 区間は使えません。\u003C/p>"
+      },
+      "layer" : "dtd",
+      "message" : {
+         "en" : "An \u003Ccode>EMPTY\u003C/code> or element-content element contains a \u003Ccode>CDATA\u003C/code>\u000Asection",
+         "ja" : "\u003Ccode>EMPTY\u003C/code> または要素内容を持つ要素が \u003Ccode>CDATA\u003C/code>\u000A区間を含んでいます"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      }
+   },
    "xml:dtd:attlist ignored" : {
       "default_level" : "m",
       "desc" : {
@@ -11500,6 +11545,21 @@
          }
       ]
    },
+   "xml:empty element tag:non-EMPTY" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An element that is not declared with the \u003Ccode>EMPTY\u003C/code> keyword\u000Ashould not use the empty-element tag syntax (i.e. \u003Ccode>/&gt;\u003C/code>).\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>EMPTY\u003C/code> キーワード無しで宣言された要素は空要素タグ構文\u000A(\u003Ccode>/&gt;\u003C/code>) を使うべきではありません。\u003C/p>"
+      },
+      "layer" : "dtd",
+      "message" : {
+         "en" : "A non-\u003Ccode>EMPTY\u003C/code> element is using the empty-element tag syntax",
+         "ja" : "\u003Ccode>EMPTY\u003C/code> でない要素が空要素タグ構文を使っています"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
+      }
+   },
    "xml:lang ne lang" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The value of the \u003Ccode>lang\u003C/code> attribute in no namespace\u000A    and the value of the \u003Ccode>lang\u003C/code> attribute in the XML\u000A    namespace or the value of the \u003Ccode>xml:lang\u003C/code> attribute in\u000A    no namespace must be equivalent.\u003C/p>\u000A\u000A    \u003Cp>Note that you can omit the \u003Ccode>xml:lang\u003C/code> attribute.\u003C/p>\u000A  ",
@@ -11517,6 +11577,21 @@
       },
       "targets" : {
          "attr" : 1
+      }
+   },
+   "xml:start tag:EMPTY" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>An element that is declared with the \u003Ccode>EMPTY\u003C/code> keyword\u000Ashould use the empty-element tag syntax (i.e. \u003Ccode>/&gt;\u003C/code>).\u003C/p>",
+         "ja" : "\u003Cp>\u003Ccode>EMPTY\u003C/code> キーワードが指定された要素は空要素タグ構文\u000A(\u003Ccode>/&gt;\u003C/code>) を使うべきです。\u003C/p>"
+      },
+      "layer" : "dtd",
+      "message" : {
+         "en" : "An \u003Ccode>EMPTY\u003C/code> element does not use the empty-element tag syntax",
+         "ja" : "\u003Ccode>EMPTY\u003C/code> 要素が空要素タグ構文を使っていません"
+      },
+      "modules" : {
+         "Web::XML::Parser::tokenizer" : 1
       }
    },
    "xmlns:* empty" : {
