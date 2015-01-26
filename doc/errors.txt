@@ -126,7 +126,6 @@ Language tags are BCP 47 language tags, normalized in lowercase.
 
 * License
 
-Copyright 2007-2014 Wakaba <wakaba@suikawiki.org>.
-
-This document is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
+Per CC0 <https://creativecommons.org/publicdomain/zero/1.0/>, to the
+extent possible under law, the author has waived all copyright and
+related or neighboring rights to this work.
