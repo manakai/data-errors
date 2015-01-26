@@ -12749,13 +12749,10 @@ Regexp::Parser::JavaScript's extension. -->
 <section id="license">
 <h2>License of This Document</h2>
 
-<p>Copyright <time>2007</time>-<time>2014</time> <a
-href="http://suika.suikawiki.org/~wakaba/who?" rel="author"
-xml:lang="ja">Wakaba</a> <code class="mail">&lt;<a
-href="mailto:wakaba@suikawiki.org">wakaba@suikawiki.org</a>></code>.</p>
-
-<p>This document is free software; you can redistribute it
-and/or modify it under the same terms as Perl itself.</p>
+<p>Per <a
+href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>>, to
+the extent possible under law, the author has waived all copyright and
+related or neighboring rights to this work.</p>
 </section>
 
 </body>
