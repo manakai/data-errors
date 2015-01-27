@@ -4757,8 +4757,8 @@
    },
    "enumerated:non-conforming" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>The attribute only accepts limited set of values.  The\u000A    specified value is not one of them.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>area\u003C/code> element, the \u003Ccode>shape\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>Use \u003Ccode>circule\u003C/code> instead of \u003Ccode>circ\u003C/code>,\u000A    \u003Ccode>poly\u003C/code> instead of \u003Ccode>polygon\u003C/code>, and\u000A    \u003Ccode>rect\u003C/code> instead of \u003Ccode>rectangle\u003C/code>.\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  ",
-         "ja" : "\u000A    \u003Cp>この属性に使える値は限られています。指定された値は認められていません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>area\u003C/code> 要素 \u003Ccode>shape\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>\u003Ccode>circ\u003C/code> でなく \u003Ccode>circule\u003C/code> を、\u000A    \u003Ccode>polygon\u003C/code> でなく \u003Ccode>poly\u003C/code> を、\u000A    \u003Ccode>rectangle\u003C/code> でなく \u003Ccode>rect\u003C/code> を使ってください。\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  "
+         "en" : "\u000A    \u003Cp>The attribute only accepts limited set of values.  The\u000A    specified value is not one of them.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>area\u003C/code> element, the \u003Ccode>shape\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>Use \u003Ccode>circule\u003C/code> instead of \u003Ccode>circ\u003C/code>,\u000A    \u003Ccode>poly\u003C/code> instead of \u003Ccode>polygon\u003C/code>, and\u000A    \u003Ccode>rect\u003C/code> instead of \u003Ccode>rectangle\u003C/code>.\u003C/dd>\u000A\u000A    \u003Cdt>\u003Ccode>&lt;meta http-equiv=set-cookie&gt;\u003C/code>\u003C/dt>\u000A\u000A    \u003Cdd>HTTP \u003Ccode>Set-Cookie:\u003C/code> header should be used instead.\u003C/dd>\u000A\u000A    \u003Cdt>\u003Ccode>&lt;meta http-equiv=content-language&gt;\u003C/code>\u003C/dt>\u000A\u000A    \u003Cdd>HTML \u003Ccode>lang\u003C/code> attribute should be used instead.\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  ",
+         "ja" : "\u000A    \u003Cp>この属性に使える値は限られています。指定された値は認められていません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>area\u003C/code> 要素 \u003Ccode>shape\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>\u003Ccode>circ\u003C/code> でなく \u003Ccode>circule\u003C/code> を、\u000A    \u003Ccode>polygon\u003C/code> でなく \u003Ccode>poly\u003C/code> を、\u000A    \u003Ccode>rectangle\u003C/code> でなく \u003Ccode>rect\u003C/code> を使ってください。\u003C/dd>\u000A\u000A    \u003Cdt>\u003Ccode>&lt;meta http-equiv=set-cookie&gt;\u003C/code>\u003C/dt>\u000A\u000A    \u003Cdd>HTTP \u003Ccode>Set-Cookie:\u003C/code> ヘッダーを使ってください。\u003C/dd>\u000A\u000A    \u003Cdt>\u003Ccode>&lt;meta http-equiv=content-language&gt;\u003C/code>\u003C/dt>\u000A\u000A    \u003Cdd>HTML \u003Ccode>lang\u003C/code> 属性を使ってください。\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  "
       },
       "message" : {
          "en" : "The attribute value is not allowed",
@@ -5818,8 +5818,8 @@
    },
    "invalid attribute value" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>The attribute value is invalid.\u003C/p>\u000A \u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>The \u003Ccode>xml:space\u003C/code> attribute\u003C/dt>\u000A\u000A    \u003Cdd>The value must be either \u003Ccode>default\u003C/code> or\u000A    \u003Ccode>preserve\u003C/code>.\u003C/dd>\u000A\u000A    \u003Cdt>HTML elements, the \u003Ccode>xmlns\u003C/code> attribute in no\u000A    namespace\u003C/dt>\u000A\u000A    \u003Cdd>The value must be\u000A    \u003Ccode>http://www.w3.org/1999/xhtml\u003C/code>.\u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>img\u003C/code> element, the\u000A    \u003Ccode>generator-unable-to-provide-required-alt\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>The value must be the empty string.\u003C/dd>\u000A\u000A    \u003Cdt>Atom Text construct element, \u003Ccode>type\u003C/code> attribute\u003C/dt>\u000A\u000A    \u003Cdd>The attribute value must be \u003Ccode>text\u003C/code>,\u000A    \u003Ccode>html\u003C/code>, or \u003Ccode>xhtml\u003C/code>.\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  ",
-         "ja" : "\u000A    \u003Cp>この属性値は非妥当です。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>\u003Ccode>xml:space\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は \u003Ccode>default\u003C/code> か \u003Ccode>preserve\u003C/code>\u000A    でなければいけません。\u003C/dd>\u000A\u000A    \u003Cdt>HTML 要素の名前空間に属さない \u003Ccode>xmlns\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は \u003Ccode>http://www.w3.org/1999/xhtml\u003C/code>\u000A    でなければいけません。\u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>img\u003C/code> 要素\u000A    \u003Ccode>generator-unable-to-provide-required-alt\u003C/code>\u000A    属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は空文字列でなければいけません。\u003C/dd>\u000A\u000A    \u003Cdt>Atom Text 構造要素 \u003Ccode>type\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は \u003Ccode>text\u003C/code>, \u003Ccode>html\u003C/code>, \u003Ccode>xhtml\u003C/code>\u000A    のいずれかでなければいけません。\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  "
+         "en" : "\u000A    \u003Cp>The attribute value is invalid.\u003C/p>\u000A \u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>The \u003Ccode>xml:space\u003C/code> attribute\u003C/dt>\u000A\u000A    \u003Cdd>The value must be either \u003Ccode>default\u003C/code> or\u000A    \u003Ccode>preserve\u003C/code>.\u003C/dd>\u000A\u000A    \u003Cdt>HTML elements, the \u003Ccode>xmlns\u003C/code> attribute in no\u000A    namespace\u003C/dt>\u000A\u000A    \u003Cdd>The value must be\u000A    \u003Ccode>http://www.w3.org/1999/xhtml\u003C/code>.\u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>img\u003C/code> element, the\u000A    \u003Ccode>generator-unable-to-provide-required-alt\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>The value must be the empty string.\u003C/dd>\u000A\u000A    \u003Cdt>Atom Text construct element, \u003Ccode>type\u003C/code> attribute\u003C/dt>\u000A\u000A    \u003Cdd>The attribute value must be \u003Ccode>text\u003C/code>,\u000A    \u003Ccode>html\u003C/code>, or \u003Ccode>xhtml\u003C/code>.\u003C/dd>\u000A\u000A    \u003Cdt>\u003Ccode>&lt;meta http-equiv=x-ua-compatible&gt;\u003C/code>, the\u000A    \u003Ccode>content\u003C/code> attribute\u003C/dt>\u000A\u000A    \u003Cdd>The attribute value must be \u003Ccode>IE=edge\u003C/code>.\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  ",
+         "ja" : "\u000A    \u003Cp>この属性値は非妥当です。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>\u003Ccode>xml:space\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は \u003Ccode>default\u003C/code> か \u003Ccode>preserve\u003C/code>\u000A    でなければいけません。\u003C/dd>\u000A\u000A    \u003Cdt>HTML 要素の名前空間に属さない \u003Ccode>xmlns\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は \u003Ccode>http://www.w3.org/1999/xhtml\u003C/code>\u000A    でなければいけません。\u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>img\u003C/code> 要素\u000A    \u003Ccode>generator-unable-to-provide-required-alt\u003C/code>\u000A    属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は空文字列でなければいけません。\u003C/dd>\u000A\u000A    \u003Cdt>Atom Text 構造要素 \u003Ccode>type\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は \u003Ccode>text\u003C/code>, \u003Ccode>html\u003C/code>, \u003Ccode>xhtml\u003C/code>\u000A    のいずれかでなければいけません。\u003C/dd>\u000A\u000A    \u003Cdt>\u003Ccode>&lt;meta http-equiv=x-ua-compatible&gt;\u003C/code> 要素\u000A    \u003Ccode>content\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>属性値は \u003Ccode>IE=edge\u003C/code> でなければいけません。\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  "
       },
       "message" : {
          "en" : "The attribute value is invalid",
@@ -9400,21 +9400,21 @@
    },
    "refresh:bad url" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>The URL in the \u003Ccode>meta http-equiv=Refresh\u003C/code> element\u000A    cannot start with the quotation mark (\u003Ccode>\u0022\u003C/code> or\u000A    \u003Ccode>'\u003C/code>).\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>\u003Ccode>meta http-equiv=Refresh\u003C/code> の URL は引用符\u000A    (\u003Ccode>\u0022\u003C/code> や \u003Ccode>'\u003C/code>) から始まってはいけません。\u003C/p>\u000A  "
+         "en" : "\u000A    \u003Cp>The URL in the \u003Ccode>content\u003C/code> attribute of a\u000A    \u003Ccode>meta http-equiv=Refresh\u003C/code> element\u000A    cannot start with the quotation mark (\u003Ccode>\u0022\u003C/code> or\u000A    \u003Ccode>'\u003C/code>).\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>\u003Ccode>meta http-equiv=Refresh\u003C/code> の \u003Ccode>content\u003C/code>\u000A    属性の URL は引用符\u000A    (\u003Ccode>\u0022\u003C/code> や \u003Ccode>'\u003C/code>) から始まってはいけません。\u003C/p>\u000A  "
       },
       "message" : {
-         "en" : "The URL cannot start with the quotation mark",
-         "ja" : "URL を引用符から始めることはできません"
+         "en" : "The first character of the URL is a quotation mark",
+         "ja" : "URL に最初の文字が引用符です"
       }
    },
    "refresh:syntax error" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>The \u003Ccode>content\u003C/code> attribute value of the \u003Ccode>meta\u003C/code>\u000A    element whose \u003Ccode>http-equiv\u003C/code> is \u003Ccode>Refresh\u003C/code> is\u000A    syntactically invalid.\u003C/p>\u000A\u000A    \u003Cp>The value must be a non-negative integer, optionally followed\u000A    by \u003Ccode>; url=\u003C/code> and a URL.\u003C/p>\u000A  ",
+         "en" : "\u000A    \u003Cp>The \u003Ccode>content\u003C/code> attribute value of the \u003Ccode>meta\u003C/code>\u000A    element whose \u003Ccode>http-equiv\u003C/code> is \u003Ccode>Refresh\u003C/code> is\u000A    syntactically invalid.\u003C/p>\u000A\u000A    \u003Cp>The value must be a non-negative integer, optionally followed\u000A    by \u003Ccode>; url=\u003C/code> with a URL.\u003C/p>\u000A  ",
          "ja" : "\u000A    \u003Cp>\u003Ccode>meta\u003C/code> 要素の \u003Ccode>http-equiv\u003C/code> が\u000A    \u003Ccode>Refresh\u003C/code> の時の \u003Ccode>content\u003C/code> 属性値が構文的に正しくありません。\u003C/p>\u000A\u000A    \u003Cp>属性値は非負整数だけか、非負整数の後に\u000A    \u003Ccode>; url=\u003C/code> と URL が続くものでなければいけません。\u003C/p>\u000A  "
       },
       "message" : {
-         "en" : "The refresh specification is invalid",
+         "en" : "The Refresh specification is invalid",
          "ja" : "\u003Ccode>Refresh\u003C/code> の指定が正しくありません"
       }
    },
@@ -11065,6 +11065,18 @@
       "message" : {
          "en" : "Validation of this element is not supported",
          "ja" : "この要素の妥当性検証には対応していません"
+      }
+   },
+   "unknown http-equiv" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The pragma directive, i.e. the \u003Ccode>http-equiv\u003C/code>\u000A    attribute value, is not supproted by the conformance checker.\u003C/p>\u000A    \u003Cp>Whether the element and the \u003Ccode>content\u003C/code> attribute are\u000A    conforming or not is unknown.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>指定されたプラグマ指令 (\u003Ccode>http-equiv\u003C/code> 属性値)\u000A    に適合性検査器が対応していません。\u003C/p>\u000A    \u003Cp>\u003Ccode>meta\u003C/code> 要素や \u003Ccode>content\u003C/code> 属性が適合しているかどうかはわかりません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "プラグマ指令\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> には対応していません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "unknown link type" : {
