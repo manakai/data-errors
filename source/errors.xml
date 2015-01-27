@@ -4655,6 +4655,14 @@
     <code>poly</code> instead of <code>polygon</code>, and
     <code>rect</code> instead of <code>rectangle</code>.</dd>
 
+    <dt><code>&lt;meta http-equiv=set-cookie></code></dt>
+
+    <dd>HTTP <code>Set-Cookie:</code> header should be used instead.</dd>
+
+    <dt><code>&lt;meta http-equiv=content-language></code></dt>
+
+    <dd>HTML <code>lang</code> attribute should be used instead.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -4667,6 +4675,14 @@
     <dd><code>circ</code> でなく <code>circule</code> を、
     <code>polygon</code> でなく <code>poly</code> を、
     <code>rectangle</code> でなく <code>rect</code> を使ってください。</dd>
+
+    <dt><code>&lt;meta http-equiv=set-cookie></code></dt>
+
+    <dd>HTTP <code>Set-Cookie:</code> ヘッダーを使ってください。</dd>
+
+    <dt><code>&lt;meta http-equiv=content-language></code></dt>
+
+    <dd>HTML <code>lang</code> 属性を使ってください。</dd>
 
     </dl>
   </d:desc>
@@ -5312,6 +5328,11 @@
     <dd>The attribute value must be <code>text</code>,
     <code>html</code>, or <code>xhtml</code>.</dd>
 
+    <dt><code>&lt;meta http-equiv=x-ua-compatible></code>, the
+    <code>content</code> attribute</dt>
+
+    <dd>The attribute value must be <code>IE=edge</code>.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -5339,6 +5360,11 @@
 
     <dd>属性値は <code>text</code>, <code>html</code>, <code>xhtml</code>
     のいずれかでなければいけません。</dd>
+
+    <dt><code>&lt;meta http-equiv=x-ua-compatible></code> 要素
+    <code>content</code> 属性</dt>
+
+    <dd>属性値は <code>IE=edge</code> でなければいけません。</dd>
 
     </dl>
   </d:desc>
@@ -5995,22 +6021,24 @@
 
 <d:item name="refresh:bad url"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The URL cannot start with the quotation mark</d:message>
-  <d:message xml:lang="ja">URL を引用符から始めることはできません</d:message>
+  <d:message xml:lang="en">The first character of the URL is a quotation mark</d:message>
+  <d:message xml:lang="ja">URL に最初の文字が引用符です</d:message>
   <d:desc xml:lang="en">
-    <p>The URL in the <code>meta http-equiv=Refresh</code> element
+    <p>The URL in the <code>content</code> attribute of a
+    <code>meta http-equiv=Refresh</code> element
     cannot start with the quotation mark (<code>"</code> or
     <code>'</code>).</p>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p><code>meta http-equiv=Refresh</code> の URL は引用符
+    <p><code>meta http-equiv=Refresh</code> の <code>content</code>
+    属性の URL は引用符
     (<code>"</code> や <code>'</code>) から始まってはいけません。</p>
   </d:desc>
 </d:item>
 
 <d:item name="refresh:syntax error"
     modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The refresh specification is invalid</d:message>
+  <d:message xml:lang="en">The Refresh specification is invalid</d:message>
   <d:message xml:lang="ja"><code>Refresh</code> の指定が正しくありません</d:message>
   <d:desc xml:lang="en">
     <p>The <code>content</code> attribute value of the <code>meta</code>
@@ -6018,7 +6046,7 @@
     syntactically invalid.</p>
 
     <p>The value must be a non-negative integer, optionally followed
-    by <code>; url=</code> and a URL.</p>
+    by <code>; url=</code> with a URL.</p>
   </d:desc>
   <d:desc xml:lang="ja">
     <p><code>meta</code> 要素の <code>http-equiv</code> が
@@ -6371,6 +6399,26 @@
     <code>xml:lang</code> 属性は、同じ値でなければなりません。</p>
 
     <p>なお <code>xml:lang</code> 属性は省略できます。</p>
+  </d:desc>
+</d:item>
+
+<d:item name="unknown http-equiv"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Validation of the pragma directive
+  <code><var>{value}</var></code> is not supported</d:message>
+  <d:message xml:lang="en">プラグマ指令
+  <code><var>{value}</var></code> には対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>The pragma directive, i.e. the <code>http-equiv</code>
+    attribute value, is not supproted by the conformance checker.</p>
+    <p>Whether the element and the <code>content</code> attribute are
+    conforming or not is unknown.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>指定されたプラグマ指令 (<code>http-equiv</code> 属性値)
+    に適合性検査器が対応していません。</p>
+    <p><code>meta</code> 要素や <code>content</code> 属性が適合しているかどうかはわかりません。</p>
   </d:desc>
 </d:item>
 
