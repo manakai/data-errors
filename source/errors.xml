@@ -291,7 +291,7 @@
     modules="Web::HTML::Parser">
   <d:message xml:lang="en">There is a character encoding declaration
   of <code><var>{value}</var></code> while parsing the document as
-  encoded in <code><var>{text}</var></code></d:message.
+  encoded in <code><var>{text}</var></code></d:message>
   <d:message xml:lang="en">文書を <code><var>{text}</var></code>
   で符号化されているとして処理していたところ、
   <code><var>{value}</var></code> の文字符号化宣言が見つかりました</d:message>
@@ -6417,6 +6417,98 @@
   </d:desc>
   <d:desc xml:lang="ja">
     <p>指定されたプラグマ指令 (<code>http-equiv</code> 属性値)
+    に適合性検査器が対応していません。</p>
+    <p><code>meta</code> 要素や <code>content</code> 属性が適合しているかどうかはわかりません。</p>
+  </d:desc>
+</d:item>
+
+</section>
+
+<section id="meta-errors">
+<h2>HTML metadata errors</h2>
+
+<d:item name="metadata:discontinued"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The metadata
+  <code><var>{value}</var></code> is obsolete</d:message>
+  <d:message xml:lang="en">メタデータ
+  <code><var>{value}</var></code> は廃止されました</d:message>
+  <d:desc xml:lang="en">
+    <p>The metadata name (the <code>name</code>
+    attribute value) is obsolete or rejected.  It cannot be used.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>指定されたメタデータ名 (<code>name</code> 属性値)
+    は廃止されたか、却下されました。使ってはいけません。</p>
+  </d:desc>
+</d:item>    
+
+<d:item name="metadata:not registered"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">The metadata name is not registered</d:message>
+  <d:message xml:lang="en">メタデータ名が登録されていません</d:message>
+  <d:desc xml:lang="en">
+    <p>The metadata name (the <code>name</code>
+    attribute value) must be registered with the WHATWG Wiki
+    <a href="https://wiki.whatwg.org/wiki/MetaExtensions">MetaExtensions</a>
+    page.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>メタデータ名 (<code>name</code> 属性値) はWHATWG Wiki の
+    <a href="https://wiki.whatwg.org/wiki/MetaExtensions">MetaExtensions</a>
+    ページに登録しなければいけません。</p>
+  </d:desc>
+</d:item>    
+
+<d:item name="metadata:duplicate"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">There is another element with same metadata name</d:message>
+  <d:message xml:lang="en">同じメタデータ名の要素が他にもあります</d:message>
+  <d:desc xml:lang="en">
+    <p>Several kinds of <code>meta</code> elements must be unique.  In
+    other words, there cannot be two <code>meta</code> elements
+    with same <code>name</code> attribute values for certain values.</p>
+
+    <dl class="switch">
+    <dt><code>&lt;meta name=application-name></code></dt>
+    <dd>There cannot be multiple application names in same language
+    in a document.</dd>
+    <dt><code>&lt;meta name=description></code></dt>
+    <dd>There cannot be multiple descriptions in a document.</dd>
+    </dl>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p><code>meta</code> 要素は、種類によっては一つずつしか使えません。つまり、
+    同じ <code>name</code> 属性値の <code>meta</code> 
+    要素がいくつもあってはいけないことがあります。</p>
+
+    <dl class="switch">
+    <dt><code>&lt;meta name=application-name></code></dt>
+    <dd>同じ文書に同じ言語のアプリケーション名がいくつもあってはいけません。</dd>
+    <dt><code>&lt;meta name=description></code></dt>
+    <dd>同じ文書に説明がいくつもあってはいけません。</dd>
+    </dl>
+  </d:desc>
+</d:item>    
+
+<d:item name="unknown metadata name"
+    targets="attr"
+    modules="Web::HTML::Validator">
+  <d:message xml:lang="en">Validation of the metadata
+  <code><var>{value}</var></code> is not supported</d:message>
+  <d:message xml:lang="en">メタデータ
+  <code><var>{value}</var></code> には対応していません</d:message>
+  <d:desc xml:lang="en">
+    <p>The metadata name (the <code>name</code>
+    attribute value) is not supproted by the conformance checker.</p>
+    <p>Whether the element and the <code>content</code> attribute are
+    conforming or not is unknown.</p>
+  </d:desc>
+  <d:desc xml:lang="ja">
+    <p>指定されたメタデータ名 (<code>name</code> 属性値)
     に適合性検査器が対応していません。</p>
     <p><code>meta</code> 要素や <code>content</code> 属性が適合しているかどうかはわかりません。</p>
   </d:desc>

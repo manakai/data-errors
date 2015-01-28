@@ -2808,7 +2808,7 @@
          "ja" : "\u000A    \u003Cp>文書をある文字符号化で構文解析している途中で、\u000A    別の文字符号化を指定した文字符号化宣言が見つかりました。\u000A    文書を想定通りに解釈するためにもう一度最初から処理しなおします。\u003C/p>\u000A\u000A    \u003Cp>これ自体はエラーではありませんが、\u000A    文書の文字符号化が何かおかしいかもしれません。\u003C/p>\u000A\u000A    \u003Cp>原則として常に \u003Cstrong>UTF-8 で符号化する\u003C/strong>のが基本です。\u003C/p>\u000A\u000A    \u003Cp>UTF-8 で符号化していてもこのメッセージが表示される場合には、\u000A    文書の \u003Ccode>head\u003C/code> 要素内に次のタグを追加してください。\u003C/p>\u000A\u000A    \u003Cpre class=\u0022code\u0022>\u000A\u003Ccode>&lt;meta charset=utf-8&gt;\u003C/code>\u003C/pre>\u000A  "
       },
       "message" : {
-         "en" : "There is a character encoding declaration\u000A  of \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> while parsing the document as\u000A  encoded in \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>文書を \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  で符号化されているとして処理していたところ、\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> の文字符号化宣言が見つかりました"
+         "en" : "文書を \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  で符号化されているとして処理していたところ、\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> の文字符号化宣言が見つかりました"
       }
    },
    "charset label:matching" : {
@@ -6893,6 +6893,42 @@
       "message" : {
          "en" : "The character encoding declaration is invalid",
          "ja" : "この文字符号化宣言は正しくありません"
+      }
+   },
+   "metadata:discontinued" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The metadata name (the \u003Ccode>name\u003C/code>\u000A    attribute value) is obsolete or rejected.  It cannot be used.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>指定されたメタデータ名 (\u003Ccode>name\u003C/code> 属性値)\u000A    は廃止されたか、却下されました。使ってはいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "メタデータ\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> は廃止されました"
+      },
+      "targets" : {
+         "attr" : 1
+      }
+   },
+   "metadata:duplicate" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>Several kinds of \u003Ccode>meta\u003C/code> elements must be unique.  In\u000A    other words, there cannot be two \u003Ccode>meta\u003C/code> elements\u000A    with same \u003Ccode>name\u003C/code> attribute values for certain values.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A    \u003Cdt>\u003Ccode>&lt;meta name=application-name&gt;\u003C/code>\u003C/dt>\u000A    \u003Cdd>There cannot be multiple application names in same language\u000A    in a document.\u003C/dd>\u000A    \u003Cdt>\u003Ccode>&lt;meta name=description&gt;\u003C/code>\u003C/dt>\u000A    \u003Cdd>There cannot be multiple descriptions in a document.\u003C/dd>\u000A    \u003C/dl>\u000A  ",
+         "ja" : "\u000A    \u003Cp>\u003Ccode>meta\u003C/code> 要素は、種類によっては一つずつしか使えません。つまり、\u000A    同じ \u003Ccode>name\u003C/code> 属性値の \u003Ccode>meta\u003C/code> \u000A    要素がいくつもあってはいけないことがあります。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A    \u003Cdt>\u003Ccode>&lt;meta name=application-name&gt;\u003C/code>\u003C/dt>\u000A    \u003Cdd>同じ文書に同じ言語のアプリケーション名がいくつもあってはいけません。\u003C/dd>\u000A    \u003Cdt>\u003Ccode>&lt;meta name=description&gt;\u003C/code>\u003C/dt>\u000A    \u003Cdd>同じ文書に説明がいくつもあってはいけません。\u003C/dd>\u000A    \u003C/dl>\u000A  "
+      },
+      "message" : {
+         "en" : "同じメタデータ名の要素が他にもあります"
+      },
+      "targets" : {
+         "attr" : 1
+      }
+   },
+   "metadata:not registered" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The metadata name (the \u003Ccode>name\u003C/code>\u000A    attribute value) must be registered with the WHATWG Wiki\u000A    \u003Ca href=\u0022https://wiki.whatwg.org/wiki/MetaExtensions\u0022>MetaExtensions\u003C/a>\u000A    page.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>メタデータ名 (\u003Ccode>name\u003C/code> 属性値) はWHATWG Wiki の\u000A    \u003Ca href=\u0022https://wiki.whatwg.org/wiki/MetaExtensions\u0022>MetaExtensions\u003C/a>\u000A    ページに登録しなければいけません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "メタデータ名が登録されていません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "meter:low > high" : {
@@ -11090,6 +11126,18 @@
    "unknown media type" : {
       "message" : {
          "en" : "Media type \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> is\u000A  not supported by the conformance checker."
+      }
+   },
+   "unknown metadata name" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The metadata name (the \u003Ccode>name\u003C/code>\u000A    attribute value) is not supproted by the conformance checker.\u003C/p>\u000A    \u003Cp>Whether the element and the \u003Ccode>content\u003C/code> attribute are\u000A    conforming or not is unknown.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>指定されたメタデータ名 (\u003Ccode>name\u003C/code> 属性値)\u000A    に適合性検査器が対応していません。\u003C/p>\u000A    \u003Cp>\u003Ccode>meta\u003C/code> 要素や \u003Ccode>content\u003C/code> 属性が適合しているかどうかはわかりません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "メタデータ\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> には対応していません"
+      },
+      "targets" : {
+         "attr" : 1
       }
    },
    "unknown namespace element" : {
