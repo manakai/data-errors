@@ -6696,8 +6696,8 @@
    },
    "link type:duplicate" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>A link type cannot be specified within the attribute value\u000A    more than once.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>1つの属性値内に同じリンク型を何度も指定してはいけません。\u003C/p>\u000A  "
+         "en" : "\u000A    \u003Cp>There can be only one link element within a document with\u000A    certain link types.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A    \u003Cdt>\u003Ccode>&lt;link rel=pingback&gt;\u003C/code>\u003C/dt>\u000A    \u003Cdd>There can be only single element within a document.\u003C/dd>\u000A    \u003C/dl>\u000A  ",
+         "ja" : "\u000A    \u003Cp>文書中の一つのリンク要素でしか使えないリンク型もあります。\u003C/p>\u000A    \u000A    \u003Cdl class=\u0022switch\u0022>\u000A    \u003Cdt>\u003Ccode>&lt;link rel=pingback&gt;\u003C/code>\u003C/dt>\u000A    \u003Cdd>文書中で1つしか使えません。\u003C/dd>\u000A    \u003C/dl>\u000A  "
       },
       "message" : {
          "en" : "The link type is specified twice",
@@ -6902,9 +6902,6 @@
       },
       "message" : {
          "en" : "メタデータ\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> は廃止されました"
-      },
-      "targets" : {
-         "attr" : 1
       }
    },
    "metadata:duplicate" : {
@@ -6914,9 +6911,6 @@
       },
       "message" : {
          "en" : "同じメタデータ名の要素が他にもあります"
-      },
-      "targets" : {
-         "attr" : 1
       }
    },
    "metadata:not registered" : {
@@ -6926,9 +6920,6 @@
       },
       "message" : {
          "en" : "メタデータ名が登録されていません"
-      },
-      "targets" : {
-         "attr" : 1
       }
    },
    "meter:low > high" : {
@@ -11135,9 +11126,6 @@
       },
       "message" : {
          "en" : "メタデータ\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> には対応していません"
-      },
-      "targets" : {
-         "attr" : 1
       }
    },
    "unknown namespace element" : {

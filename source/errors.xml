@@ -5430,11 +5430,21 @@
   <d:message xml:lang="en">The link type is specified twice</d:message>
   <d:message xml:lang="ja">このリンク型は既に指定されています</d:message>
   <d:desc xml:lang="en">
-    <p>A link type cannot be specified within the attribute value
-    more than once.</p>
+    <p>There can be only one link element within a document with
+    certain link types.</p>
+
+    <dl class="switch">
+    <dt><code>&lt;link rel=pingback></code></dt>
+    <dd>There can be only single element within a document.</dd>
+    </dl>
   </d:desc>
   <d:desc xml:lang="ja">
-    <p>1つの属性値内に同じリンク型を何度も指定してはいけません。</p>
+    <p>文書中の一つのリンク要素でしか使えないリンク型もあります。</p>
+    
+    <dl class="switch">
+    <dt><code>&lt;link rel=pingback></code></dt>
+    <dd>文書中で1つしか使えません。</dd>
+    </dl>
   </d:desc>
 </d:item>
 
@@ -5482,7 +5492,7 @@
 
 <d:item name="link type:proposed"
     modules="Web::HTML::Validator">
-  <!-- XXX need to be updated -->
+  <!-- OBSOLETE -->
   <d:message xml:lang="en">The link type is not accepted yet</d:message>
   <d:desc xml:lang="en">
     <p>The link type is in the <i>proposed</i> status; it
@@ -6428,7 +6438,6 @@
 <h2>HTML metadata errors</h2>
 
 <d:item name="metadata:discontinued"
-    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The metadata
   <code><var>{value}</var></code> is obsolete</d:message>
@@ -6445,7 +6454,6 @@
 </d:item>    
 
 <d:item name="metadata:not registered"
-    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The metadata name is not registered</d:message>
   <d:message xml:lang="en">メタデータ名が登録されていません</d:message>
@@ -6463,7 +6471,6 @@
 </d:item>    
 
 <d:item name="metadata:duplicate"
-    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">There is another element with same metadata name</d:message>
   <d:message xml:lang="en">同じメタデータ名の要素が他にもあります</d:message>
@@ -6495,7 +6502,6 @@
 </d:item>    
 
 <d:item name="unknown metadata name"
-    targets="attr"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Validation of the metadata
   <code><var>{value}</var></code> is not supported</d:message>
@@ -12820,7 +12826,7 @@ Regexp::Parser::JavaScript's extension. -->
 
 <d:item name="unknown link type"
     modules="Web::HTML::Validator">
-  <!-- XXX need to be updated -->
+  <!-- OBSOLETE -->
   <d:message xml:lang="en">Link type <code><var>{value}</var></code> is not
   standardized or registered at the time of the release of the conformance
   checker; <em>it is non-conforming unless it now has been
