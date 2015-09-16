@@ -5176,7 +5176,8 @@
       },
       "parser_error_names" : {
          "in-body-start-c3fht6" : 1,
-         "in-body-start-frameset" : 1
+         "in-body-start-frameset" : 1,
+         "in-body-start-rb-rtc" : 1
       },
       "parser_tests" : [
          {
