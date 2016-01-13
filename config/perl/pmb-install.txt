@@ -1,6 +1,6 @@
 Scalar::Util~1.42
 parent~0.234
-Exporter::Lite~0.07
+Exporter::Lite~0.08
 File::Spec~3.62
 Data::Dumper~2.154
 Exporter~5.72
