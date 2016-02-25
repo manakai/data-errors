@@ -4,6 +4,16 @@
          "en" : "\u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> matches\u000A  the empty string too many times."
       }
    },
+   "&lt;option label value> not empty" : {
+      "desc" : {
+         "en" : "\u000A    \u003Cp>The content of the \u003Ccode>option\u003C/code> element with both\u000A    \u003Ccode>label\u003C/code> and \u003Ccode>value\u003C/code> attributes must be\u000A    empty.  No child elements or non-space characters are allowed.\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>\u003Ccode>option\u003C/code> 要素に \u003Ccode>label\u003C/code> 属性と\u000A    \u003Ccode>value\u003C/code> 属性の両方がある時は、この要素は空でなければいけません。\u000A    子要素や空白以外の文字は使えません。\u003C/p>\u000A  "
+      },
+      "message" : {
+         "en" : "The element is not empty",
+         "ja" : "この要素は空ではありません"
+      }
+   },
    "(?p{}) is deprecated -- use (??{})" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>\u003Ccode>(?p{})\u003C/code> is obsolete.  It was deprecated in\u000A    Perl 5.8 and is \u003Cem>no longer supported\u003C/em> in Perl 5.10.\u003C/p>\u000A\u000A    \u003Cp>You can use \u003Ccode>(??{\u003Cvar>...\u003C/var>})\u003C/code> instead.\u003C/p>\u000A  "
@@ -61,16 +71,6 @@
             "lang" : "HTML"
          }
       ]
-   },
-   "\u003Coption label value> not empty" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The content of the \u003Ccode>option\u003C/code> element with both\u000A    \u003Ccode>label\u003C/code> and \u003Ccode>value\u003C/code> attributes must be\u000A    empty.  No child elements or non-space characters are allowed.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>\u003Ccode>option\u003C/code> 要素に \u003Ccode>label\u003C/code> 属性と\u000A    \u003Ccode>value\u003C/code> 属性の両方がある時は、この要素は空でなければいけません。\u000A    子要素や空白以外の文字は使えません。\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "The element is not empty",
-         "ja" : "この要素は空ではありません"
-      }
    },
    "AAA:formatting element not current" : {
       "default_level" : "m",
@@ -9241,7 +9241,7 @@
          "ja" : "この引数実体は宣言されていません"
       }
    },
-   "period:not 1\u003C=2" : {
+   "period:not 1&lt;=2" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The start date of the period string must be less than or equal\u000A    to the end date.\u003C/p>\u000A  ",
          "ja" : "\u000A    \u003Cp>期間文字列の開始日時は終了日時より大きな値であってはいけません。\u003C/p>\u000A  "
@@ -9764,7 +9764,7 @@
          "ja" : "外部スクリプトの説明が構文的に正しくありません"
       }
    },
-   "script:nested \u003Cscript>" : {
+   "script:nested &lt;script>" : {
       "desc" : {
          "en" : "The \u003Ccode>script\u003C/code> element contains\u000A  a \u003Ccode>script\u003C/code> start tag as text",
          "ja" : "\u003Ccode>script\u003C/code> 要素の中に\u000A  \u003Ccode>script\u003C/code> 開始タグがテキストとして含まれています"
@@ -11621,7 +11621,7 @@
          "ja" : "注釈を空にすることはできません。"
       }
    },
-   "webvtt:end time \u003C start time" : {
+   "webvtt:end time &lt; start time" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The end time of the cue must be greater than or equal to\u000A    the start time of the cue.\u003C/p>\u000A  ",
          "ja" : "\u000A    \u003Cp>キューの終了時刻は開始時刻以上でなければなりません。\u003C/p>\u000A  "
@@ -11631,7 +11631,7 @@
          "ja" : "終了時刻が開始時刻より前になることはできません。"
       }
    },
-   "webvtt:end time \u003C timestamp" : {
+   "webvtt:end time &lt; timestamp" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The timestamp tag in the WebVTT cue text must be\u000A    less than the end time of the cue.\u003C/p>\u000A  ",
          "ja" : "\u000A    \u003Cp>WebVTT キューの文章中の時刻は、キューの終了時刻よりも前でなければなりません。\u003C/p>\u000A  "
@@ -11723,8 +11723,8 @@
    },
    "webvtt:no timings" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>No timings line is found in the cue.  Start and\u000A    end times must be specified in the format \u000A    \u003Ccode>\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>.\u003Cvar>fff\u003C/var>&amp;nbsp;--&gt;&amp;nbsp;\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>.\u003Cvar>fff\u003C/var>\u003C/code>.\u003C/p>\u000A    \u003Cp>Cue text cannot contain two concecutive newlines (or\u000A    a blank line).\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>キューのタイミングを指定する行がありません。\u000A    開始と終了の時刻を、\u000A    \u003Ccode>\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>.\u003Cvar>fff\u003C/var>&amp;nbsp;--&gt;&amp;nbsp;\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>.\u003Cvar>fff\u003C/var>\u003C/code>\u000A    という形式で指定する必要があります。\u003C/p>\u000A    \u003Cp>キューの文章の部分に2つの連続する改行 (あるいは空行)\u000A    を含めることはできません。\u003C/p>\u000A  "
+         "en" : "\u000A    \u003Cp>No timings line is found in the cue.  Start and\u000A    end times must be specified in the format \u000A    \u003Ccode>\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>.\u003Cvar>fff\u003C/var>&nbsp;--&gt;&nbsp;\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>.\u003Cvar>fff\u003C/var>\u003C/code>.\u003C/p>\u000A    \u003Cp>Cue text cannot contain two concecutive newlines (or\u000A    a blank line).\u003C/p>\u000A  ",
+         "ja" : "\u000A    \u003Cp>キューのタイミングを指定する行がありません。\u000A    開始と終了の時刻を、\u000A    \u003Ccode>\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>.\u003Cvar>fff\u003C/var>&nbsp;--&gt;&nbsp;\u003Cvar>hh\u003C/var>:\u003Cvar>mm\u003C/var>:\u003Cvar>ss\u003C/var>.\u003Cvar>fff\u003C/var>\u003C/code>\u000A    という形式で指定する必要があります。\u003C/p>\u000A    \u003Cp>キューの文章の部分に2つの連続する改行 (あるいは空行)\u000A    を含めることはできません。\u003C/p>\u000A  "
       },
       "message" : {
          "en" : "No timings line is found.",
@@ -11811,7 +11811,7 @@
          "ja" : "構文的に正しい WebVTT \u000A  キュー文章ではありません。"
       }
    },
-   "webvtt:timestamp \u003C min time" : {
+   "webvtt:timestamp &lt; min time" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The timestamp tag in the WebVTT cue text must be\u000A    greater than the start time of the cue\u000A    and any preceding timestamp tag in the cue text.\u003C/p>\u000A  ",
          "ja" : "\u000A    \u003Cp>WebVTT キューの文章の中にある時刻のタグは、\u000A    キューの開始時刻や、同じ文章中のそれ以前の時刻のタグよりも後の時刻になっていなければなりません。\u003C/p>\u000A  "
