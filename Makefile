@@ -38,14 +38,19 @@ pmbp-install: pmbp-upgrade
 PERL = ./perl
 PROVE = ./prove
 
+data: all-data
 all-data: data/errors.json data/xml.json
 
 local/data-web-defs/parser-errors.json:
 	mkdir -p local/data-web-defs
 	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/data-web-defs/master/intermediate/errors/parser-errors.json
+local/perl-web-markup/validation-errors.json:
+	mkdir -p local/perl-web-markup
+	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/perl-web-markup/master/intermediate/validator-errors.json
 
 data/errors.json: source/errors.xml bin/generate.pl \
-    local/data-web-defs/parser-errors.json
+    local/data-web-defs/parser-errors.json \
+    local/perl-web-markup/validation-errors.json
 	$(PERL) bin/generate.pl
 
 data/xml.json: source/xml-constraints.json source/xmlns-constraints.json bin/xml.pl
@@ -66,8 +71,10 @@ test-deps: deps local/bin/jq
 
 local/bin/jq:
 	mkdir -p local/bin
-	$(WGET) -O $@ http://stedolan.github.io/jq/download/linux64/jq
+	$(WGET) -O $@ https://stedolan.github.io/jq/download/linux64/jq
 	chmod u+x $@
 
 test-main:
 	$(PROVE) t/
+
+## License: Public Domain.

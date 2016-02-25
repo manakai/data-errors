@@ -27,12 +27,12 @@ Travis CI: <https://travis-ci.org/manakai/data-errors>.
 * History
 
 This repository partially derived from: WebHACC Description of Errors
-<http://suika.suikawiki.org/gate/2007/html/error-description>
-<http://suika.suikawiki.org/gate/git/wi/webhacc.git/history/HEAD:/error-description-source.xml>,
+<https://suika.suikawiki.org/gate/2007/html/error-description>
+<https://suika.suikawiki.org/gate/git/wi/webhacc.git/history/HEAD:/error-description-source.xml>,
 L<Whatpm::LangTag> documentation
 <https://github.com/wakaba/manakai/blob/master/lib/Whatpm/LangTag.pod#ERRORS>,
 and Whatpm Error Types
-<http://suika.suikawiki.org/~wakaba/wiki/sw/n/Whatpm%20Error%20Types>.
+<https://suika.suikawiki.org/~wakaba/wiki/sw/n/Whatpm%20Error%20Types>.
 
 * Author
 

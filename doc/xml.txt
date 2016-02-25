@@ -45,11 +45,22 @@ pairs:
 
 * Sources
 
-Extensible Markup Language (XML) 1.0 <http://www.w3.org/TR/xml/>.
+Extensible Markup Language (XML) 1.0 <https://www.w3.org/TR/xml/>.
 
-Namespaces in XML 1.0 <http://www.w3.org/TR/xml-names/>.
+Namespaces in XML 1.0 <https://www.w3.org/TR/xml-names/>.
 
 List of constraints are extracted from specifications by the following
 JavaScript code:
 
 JSON.stringify (Array.prototype.filter.apply (document.querySelectorAll('b'), [function (c) { return c.textContent.match (/constraint:/) }]).map (function (n) { return {name: n.textContent.replace (/^(?:Well-formedness|Validity)\s*constraint:\s*/, ''), type: n.textContent.match (/Well-formed/) ? 'wfc' : n.textContent.match (/Validity/) ? 'vc' : n.textContent.match (/Namespace/) ? 'nsc' : '', id: n.parentNode.id} }))
+
+* License
+
+Per CC0 <https://creativecommons.org/publicdomain/zero/1.0/>, to the
+extent possible under law, the author has waived all copyright and
+related or neighboring rights to this work.
+
+Per CC0 <https://creativecommons.org/publicdomain/zero/1.0/>, to the
+extent possible under law, the author of the JSON file and this
+document has waived all copyright and related or neighboring rights to
+the JSON file and this document.
