@@ -1,4 +1,4 @@
-Scalar::Util~1.44
+Scalar::Util~1.45
 parent~0.234
 Exporter::Lite~0.08
 Data::Dumper~2.154
