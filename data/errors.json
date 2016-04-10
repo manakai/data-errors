@@ -1760,38 +1760,6 @@
          "en" : "Extended attribute \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code>\u000A  is specified for an attribute whose type is not an interface."
       }
    },
-   "attr:no =" : {
-      "default_level" : "m",
-      "desc" : {
-         "en" : "\u003Cp>There must be a \u003Ccode>=\u003C/code> character between an attribute name\u000Aand an attribute value.  Characters \u003Ccode>\u0022\u003C/code> and \u003Ccode>'\u003C/code>\u000Acannot be used as part of an attribute name or an unquoted attribute\u000Avalue.\u003C/p>",
-         "ja" : "\u003Cp>属性名と属性値の間には文字 \u003Ccode>=\u003C/code> \u000Aが必要です。また、文字 \u003Ccode>\u0022\u003C/code> や文字 \u003Ccode>'\u003C/code>\u000Aを属性名や括られていない属性値に使うことはできません。\u003C/p>"
-      },
-      "layer" : "tokenization",
-      "message" : {
-         "en" : "No \u003Ccode>=\u003C/code> between attribute name and value",
-         "ja" : "属性名と属性値の間に \u003Ccode>=\u003C/code> がありません"
-      },
-      "modules" : {
-         "Web::HTML::Parser::tokenizer" : 1,
-         "Web::XML::Parser::tokenizer" : 1
-      },
-      "parser_error_names" : {
-         "after-attribute-name-0022" : 1,
-         "after-attribute-name-0027" : 1
-      },
-      "parser_tests" : [
-         {
-            "index" : 24,
-            "input" : "\u003C!DOCTYPE html>\u003Cfoo bar \u0022>\u003C/foo>",
-            "lang" : "HTML"
-         },
-         {
-            "index" : 24,
-            "input" : "\u003C!DOCTYPE html>\u003Cfoo bar '>\u003C/foo>",
-            "lang" : "HTML"
-         }
-      ]
-   },
    "attr:obsolete" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>この属性は廃止されたのでもう使えません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>align\u003C/code>, \u003Ccode>alink\u003C/code>,\u000A    \u003Ccode>allowtransparency\u003C/code>, \u003Ccode>background\u003C/code>,\u000A    \u003Ccode>bgcolor\u003C/code>, \u003Ccode>border\u003C/code>,\u000A    \u003Ccode>cellpadding\u003C/code>, \u003Ccode>cellspacing\u003C/code>,\u000A    \u003Ccode>compact\u003C/code>, \u003Ccode>frameborder\u003C/code>,\u000A    \u003Ccode>hspace\u003C/code>, \u003Ccode>link\u003C/code>, \u003Ccode>nowrap\u003C/code>,\u000A    \u003Ccode>text\u003C/code>, \u003Ccode>valign\u003C/code>, \u003Ccode>vlink\u003C/code>,\u000A    \u003Ccode>vspace\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>廃止されており、文書中で使うことはできません。 CSS を使ってください。\u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>prefix\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>削除して問題ありません。\u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>head\u003C/code> 要素 \u003Ccode>profile\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>\u003Ccode>profile\u003C/code> は廃止されました。これは最早不要です。\u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>a\u003C/code> 要素、 \u003Ccode>link\u003C/code> 要素\u000A    \u003Ccode>rev\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>\u003Ccode>rev\u003C/code> 属性は廃止されました。\u000A    \u003Ccode>rel\u003C/code> 属性と適当なリンク型を使ってください。例えば、\u000A    \u003Ccode>rev=made\u003C/code> ではなく \u003Ccode>rel=author\u003C/code>\u000A    を使ってください。\u003C/dd>\u000A\u000A    \u003Cdt>\u003Ccode>xmlns:\u003Cvar>*\u003C/var>\u003C/code> 属性\u003C!-- in no namespace -->\u003C/dt>\u000A\u000A    \u003Cdd>HTML では名前空間属性は使えません。\u000A    効果はないので削除して問題ありません。\u003C/dd>\u000A\u000A    \u003Cdt>\u003Ccode>embed\u003C/code> 要素\u003C/dt>\u000A\u000A    \u003Cdd>\u003Ccode>align\u003C/code>, \u003Ccode>border\u003C/code>, \u003Ccode>hspace\u003C/code>,\u000A    \u003Ccode>vspace\u003C/code> 各属性はスタイルシートに置き換えるべきです。\u000A    \u003Ccode>name\u003C/code> 属性は\u000A    \u003Ccode>id\u003C/code> 属性に置き換えるべきです。\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  "
@@ -7675,8 +7643,8 @@
    "no attr value" : {
       "default_level" : "m",
       "desc" : {
-         "en" : "\u003Cp>There must be attribute value in XML.\u003C/p>",
-         "ja" : "\u003Cp>XML では属性値は必須です。\u003C/p>"
+         "en" : "\u003Cp>There must be a \u003Ccode>=\u003C/code> character between an attribute name\u000Aand an attribute value.  Characters \u003Ccode>\u0022\u003C/code> and \u003Ccode>'\u003C/code>\u000Acannot be used as part of an attribute name or an unquoted attribute\u000Avalue.\u000A\u003C/p>\u003Cp>There must be attribute value in XML.\u003C/p>",
+         "ja" : "\u003Cp>属性名と属性値の間には文字 \u003Ccode>=\u003C/code> \u000Aが必要です。また、文字 \u003Ccode>\u0022\u003C/code> や文字 \u003Ccode>'\u003C/code>\u000Aを属性名や括られていない属性値に使うことはできません。\u000A\u003C/p>\u003Cp>XML では属性値は必須です。\u003C/p>"
       },
       "layer" : "tokenization",
       "message" : {
@@ -7719,6 +7687,16 @@
             "index" : 7,
             "input" : "\u003Cp foo >",
             "lang" : "XML"
+         },
+         {
+            "index" : 24,
+            "input" : "\u003C!DOCTYPE html>\u003Cfoo bar \u0022>\u003C/foo>",
+            "lang" : "HTML"
+         },
+         {
+            "index" : 24,
+            "input" : "\u003C!DOCTYPE html>\u003Cfoo bar '>\u003C/foo>",
+            "lang" : "HTML"
          }
       ]
    },
