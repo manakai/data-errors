@@ -6,4 +6,4 @@ Exporter~5.72
 Encode~2.84
 Carp~1.38
 Test::More~1.001014
-Path::Tiny~0.086
+Path::Tiny~0.088
