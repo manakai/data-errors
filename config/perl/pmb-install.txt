@@ -5,5 +5,5 @@ Data::Dumper~2.154
 Exporter~5.72
 Encode~2.84
 Carp~1.38
-Test::More~1.001014
-Path::Tiny~0.088
+Test::More~1.302015
+Path::Tiny~0.090
