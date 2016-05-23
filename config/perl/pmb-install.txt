@@ -4,4 +4,4 @@ parent~0.234
 Data::Dumper~2.154
 Encode~2.84
 Carp~1.38
-Path::Tiny~0.090
+Path::Tiny~0.094
