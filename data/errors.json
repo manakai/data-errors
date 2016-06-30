@@ -9077,7 +9077,9 @@
       "parser_error_names" : {
          "comment-end-0021" : 1,
          "comment-end-002d" : 1,
-         "comment-end-else" : 1
+         "comment-end-bang-003e" : 1,
+         "comment-end-else" : 1,
+         "comment-less-than-sign-bang-dash-dash-else" : 1
       },
       "parser_tests" : [
          {
