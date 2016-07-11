@@ -1,7 +1,6 @@
 Scalar::Util~1.45
-Test::More~1.302037
 parent~0.234
-Data::Dumper~2.160
+Data::Dumper~2.161
 Encode~2.84
 Carp~1.38
 Path::Tiny~0.096
