@@ -1,6 +1,5 @@
-Scalar::Util~1.45
-parent~0.234
-Data::Dumper~2.161
-Encode~2.84
 Carp~1.38
+Scalar::Util~1.45
+Encode~2.84
 Path::Tiny~0.096
+Data::Dumper~2.161
