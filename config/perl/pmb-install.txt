@@ -1,5 +1,5 @@
+Data::Dumper~2.161
+Carp~1.38
 Scalar::Util~1.45
 Path::Tiny~0.096
-Carp~1.38
 Encode~2.84
-Data::Dumper~2.161
