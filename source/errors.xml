@@ -2054,29 +2054,6 @@
   </d:desc>
 </d:item>
 
-<d:item name="element not allowed:flow style"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">There is a <code>style</code> element after
-  other flow content</d:message>
-  <d:message xml:lang="ja">他のフロー内容の後に <code>style</code> 要素があります</d:message>
-  <d:desc xml:lang="en">
-    <p>The HTML <code>style</code> element is flow content, but can
-    only be used before any other flow content.</p>
-
-    <p>If the <code>style</code> element is intended for the entire
-    document, rather than for a particular element, it must be
-    contained in the <code>head</code> element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>HTML <code>style</code> 要素はフロー内容ですが、
-    他のフロー内容より前でだけ使えます。</p>
-
-    <p>この <code>style</code> が特定の要素だけではなく、
-    文書全体に対して適用されるべきものなら、
-    <code>head</code> 要素内に入れなければいけません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="element not allowed:head noscript"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The element is not allowed in the
@@ -4567,6 +4544,10 @@
 
     </dd>
 
+    <dt>HTML <code>ol</code> element, the <code>type</code> attribute</dt>
+    <dt>HTML <code>link</code> element, the <code>as</code> attribute</dt>
+    <dd>Attribute values are case-sensitive.</dd>
+
     </dl>
   </d:desc>
   <d:desc xml:lang="ja">
@@ -4592,6 +4573,10 @@
       <p><code>X-UA-Compatible</code> は有害です。要素ごと削除してください。</p>
 
     </dd>
+
+    <dt>HTML <code>ol</code> 要素 <code>type</code> 属性</dt>
+    <dt>HTML <code>link</code> 要素 <code>as</code> 属性</dt>
+    <dd>属性値の大文字と小文字は区別されます。</dd>
 
     </dl>
   </d:desc>
@@ -5954,23 +5939,6 @@
   </d:desc>
   <d:desc xml:lang="ja">
     <p>値は OGP で定義されている単位のいずれかでなければいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="oltype:invalid"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The list item type is invalid</d:message>
-  <d:message xml:lang="ja">リスト項目型が正しくありません</d:message>
-  <d:desc xml:lang="en">
-    <p>The value of the <code>type</code> attribute of the
-    <code>ol</code> element must be one of following values:
-    <code>1</code>, <code>A</code>, <code>a</code>, <code>I</code>, or
-    <code>i</code>.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>ol</code> 要素の <code>type</code> 属性の値は
-    <code>1</code>, <code>A</code>, <code>a</code>, <code>I</code>,
-    <code>i</code> のいずれかでなければいけません。</p>
   </d:desc>
 </d:item>
 

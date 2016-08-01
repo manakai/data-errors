@@ -4187,16 +4187,6 @@
          "ja" : "この要素はフロー内容ではありません"
       }
    },
-   "element not allowed:flow style" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The HTML \u003Ccode>style\u003C/code> element is flow content, but can\u000A    only be used before any other flow content.\u003C/p>\u000A\u000A    \u003Cp>If the \u003Ccode>style\u003C/code> element is intended for the entire\u000A    document, rather than for a particular element, it must be\u000A    contained in the \u003Ccode>head\u003C/code> element.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>HTML \u003Ccode>style\u003C/code> 要素はフロー内容ですが、\u000A    他のフロー内容より前でだけ使えます。\u003C/p>\u000A\u000A    \u003Cp>この \u003Ccode>style\u003C/code> が特定の要素だけではなく、\u000A    文書全体に対して適用されるべきものなら、\u000A    \u003Ccode>head\u003C/code> 要素内に入れなければいけません。\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "There is a \u003Ccode>style\u003C/code> element after\u000A  other flow content",
-         "ja" : "他のフロー内容の後に \u003Ccode>style\u003C/code> 要素があります"
-      }
-   },
    "element not allowed:head noscript" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>The \u003Ccode>noscript\u003C/code> element, used within the\u000A    \u003Ccode>head\u003C/code> element, can only contain \u003Ccode>link\u003C/code>,\u000A    \u003Ccode>style\u003C/code>, and \u003Ccode>meta\u003C/code> elements.  No other\u000A    elements are allowed.\u003C/p>\u000A  ",
@@ -4732,8 +4722,8 @@
    },
    "enumerated:invalid" : {
       "desc" : {
-         "en" : "\u000A    \u003Cp>The attribute only accepts limited set of values.  The\u000A    specified value is not one of them.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>meta\u003C/code> element, the \u003Ccode>http-equiv\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>\u000A\u000A      \u003Cp>\u003Ccode>Content-Style-Type\u003C/code> and\u000A      \u003Ccode>Content-Script-Type\u003C/code> are not useful.  You can remove\u000A      the element entirely without breaking anything at all.\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>Keywords\u003C/code> is not allowed.  Maybe you intended the\u000A      \u003Ccode>name\u003C/code> attribute rather than the\u000A      \u003Ccode>http-equiv\u003C/code> attribute.\u003C/p>\u000A\u000A      \u003Cp>Instead of \u003Ccode>meta\u003C/code> element with\u000A      \u003Ccode>Expires\u003C/code>, \u003Ccode>Pragma\u003C/code>, or\u000A      \u003Ccode>Cache-Control\u003C/code>, use real HTTP headers.\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>X-UA-Compatible\u003C/code> is harmful.  Remove the element\u000A      entirely.\u003C/p>\u000A\u000A    \u003C/dd>\u000A\u000A    \u003C/dl>\u000A  ",
-         "ja" : "\u000A    \u003Cp>この属性に使える値は限られています。指定された値は認められていません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>meta\u003C/code> 要素 \u003Ccode>http-equiv\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>\u000A\u000A      \u003Cp>\u003Ccode>Content-Style-Type\u003C/code> と\u000A      \u003Ccode>Content-Script-Type\u003C/code> は意味がありません。\u000A      要素を削除してしまっても影響はありません。\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>Keywords\u003C/code> は認められていません。\u000A      \u003Ccode>http-equiv\u003C/code> 属性ではなく\u000A      \u003Ccode>name\u003C/code> 属性のつもりではないでしょうか。\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>Expires\u003C/code>, \u003Ccode>Pragma\u003C/code>,\u000A      \u003Ccode>Cache-Control\u003C/code> は HTTP ヘッダーで指定するべきです。\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>X-UA-Compatible\u003C/code> は有害です。要素ごと削除してください。\u003C/p>\u000A\u000A    \u003C/dd>\u000A\u000A    \u003C/dl>\u000A  "
+         "en" : "\u000A    \u003Cp>The attribute only accepts limited set of values.  The\u000A    specified value is not one of them.\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>meta\u003C/code> element, the \u003Ccode>http-equiv\u003C/code>\u000A    attribute\u003C/dt>\u000A\u000A    \u003Cdd>\u000A\u000A      \u003Cp>\u003Ccode>Content-Style-Type\u003C/code> and\u000A      \u003Ccode>Content-Script-Type\u003C/code> are not useful.  You can remove\u000A      the element entirely without breaking anything at all.\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>Keywords\u003C/code> is not allowed.  Maybe you intended the\u000A      \u003Ccode>name\u003C/code> attribute rather than the\u000A      \u003Ccode>http-equiv\u003C/code> attribute.\u003C/p>\u000A\u000A      \u003Cp>Instead of \u003Ccode>meta\u003C/code> element with\u000A      \u003Ccode>Expires\u003C/code>, \u003Ccode>Pragma\u003C/code>, or\u000A      \u003Ccode>Cache-Control\u003C/code>, use real HTTP headers.\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>X-UA-Compatible\u003C/code> is harmful.  Remove the element\u000A      entirely.\u003C/p>\u000A\u000A    \u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>ol\u003C/code> element, the \u003Ccode>type\u003C/code> attribute\u003C/dt>\u000A    \u003Cdt>HTML \u003Ccode>link\u003C/code> element, the \u003Ccode>as\u003C/code> attribute\u003C/dt>\u000A    \u003Cdd>Attribute values are case-sensitive.\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  ",
+         "ja" : "\u000A    \u003Cp>この属性に使える値は限られています。指定された値は認められていません。\u003C/p>\u000A\u000A    \u003Cdl class=\u0022switch\u0022>\u000A\u000A    \u003Cdt>HTML \u003Ccode>meta\u003C/code> 要素 \u003Ccode>http-equiv\u003C/code> 属性\u003C/dt>\u000A\u000A    \u003Cdd>\u000A\u000A      \u003Cp>\u003Ccode>Content-Style-Type\u003C/code> と\u000A      \u003Ccode>Content-Script-Type\u003C/code> は意味がありません。\u000A      要素を削除してしまっても影響はありません。\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>Keywords\u003C/code> は認められていません。\u000A      \u003Ccode>http-equiv\u003C/code> 属性ではなく\u000A      \u003Ccode>name\u003C/code> 属性のつもりではないでしょうか。\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>Expires\u003C/code>, \u003Ccode>Pragma\u003C/code>,\u000A      \u003Ccode>Cache-Control\u003C/code> は HTTP ヘッダーで指定するべきです。\u003C/p>\u000A\u000A      \u003Cp>\u003Ccode>X-UA-Compatible\u003C/code> は有害です。要素ごと削除してください。\u003C/p>\u000A\u000A    \u003C/dd>\u000A\u000A    \u003Cdt>HTML \u003Ccode>ol\u003C/code> 要素 \u003Ccode>type\u003C/code> 属性\u003C/dt>\u000A    \u003Cdt>HTML \u003Ccode>link\u003C/code> 要素 \u003Ccode>as\u003C/code> 属性\u003C/dt>\u000A    \u003Cdd>属性値の大文字と小文字は区別されます。\u003C/dd>\u000A\u000A    \u003C/dl>\u000A  "
       },
       "message" : {
          "en" : "The attribute value is not allowed",
@@ -8941,16 +8931,6 @@
       "message" : {
          "en" : "The property is already specified",
          "ja" : "この特性は既に指定されています"
-      }
-   },
-   "oltype:invalid" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The value of the \u003Ccode>type\u003C/code> attribute of the\u000A    \u003Ccode>ol\u003C/code> element must be one of following values:\u000A    \u003Ccode>1\u003C/code>, \u003Ccode>A\u003C/code>, \u003Ccode>a\u003C/code>, \u003Ccode>I\u003C/code>, or\u000A    \u003Ccode>i\u003C/code>.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>\u003Ccode>ol\u003C/code> 要素の \u003Ccode>type\u003C/code> 属性の値は\u000A    \u003Ccode>1\u003C/code>, \u003Ccode>A\u003C/code>, \u003Ccode>a\u003C/code>, \u003Ccode>I\u003C/code>,\u000A    \u003Ccode>i\u003C/code> のいずれかでなければいけません。\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "The list item type is invalid",
-         "ja" : "リスト項目型が正しくありません"
       }
    },
    "parse type other" : {
