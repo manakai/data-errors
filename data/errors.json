@@ -9086,16 +9086,6 @@
             "index" : 22,
             "input" : "\u003C!DOCTYPE HTML>\u003C!--a--!>",
             "lang" : "HTML"
-         },
-         {
-            "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!--a--->",
-            "lang" : "HTML"
-         },
-         {
-            "index" : 22,
-            "input" : "\u003C!DOCTYPE HTML>\u003C!--a--b-->",
-            "lang" : "HTML"
          }
       ]
    },
