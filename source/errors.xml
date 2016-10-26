@@ -5082,21 +5082,6 @@
   </d:desc>
 </d:item>
 
-<d:item name="hashref:wrong case"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The value does not match to the map name exactly</d:message>
-  <d:message xml:lang="ja">値と画像マップ名が正確に一致していません</d:message>
-  <d:desc xml:lang="en">
-    <p>The image map name in the <code>usemap</code> attribute must be
-    case-sensitively equal to the <code>name</code> attribute value of
-    the <code>map</code> element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>usemap</code> 属性の画像マップ名は、 <code>map</code>
-    要素の <code>name</code> 属性の値と大文字・小文字の違いも含めて一致しなければいけません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="id name confliction"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The identifier is assigned with another element</d:message>

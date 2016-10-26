@@ -2986,21 +2986,6 @@
          "ja" : "制御文字\u000A  \u003Ccode>\u003Cvar>{text}\u003C/var>\u003C/code> があります"
       }
    },
-   "control name:isindex" : {
-      "default_level" : "m",
-      "desc" : {
-         "en" : "\u003Cp>For historical reason, the control name, i.e. the \u003Ccode>name\u003C/code>\u000Aattribute value, must not be \u003Ccode>isindex\u003C/code>.\u003C/p>",
-         "ja" : "\u003Cp>歴史的理由により、制御子名 (\u003Ccode>name\u003C/code> 属性値) は\u000A\u003Ccode>isindex\u003C/code> ではいけません。\u003C/p>"
-      },
-      "layer" : "microsyntax",
-      "message" : {
-         "en" : "The control name is \u003Ccode>isindex\u003C/code>",
-         "ja" : "制御子名が \u003Ccode>isindex\u003C/code> です"
-      },
-      "modules" : {
-         "Web::HTML::Validator" : 1
-      }
-   },
    "coords:number lt 6" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>If the \u003Ccode>shape\u003C/code> attribute is \u003Ccode>polygon\u003C/code>,\u000A    there must be more than 5 integers in the \u003Ccode>coords\u003C/code> attribute,\u000A    separated by the \u003Ccode>,\u003C/code> character.\u003C/p>\u000A  ",
@@ -4954,16 +4939,6 @@
          "ja" : "値は \u003Ccode>#\u003C/code> で始まる画像マップ名でないといけません"
       }
    },
-   "hashref:wrong case" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The image map name in the \u003Ccode>usemap\u003C/code> attribute must be\u000A    case-sensitively equal to the \u003Ccode>name\u003C/code> attribute value of\u000A    the \u003Ccode>map\u003C/code> element.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>\u003Ccode>usemap\u003C/code> 属性の画像マップ名は、 \u003Ccode>map\u003C/code>\u000A    要素の \u003Ccode>name\u003C/code> 属性の値と大文字・小文字の違いも含めて一致しなければいけません。\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "The value does not match to the map name exactly",
-         "ja" : "値と画像マップ名が正確に一致していません"
-      }
-   },
    "help not available" : {
       "desc" : {
          "en" : "\u000A    \u003Cp>No more information is available for this topic.\u003C/p>\u000A  ",
@@ -6731,51 +6706,6 @@
       },
       "message" : {
          "en" : "The link type is not accepted yet"
-      }
-   },
-   "link:as:not preload" : {
-      "default_level" : "m",
-      "desc" : {
-         "en" : "\u003Cp>When the \u003Ccode>as\u003C/code> attribute is specified, the\u000A\u003Ccode>link\u003C/code> element's \u003Ccode>rel\u003C/code> attribute must contain a\u000Alink type keyword \u003Ccode>preload\u003C/code>.  Otherwise the \u003Ccode>as\u003C/code>\u000Aattribute is ignored.\u003C/p>",
-         "ja" : "\u003Ccode>link\u003C/code> 要素に \u003Ccode>as\u003C/code> を指定する時は、\u000A\u003Ccode>rel\u003C/code> 属性にリンク型 \u003Ccode>preload\u003C/code>\u000Aを指定しなければいけません。そうでなければ、 \u003Ccode>as\u003C/code>\u000A属性は無視されます。"
-      },
-      "layer" : "content-model",
-      "message" : {
-         "en" : "The \u003Ccode>as\u003C/code> attribute is specified to a \u003Ccode>link\u003C/code>\u000Aelement with no \u003Ccode>preload\u003C/code> link type",
-         "ja" : "リンク型 \u003Ccode>preload\u003C/code> の指定されていない \u003Ccode>link\u003C/code>\u000A要素に \u003Ccode>as\u003C/code> 属性が指定されています"
-      },
-      "modules" : {
-         "Web::HTML::Validator" : 1
-      }
-   },
-   "link:not body-ok" : {
-      "default_level" : "m",
-      "desc" : {
-         "en" : "\u003Cp>Most \u003Ccode>link\u003C/code> elements must be children of\u000Athe \u003Ccode>head\u003C/code> element of the document.  Exceptions\u000Aare microdata \u003Ccode>link\u003C/code> elements (i.e. \u003Ccode>link\u003C/code>\u000Aelements with \u003Ccode>itemprop\u003C/code> attributes) and\u000A\u003Ccode>link\u003C/code> elements whose \u003Ccode>rel\u003C/code> attribute\u000Ahas one of \u0022body-ok\u0022 link types such as \u003Ccode>stylesheet\u003C/code>.\u003C/p>",
-         "ja" : "\u003Cp>ほとんどの \u003Ccode>link\u003C/code> 要素は、文書の \u003Ccode>head\u003C/code>\u000A要素の子供でなければいけません。例外は、マイクロデータの\u000A\u003Ccode>link\u003C/code> 要素 (\u003Ccode>itemprop\u003C/code> 属性のある\u000A\u003Ccode>link\u003C/code> 要素) と、 \u003Ccode>rel\u003C/code>\u000A属性に \u003Ccode>body\u003C/code> 内でも使えるリンク型\u000A(\u003Ccode>stylesheet\u003C/code> など) が指定されている\u000A\u003Ccode>link\u003C/code> 要素だけです。\u003C/p>"
-      },
-      "layer" : "content-model",
-      "message" : {
-         "en" : "A \u003Ccode>link\u003C/code> element is not a child of the \u003Ccode>head\u003C/code> element",
-         "ja" : "\u003Ccode>link\u003C/code> 要素が \u003Ccode>head\u003C/code> 要素の子供ではありません"
-      },
-      "modules" : {
-         "Web::HTML::Validator" : 1
-      }
-   },
-   "link:sizes:not icon" : {
-      "default_level" : "m",
-      "desc" : {
-         "en" : "\u003Cp>When the \u003Ccode>sizes\u003C/code> attribute is specified, the\u000A\u003Ccode>link\u003C/code> element's \u003Ccode>rel\u003C/code> attribute must contain a\u000Alink type keyword \u003Ccode>icon\u003C/code>.  Otherwise the \u003Ccode>sizes\u003C/code>\u000Aattribute is ignored.\u003C/p>",
-         "ja" : "\u003Ccode>link\u003C/code> 要素に \u003Ccode>sizes\u003C/code> を指定する時は、\u000A\u003Ccode>rel\u003C/code> 属性にリンク型 \u003Ccode>icon\u003C/code>\u000Aを指定しなければいけません。そうでなければ、 \u003Ccode>sizes\u003C/code>\u000A属性は無視されます。"
-      },
-      "layer" : "content-model",
-      "message" : {
-         "en" : "The \u003Ccode>sizes\u003C/code> attribute is specified to a \u003Ccode>link\u003C/code>\u000Aelement with no \u003Ccode>icon\u003C/code> link type",
-         "ja" : "リンク型 \u003Ccode>icon\u003C/code> の指定されていない \u003Ccode>link\u003C/code>\u000A要素に \u003Ccode>sizes\u003C/code> 属性が指定されています"
-      },
-      "modules" : {
-         "Web::HTML::Validator" : 1
       }
    },
    "litype:invalid" : {
@@ -10750,21 +10680,6 @@
    "syntax error:uri3986" : {
       "message" : {
          "en" : "The specified value is syntactically not a\u000A  URI."
-      }
-   },
-   "tabindex:indexed" : {
-      "default_level" : "s",
-      "desc" : {
-         "en" : "\u003Cp>The \u003Ccode>tabindex\u003C/code> attribute value can be any non-negative\u000Ainteger.  However, use of value other than \u003Ccode>0\u003C/code>\u000A(is focusable) or \u003Ccode>-1\u003C/code> (not focusable) is not easy.\u000ASuch values should not be used unless you completely understand\u000Atheir implications.\u003C/p>",
-         "ja" : "\u003Cp>\u003Ccode>tabindex\u003C/code> 属性値は非負整数です。しかし\u000A\u003Ccode>0\u003C/code> (フォーカス可能) と \u003Ccode>-1\u003C/code> (フォーカス不能)\u000A以外の値を使うのは簡単ではありません。\u000A何を表しているか理解している自信がなければ、他の値を使うべきではありません。\u003C/p>"
-      },
-      "layer" : "feature",
-      "message" : {
-         "en" : "The \u003Ccode>tabindex\u003C/code> value is not \u003Ccode>-1\u003C/code> or \u003Ccode>0\u003C/code>",
-         "ja" : "\u003Ccode>tabindex\u003C/code> 値が \u003Ccode>-1\u003C/code> でも \u003Ccode>0\u003C/code> でもありません"
-      },
-      "modules" : {
-         "Web::HTML::Validator" : 1
       }
    },
    "table:no cell in last row" : {
