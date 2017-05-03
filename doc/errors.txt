@@ -28,6 +28,7 @@ following name/value pairs:
     The typical processing stage in which the error might be detected.
     The value is one of following values:
 
+      |charencoding|      Character encoding decoding
       |character-set|     Character interpretation
       |tokenization|      Tokenization
       |entity|            XML entity processing
