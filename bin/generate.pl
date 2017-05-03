@@ -53,6 +53,7 @@ my $local_path = path (__FILE__)->parent->parent->child ('local');
 for my $path (
   $local_path->child ('data-web-defs/parser-errors.json'),
   $local_path->child ('perl-web-markup/validation-errors.json'),
+  $local_path->child ('perl-web-encodings/encoding-errors.json'),
 ) {
   my $json = json_bytes2perl $path->slurp;
   for my $error_type (keys %{$json->{errors}}) {

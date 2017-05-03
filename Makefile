@@ -47,10 +47,14 @@ local/data-web-defs/parser-errors.json:
 local/perl-web-markup/validation-errors.json:
 	mkdir -p local/perl-web-markup
 	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/perl-web-markup/master/intermediate/validator-errors.json
+local/perl-web-encodings/encoding-errors.json:
+	mkdir -p local/perl-web-encodings
+	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/perl-web-encodings/master/intermediate/encoding-errors.json
 
 data/errors.json: source/errors.xml bin/generate.pl \
     local/data-web-defs/parser-errors.json \
-    local/perl-web-markup/validation-errors.json
+    local/perl-web-markup/validation-errors.json \
+    local/perl-web-encodings/encoding-errors.json
 	$(PERL) bin/generate.pl
 
 data/xml.json: source/xml-constraints.json source/xmlns-constraints.json bin/xml.pl
