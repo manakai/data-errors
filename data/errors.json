@@ -2459,6 +2459,21 @@
          "en" : "No identifier is specified in an extended \u000A  attribute assignment."
       }
    },
+   "big5:hkscs" : {
+      "default_level" : "w",
+      "desc" : {
+         "en" : "\u003Cp>The HKSCS extended part of the Big5 encoding is not fully\u000Ainteroperable.\u003C/p>",
+         "ja" : "\u003Cp>Big5 符号化の HKSCS 拡張部分は十分相互運用可能ではありません。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "An HKSCS extended code is used",
+         "ja" : "HKSCS 拡張符号が使われています"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
+      }
+   },
    "block not closed" : {
       "message" : {
          "en" : "Block is not closed before the end of\u000A  file."
@@ -2606,6 +2621,21 @@
             "lang" : "XML"
          }
       ]
+   },
+   "bom" : {
+      "default_level" : "s",
+      "desc" : {
+         "en" : "\u003Cp>There is a BOM (byte order mark).  It should not be used as it can\u000Acause interoperability and security problems.\u003C/p>",
+         "ja" : "\u003Cp>BOM (バイト順マーク) があります。\u000A相互運用性やセキュリティーの問題の元ですから、\u000A省くべきです。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "There is a BOM",
+         "ja" : "BOM があります"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
+      }
    },
    "boolean:invalid" : {
       "desc" : {
@@ -4616,6 +4646,36 @@
          "ja" : "属性値が指定されていません。"
       }
    },
+   "encoding:replacement" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There are some historical encodings that have not been used on the\u000AWeb and have security concerns.  To protect the user, the files in\u000Athose encodings are discarded.\u003C/p>",
+         "ja" : "\u003Cp>歴史的な符号化の中には、 Web では長らく使われていない反面、\u000Aセキュリティー上の懸念のあるものもあります。利用者を保護するため、\u000Aそうした符号化を使ったファイルは開けません。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "An obsolete encoding is used",
+         "ja" : "廃止された符号化が使われています"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
+      }
+   },
+   "encoding:unassigned" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Some byte sequences are left unassigned in several encodings.  For\u000Ainteroperability, they must not be used.\u003C/p>",
+         "ja" : "\u003Cp>符号化によっては割当のないバイト列があります。\u000A相互運用性のため、そうしたバイト列を使ってはいけません。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "There is an unassigned byte",
+         "ja" : "未割当のバイトがあります"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
+      }
+   },
    "end tag attribute" : {
       "default_level" : "m",
       "desc" : {
@@ -5878,6 +5938,36 @@
       },
       "modules" : {
          "Web::HTML::Validator" : 1
+      }
+   },
+   "iso2022jp:jis78" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>Though an escape sequence designating JIS C 6226-1978 (\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/4 4/0), which has been obsoleted, is\u000Aallowed in an ISO-2022-JP string, it is interpreted as per the revised\u000Adefinition, which is in fact incompatible with the original\u000Adefinition.\u003C/p>",
+         "ja" : "\u003Cp>古い規格である JIS C 6226-1978 を指示するエスケープシーケンス (\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/4 4/0) を ISO-2022-JP \u000A文字列で使うことは認められてはいますが、元の定義ではなく、\u000A本来非互換な改訂版の定義に従い解釈されます。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "JIS C 6226-1978 is used",
+         "ja" : "JIS C 6226-1978 が使われています"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
+      }
+   },
+   "iso2022jp:lone escape" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In an ISO-2022-JP string, only escape sequences\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/4 4/0,\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/4 4/2,\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/8 4/2,\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/8 4/9, and\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/8 4/10\u000Aare allowed.\u003C/p>",
+         "ja" : "\u003Cp>ISO-2022-JP 文字列で使えるエスケープシーケンスは\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/4 4/0,\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/4 4/2,\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/8 4/2,\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/8 4/9,\u000A\u003Ccode class=\u0022charname\u0022>ESC\u003C/code> 2/8 4/10\u000Aだけです。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "There is a broken escape sequence",
+         "ja" : "壊れたエスケープシーケンスがあります"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
       }
    },
    "js:parse error" : {
@@ -7276,6 +7366,21 @@
          "after-mss-003e" : 1,
          "after-mss-005b" : 1,
          "after-mss-005d" : 1
+      }
+   },
+   "multibyte:lone lead byte" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In a multibyte encoding, a lead byte, which introduces a multibyte\u000Acode, must be immediately followed by a trail byte.\u003C/p>",
+         "ja" : "\u003Cp>多バイト符号化では、多バイト符号の先頭のバイトの直後には第2バイトが来なければいけません。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "There is a lead byte not immediately followed by a trail byte",
+         "ja" : "第1バイトの直後に第2バイトがありません"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
       }
    },
    "multilength:syntax error" : {
@@ -11610,6 +11715,66 @@
       "message" : {
          "en" : "The URL cannot be empty",
          "ja" : "URL を空にしてはいけません"
+      }
+   },
+   "utf-16:lone byte" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In a UTF-16 string, anything other than code units, i.e. pairs of\u000Atwo bytes, are allowed.  The number of the bytes in the string cannot\u000Abe odd.\u003C/p>",
+         "ja" : "\u003Cp>UTF-16 文字列中には符号単位 (2つのバイトの組) しか入れられません。\u000A文字列中のバイトの数は奇数にはなりません。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "There is a garbage byte at the end of the string",
+         "ja" : "文字列の末尾に余計なバイトがあります"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
+      }
+   },
+   "utf-16:lone high surrogate" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In a UTF-16 string, a high surrogate code unit must be immediately\u000Afollowed by a low surrogate code unit.\u003C/p>",
+         "ja" : "\u003Cp>UTF-16 文字列中で高サロゲート符号単位の直後には低サロゲート符号単位がなければいけません。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "There is a high surrogate not immediately (\u003Cvar>{text}\u003C/var>) followed by a low surrogate",
+         "ja" : "直後に低サロゲートがない高サロゲート (\u003Cvar>{text}\u003C/var>) があります"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
+      }
+   },
+   "utf-16:lone low surrogate" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>In a UTF-16 string, a low surrogate code unit must immediately\u000Afollow a high surrogate code unit.\u003C/p>",
+         "ja" : "\u003Cp>UTF-16 文字列中で低サロゲート符号単位の直前には高サロゲート符号単位がなければいけません。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "There is a low surrogate (\u003Cvar>{text}\u003C/var>) not immediately following a high surrogate",
+         "ja" : "直前に高サロゲートがない低サロゲート (\u003Cvar>{text}\u003C/var>) があります"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
+      }
+   },
+   "utf8:bad bytes" : {
+      "default_level" : "m",
+      "desc" : {
+         "en" : "\u003Cp>There is a byte that is not allowed in UTF-8.\u003C/p>",
+         "ja" : "\u003Cp>UTF-8 で認められていないバイトが現れました。\u003C/p>"
+      },
+      "layer" : "charencoding",
+      "message" : {
+         "en" : "There is a byte that is not allowed in UTF-8",
+         "ja" : "UTF-8 で認められていないバイトが現れました"
+      },
+      "modules" : {
+         "Web::Encoding::Decoder" : 1
       }
    },
    "value gt max" : {
