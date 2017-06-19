@@ -1,7 +1,3 @@
-[submodule "bin/modules/charclass"]
-	path = bin/modules/charclass
-	url = git://github.com/wakaba/perl-charclass
-	track = master
 [submodule "bin/modules/web-dom"]
 	path = bin/modules/web-dom
 	url = git://github.com/manakai/perl-web-dom
