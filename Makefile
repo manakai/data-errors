@@ -1,7 +1,7 @@
 all: deps all-data
 
 clean: clean-json-ps
-	rm -fr local/data-web-defs
+	rm -fr local/data-web-defs local/perl-web-*
 
 WGET = wget
 CURL = curl
@@ -50,11 +50,15 @@ local/perl-web-markup/validation-errors.json:
 local/perl-web-encodings/encoding-errors.json:
 	mkdir -p local/perl-web-encodings
 	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/perl-web-encodings/master/intermediate/encoding-errors.json
+local/perl-web-js/webidl-errors.json:
+	mkdir -p local/perl-web-js
+	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/perl-web-js/master/intermediate/errors.json
 
 data/errors.json: source/errors.xml bin/generate.pl \
     local/data-web-defs/parser-errors.json \
     local/perl-web-markup/validation-errors.json \
-    local/perl-web-encodings/encoding-errors.json
+    local/perl-web-encodings/encoding-errors.json \
+    local/perl-web-js/webidl-errors.json
 	$(PERL) bin/generate.pl
 
 data/xml.json: source/xml-constraints.json source/xmlns-constraints.json bin/xml.pl

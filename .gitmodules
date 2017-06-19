@@ -1,12 +1,12 @@
 [submodule "bin/modules/web-dom"]
 	path = bin/modules/web-dom
-	url = git://github.com/manakai/perl-web-dom
+	url = https://github.com/manakai/perl-web-dom
 	track = master
 [submodule "bin/modules/web-markup"]
 	path = bin/modules/web-markup
-	url = git://github.com/manakai/perl-web-markup
+	url = https://github.com/manakai/perl-web-markup
 	track = master
 [submodule "bin/modules/web-encodings"]
 	path = bin/modules/web-encodings
-	url = git://github.com/manakai/perl-web-encodings
+	url = https://github.com/manakai/perl-web-encodings
 	track = master

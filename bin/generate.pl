@@ -50,11 +50,12 @@ my $Data = {};
 
 ## JSON data files
 my $local_path = path (__FILE__)->parent->parent->child ('local');
-for my $path (
-  $local_path->child ('data-web-defs/parser-errors.json'),
-  $local_path->child ('perl-web-markup/validation-errors.json'),
-  $local_path->child ('perl-web-encodings/encoding-errors.json'),
-) {
+for my $path (map { $local_path->child ($_) } qw(
+  data-web-defs/parser-errors.json
+  perl-web-markup/validation-errors.json
+  perl-web-encodings/encoding-errors.json
+  perl-web-js/webidl-errors.json
+)) {
   my $json = json_bytes2perl $path->slurp;
   for my $error_type (keys %{$json->{errors}}) {
     if (defined $Data->{$error_type}) {
