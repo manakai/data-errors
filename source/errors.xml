@@ -1131,7 +1131,7 @@
 
     <dl class="switch">
 
-    <dt>In HTML <code>ul</code>, <code>ol</code>, or <code>dir</code>
+    <dt>In HTML <code>ul</code>, <code>ol</code>, or <code>menu</code>
     element</dt>
 
     <dd>Only the <code>li</code> element is allowed.  Characters in
@@ -1140,10 +1140,10 @@
 
     <dt>In HTML <code>dl</code> element</dt>
 
-    <dd>Only the <code>dt</code> or <code>dd</code> element is
-    allowed.  Characters in the "name" component must be wrapped by
-    the <code>dt</code> element.  Characters in the "value" component
-    must be wrapped by the <code>dd</code> element.</dd>
+    <dd>Only the <code>dt</code>, <code>dd</code>, or <code>div</code>
+    element is allowed.  Characters in the "name" component must be
+    wrapped by the <code>dt</code> element.  Characters in the "value"
+    component must be wrapped by the <code>dd</code> element.</dd>
 
     <dt>In HTML <code>table</code>, <code>thead</code>,
     <code>tbody</code>, <code>tfoot</code>, or <code>tr</code>
@@ -1171,24 +1171,12 @@
 
     <dd>Only <code>h<var>n</var></code> elements can be used.</dd>
 
-    <dt>In HTML <code>menu</code> element</dt>
-
-    <dd>If the <code>li</code> element is used, or the
-    <code>type</code> of the element is <code>popup</code>, non-space
-    characters are not allowed.</dd>
-
     <dt>In HTML <code>html</code> or <code>head</code> element</dt>
 
     <dt>In HTML <code>noscript</code> element in the <code>head</code>
     element</dt>
 
     <dd>Data must be put into the <code>body</code> element.</dd>
-
-    <dt>In HTML <code>frameset</code> element</dt>
-
-    <dd>Characters are not allowed when frames are used.  Fallback
-    content for really old browsers must be put into the
-    <code>noframes</code> element.</dd>
 
     </dl>
   </d:desc>
@@ -1197,7 +1185,7 @@
 
     <dl class="switch">
 
-    <dt>HTML <code>ul</code>, <code>ol</code>, <code>dir</code> 要素</dt>
+    <dt>HTML <code>ul</code>, <code>ol</code>, <code>menu</code> 要素</dt>
 
     <dd><code>li</code> 要素だけが認められています。リスト中の文字は
     <code>li</code> 要素で包まないといけません。
@@ -1230,21 +1218,11 @@
 
     <dd><code>h<var>n</var></code> 要素しか使えません。</dd>
 
-    <dt>HTML <code>menu</code> 要素</dt>
-
-    <dd><code>li</code> 要素を使っている時や、要素の
-    <code>type</code> が <code>popup</code> の時は、空白以外の文字は使えません。</dd>
-
     <dt>HTML <code>html</code> 要素、 <code>head</code> 要素</dt>
 
     <dt>HTML <code>head</code> 要素内の <code>noscript</code> 要素</dt>
 
     <dd>データは <code>body</code> 要素の中に入れなければいけません。</dd>
-
-    <dt>HTML <code>frameset</code> 要素</dt>
-
-    <dd>フレームの時は文字は使えません。極めて古いブラウザーのための代替の内容は
-    <code>noframes</code> 要素の中に入れなければいけません。</dd>
 
     </dl>
   </d:desc>
@@ -2094,101 +2072,6 @@
   </d:desc>
 </d:item>
 
-<d:item name="element not allowed:menu type=popup"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The element is not allowed in popup menu</d:message>
-  <d:message xml:lang="ja">この要素はポップアップメニューでは使えません</d:message>
-  <d:desc xml:lang="en">
-    <p>The content of the <code>menu</code> element whose
-    <code>type</code> is <code>popup</code> must be following
-    elements, in any order:</p>
-
-    <ol>
-
-    <li>The <code>menuitem</code> element</li>
-
-    <li>The <code>hr</code> element</li>
-
-    <li>The <code>menu</code> element whose <code>type</code> is
-    <code>popup</code></li>
-
-    <li>The <code>script</code> element</li>
-
-    <li>The <code>template</code> element</li>
-
-    </ol>
-
-    <p>No other flow content elements or the <code>li</code> elements
-    can be used.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>menu</code> 要素の
-    <code>type</code> が <code>popup</code> の時は次の要素が任意の順序で使えます。</p>
-
-    <ol>
-
-    <li><code>menuitem</code> 要素</li>
-
-    <li><code>hr</code> 要素</li>
-
-    <li><code>menu</code> 要素で <code>type</code> が
-    <code>popup</code> のもの</li>
-
-    <li><code>script</code> 要素</li>
-
-    <li><code>template</code> 要素</li>
-
-    </ol>
-
-    <p>他のフロー内容の要素や <code>li</code> 要素は使えません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="element not allowed:menu type=toolbar"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The element is not allowed in toolbar</d:message>
-  <d:message xml:lang="ja">この要素はツールバーでは使えません</d:message>
-  <d:desc xml:lang="en">
-    <p>The content of the <code>menu</code> element whose
-    <code>type</code> is <code>toolbar</code> must be either:</p>
-
-    <ul>
-
-    <li>Zero or more <code>li</code>, <code>script</code>, and
-    <code>template</code> elements, or</li>
-
-    <li>Flow content.</li>
-
-    </ul>
-
-    <p>If the <code>li</code> element is used, flow content other than
-    <code>script</code> and <code>template</code> elements cannot be
-    used.  Also, the <code>menuitem</code> element cannot be used in
-    the <code>menu</code> element whose <code>type</code> is
-    <code>toolbar</code>.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>menu</code> 要素の
-    <code>type</code> が <code>toolbar</code> の時は、
-    内容は次のいずれかでなければいけません。</p>
-
-    <ul>
-
-    <li><code>li</code>, <code>script</code>, <code>template</code>
-    各要素を任意個</li>
-
-    <li>フロー内容</li>
-
-    </ul>
-
-    <p><code>li</code> 要素を使っている時は、
-    <code>script</code> 要素と <code>template</code> 要素を除くフロー内容は使えません。
-    また、 <code>menu</code> 要素の <code>type</code> が
-    <code>toolbar</code> の時は <code>menuitem</code>
-    要素は使えません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="element not allowed:minus"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">The element is disallowed by an ancestor
@@ -2931,11 +2814,6 @@
     <code>title</code> attribute should also be specified to describe
     the restriction.</dd>
 
-    <dt>HTML <code>button</code> element</dt>
-
-    <dd>If the <code>type</code> is <code>menu</code>, the
-    <code>menu</code> attribute must be specified.</dd>
-
     <dt>HTML <code>embed</code> element</dt>
 
     <dd>An <code>embed</code> element with no <code>src</code>
@@ -2952,9 +2830,6 @@
     specified, it might be a good practice to also specify the
     <code>typemustmatch</code> attribute to ensure that the expected
     content is rendered.</dd>
-
-    <dd>If the <code>classid</code> attribute is specified, the
-    <code>codetype</code> attribute should also be specified.</dd>
 
     <dt>HTML <code>html</code> element</dt>
 
@@ -3030,11 +2905,6 @@
     <dt>HTML <code>param</code> element</dt>
 
     <dd>Attributes <code>name</code> and <code>value</code> must be
-    specified.</dd>
-
-    <dt>HTML <code>applet</code> element</dt>
-
-    <dd>Attributes <code>width</code> and <code>height</code> must be
     specified.</dd>
 
     <dt>HTML <code>title</code> attribute</dt>
@@ -3132,11 +3002,6 @@
     <dd><code>pattern</code> 属性があるときは、その制限内容を
     <code>title</code> 属性で説明するべきです。</dd>
 
-    <dt>HTML <code>button</code> 要素</dt>
-
-    <dd><code>type</code> が <code>menu</code> の時は
-    <code>menu</code> 属性を指定しなければいけません。</dd>
-
     <dt>HTML <code>embed</code> 要素</dt>
 
     <dd><code>embed</code> 要素は <code>src</code>
@@ -3150,9 +3015,6 @@
     <dd><code>data</code> 属性と <code>type</code> 属性の両方が指定されている時は、
     意図した内容しかレンダリングされないように
     <code>typemustmatch</code> 属性も指定したほうがいいかもしれません。</dd>
-
-    <dd><code>classid</code> 属性が指定されている時は、
-    <code>codetype</code> 属性も指定するべきです。</dd>
 
     <dt>HTML <code>html</code> 要素</dt>
 
@@ -3211,11 +3073,6 @@
 
     <dd><code>value</code> 属性は必須です。</dd>
 
-    <dt>HTML <code>menuitem</code> 要素</dt>
-
-    <dd><code>label</code> 属性か <code>command</code>
-    属性のどちらかを指定しなければいけません。</dd>
-
     <dt>HTML <code>iframe</code> 要素</dt>
 
     <dd><code>itemprop</code> 属性が指定されている場合
@@ -3225,10 +3082,6 @@
     
     <dd><code>name</code> 属性と <code>height</code>
     属性を指定しなければいけません。</dd>
-
-    <dt>HTML <code>applet</code> 要素</dt>
-
-    <dd><code>width</code> 属性と <code>height</code> 属性を指定しなければいけません。</dd>
 
     <dt>HTML <code>title</code> 属性</dt>
 
@@ -3559,9 +3412,6 @@
     <code>formenctype</code>, <code>formnovalidate</code>, and
     <code>formtarget</code> are not allowed.</dd>
 
-    <dd>Unless the <code>type</code> is <code>menu</code>, the
-    <code>menu</code> attribute is not allowed.</dd>
-
     <dt>HTML <code>img</code> element</dt>
 
     <dd>The <code>start</code> attribute is not allowed unless the
@@ -3572,43 +3422,6 @@
     <dd>The <code>typemustmatch</code> attribute is not allowed unless
     both <code>data</code> and <code>type</code> attributes are
     specified.</dd>
-
-    <dt>HTML <code>form</code> element</dt>
-
-    <dd>If the <code>lcs</code> or <code>utn</code> attribute is
-    specified, the <code>target</code> attribute is not allowed.</dd>
-
-    <dt>HTML <code>menu</code> element</dt>
-
-    <dd>The <code>label</code> attribute can only be used when the
-    parent is a <code>menu</code> element whose <code>type</code> is
-    <code>popup</code>.</dd>
-
-    <dt>HTML <code>menuitem</code> element</dt>
-
-    <dd>If the <code>command</code> attribute is specified, attributes
-    <code>type</code>, <code>label</code>, <code>icon</code>,
-    <code>disabled</code>, <code>checked</code>, and
-    <code>radiogroup</code> cannot be used.</dd>
-
-    <dd>The <code>checked</code> attribute cannot be used unless the
-    <code>type</code> is <code>checkbox</code> or
-    <code>radio</code>.</dd>
-
-    <dd>The <code>radiogroup</code> attribute cannot be used unless
-    the <code>type</code> is <code>radio</code>.</dd>
-
-    <dt>HTML <code>keygen</code> element</dt>
-
-    <dd>If the <code>keytype</code> is <code>dsa</code>, either the
-    <code>keyparams</code> or <code>pqg</code> attribute (but not
-    both) must be specified.</dd>
-
-    <dd>Otherwise, if the <code>keytype</code> is <code>ec</code>, the
-    <code>pgq</code> attribute is not allowed.</dd>
-
-    <dd>Otherwise, the <code>keyparams</code> and <code>pqg</code>
-    attributes are not allowed.</dd>
 
     <dt>AtomPub <code>app:categories</code> element</dt>
 
@@ -3711,38 +3524,6 @@
 
     <dd><code>lcs</code> 属性か <code>utn</code> 属性が指定されているなら、
     <code>target</code> 属性は使えません。</dd>
-
-    <dt>HTML <code>menu</code> 要素</dt>
-
-    <dd><code>label</code> 属性は親が <code>menu</code> 
-    要素で <code>type</code> が <code>popup</code>
-    の時だけ使えます。</dd>
-
-    <dt>HTML <code>menuitem</code> 要素</dt>
-
-    <dd><code>command</code> 属性が指定されている時は、
-    <code>type</code>, <code>label</code>, <code>icon</code>,
-    <code>disabled</code>, <code>checked</code>,
-    <code>radiogroup</code> 各属性は使えません。</dd>
-
-    <dd><code>checked</code> 属性は
-    <code>type</code> が <code>checkbox</code> か
-    <code>radio</code> でなければ使えません。</dd>
-
-    <dd><code>radiogroup</code> 属性は
-    <code>type</code> が <code>radio</code> でなければ使えません。</dd>
-
-    <dt>HTML <code>keygen</code> 要素</dt>
-
-    <dd><code>keytype</code> が <code>dsa</code> の時は、
-    <code>keyparams</code> と <code>pqg</code>
-    のどちらかの属性だけを指定しなければいけません。</dd>
-
-    <dd><code>keytype</code> が <code>ec</code> の時は、
-    <code>pgq</code> 属性は使えません。</dd>
-
-    <dd>それ以外の時は、 <code>keyparams</code> 属性も <code>pqg</code>
-    属性も使えません。</dd>
 
     <dt>AtomPub <code>app:categories</code> 要素</dt>
 
@@ -5856,24 +5637,6 @@
   <d:desc xml:lang="ja">
     <p><code>command</code> 属性の値は命令の要素の
     <code>id</code> 属性の値でなければいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="no referenced menu"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The referenced element is not found or
-  is not a <code>menu</code> element</d:message>
-  <d:message xml:lang="ja">参照されている要素が見つからないか、
-  <code>menu</code> 要素ではありません</d:message>
-  <d:desc xml:lang="en">
-    <p>The value of the <code>contextmenu</code> or <code>menu</code>
-    attribute must be the <code>id</code> attribute value of a
-    <code>menu</code> element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>contextmenu</code> 属性または <code>menu</code> 属性の値は
-    <code>menu</code> 要素の <code>id</code>
-    属性の値でなければいけません。</p>
   </d:desc>
 </d:item>
 
