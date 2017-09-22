@@ -2646,22 +2646,6 @@
   </d:message>
 </d:item>
 
-<d:item name="unclosed cdo"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en"><code>--></code> not found</d:message>
-  <d:message xml:lang="ja"><code>--></code> が見つかりません</d:message>
-  <d:desc xml:lang="en">
-    <p>In the <code>style</code> or <code>script</code> element, any
-    substring <code>&lt;!--</code> must be closed by corresponding
-    substring <code>--></code>.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>style</code> 要素や <code>script</code> 要素の中では
-    <code>&lt;!--</code> には対応する <code>--></code>
-    がなければいけません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="unknown style lang"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">Validation of the styling language
@@ -2909,9 +2893,8 @@
 
     <dt>HTML <code>title</code> attribute</dt>
 
-    <dd>If the element has a <code>draggable</code> or
-    <code>dropzone</code> attribute, the <code>title</code> attribute
-    should contain the description.</dd>
+    <dd>If the element has a <code>draggable</code> attribute, the
+    <code>title</code> attribute should contain the description.</dd>
 
     <dt>ARIA <code>aria-valuenow</code> attribute</dt>
 
@@ -3085,8 +3068,7 @@
 
     <dt>HTML <code>title</code> 属性</dt>
 
-    <dd><code>draggable</code> 属性や
-    <code>dropzone</code> 属性が指定されている時は、 <code>title</code>
+    <dd><code>draggable</code> 属性が指定されている時は、 <code>title</code>
     属性に説明を入れるべきです。</dd>
 
     <dt>ARIA <code>aria-valuenow</code> 属性</dt>
@@ -4426,20 +4408,6 @@
     <dd>HTML <code>lang</code> 属性を使ってください。</dd>
 
     </dl>
-  </d:desc>
-</d:item>
-
-<d:item name="dropzone:duplicate feedback"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">There are multiple feedback values</d:message>
-  <d:message xml:lang="ja">フィードバック値は既に指定されています</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>dropzone</code> attribute can contain only a feedback
-    value (<code>move</code>, <code>copy</code>, or <code>link</code>).</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p><code>dropzone</code> 属性はフィードバック値 (<code>move</code>,
-    <code>copy</code>, <code>link</code>) を1つだけ指定できます。</p>
   </d:desc>
 </d:item>
 
@@ -5998,13 +5966,6 @@
 
     <dl class="switch">
 
-    <dt>HTML <code>dropzone</code> attribute</dt>
-
-    <dd>The word can be one of feedback values (<code>move</code>,
-    <code>copy</code>, or <code>link</code>), a keyword beginning with
-    <code>string:</code>, or a keyword beginning with
-    <code>file:</code>.</dd>
-
     <dt>ARIA <code>aria-dropeffect</code> attribute</dt>
 
     <dd>The word can be one of <code>copy</code>, <code>move</code>,
@@ -6943,148 +6904,6 @@
     <p>役割が <code>document</code> や <code>application</code>
     の要素の中に役割が <code>banner</code>, <code>contentinfo</code>,
     <code>main</code> の要素が複数あってはいけません。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="aria:not preferred markup:css"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">CSS properties are
-  preferred to <code>role=<var>{value}</var></code></d:message>
-  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
-  よりも CSS を使うのが適切です</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>role</code> attribute with the value should only be
-    used when it cannot be represented by CSS properties.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この <code>role</code> 属性の値は、 CSS
-    表現できない時に限って使うべきです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="aria:not preferred markup:html-attr"
-    targets="attr"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code><var>{text}</var></code> attribute
-  is preferred</d:message>
-  <d:message xml:lang="en"><code><var>{text}</var></code> 属性の方が適切です</d:message>
-  <d:desc xml:lang="en">
-    <p>The ARIA attribute should only be used when its semantics
-    cannot be represented in native HTML attribute.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>ARIA 属性は、その意味を HTML の本来の属性で表せない時だけ使うべきです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="aria:not preferred markup:html-element"
-    targets="attr"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code><var>{text}</var></code> element
-  is preferred to <code>role=<var>{value}</var></code></d:message>
-  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
-  よりも <code><var>{text}</var></code> 要素が適切です</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>role</code> attribute with the value should only be
-    used when it cannot be represented by an HTML element with similar
-    semantics.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この <code>role</code> 属性の値は、同じような意味の HTML
-    要素で表現できない時に限って使うべきです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="aria:not preferred markup:input"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code>&lt;input type=<var>{text}</var>></code>
-  element is preferred to <code>role=<var>{value}</var></code></d:message>
-  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
-  よりも <code>&lt;input type=<var>{text}</var>></code>
-  要素が適切です</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>role</code> attribute with the value should only be
-    used when it cannot be represented by an HTML <code>input</code>
-    element with similar semantics.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この <code>role</code> 属性の値は、同じような意味の HTML
-    <code>input</code> 要素で表現できない時に限って使うべきです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="aria:not preferred markup:math"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code>math</code>
-  element is preferred to <code>role=<var>{value}</var></code></d:message>
-  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
-  よりも <code>math</code> 要素が適切です</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>role</code> attribute with the value should only be
-    used when it cannot be represented by a MathML
-    <code>math</code> element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この <code>role</code> 属性の値は、 MathML <code>math</code>
-    要素で表現できない時に限って使うべきです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="aria:not preferred markup:textbox"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code>&lt;input type=text></code> or
-  <code>textarea</code>
-  element is preferred to <code>role=<var>{value}</var></code></d:message>
-  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
-  よりも <code>&lt;input type=text></code> や <code>textarea</code>
-  要素が適切です</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>role</code> attribute with the value should only be
-    used when it cannot be represented by an HTML
-    <code>&lt;input type=text></code> or <code>textarea</code>
-    element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この <code>role</code> 属性の値は、 HTML
-    <code>&lt;input type=text></code> 要素や <code>textarea</code>
-    要素で表現できない時に限って使うべきです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="aria:not preferred markup:th"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code>&lt;th <var>{text}</var>></code>
-  element is preferred to <code>role=<var>{value}</var></code></d:message>
-  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
-  よりも <code>&lt;th scope=<var>{text}</var>></code>
-  要素が適切です</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>role</code> attribute with the value should only be
-    used when it cannot be represented by an HTML <code>th</code>
-    element with a <code>scope</code> attribute.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この <code>role</code> 属性の値は、 HTML
-    <code>th</code> 要素と <code>scope</code> 
-    属性で表現できない時に限って使うべきです。</p>
-  </d:desc>
-</d:item>
-
-<d:item name="aria:not preferred markup:title"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The <code>title=""</code> attribute
-  is preferred to <code>role=<var>{value}</var></code></d:message>
-  <d:message xml:lang="ja"><code>role=<var>{value}</var></code>
-  よりも <code>title</code> 属性が適切です</d:message>
-  <d:desc xml:lang="en">
-    <p>The <code>role</code> attribute with the value should only be
-    used when it cannot be represented by an HTML <code>title</code>
-    attribute or an SVG <code>title</code> element.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>この <code>role</code> 属性の値は、 HTML
-    <code>title</code> 属性や SVG <code>title</code>
-    要素で表現できない時に限って使うべきです。</p>
   </d:desc>
 </d:item>
 
