@@ -92,20 +92,6 @@
   </d:desc>
 </d:item>
 
-<d:item name="non-utf-8 character encoding"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">Historical character encoding is used</d:message>
-  <d:message xml:lang="ja">歴史的な文字符号化が使われています</d:message>
-  <d:desc xml:lang="en">
-    <p>The UTF-8 character encoding should be used unless there is a
-    strong reason to use other legacy encoding.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>UTF-8 以外の昔ながらの文字符号化方式は、
-    特に強い理由がない限り使うべきではありません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="character encoding unchecked"
     modules="Whatpm::ContentChecker">
   <d:message xml:lang="en">Conformance for character encoding requirements
