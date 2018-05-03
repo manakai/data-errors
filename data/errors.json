@@ -287,19 +287,9 @@
          "en" : "Use of a private type\u000A  \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> is not encouraged."
       }
    },
-   "IMT:subtype syntax error" : {
-      "message" : {
-         "en" : "Value \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> is\u000A  syntactically not a valid subtype value of an Internet Media Type."
-      }
-   },
    "IMT:syntax error" : {
       "message" : {
          "en" : "The specified value is not an Internet Media\u000A  Type."
-      }
-   },
-   "IMT:type syntax error" : {
-      "message" : {
-         "en" : "Value \u003Ccode>\u003Cvar>{value}\u003C/var>\u003C/code> is\u000A  syntactically not a valid type."
       }
    },
    "IMT:unknown parameter" : {
@@ -1341,16 +1331,6 @@
       "message" : {
          "en" : "Anchor name cannot be empty",
          "ja" : "アンカー名を空文字列にはできません"
-      }
-   },
-   "app:draft:bad value" : {
-      "desc" : {
-         "en" : "\u000A    \u003Cp>The content of an AtomPub \u003Ccode>app:draft\u003C/code> element must\u000A    be either \u003Ccode>yes\u003C/code> or \u003Ccode>no\u003C/code>.\u003C/p>\u000A  ",
-         "ja" : "\u000A    \u003Cp>AtomPub \u003Ccode>app:draft\u003C/code> 要素の内容は\u000A    \u003Ccode>yes\u003C/code> か \u003Ccode>no\u003C/code> でなければいけません。\u003C/p>\u000A  "
-      },
-      "message" : {
-         "en" : "The value is not \u003Ccode>yes\u003C/code> or\u000A  \u003Ccode>no\u003C/code>",
-         "ja" : "値が \u003Ccode>yes\u003C/code> でも \u003Ccode>no\u003C/code>\u000A  でもありません"
       }
    },
    "argument after variadic" : {
