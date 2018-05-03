@@ -1056,22 +1056,6 @@
 <section id="element-content-model-errors">
 <h2>Element Content Model Errors</h2>
 
-<d:item name="app:draft:bad value"
-    modules="Web::HTML::Validator">
-  <d:message xml:lang="en">The value is not <code>yes</code> or
-  <code>no</code></d:message>
-  <d:message xml:lang="ja">値が <code>yes</code> でも <code>no</code>
-  でもありません</d:message>
-  <d:desc xml:lang="en">
-    <p>The content of an AtomPub <code>app:draft</code> element must
-    be either <code>yes</code> or <code>no</code>.</p>
-  </d:desc>
-  <d:desc xml:lang="ja">
-    <p>AtomPub <code>app:draft</code> 要素の内容は
-    <code>yes</code> か <code>no</code> でなければいけません。</p>
-  </d:desc>
-</d:item>
-
 <d:item name="basehref after URL attribute"
     modules="Web::HTML::Validator">
   <d:message xml:lang="en">There is a URL attribute before the
@@ -7335,18 +7319,6 @@
     modules="Whatpm::IMTChecker">
   <d:message xml:lang="en">Use of a private type
   <code><var>{value}</var></code> is not encouraged.</d:message>
-</d:item>
-
-<d:item name="IMT:subtype syntax error"
-    modules="Whatpm::IMTChecker">
-  <d:message xml:lang="en">Value <code><var>{value}</var></code> is
-  syntactically not a valid subtype value of an Internet Media Type.</d:message>
-</d:item>
-
-<d:item name="IMT:type syntax error"
-    modules="Whatpm::IMTChecker">
-  <d:message xml:lang="en">Value <code><var>{value}</var></code> is
-  syntactically not a valid type.</d:message>
 </d:item>
 
 <d:item name="IMT:unknown parameter"

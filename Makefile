@@ -53,12 +53,16 @@ local/perl-web-encodings/encoding-errors.json:
 local/perl-web-js/webidl-errors.json:
 	mkdir -p local/perl-web-js
 	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/perl-web-js/master/intermediate/errors.json
+local/perl-web-resource/parsing-errors.json:
+	mkdir -p local/perl-web-resource
+	$(WGET) -O $@ https://raw.githubusercontent.com/manakai/perl-web-resource/master/intermediate/parsing-errors.json
 
 data/errors.json: source/errors.xml bin/generate.pl \
     local/data-web-defs/parser-errors.json \
     local/perl-web-markup/validation-errors.json \
     local/perl-web-encodings/encoding-errors.json \
-    local/perl-web-js/webidl-errors.json
+    local/perl-web-js/webidl-errors.json \
+    local/perl-web-resource/parsing-errors.json
 	$(PERL) bin/generate.pl
 
 data/xml.json: source/xml-constraints.json source/xmlns-constraints.json bin/xml.pl
