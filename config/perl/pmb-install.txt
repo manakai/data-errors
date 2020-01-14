@@ -1,4 +1,4 @@
 Carp~1.50
 Data::Dumper~2.173
-Path::Tiny~0.108
+Path::Tiny~0.110
 Scalar::Util~1.53
